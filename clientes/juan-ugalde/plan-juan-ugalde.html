@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Cliente Juan Ugalde | MoveSmart</title>
+  <meta name="description" content="Plan personalizado de entrenamiento MoveSmart para Juan Ugalde." />
+  <style>
+    :root{
+      --bg:#0c0812;
+      --card:rgba(24,16,32,.58);
+      --card-soft:rgba(255,255,255,.05);
+      --border:rgba(255,255,255,.08);
+      --text:#f3edf7;
+      --muted:#cbc0d3;
+      --accent:#f36b2a;
+      --accent-2:#ff8b4f;
+      --blue:#4c6fff;
+      --green:#209266;
+      --yellow:#d69a2d;
+      --container:min(1180px, calc(100% - 36px));
+      --radius:26px;
+      --shadow:0 14px 34px rgba(0,0,0,.28);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%}
+
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+            overflow-x:hidden;
+    }
+
+    .site-glow{
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(73,58,146,.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(243,107,42,.20), transparent 20%),
+        linear-gradient(90deg, rgba(6,8,18,.18) 0%, rgba(6,8,18,.04) 38%, rgba(6,8,18,.10) 100%);
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:var(--container);margin:0 auto;padding:28px 0 48px}
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+      padding:10px 0;
+    }
+
+    .back{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      font-weight:700;
+    }
+
+    .brand{
+      margin:0;
+      font-size:clamp(2rem, 5vw, 3rem);
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.04em;
+    }
+    .brand span{color:var(--accent)}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:20px;
+      align-items:center;
+      margin-bottom:24px;
+      border-radius:30px;
+      padding:28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+        radial-gradient(circle at 78% 70%, rgba(243,107,42,.10), transparent 18%),
+        radial-gradient(circle at 18% 24%, rgba(109,83,150,.12), transparent 24%);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-copy{position:relative;z-index:2}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--border);
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    .hero h2{
+      margin:0 0 10px;
+      font-size:clamp(2rem, 4vw, 3.4rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.06rem;
+      max-width:56ch;
+    }
+
+    .routine-visual{
+      justify-self:end;
+      width:min(320px, 100%);
+      aspect-ratio:1/1;
+      border-radius:28px;
+      border:1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        radial-gradient(circle at 50% 35%, rgba(243,107,42,.18), transparent 24%);
+      box-shadow:0 20px 40px rgba(0,0,0,.28);
+      display:grid;
+      place-items:center;
+      padding:18px;
+    }
+
+    .routine-box{
+      width:100%;
+      height:100%;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(243,107,42,.16), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        rgba(12, 10, 18, 0.78);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .routine-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.62) 100%);
+    }
+
+    .routine-box > div{
+      position:relative;
+      z-index:1;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .routine-icon{
+      width:min(210px, 72%);
+      height:auto;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 18px;
+    }
+
+    .routine-box strong{
+      display:block;
+      font-size:1.15rem;
+      margin-bottom:8px;
+      text-align:center;
+    }
+
+    .routine-box span{
+      display:block;
+      color:#f0e8f5;
+      line-height:1.55;
+      font-size:.95rem;
+      text-align:center;
+      max-width:24ch;
+      margin:0 auto;
+    }
+
+    .routine-line{
+      width:56px;
+      height:4px;
+      border-radius:999px;
+      margin:16px auto 0;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow:0 0 14px rgba(243,107,42,.55);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-bottom:24px;
+    }
+
+    .stat,
+    .panel,
+    .big-card{
+      background:rgba(24,16,32,.58);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .stat{
+      border-radius:22px;
+      padding:18px 20px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .panel{
+      border-radius:28px;
+      padding:24px;
+      margin-bottom:26px;
+    }
+
+    .panel h3{margin:0 0 18px;font-size:1.8rem;letter-spacing:-.03em}
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-item{
+      border-radius:18px;
+      padding:18px;
+      min-height:110px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-weight:700;
+      line-height:1.4;
+      text-decoration:none;
+      color:var(--text);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .info-item:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.16);
+      background:rgba(255,255,255,.08);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .big-card{
+      border-radius:26px;
+      overflow:hidden;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      position:relative;
+      min-height:410px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .big-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.18);
+      box-shadow:0 26px 62px rgba(0,0,0,.52);
+    }
+
+    .head,.foot{
+      padding:20px;
+      text-align:center;
+      font-weight:900;
+      color:#fff;
+      text-shadow:0 2px 12px rgba(0,0,0,.18);
+    }
+
+    .head{font-size:1.35rem}
+    .foot{font-size:1.08rem;margin-top:auto}
+
+    .card-preview,
+    .reward-preview{
+      flex:1;
+      min-height:300px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:26px 22px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,255,255,.05), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+    }
+
+    .card-preview::before,
+    .reward-preview::before{
+      content:"";
+      position:absolute;
+      width:230px;
+      height:230px;
+      border-radius:50%;
+      top:24px;
+      left:50%;
+      transform:translateX(-50%);
+      opacity:.48;
+      pointer-events:none;
+    }
+
+    .card-preview::after,
+    .reward-preview::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08));
+      pointer-events:none;
+    }
+
+    .preview-icon-img{
+      position:relative;
+      z-index:1;
+      width:158px;
+      height:158px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 18px;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+    }
+
+    .reward-icon-img{
+      width:158px;
+      height:158px;
+      object-fit:contain;
+      display:block;
+      margin:0 auto 18px;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+    }
+
+    .card-preview p{
+      position:relative;
+      z-index:1;
+      margin:0;
+      color:var(--muted);
+      line-height:1.72;
+      max-width:31ch;
+      font-size:1.02rem;
+    }
+
+    .green .card-preview::before{
+      background:radial-gradient(circle, rgba(32,146,102,.55), transparent 62%);
+    }
+
+    .yellow .card-preview::before{
+      background:radial-gradient(circle, rgba(214,154,45,.55), transparent 62%);
+    }
+
+    .green .head,.green .foot{background:var(--green)}
+    .yellow .head,.yellow .foot{background:var(--yellow)}
+    .blue .head,.blue .foot{background:var(--blue)}
+
+    .reward-card .head,
+    .reward-card .foot{
+      background:linear-gradient(180deg, #5874ff, #3857f5);
+    }
+
+    .reward-preview{
+      background:
+        radial-gradient(circle at 50% 18%, rgba(122,145,255,.26), transparent 34%),
+        radial-gradient(circle at 18% 58%, rgba(255,255,255,.14), transparent 10%),
+        radial-gradient(circle at 84% 50%, rgba(255,255,255,.12), transparent 9%),
+        linear-gradient(180deg, rgba(54,76,196,.16), rgba(255,255,255,.02));
+    }
+
+    .reward-preview::before{
+      width:230px;
+      height:230px;
+      top:24px;
+      background:radial-gradient(circle, rgba(88,116,255,.36), transparent 64%);
+    }
+
+    .reward-box{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:300px;
+      text-align:center;
+      padding:2px 8px 0;
+      transform:translateY(14px);
+    }
+
+    .sparkle{
+      position:absolute;
+      z-index:0;
+      color:#b9b8ff;
+      font-size:1.55rem;
+      opacity:.9;
+    }
+
+    .sparkle.one{left:24px;top:118px}
+    .sparkle.two{right:24px;top:92px;font-size:1.25rem}
+
+    .reward-box strong{
+      display:block;
+      font-size:1.18rem;
+      margin-bottom:8px;
+      color:#fff;
+    }
+
+    .reward-box p{
+      margin:0 auto 14px;
+      color:#f1ecf7;
+      line-height:1.55;
+      max-width:26ch;
+      font-size:1rem;
+    }
+
+    .reward-status{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      font-weight:800;
+      font-size:.9rem;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .routine-visual{justify-self:start;width:min(280px,100%)}
+      .stats,.cards{grid-template-columns:1fr}
+      .info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media (max-width: 680px){
+      .wrap{padding:18px 0 34px}
+      .topbar{flex-direction:column;align-items:flex-start}
+      .hero,.panel{padding:18px}
+      .routine-icon{width:min(190px, 78%)}
+      .info-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-glow"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a href="../../acceso-clientes.html" class="back">← Volver a acceso</a>
+      <h1 class="brand">Move<span>Smart</span></h1>
+    </div>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">✨ Rutina de entrenamiento personalizada</div>
+        <h2>Programa MoveSmart – Cliente Juan Ugalde</h2>
+        <p>Este espacio reúne tu planificación de entrenamiento, tus rutinas y tu seguimiento en una sola interfaz. La idea es que tengas algo más claro, visual y simple que un PDF largo.</p>
+      </div>
+
+      <div class="routine-visual">
+        <div class="routine-box">
+          <div>
+            <img src="../../imagenes/montana.webp" class="routine-icon" alt="Icono MoveSmart" decoding="async">
+            <strong>No es solo una rutina</strong>
+            <span>Es un plan personalizado que se adapta a tu vida real: tiempo, energía, progreso y adherencia.</span>
+            <i class="routine-line" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">🎯 <strong>Objetivo:</strong> Mejorar condición física y adherencia al entrenamiento</div>
+      <div class="stat">📅 <strong>Frecuencia:</strong> 2 sesiones por semana</div>
+      <div class="stat">⚡ <strong>Enfoque:</strong> Fuerza, movilidad y progresión segura</div>
+    </section>
+
+    <section class="panel">
+      <h3>Información del Programa</h3>
+      <div class="info-grid">
+        <a href="como_usar_este_programa.html" class="info-item">🔎 ¿Cómo usar este programa?</a>
+        <a href="Calendario.html" class="info-item">🗓️ Calendario de Entrenamiento</a>
+        <a href="regla-del-dolor.html" class="info-item">⚠️ Regla del Dolor</a>
+        <a href="conclusion_profesional.html" class="info-item">📋 Conclusión Profesional</a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <a href="julio/rutina-a.html" class="big-card green">
+        <div class="head">Ver Rutina A ▶</div>
+        <div class="card-preview">
+          <img src="../../imagenes/icono-rutina-a.webp" class="preview-icon-img" alt="Icono Rutina A" loading="lazy" decoding="async">
+          <p>Bloque principal de fuerza base, técnica y control del movimiento.</p>
+        </div>
+        <div class="foot">Fuerza Base ▶</div>
+      </a>
+
+      <a href="julio/rutina-b.html" class="big-card yellow">
+        <div class="head">Ver Rutina B ▶</div>
+        <div class="card-preview">
+          <img src="../../imagenes/icono-rutina-b.webp" class="preview-icon-img" alt="Icono Rutina B" loading="lazy" decoding="async">
+          <p>Trabajo complementario con movilidad, estabilidad y acondicionamiento.</p>
+        </div>
+        <div class="foot">Fuerza + Cardio ▶</div>
+      </a>
+
+      <a href="dashboard/dashboard.html" class="big-card blue reward-card"> 
+        <div class="head">Mi Seguimiento MoveSmart</div>
+        <div class="reward-preview">
+          <span class="sparkle one">✦</span>
+          <span class="sparkle two">✦</span>
+          <div class="reward-box">
+            <img src="../../imagenes/seguimiento.webp" class="reward-icon-img" alt="Cofre de premios" loading="lazy" decoding="async">
+            <strong>Mi Seguimiento</strong>
+            <p>Revisa tu evolución, adherencia, dolor, esfuerzo y registros después de entrenar.</p>
+          </div>
+        </div>
+        <div class="foot">Ver mis premios ▶</div>
+      </a>
+    </section>
+  </div>
+</body>
+</html>
