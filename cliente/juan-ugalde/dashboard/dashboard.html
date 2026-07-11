@@ -1,0 +1,1100 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Evolución | MoveSmart</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    :root {
+      --text: #fff;
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --soft: rgba(255,255,255,.045);
+      --accent: #ff5a1f;
+      --blue: #4f8cff;
+      --green: #65d978;
+      --red: #ff7474;
+      --shadow: 0 14px 34px rgba(0,0,0,.30);
+      --container: min(1180px, calc(100% - 28px));
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.45), rgba(8,10,18,.72)),
+        url('../../../imagenes/fondo-preview-rutina.webp') center / cover fixed no-repeat;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(73,58,146,.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(243,107,42,.20), transparent 20%),
+        radial-gradient(circle at 70% 36%, rgba(255,90,31,.15), transparent 14%);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10,8,14,.52);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: var(--container);
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .brand img {
+      height: 50px;
+      width: auto;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.42));
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 38px;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 0 18px rgba(255,90,31,.16);
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    .brand-title strong {
+      display: block;
+      font-size: clamp(1.65rem, 3.2vw, 2.75rem);
+      font-weight: 950;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -.055em;
+      text-shadow: 0 10px 24px rgba(0,0,0,.45);
+    }
+
+    .brand-title span {
+      display: block;
+      color: var(--accent);
+      font-size: clamp(.72rem, 1.05vw, .98rem);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -.015em;
+      margin-top: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,90,31,.4);
+      background: rgba(255,90,31,.08);
+      color: #fff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .wrap {
+      width: var(--container);
+      margin: auto;
+      padding: 28px 0 46px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      margin: 12px 0 10px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .hero p,
+    .muted {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tab {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .kpi {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .kpi small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .kpi strong {
+      font-size: 1.55rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .chart-box {
+      height: 250px;
+    }
+
+    .program-card {
+      margin-top: 14px;
+    }
+
+    .program-header {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .program-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+
+    .program-summary {
+      border-left: 3px solid var(--accent);
+      padding: 16px 18px;
+      background: rgba(255,90,31,.07);
+      border-radius: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.86);
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .routine h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .routine ul,
+    .history,
+    .plan-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .routine li,
+    .log,
+    .plan-list li {
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.045);
+      border-radius: 14px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.45;
+    }
+
+    .log {
+      display: grid;
+      grid-template-columns: 105px 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .b-green {
+      background: rgba(101,217,120,.13);
+      color: var(--green);
+      border: 1px solid rgba(101,217,120,.32);
+    }
+
+    .b-blue {
+      background: rgba(79,140,255,.13);
+      color: var(--blue);
+      border: 1px solid rgba(79,140,255,.32);
+    }
+
+    .b-red {
+      background: rgba(255,116,116,.13);
+      color: var(--red);
+      border: 1px solid rgba(255,116,116,.32);
+    }
+
+    .year-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0 14px;
+    }
+
+    .year-title span {
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .note {
+      margin-top: 14px;
+      border-left: 3px solid var(--accent);
+      padding: 14px 16px;
+      background: rgba(255,90,31,.07);
+      border-radius: 14px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.6;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .plan-hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .plan-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .plan-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,90,31,.15);
+      border: 1px solid rgba(255,90,31,.35);
+      font-size: 1.35rem;
+    }
+
+    .eval-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .eval-item {
+      padding: 14px 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.045);
+      border-radius: 16px;
+      font-weight: 800;
+    }
+
+    .eval-item span {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .plan-summary {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .plan-summary .big-icon {
+      font-size: 2.4rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid,
+      .routine-grid,
+      .program-header,
+      .plan-hero,
+      .eval-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpis {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .log {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        gap: 12px;
+      }
+
+      .brand img {
+        height: 44px;
+      }
+
+      .brand-divider {
+        height: 38px;
+      }
+
+      .brand-title strong {
+        font-size: clamp(1.5rem, 7vw, 2.4rem);
+      }
+
+      .brand-title span {
+        font-size: .72rem;
+        line-height: 1.15;
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .plan-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .tab {
+        flex: 1;
+      }
+
+      .chart-box {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <img src="../../imagenes/logo.webp" alt="MoveSmart" />
+        <div class="brand-divider"></div>
+        <div class="brand-title">
+          <strong>Dashboard</strong>
+          <span>Panel de evolución personalizado</span>
+        </div>
+      </div>
+      <div class="pill">Evolución Juan Ugalde</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <div class="pill">Programa personalizado</div>
+        <h1>Mi evolución<br><span class="accent">Juan Ugalde</span></h1>
+        <p>
+          Seguimiento del proceso desde el inicio del programa, incluyendo tus registros,
+          dolor, esfuerzo y respuesta después de entrenar.
+        </p>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="evolucion">Mi evolución</button>
+          <button class="tab" data-tab="registro">Mi registro</button>
+          <button class="tab" data-tab="proximo">Mi plan</button>
+        </div>
+      </div>
+
+      <div class="card kpis" id="kpis"></div>
+    </section>
+
+    <section id="evolucion" class="section active">
+      <div class="grid">
+        <article class="card">
+          <h2>Resumen mensual</h2>
+          <p class="muted">Este dashboard muestra exclusivamente los registros de julio 2026.</p>
+          <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
+        </article>
+
+        <article class="card">
+          <h2>Rutina A vs B</h2>
+          <p class="muted">Este gráfico muestra qué tipo de rutina se está usando con mayor frecuencia.</p>
+          <div class="chart-box"><canvas id="routineChart"></canvas></div>
+        </article>
+      </div>
+
+      <article class="card program-card">
+        <div class="program-header">
+          <div>
+            <h2>Programa actual</h2>
+            <p class="muted">
+              Sistema de autonomía: Juan puede escoger una versión completa o adaptada
+              según cómo llega ese día.
+            </p>
+          </div>
+
+          <div class="program-summary">
+            <strong>Lectura MoveSmart:</strong> el valor no está solo en completar la rutina,
+            sino en aprender a ajustar el proceso según dolor, energía, tiempo y respuesta del cuerpo.
+          </div>
+        </div>
+
+        <div class="routine-grid">
+          <div class="routine">
+            <h3>Rutina A</h3>
+            <ul>
+              <li>Rehabilitación progresiva de rodilla.</li>
+              <li>Bloque principal de fuerza y control.</li>
+              <li>Estabilidad progresiva.</li>
+              <li>Vuelta a la calma.</li>
+            </ul>
+          </div>
+
+          <div class="routine">
+            <h3>Rutina B</h3>
+            <ul>
+              <li>Cardio + core + tren superior.</li>
+              <li>Movilidad inicial.</li>
+              <li>Bloque principal adaptado.</li>
+              <li>Opción Recovery cuando baja la energía.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="registro" class="section">
+      <div class="grid">
+        <article class="card">
+          <h2>Dolor percibido</h2>
+          <p class="muted">Escala interna: No = 0 · Leve = 3 · Moderado = 6 · Alto/Intenso = 8.</p>
+          <div class="chart-box"><canvas id="painChart"></canvas></div>
+        </article>
+
+        <article class="card">
+          <h2>Esfuerzo percibido</h2>
+          <p class="muted">Escala de esfuerzo declarada por el cliente del 1 al 10.</p>
+          <div class="chart-box"><canvas id="effortChart"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h2>Modo usado</h2>
+          <p class="muted">Plus o Recovery según la elección de rutina registrada.</p>
+          <div class="chart-box"><canvas id="modeChart"></canvas></div>
+        </article>
+
+        <article class="card">
+          <h2>Dolor por categoría</h2>
+          <p class="muted">Frecuencia de dolor reportada después de entrenar.</p>
+          <div class="chart-box"><canvas id="painCategoryChart"></canvas></div>
+        </article>
+      </div>
+
+      <article class="card" style="margin-top:14px">
+        <h2>Historial de check-ins</h2>
+        <ul class="history" id="history"></ul>
+      </article>
+    </section>
+
+    <section id="proximo" class="section">
+      <article class="card">
+        <div class="year-title">
+          <h2>🎯 Mi plan actual</h2>
+          <span></span>
+        </div>
+        <p class="muted">
+          Este bloque resume el foco del programa y lo que iremos observando durante el proceso.
+        </p>
+
+        <div class="plan-hero">
+          <div class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">🎯</div>
+              <h2>Objetivo del bloque</h2>
+            </div>
+            <p class="muted">
+              Seguir fortaleciendo la rodilla, mejorar estabilidad y aumentar confianza en el movimiento,
+              sin perder de vista la tolerancia al dolor y la adherencia.
+            </p>
+            <div class="note">
+              <strong>Frecuencia esperada:</strong> 2 sesiones por semana · 8 sesiones durante el bloque.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">📅</div>
+              <h2>Datos del bloque</h2>
+            </div>
+            <div class="kpis" style="margin-top:12px">
+              <div class="kpi"><small>Sesiones/semana</small><strong>2</strong></div>
+              <div class="kpi"><small>Total estimado</small><strong>8</strong></div>
+              <div class="kpi"><small>Foco principal</small><strong>Rodilla</strong></div>
+              <div class="kpi"><small>Fase</small><strong>Funcional</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">🟠</div>
+              <h2>Rutina A</h2>
+            </div>
+            <p class="muted">
+              Trabajo orientado a fortalecer la rodilla y mejorar el control del movimiento.
+            </p>
+            <ul class="plan-list">
+              <li>Fuerza y control en patrones funcionales.</li>
+              <li>Progresión gradual de carga sin provocar dolor.</li>
+              <li>Trabajo de cadera, glúteos y estabilidad de rodilla.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon" style="background:rgba(79,140,255,.14);border-color:rgba(79,140,255,.34)">🔵</div>
+              <h2>Rutina B</h2>
+            </div>
+            <p class="muted">
+              Trabajo complementario para condición física general, core y movilidad.
+            </p>
+            <ul class="plan-list">
+              <li>Fuerza de tren superior y core.</li>
+              <li>Condición cardiovascular controlada.</li>
+              <li>Progresión segura sin sobrecargar la rodilla.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="plan-summary">
+              <div class="big-icon">⭐</div>
+              <div>
+                <h2>En resumen</h2>
+                <p class="muted">
+                  No buscamos solamente que la rodilla no duela. Buscamos que sea más fuerte,
+                  más estable y que te permita desenvolverte con mayor seguridad en tu vida diaria.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>¿Qué evaluaremos?</h2>
+            <div class="eval-grid">
+              <div class="eval-item"><span>💪</span>Fuerza</div>
+              <div class="eval-item"><span>🛡️</span>Estabilidad</div>
+              <div class="eval-item"><span>🧡</span>Dolor</div>
+              <div class="eval-item"><span>🚶</span>Función</div>
+              <div class="eval-item"><span>✅</span>Adherencia</div>
+            </div>
+          </article>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycby-YY0243Pg_0Y3wlNGVFm92QMkwp19oE2yha90yPB5OlbmEACNcmz96yuXaLKpJp_E/exec";
+
+    // Dashboard exclusivo para JULIO 2026
+    // Si después copias este archivo para agosto, solo cambia MES_DASHBOARD a 8.
+    const MES_DASHBOARD = 7;
+    const ANIO_DASHBOARD = 2026;
+    const NOMBRE_MES_DASHBOARD = "julio 2026";
+
+    let sesiones = [];
+    let elecciones = [];
+
+    function parseFecha(fecha) {
+      const text = String(fecha || '').trim();
+
+      if (!text) return new Date('Invalid Date');
+
+      // Formato CSV / Google Sheets: 3/6/2026 6:02:19 o 03/06/2026
+      if (text.includes('/')) {
+        const soloFecha = text.split(' ')[0];
+        const [dia, mes, anio] = soloFecha.split('/').map(Number);
+        return new Date(anio, mes - 1, dia);
+      }
+
+      // Formato Apps Script / HTML: 2026-07-06 o 2026-07-06T...
+      if (text.includes('-')) {
+        return new Date(text.slice(0, 10) + 'T00:00:00');
+      }
+
+      return new Date(text);
+    }
+
+    function monthKey(fecha) {
+      const d = parseFecha(fecha);
+
+      if (isNaN(d.getTime())) return 'Sin fecha';
+
+      return d.toLocaleDateString('es-CL', {
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function dayKey(fecha) {
+      const d = parseFecha(fecha);
+
+      if (isNaN(d.getTime())) return 'Sin fecha';
+
+      return d.toLocaleDateString('es-CL');
+    }
+
+    function shortDayKey(fecha) {
+      const d = parseFecha(fecha);
+
+      if (isNaN(d.getTime())) return 'Sin fecha';
+
+      return d.toLocaleDateString('es-CL', {
+        day: '2-digit',
+        month: '2-digit'
+      });
+    }
+
+    function dolorNum(value) {
+      const text = String(value).toLowerCase().trim();
+
+      if (text === 'no' || text === '0' || text === '') return 0;
+      if (text.includes('leve')) return 3;
+      if (text.includes('moderado')) return 6;
+      if (text.includes('alto') || text.includes('intenso')) return 8;
+
+      const number = Number(text.replace(',', '.'));
+      return isNaN(number) ? 0 : number;
+    }
+
+    function dolorCategoria(value) {
+      const text = String(value).toLowerCase().trim();
+
+      if (text === 'no' || text === '0' || text === '') return 'No';
+      if (text.includes('leve')) return 'Leve';
+      if (text.includes('moderado')) return 'Moderado';
+      if (text.includes('alto') || text.includes('intenso')) return 'Alto';
+
+      return value || 'Sin dato';
+    }
+
+    function esfuerzoNum(value) {
+      const number = Number(String(value || '').replace(',', '.'));
+      return isNaN(number) ? 0 : number;
+    }
+
+    function avg(values) {
+      const numbers = values.map(Number).filter(number => !isNaN(number));
+      return numbers.length ? numbers.reduce((a, b) => a + b, 0) / numbers.length : 0;
+    }
+
+    function counts(rows, key) {
+      return rows.reduce((acc, row) => {
+        let value = row[key];
+
+        if (!value && key === 'rutina') value = row.Rutina || row.rutina;
+        if (!value && key === 'modo') value = row.Modo || row.modo;
+
+        value = String(value || 'Sin dato').trim();
+        acc[value] = (acc[value] || 0) + 1;
+        return acc;
+      }, {});
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill) {
+      ctx.beginPath();
+
+      if (ctx.roundRect) {
+        ctx.roundRect(x, y, width, height, radius);
+      } else {
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+      }
+
+      if (fill) ctx.fill();
+    }
+
+    function drawBar(canvas, labels, values, options = {}) {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width = canvas.offsetWidth * 2;
+      const height = canvas.height = canvas.offsetHeight * 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      if (!values.length) {
+        ctx.fillStyle = 'rgba(255,255,255,.7)';
+        ctx.font = '24px Segoe UI';
+        ctx.fillText('Sin datos', 40, 60);
+        return;
+      }
+
+      const max = Math.max(...values, 1);
+      const padding = 42;
+      const step = (width - padding * 2) / values.length;
+      const barWidth = step * .58;
+
+      labels.forEach((label, index) => {
+        const x = padding + index * step + step * .21;
+        const barHeight = (height - 90) * (values[index] / max);
+        const y = height - 46 - barHeight;
+        const gradient = ctx.createLinearGradient(0, y, 0, height);
+
+        gradient.addColorStop(0, options.color || '#ff5a1f');
+        gradient.addColorStop(1, 'rgba(255,90,31,.25)');
+
+        ctx.fillStyle = gradient;
+        roundRect(ctx, x, y, barWidth, barHeight, 16, true);
+
+        ctx.fillStyle = 'rgba(255,255,255,.74)';
+        ctx.textAlign = 'center';
+        ctx.font = '22px Segoe UI';
+        ctx.fillText(label, x + barWidth / 2, height - 14);
+
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 25px Segoe UI';
+        ctx.fillText(Math.round(values[index] * 10) / 10, x + barWidth / 2, y - 12);
+      });
+    }
+
+    function drawLine(canvas, labels, values, color = '#4f8cff') {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width = canvas.offsetWidth * 2;
+      const height = canvas.height = canvas.offsetHeight * 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      if (!values.length) {
+        ctx.fillStyle = 'rgba(255,255,255,.7)';
+        ctx.font = '24px Segoe UI';
+        ctx.fillText('Sin datos', 40, 60);
+        return;
+      }
+
+      const max = Math.max(...values, 10);
+      const padding = 46;
+
+      ctx.strokeStyle = 'rgba(255,255,255,.12)';
+      ctx.lineWidth = 2;
+
+      for (let i = 0; i < 4; i++) {
+        const y = padding + i * (height - 95) / 3;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.stroke();
+      }
+
+      const points = values.map((value, index) => [
+        padding + index * (width - padding * 2) / (values.length - 1 || 1),
+        height - 50 - (height - 105) * (value / max)
+      ]);
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+
+      points.forEach((point, index) => {
+        if (index) ctx.lineTo(...point);
+        else ctx.moveTo(...point);
+      });
+
+      ctx.stroke();
+
+      points.forEach((point, index) => {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(point[0], point[1], 9, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 24px Segoe UI';
+        ctx.textAlign = 'center';
+        ctx.fillText(values[index], point[0], point[1] - 18);
+
+        ctx.fillStyle = 'rgba(255,255,255,.72)';
+        ctx.font = '22px Segoe UI';
+        ctx.fillText(labels[index], point[0], height - 14);
+      });
+    }
+
+    function render() {
+      if (!sesiones.length) {
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi">
+            <small>Estado</small>
+            <strong>Sin datos de ${NOMBRE_MES_DASHBOARD}</strong>
+          </div>
+        `;
+
+        document.getElementById('history').innerHTML = `
+          <li class="log">
+            <strong>${NOMBRE_MES_DASHBOARD}</strong>
+            <div>
+              <span class="badge b-red">Sin registros</span>
+              <p class="muted" style="margin-top:8px">
+                El dashboard está filtrando solo los datos de ${NOMBRE_MES_DASHBOARD}.
+              </p>
+            </div>
+            <span class="badge b-blue">Mes filtrado</span>
+          </li>
+        `;
+        return;
+      }
+
+      const cliente = sesiones[0].cliente || 'Cliente';
+      document.querySelector('.hero h1').innerHTML = `Mi evolución<br><span class="accent">${cliente}</span>`;
+      document.querySelector('.topbar .pill').textContent = `Evolución ${cliente}`;
+
+      const months = {};
+      sesiones.forEach(session => {
+        const month = monthKey(session.fecha);
+        months[month] = months[month] || [];
+        months[month].push(session);
+      });
+
+      const labels = Object.keys(months);
+      const sesionesMes = labels.map(month => months[month].length);
+      const completadas = sesiones.filter(session => String(session.completada).toLowerCase().includes('completa')).length;
+      const adherencia = Math.round((completadas / sesiones.length) * 100);
+      const dolorInicial = dolorNum(sesiones[0].dolor);
+      const dolorActual = dolorNum(sesiones[sesiones.length - 1].dolor);
+      const esfuerzoProm = Math.round(avg(sesiones.map(session => esfuerzoNum(session.esfuerzo))) * 10) / 10;
+
+      document.getElementById('kpis').innerHTML = `
+        <div class="kpi"><small>Sesiones registradas</small><strong>${sesiones.length}</strong></div>
+        <div class="kpi"><small>Adherencia</small><strong>${adherencia}%</strong></div>
+        <div class="kpi"><small>Dolor inicial → actual</small><strong>${dolorInicial} → ${dolorActual}</strong></div>
+        <div class="kpi"><small>Esfuerzo promedio</small><strong>${esfuerzoProm}/10</strong></div>
+      `;
+
+      document.getElementById('history').innerHTML = sesiones.map(session => {
+        const fecha = dayKey(session.fecha);
+        const dolorClase = dolorNum(session.dolor) > 0 ? 'b-red' : 'b-green';
+
+        return `
+          <li class="log">
+            <strong>${fecha}</strong>
+            <div>
+              <span class="badge b-blue">${session.rutina || 'Sin rutina'}</span>
+              <span class="badge ${dolorClase}">Dolor: ${session.dolor || 'Sin dato'}</span>
+              <p class="muted" style="margin-top:8px">
+                ${session.completada || 'Sin dato'} · Sensación: ${session.sensacion || 'Sin dato'} · Esfuerzo: ${session.esfuerzo || 0}/10
+                ${session.comentario ? '<br>' + session.comentario : ''}
+              </p>
+            </div>
+            <span class="badge b-green">${session.semana || ''}</span>
+          </li>
+        `;
+      }).join('');
+
+      const fuenteRutinas = elecciones.length ? elecciones : sesiones;
+      const rutinaCounts = counts(fuenteRutinas, 'rutina');
+
+      const fuenteModo = elecciones.length ? elecciones : sesiones;
+      const modos = fuenteModo.map(row => ({
+        modo: row.modo || row.Modo || (String(row.rutina || row.Rutina || '').toLowerCase().includes('b') ? 'Recovery / B' : 'Plus / A')
+      }));
+      const modeCounts = counts(modos, 'modo');
+
+      const dolorCat = {};
+      sesiones.forEach(session => {
+        const category = dolorCategoria(session.dolor);
+        dolorCat[category] = (dolorCat[category] || 0) + 1;
+      });
+
+      const fechas = sesiones.map(session => shortDayKey(session.fecha));
+
+      drawBar(document.getElementById('monthlyChart'), labels, sesionesMes);
+      drawBar(document.getElementById('routineChart'), Object.keys(rutinaCounts), Object.values(rutinaCounts), { color: '#4f8cff' });
+      drawLine(document.getElementById('painChart'), fechas, sesiones.map(session => dolorNum(session.dolor)), '#ff7474');
+      drawLine(document.getElementById('effortChart'), fechas, sesiones.map(session => esfuerzoNum(session.esfuerzo)), '#65d978');
+      drawBar(document.getElementById('modeChart'), Object.keys(modeCounts), Object.values(modeCounts), { color: '#65d978' });
+      drawBar(document.getElementById('painCategoryChart'), Object.keys(dolorCat), Object.values(dolorCat), { color: '#ff7474' });
+    }
+
+    async function cargarDatos() {
+      try {
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi"><small>Estado</small><strong>Cargando...</strong></div>
+        `;
+
+        const response = await fetch(API_URL);
+        const json = await response.json();
+
+        if (!json.ok) {
+          throw new Error(json.mensaje || json.error || 'Apps Script respondió con error');
+        }
+
+        const todasLasSesiones = json.respuestas_registro || [];
+        const todasLasElecciones = json.respuestas || [];
+
+        sesiones = todasLasSesiones.filter(session => {
+          const fecha = parseFecha(session.fecha || session.Fecha);
+
+          return !isNaN(fecha.getTime()) &&
+                 fecha.getMonth() + 1 === MES_DASHBOARD &&
+                 fecha.getFullYear() === ANIO_DASHBOARD;
+        });
+
+        elecciones = todasLasElecciones.filter(row => {
+          const fecha = parseFecha(row.fecha || row.Fecha);
+
+          return !isNaN(fecha.getTime()) &&
+                 fecha.getMonth() + 1 === MES_DASHBOARD &&
+                 fecha.getFullYear() === ANIO_DASHBOARD;
+        });
+
+        sesiones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
+        elecciones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
+
+        render();
+      } catch (error) {
+        console.error(error);
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi"><small>Error de conexión</small><strong>Revisar URL</strong></div>
+          <div class="kpi"><small>Detalle</small><strong style="font-size:.9rem">${error.message}</strong></div>
+        `;
+      }
+    }
+
+    document.querySelectorAll('.tab').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+
+        setTimeout(render, 80);
+      });
+    });
+
+    window.addEventListener('resize', render);
+    cargarDatos();
+  </script>
+</body>
+</html>
