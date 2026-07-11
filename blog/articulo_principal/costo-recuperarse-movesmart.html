@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entre consultas, traslados y espera: el verdadero costo de recuperarse | MoveSmart</title>
+  <link rel="preload" as="image" href="/movesmart-web/imagenes/fondo-preview-rutina.webp" fetchpriority="high">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#07070c;
+      --text:#f6f1ee;
+      --muted:rgba(246,241,238,.74);
+      --border:rgba(255,255,255,.11);
+      --accent:#ff5a1f;
+      --accent2:#ff8a3d;
+      --max:1120px;
+      --shadow:0 28px 80px rgba(0,0,0,.46);
+    }
+
+    body{
+      font-family:Inter, "Segoe UI", system-ui, sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.34), rgba(8,10,18,.58)),
+        radial-gradient(circle at 10% 0%, rgba(255,90,31,.24), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(47,99,255,.18), transparent 26%),
+        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat,
+        #07070c;
+      min-height:100vh;
+      line-height:1.65;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 32px));margin:auto}
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:34px;
+      align-items:center;
+      padding:44px 0 36px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,90,31,.12);
+      border:1px solid rgba(255,90,31,.25);
+      color:#ffd6c8;
+      font-weight:800;
+      font-size:.9rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(3rem,7vw,6.5rem);
+      line-height:.92;
+      letter-spacing:-.075em;
+      margin-bottom:22px;
+    }
+
+    h1 span{color:var(--accent)}
+
+    .lead{
+      font-size:clamp(1.08rem,2vw,1.28rem);
+      color:var(--muted);
+      max-width:680px;
+      margin-bottom:24px;
+    }
+
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:18px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.07);
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 18px 38px rgba(255,90,31,.22);
+    }
+
+    .visual,
+    .mini-visual{
+      width:100%;
+      height:420px;
+      border-radius:28px;
+      overflow:hidden;
+      background:#111;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      display:block;
+    }
+
+    .visual img,
+    .mini-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      border-radius:28px;
+      display:block;
+    }
+
+    .mini-visual{
+      margin:30px 0;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:none;
+    }
+
+    .image-placeholder{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:28px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,90,31,.32), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(47,99,255,.25), transparent 32%),
+        linear-gradient(135deg,#16121e,#07070c);
+      color:rgba(255,255,255,.82);
+      font-weight:900;
+      letter-spacing:-.03em;
+      font-size:clamp(1.25rem,2vw,2rem);
+    }
+
+    .article-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:36px;
+      align-items:start;
+      margin:46px 0 70px;
+    }
+
+    .article{
+      background:rgba(255,255,255,.935);
+      color:#17131d;
+      border-radius:34px;
+      padding:clamp(24px,4vw,54px);
+      box-shadow:var(--shadow);
+    }
+
+    .article p{
+      font-size:1.08rem;
+      margin:0 0 20px;
+      color:#3b3742;
+    }
+
+    .article strong{color:#17131d}
+
+    .article h2{
+      font-size:clamp(2rem,4vw,3.2rem);
+      line-height:1.05;
+      letter-spacing:-.06em;
+      margin:44px 0 18px;
+      color:#17131d;
+    }
+
+    .article h3{
+      font-size:1.45rem;
+      margin:30px 0 12px;
+      color:#17131d;
+      letter-spacing:-.03em;
+    }
+
+    .quote{
+      margin:32px 0;
+      padding:28px;
+      border-left:6px solid var(--accent);
+      background:#f1edf0;
+      border-radius:0 22px 22px 0;
+      font-size:1.22rem;
+      font-weight:800;
+      line-height:1.45;
+      color:#17131d;
+    }
+
+    .compare{
+      margin:32px 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      border:1px solid #ddd5d8;
+      border-radius:26px;
+      overflow:hidden;
+    }
+
+    .compare > div{
+      padding:24px;
+      background:#faf7f5;
+    }
+
+    .compare > div:first-child{
+      border-right:1px solid #ddd5d8;
+      background:#f0eceb;
+    }
+
+    .compare h3{margin-top:0!important}
+
+    .check,.cross{
+      display:flex;
+      gap:12px;
+      margin:14px 0;
+      color:#3b3742;
+    }
+
+    .cross b{color:#c83725}
+    .check b{color:#169b52}
+
+    .comic-box{
+      margin:32px 0;
+      padding:24px;
+      border-radius:26px;
+      background:#fff4ee;
+      border:1px solid #ffd5c2;
+      color:#2c1f1b;
+    }
+
+    .comic-box h3{
+      margin-top:0!important;
+      color:#17131d;
+    }
+
+    .comic-box p{
+      margin-bottom:0;
+      color:#4b3832;
+    }
+
+    .mini-list{
+      margin:24px 0 32px;
+      display:grid;
+      gap:14px;
+    }
+
+    .mini-list div{
+      padding:18px 20px;
+      border-radius:20px;
+      background:#faf7f5;
+      border:1px solid #e6dcda;
+      color:#3b3742;
+      font-size:1.04rem;
+      line-height:1.55;
+    }
+
+    .mini-list strong{color:#17131d}
+
+    .evidence{
+      border-radius:26px;
+      padding:26px;
+      background:#17131d;
+      color:white;
+      margin:34px 0;
+    }
+
+    .evidence h3{
+      color:white;
+      margin-top:0;
+    }
+
+    .evidence p{
+      color:rgba(255,255,255,.78);
+      margin-bottom:0;
+    }
+
+    .final-cta{
+      margin-top:42px;
+      border-radius:30px;
+      background:linear-gradient(135deg,#16121e,#30150d);
+      color:white;
+      padding:34px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+    }
+
+    .final-cta h2{
+      color:white;
+      margin:0 0 10px;
+      font-size:2.2rem;
+    }
+
+    .final-cta p{
+      color:rgba(255,255,255,.74);
+      margin:0;
+    }
+
+    .sidebar{
+      position:sticky;
+      top:22px;
+      display:grid;
+      gap:18px;
+    }
+
+    .side-card{
+      border-radius:26px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(12px);
+      padding:22px;
+      box-shadow:0 18px 50px rgba(0,0,0,.22);
+    }
+
+    .side-card h3{
+      font-size:1.1rem;
+      margin-bottom:14px;
+    }
+
+    .side-card ul{
+      padding-left:18px;
+      color:var(--muted);
+      display:grid;
+      gap:10px;
+      font-size:.95rem;
+    }
+
+    .side-card .small{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .footer{
+      padding:40px 0 60px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    @media(max-width:980px){
+      .hero,
+      .article-layout{grid-template-columns:1fr}
+      .sidebar{position:static;grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:720px){
+      body{
+        background:
+          linear-gradient(180deg, rgba(8,10,18,.34), rgba(8,10,18,.58)),
+          radial-gradient(circle at 10% 0%, rgba(255,90,31,.24), transparent 28%),
+          radial-gradient(circle at 90% 10%, rgba(47,99,255,.18), transparent 26%),
+          url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center top / cover no-repeat,
+          #07070c;
+        background-attachment:scroll;
+      }
+
+      .topbar{flex-direction:column;align-items:flex-start}
+      .nav{width:100%;overflow:auto}
+      .hero{padding-top:18px}
+      .visual,.mini-visual{height:240px;border-radius:22px}
+      .visual img,.mini-visual img{border-radius:22px}
+      .article{border-radius:26px}
+      .compare{grid-template-columns:1fr}
+      .compare>div:first-child{border-right:none;border-bottom:1px solid #ddd5d8}
+      .final-cta{grid-template-columns:1fr}
+      .sidebar{grid-template-columns:1fr}
+    }
+
+    .container{
+      width:min(1200px, calc(100% - 48px));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(10,8,14,.44);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      padding:0;
+    }
+
+    .topbar .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:20px;
+      flex-wrap:nowrap;
+      overflow:hidden;
+    }
+
+    .top-brand{
+      display:inline-flex;
+      align-items:center;
+      flex:0 0 auto;
+      color:#fff;
+      white-space:nowrap;
+      text-shadow:0 2px 16px rgba(0,0,0,.28);
+    }
+
+    .top-brand-logo{
+      height:70px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:nowrap;
+      font-size:1rem;
+      color:#fff;
+      font-weight:700;
+      white-space:nowrap;
+      min-width:0;
+    }
+
+    .nav-links a{
+      position:relative;
+      opacity:1;
+      color:#fff;
+      text-shadow:0 1px 12px rgba(0,0,0,.18);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex:0 0 auto;
+      white-space:nowrap;
+      width:auto;
+      justify-content:flex-end;
+    }
+
+    .top-socials{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+      width:auto;
+      margin-top:0;
+    }
+
+    .top-social{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .top-social:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.10);
+      box-shadow:0 12px 26px rgba(0,0,0,.24);
+    }
+
+    .top-social svg{
+      width:19px;
+      height:19px;
+      fill:currentColor;
+    }
+
+    .top-social.instagram{color:#ff5a8a}
+    .top-social.twitter{color:#4da3ff}
+    .top-social.linkedin{color:#58a6ff}
+    .top-social.spotify{color:#1ed760}
+
+    .header-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 24px;
+      border-radius:12px;
+      font-size:1rem;
+      background:linear-gradient(180deg,var(--accent2),var(--accent));
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.01em;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 26px rgba(243,107,42,.22);
+      transition:.22s ease;
+    }
+
+    .header-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(243,107,42,.28);
+      filter:brightness(1.03);
+    }
+
+    @media (max-width:1100px){
+      .top-brand-logo{height:60px}
+      .topbar .nav{gap:12px}
+      .nav-links{gap:14px;font-size:.9rem}
+      .nav-actions{gap:9px}
+      .top-social{width:36px;height:36px;border-radius:12px}
+      .top-social svg{width:17px;height:17px}
+      .header-btn{min-height:42px;padding:0 18px}
+    }
+
+    @media (max-width:760px){
+      .container{width:100%;max-width:100%;padding-left:34px;padding-right:34px}
+      .topbar{background:rgba(8,6,13,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.10)}
+      .topbar .nav{min-height:auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;column-gap:8px;row-gap:10px;padding:14px 0 12px;overflow:hidden}
+      .top-brand{order:1;width:auto;margin:0 0 0 18px;flex:0 0 auto}
+      .top-brand-logo{height:42px}
+      .nav-actions{order:1;width:auto;margin-left:auto;margin-right:18px;display:flex;align-items:center;justify-content:flex-end;gap:6px;flex:0 0 auto;transform:translateX(-14px)}
+      .top-socials{width:auto;display:flex;justify-content:flex-end;align-items:center;gap:7px;flex:0 0 auto}
+      .top-social{width:auto;height:auto;border:none;background:transparent;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;flex:0 0 auto}
+      .top-social:hover{transform:translateY(-1px);background:transparent;box-shadow:none}
+      .top-social svg{width:14px;height:14px}
+      .header-btn{display:inline-flex;min-height:31px;padding:0 11px;border-radius:11px;font-size:.68rem;font-weight:850;flex:0 0 auto}
+      .nav-links{order:2;width:100%;display:grid;grid-template-columns:auto auto auto;align-items:center;justify-content:center;column-gap:30px;row-gap:0;font-size:.76rem;line-height:1;font-weight:850;color:#fff;white-space:nowrap;overflow:visible}
+      .nav-links a{position:relative;padding-bottom:12px;text-align:center}
+    }
+
+    @media (max-width:390px){
+      .container{padding-left:30px;padding-right:30px}
+      .top-brand{margin-left:14px}
+      .top-brand-logo{height:38px}
+      .topbar .nav{padding:13px 0 11px;row-gap:9px}
+      .nav-actions{gap:5px;margin-right:14px;transform:translateX(-12px)}
+      .top-socials{gap:6px}
+      .top-social svg{width:13px;height:13px}
+      .header-btn{min-height:30px;padding:0 10px;font-size:.65rem;border-radius:10px}
+      .nav-links{font-size:.74rem;column-gap:24px}
+    }
+
+    @media (max-width:350px){
+      .container{padding-left:24px;padding-right:24px}
+      .top-brand{margin-left:10px}
+      .top-brand-logo{height:35px}
+      .top-socials{gap:5px}
+      .top-social svg{width:12px;height:12px}
+      .header-btn{padding:0 8px;font-size:.62rem}
+      .nav-links{font-size:.69rem;column-gap:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="/movesmart-web/index.html#inicio" class="top-brand" aria-label="Inicio MoveSmart">
+        <img src="/movesmart-web/imagenes/logo.webp" alt="MoveSmart" class="top-brand-logo" loading="eager" decoding="async">
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="/movesmart-web/index.html#inicio">Inicio</a>
+        <a href="/movesmart-web/index.html#como-funciona">Cómo Funciona</a>
+        <a href="/movesmart-web/acceso-clientes.html">Acceso Clientes</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="top-socials" aria-label="Redes sociales MoveSmart">
+          <a class="top-social instagram" href="https://www.instagram.com/movesmart.plan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2m0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2M17.2 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1"/></svg>
+          </a>
+
+          <a class="top-social twitter" href="https://x.com/movesmartchile" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.7 1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9A12 12 0 0 1 3 5.5a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1c-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1a4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.5 21c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.4 2.1-2.2z"/></svg>
+          </a>
+
+          <a class="top-social linkedin" href="https://www.linkedin.com/in/movesmart-chile-b4b03b40a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5M3 10h4v11H3zm6 0h3.8v1.5h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H9z"/></svg>
+          </a>
+
+          <a class="top-social spotify" href="https://open.spotify.com/user/31lcttv3ugvu6s5ifvcj5tf5syre" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.6 14.5c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-1-.4.1-.7-.1-.8-.5s.1-.7.5-.8c4-.9 7.5-.5 10.3 1.1.3.2.4.6.2 1m1.2-2.7c-.2.4-.7.5-1.1.3-2.8-1.7-7.1-2.2-10.4-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.1 8.6-.6 11.8 1.4.4.2.5.7.2 1m.1-2.8c-3.4-2-9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.1 9.8-.9 13.8 1.5.4.3.6.9.3 1.3-.3.4-.9.5-1.3.2"/></svg>
+          </a>
+        </div>
+
+        <a href="/movesmart-web/blog/portada.html" class="header-btn">Blog</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <section class="hero">
+      <div>
+        <div class="kicker">BLOG MOVESMART</div>
+        <h1>Entre <span>consultas, traslados y espera</span></h1>
+        <p class="lead">
+          Una lesión no solo se paga con dolor. También se paga con tiempo, permisos, transporte, bonos, espera y esa energía mental de abrir la agenda y pensar: “ya, ¿en qué momento de mi vida adulta meto otra hora médica?”
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#articulo">Leer artículo ↘</a>
+          <a class="btn" href="#resumen">Ver ideas clave</a>
+        </div>
+      </div>
+
+      <div class="visual" aria-label="Imagen editorial: el verdadero costo de recuperarse">
+        <img src="../../imagenes/blog/costo_de_recuperarse/costo_recuperarse1.webp" alt="El verdadero costo oculto de recuperarse" loading="lazy">
+      </div>
+    </section>
+
+    <main class="article-layout" id="articulo">
+      <article class="article">
+        <p><strong>Hay una escena bastante común:</strong> te empieza a doler la espalda, el cuello, la rodilla o el hombro. Al principio dices “se me va a pasar”. Después pasan los días, el dolor sigue ahí y empieza el tour oficial de la recuperación: pedir hora, esperar atención, conseguir derivación, trasladarte, pagar, volver al control y repetir. Básicamente, un circuito turístico, pero sin fotos lindas ni souvenir.</p>
+
+        <p>Y ojo, el problema no es consultar. Consultar puede ser necesario, importante y muy útil. El problema aparece cuando recuperarse empieza a sentirse como un segundo trabajo: uno donde nadie te paga, todo toma tiempo y además llegas cansada/o antes de hacer el primer ejercicio.</p>
+
+        <p>Porque una lesión no solo cuesta lo que aparece en la boleta. También cuesta la micro, la bencina, el estacionamiento, el permiso laboral, la espera, el día reorganizado y esa energía mental de tener que explicar lo mismo una y otra vez, como si tu dolor tuviera que rendir PSU oral.</p>
+
+        <div class="quote">El problema no siempre es la lesión. A veces es todo lo que debes hacer para tratarla.</div>
+
+        <div class="comic-box">
+          <h3>Momento realista</h3>
+          <p>Tu espalda dice: “necesito moverme mejor”. El sistema responde: “perfecto, primero toma hora, espera dos semanas, cruza media ciudad y llega 20 minutos antes por si acaso”. Tu espalda, confundida: “yo solo quería estirarme un poco”.</p>
+        </div>
+
+        <h2>El costo no siempre aparece en la boleta</h2>
+        <p>Cuando pensamos en rehabilitación física, muchas veces calculamos solo la consulta o la sesión. Pero el gasto real suele ser más grande. Hay costos directos, como pagar una atención, un bono o una sesión particular. Y hay costos indirectos, que a veces pesan incluso más.</p>
+
+        <p>Tiempo de traslado, espera en sala, permisos en el trabajo, cambios de horario, coordinación familiar, estacionamiento, transporte público o bencina. Todo eso también forma parte del costo de recuperarse, aunque no siempre quede registrado en una boleta. Es como ese gasto hormiga, pero versión “mi rodilla tiene vida financiera propia”.</p>
+
+        <div class="mini-visual cost">
+          <img src="../../imagenes/blog/costo_de_recuperarse/costo_recuperarse2.webp" alt="Consulta, traslado y espera antes de recuperarse" loading="lazy">
+        </div>
+
+        <h2>El camino largo para recibir una rutina corta</h2>
+        <p>A veces la persona necesita algo muy concreto: entender qué le pasa, saber qué puede mover sin miedo y tener una rutina inicial que pueda realizar en casa. Pero para llegar a eso puede pasar por varias etapas: médico general, derivación, especialista, exámenes, control, kine, nueva evaluación y otra espera.</p>
+
+        <p>Y después de semanas de recorrido, la indicación puede terminar siendo una hoja con ejercicios genéricos o una rutina que no pregunta algo básico: ¿cuánto tiempo tienes realmente?, ¿con cuánta energía llegas?, ¿qué puedes hacer sin aumentar tu molestia? Porque claro, el papel dice “3 series”, pero tu agenda dice “con suerte tengo 12 minutos y una silla disponible”.</p>
+
+        <p>Ese es el punto clave. No se trata de reemplazar todo el sistema. Se trata de reconocer que muchas personas necesitan una entrada más simple, más educativa y más ajustada a su día a día. Algo que no obligue a transformar una molestia en una saga de ocho capítulos.</p>
+
+        <div class="mini-list">
+          <div><strong>Costo visible:</strong> consulta, sesión, bono, examen o atención particular.</div>
+          <div><strong>Costo invisible:</strong> traslado, espera, permisos, cansancio y tiempo perdido.</div>
+          <div><strong>Costo emocional:</strong> frustración, incertidumbre y sensación de estar empezando de nuevo cada vez.</div>
+        </div>
+
+        <section class="compare">
+          <div>
+            <h3>Recuperación poco personalizada</h3>
+            <div class="cross"><b>✕</b><span>Asume que todas las personas tienen el mismo tiempo disponible, como si viviéramos dentro de una agenda premium.</span></div>
+            <div class="cross"><b>✕</b><span>Entrega indicaciones sin considerar energía, contexto o rutina diaria.</span></div>
+            <div class="cross"><b>✕</b><span>Puede obligarte a gastar más tiempo antes de empezar a moverte.</span></div>
+            <div class="cross"><b>✕</b><span>Depende demasiado de que la persona “se las arregle sola” después. Spoiler: la vida real no ayuda mucho.</span></div>
+          </div>
+
+          <div>
+            <h3>Recuperación más adaptable</h3>
+            <div class="check"><b>✓</b><span>Considera tu tiempo real, no una agenda ideal inventada por alguien que aparentemente no hace trámites.</span></div>
+            <div class="check"><b>✓</b><span>Ajusta la rutina según energía, dolor y disponibilidad.</span></div>
+            <div class="check"><b>✓</b><span>Facilita empezar antes con educación y movimiento seguro.</span></div>
+            <div class="check"><b>✓</b><span>Busca continuidad, no perfección imposible.</span></div>
+          </div>
+        </section>
+
+        <h2>La poca personalización también tiene costo</h2>
+        <p>Dos personas pueden tener dolor lumbar, pero vivir realidades completamente distintas. Una trabaja sentada todo el día, otra carga peso, otra duerme poco, otra tiene 10 minutos libres, otra puede entrenar 45 minutos. Sin embargo, muchas veces reciben indicaciones muy parecidas.</p>
+
+        <p>Cuando una rutina no considera tu contexto, aumenta la probabilidad de abandono. Y ahí aparece una de las partes más caras de cualquier proceso: pagar, asistir, intentar, frustrarte y dejarlo a medias porque el plan nunca conversó con tu vida real. Fue más bien una relación unilateral: el plan hablaba, tú sufrías y tu agenda lloraba en silencio.</p>
+
+        <div class="comic-box">
+          <h3>La gran verdad incómoda</h3>
+          <p>La rutina puede estar técnicamente correcta, pero si solo funciona para alguien con tiempo libre, energía perfecta y cero tacos, entonces no era tan perfecta para ti. Era perfecta para un personaje de publicidad, no para una persona que llega con mochila, hambre y 12 notificaciones pendientes.</p>
+        </div>
+
+        <div class="evidence">
+          <h3>Idea clave</h3>
+          <p>Una recuperación efectiva no solo debería mirar la zona que duele. También debería mirar cuánto tiempo tienes, cómo llegas al final del día, qué puedes sostener y qué nivel de guía necesitas para no abandonar.</p>
+        </div>..
+
+        <div class="mini-visual system">
+          <img src="../../imagenes/blog/costo_de_recuperarse/costo_recuperarse3.webp" alt="El camino largo para recibir una rutina corta" loading="lazy">
+        </div>
+
+        <h2>Entonces, ¿qué debería cambiar?</h2>
+        <p>Recuperarse debería ser más simple de iniciar. No necesariamente más básico, no menos serio, no menos profesional. Más simple. Más claro. Más aterrizado. Más conectado con la vida real de la persona.</p>
+
+        <p>Un buen plan no debería ignorar tu bolsillo, tu tiempo ni tu energía. Debería ayudarte a tomar una mejor decisión: qué hacer hoy, cuánto hacer, cómo adaptar y cuándo pedir más ayuda si el caso lo necesita. Porque si para empezar a moverte necesitas reorganizar media existencia, algo del sistema está haciendo sentadillas con tu paciencia.</p>
+
+        <div class="quote">Recuperarte no debería vaciar tu bolsillo ni tu agenda.</div>
+
+        <section class="final-cta" id="evaluacion">
+          <div>
+            <h2>Empieza de forma más inteligente.</h2>
+            <p>Solicita una evaluación gratuita y descubre qué tipo de rutina se adapta mejor a tu tiempo, energía y realidad diaria.</p>
+          </div>
+          <a class="btn primary" href="../../evaluacion-gratuita-movesmart.html">Solicitar evaluación</a>
+        </section>
+      </article>
+
+      <aside class="sidebar" id="resumen">
+        <section class="side-card">
+          <h3>Ideas clave</h3>
+          <ul>
+            <li>Una lesión no solo cuesta dinero: también cuesta tiempo y energía.</li>
+            <li>Los traslados, esperas y permisos también forman parte del proceso.</li>
+            <li>La poca personalización puede aumentar el abandono.</li>
+            <li>Un plan útil debería adaptarse a tu realidad, no exigir una vida perfecta ni una agenda de influencer organizado.</li>
+          </ul>
+        </section>
+
+        <section class="side-card">
+          <h3>Para quién es este artículo</h3>
+          <p class="small">Para personas que sienten que recuperarse se volvió caro, lento o difícil de sostener, y que necesitan una forma más simple de empezar a moverse con sentido.</p>
+        </section>
+
+        <section class="side-card">
+          <h3>MoveSmart</h3>
+          <p class="small">Evaluación gratuita, rutinas adaptadas y una forma más realista de iniciar tu recuperación considerando tiempo, energía y contexto.</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer">MoveSmart · Entrena inteligente. Avanza siempre.</footer>
+  </div>
+</body>
+</html>
