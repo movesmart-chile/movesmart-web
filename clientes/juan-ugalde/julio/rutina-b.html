@@ -1,0 +1,1175 @@
+
+
+
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Rutina B Julio | Juan Ugalde</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--text:#ffffff;
+--muted:rgba(255,255,255,.78);
+--soft:rgba(255,255,255,.06);
+--soft-2:rgba(255,255,255,.09);
+--border:rgba(255,255,255,.13);
+--accent:#ff5a1f;
+--accent-2:#ff8a3d;
+--blue:#2f63ff;
+--green:#35d062;
+--shadow:0 22px 60px rgba(0,0,0,.42);
+--wrap:min(1120px, calc(100% - 32px));
+}
+body{
+min-height:100vh;
+font-family:'Segoe UI',system-ui,sans-serif;
+color:var(--text);
+background:
+radial-gradient(circle at 18% 10%, rgba(47,99,255,.16), transparent 28%),
+radial-gradient(circle at 88% 20%, rgba(255,90,31,.18), transparent 26%),
+linear-gradient(180deg, #070b16 0%, #0b0e1a 45%, #080a13 100%);
+overflow-x:hidden;
+}
+body::before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(90deg, rgba(4,6,14,.20), transparent 45%, rgba(255,90,31,.06)),
+radial-gradient(circle at 50% 110%, rgba(255,255,255,.05), transparent 36%);
+z-index:0;
+}
+.wrap{
+width:var(--wrap);
+margin:auto;
+padding:30px 0 50px;
+position:relative;
+z-index:1;
+}
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+margin-bottom:24px;
+}
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+.brand-badge{
+width:46px;
+height:46px;
+border-radius:15px;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg, var(--accent), var(--accent-2));
+font-weight:900;
+box-shadow:0 16px 34px rgba(255,90,31,.22);
+}
+.brand-text h1{
+font-size:1.28rem;
+line-height:1.05;
+font-weight:900;
+letter-spacing:-.02em;
+}
+.brand-text p{
+color:var(--muted);
+font-size:.92rem;
+margin-top:4px;
+}
+.back-btn{
+text-decoration:none;
+color:#fff;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.13);
+padding:12px 18px;
+border-radius:16px;
+font-weight:800;
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+}
+.hero{
+  min-height:360px;
+  border-radius:34px;
+  overflow:hidden;
+  position:relative;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:stretch;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:var(--shadow);
+  background:#090d18;
+  margin-bottom:24px;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+linear-gradient(90deg, rgba(5,7,15,.96) 0%, rgba(5,7,15,.82) 42%, rgba(5,7,15,.34) 70%, rgba(5,7,15,.16) 100%),
+linear-gradient(180deg, rgba(5,7,15,.12), rgba(5,7,15,.56));
+  z-index:1;
+  pointer-events:none;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+  padding:42px 42px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hello{
+  color:var(--accent-2);
+  font-weight:900;
+  font-size:1.1rem;
+  margin-bottom:14px;
+}
+
+.hero h2{
+  font-size:clamp(2rem, 4vw, 3.6rem);
+  line-height:1.04;
+  letter-spacing:-.04em;
+  max-width:700px;
+  margin-bottom:16px;
+}
+
+.hero p{
+  color:rgba(255,255,255,.82);
+  font-size:1.05rem;
+  line-height:1.7;
+  max-width:560px;
+}
+
+.hero-image{
+  position:absolute;
+  inset:0;
+  background:url('../../../imagenes/contendor.webp') center right / cover no-repeat;
+  z-index:0;
+  transform:scale(1.01);
+}
+
+.survey-card{
+background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+border-radius:32px;
+padding:28px;
+box-shadow:var(--shadow);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+}
+.survey-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:18px;
+margin-bottom:24px;
+}
+.survey-title{
+display:flex;
+align-items:center;
+gap:14px;
+}
+.survey-icon{
+width:48px;
+height:48px;
+border-radius:16px;
+background:rgba(255,90,31,.14);
+border:1px solid rgba(255,90,31,.24);
+display:grid;
+place-items:center;
+font-size:1.35rem;
+}
+.survey-title h3{
+font-size:1.55rem;
+margin-bottom:4px;
+}
+.survey-title p{
+color:var(--muted);
+}
+.progress-wrap{
+display:grid;
+grid-template-columns:1fr auto;
+align-items:center;
+gap:22px;
+margin:8px 0 22px;
+}
+.progress-bar{
+height:7px;
+border-radius:999px;
+background:rgba(255,255,255,.08);
+overflow:hidden;
+}
+.progress-fill{
+height:100%;
+width:33%;
+border-radius:999px;
+background:linear-gradient(90deg, var(--accent), var(--accent-2));
+transition:.25s ease;
+}
+.progress-text{
+color:rgba(255,255,255,.72);
+font-size:.98rem;
+white-space:nowrap;
+}
+.question{
+padding:26px 0;
+border-top:1px solid rgba(255,255,255,.09);
+}
+.question:first-of-type{border-top:none}
+.q-title{
+display:flex;
+align-items:flex-start;
+gap:16px;
+margin-bottom:18px;
+}
+.q-icon{
+width:54px;
+height:54px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:rgba(255,90,31,.11);
+border:1px solid rgba(255,90,31,.24);
+color:var(--accent-2);
+font-size:1.45rem;
+flex:0 0 auto;
+}
+.q-title h4{
+color:var(--accent-2);
+font-size:1.24rem;
+margin-bottom:6px;
+}
+.q-title p{
+color:var(--muted);
+line-height:1.5;
+}
+.choices{
+display:grid;
+grid-template-columns:repeat(3, minmax(0,1fr));
+gap:18px;
+}
+.choice{
+min-height:132px;
+padding:20px 16px;
+border-radius:20px;
+background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+color:#fff;
+cursor:pointer;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:8px;
+text-align:center;
+font-family:inherit;
+transition:.18s ease;
+}
+.choice:hover{
+transform:translateY(-2px);
+border-color:rgba(255,90,31,.45);
+}
+.choice.selected{
+background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));
+border-color:var(--accent);
+box-shadow:0 0 0 1px rgba(255,90,31,.44), 0 16px 28px rgba(255,90,31,.10);
+}
+.choice .emoji{
+font-size:1.7rem;
+line-height:1;
+}
+.choice strong{
+font-size:1.22rem;
+display:block;
+}
+.choice span{
+color:rgba(255,255,255,.74);
+font-size:.94rem;
+}
+.submit-btn{
+margin-top:16px;
+width:100%;
+border:none;
+border-radius:18px;
+padding:19px 24px;
+background:linear-gradient(180deg, #ff7a1f, #ff4f13);
+color:#fff;
+font-weight:900;
+font-size:1.18rem;
+cursor:pointer;
+box-shadow:0 16px 34px rgba(255,90,31,.25);
+font-family:inherit;
+}
+.microcopy{
+color:rgba(255,255,255,.68);
+text-align:center;
+margin-top:16px;
+font-size:.95rem;
+}
+.result-card{
+display:none;
+margin-top:18px;
+padding:18px;
+border-radius:22px;
+background:rgba(29,191,115,.12);
+border:1px solid rgba(29,191,115,.28);
+color:#ddffea;
+line-height:1.65;
+}
+.result-card.active{display:block}
+.quick-stats{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:14px;
+margin:22px 0 28px;
+}
+.stat{
+background:rgba(255,255,255,.07);
+border:1px solid rgba(255,255,255,.10);
+border-radius:20px;
+padding:16px;
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+}
+.stat small{
+display:block;
+color:var(--text-soft, rgba(255,255,255,.82));
+margin-bottom:6px;
+}
+.stat strong{
+font-size:1rem;
+line-height:1.4;
+}
+.mode-card{
+margin:20px 0 8px;
+padding:20px;
+border-radius:24px;
+background:rgba(255,90,31,.12);
+border:1px solid rgba(255,90,31,.26);
+color:#ffe0d4;
+line-height:1.7;
+box-shadow:0 18px 38px rgba(0,0,0,.20);
+}
+.mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
+.routine-version-label{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-bottom:12px;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(255,90,31,.15);
+color:#ffd6c8;
+border:1px solid rgba(255,90,31,.25);
+font-size:.9rem;
+font-weight:800;
+}
+.smart-loading{
+display:none;
+margin-top:22px;
+padding:28px;
+border-radius:30px;
+background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+border:1px solid rgba(255,255,255,.13);
+box-shadow:var(--shadow);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+text-align:center;
+animation:fadeUp .35s ease both;
+}
+.smart-loading.active{display:block}
+.smart-orb{
+width:68px;
+height:68px;
+border-radius:50%;
+margin:0 auto 16px;
+background:
+radial-gradient(circle at 30% 30%, #fff, transparent 24%),
+linear-gradient(135deg, var(--accent), var(--accent-2));
+box-shadow:0 0 34px rgba(255,90,31,.45);
+animation:pulseOrb 1.15s ease-in-out infinite;
+}
+.smart-loading h3{
+font-size:1.35rem;
+margin-bottom:8px;
+}
+.smart-loading p{
+color:rgba(255,255,255,.76);
+line-height:1.6;
+}
+.survey-card.is-processing{
+pointer-events:none;
+transition:.25s ease;
+}
+@keyframes pulseOrb{
+0%,100%{transform:scale(.92);opacity:.72}
+50%{transform:scale(1.06);opacity:1}
+}
+@media (max-width:900px){
+.hero{grid-template-columns:1fr;min-height:360px}
+.hero-copy{padding:34px 26px}
+.choices{grid-template-columns:1fr}
+.survey-head,.progress-wrap{grid-template-columns:1fr;align-items:start}
+.progress-text{white-space:normal}
+}
+ @media (max-width:640px){
+
+  .quick-stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .stat{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .stat strong{
+    font-size:1.15rem;
+    line-height:1.4;
+    word-break:break-word;
+  }
+
+  .exercise-meta{
+    grid-template-columns:1fr;
+  }
+
+  .finish-session-btn{
+    width:100%;
+    min-width:unset;
+  }
+}
+  
+
+body{
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+    }
+
+.routine-container{
+display:none;
+margin-top:24px;
+animation:fadeUp .35s ease both;
+}
+.routine-container.active{display:block}
+.routine-intro{
+margin:22px 0;
+padding:26px;
+border-radius:30px;
+background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+box-shadow:var(--shadow);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+}
+.routine-intro .eyebrow{
+display:inline-block;
+background:rgba(255,90,31,.15);
+color:#ffd6c8;
+border:1px solid rgba(255,90,31,.25);
+padding:8px 12px;
+border-radius:999px;
+font-size:.9rem;
+margin-bottom:14px;
+}
+.routine-intro h2{
+font-size:clamp(1.7rem,3vw,2.6rem);
+line-height:1.05;
+margin-bottom:10px;
+letter-spacing:-.03em;
+}
+.routine-intro p{
+color:var(--muted);
+line-height:1.7;
+max-width:760px;
+}
+.section{
+margin-top:22px;
+background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+border-radius:30px;
+overflow:hidden;
+box-shadow:var(--shadow);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+}
+.section-head{
+background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
+padding:20px 24px;
+border-bottom:1px solid rgba(255,255,255,.10);
+}
+.section-head h2{
+font-size:1.45rem;
+margin-bottom:5px;
+}
+.section-head p{
+color:rgba(255,255,255,.78);
+line-height:1.55;
+}
+.section-body{
+padding:20px;
+display:grid;
+gap:16px;
+}
+.exercise-card{
+background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+border-radius:24px;
+padding:20px;
+display:grid;
+grid-template-columns:1.3fr .9fr;
+gap:20px;
+align-items:center;
+transition:.18s ease;
+}
+.exercise-card:hover{
+transform:translateY(-2px);
+border-color:rgba(255,90,31,.38);
+}
+.exercise-name{
+font-size:1.18rem;
+font-weight:900;
+margin-bottom:8px;
+color:#fff;
+}
+.exercise-desc{
+color:rgba(255,255,255,.76);
+line-height:1.65;
+font-size:.97rem;
+}
+.exercise-meta{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:10px;
+}
+.pill{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.12);
+border-radius:16px;
+padding:11px 12px;
+font-size:.95rem;
+color:#fff;
+}
+.pill span{
+display:block;
+color:rgba(255,255,255,.62);
+font-size:.82rem;
+margin-bottom:4px;
+}
+.video-btn{
+display:inline-flex;
+align-items:center;
+gap:10px;
+margin-top:14px;
+text-decoration:none;
+background:linear-gradient(180deg, #ff7a1f, #ff4f13);
+color:#fff;
+padding:12px 16px;
+border-radius:14px;
+font-weight:800;
+box-shadow:0 12px 28px rgba(255,90,31,.24);
+border:none;
+cursor:pointer;
+font-family:inherit;
+font-size:1rem;
+}
+.simple-card,.note,.finish-session-text{
+background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+border:1px solid rgba(255,255,255,.12);
+border-radius:22px;
+padding:18px;
+line-height:1.7;
+color:rgba(255,255,255,.84);
+}
+.note{
+margin-top:22px;
+background:rgba(29,191,115,.12);
+border-color:rgba(29,191,115,.28);
+color:#ddffea;
+}
+.finish-session-wrap{
+margin-top:22px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:18px;
+}
+.finish-session-text{
+width:100%;
+text-align:center;
+}
+.finish-session-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+text-decoration:none;
+background:linear-gradient(180deg,#ff8a1f,#ff5a1f);
+color:#fff;
+font-weight:900;
+font-size:1.05rem;
+padding:18px 28px;
+border-radius:20px;
+box-shadow:0 14px 30px rgba(255,90,31,.28);
+border:none;
+min-width:320px;
+}
+.video-modal{
+position:fixed;
+inset:0;
+background:rgba(4,6,14,.78);
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:9999;
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
+}
+.video-modal.active{ display:flex; }
+.video-box{
+width:min(900px, 100%);
+background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
+border:1px solid rgba(255,255,255,.10);
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+.video-box-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:16px 18px;
+background:rgba(255,255,255,.05);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+.close-video{
+border:none;
+background:rgba(255,255,255,.10);
+color:#fff;
+border-radius:12px;
+padding:10px 14px;
+cursor:pointer;
+font-weight:800;
+font-family:inherit;
+}
+.video-frame-wrap{
+position:relative;
+width:100%;
+padding-top:56.25%;
+background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
+}
+.video-frame-wrap iframe{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+border:0;
+}
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(14px)}
+to{opacity:1;transform:translateY(0)}
+}
+.quick-stats{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:14px;
+margin:22px 0 28px;
+}
+.stat{
+background:rgba(255,255,255,.07);
+border:1px solid rgba(255,255,255,.10);
+border-radius:20px;
+padding:16px;
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+}
+.stat small{
+display:block;
+color:var(--text-soft, rgba(255,255,255,.82));
+margin-bottom:6px;
+}
+.stat strong{
+font-size:1rem;
+line-height:1.4;
+}
+.mode-card{
+margin:20px 0 8px;
+padding:20px;
+border-radius:24px;
+background:rgba(255,90,31,.12);
+border:1px solid rgba(255,90,31,.26);
+color:#ffe0d4;
+line-height:1.7;
+box-shadow:0 18px 38px rgba(0,0,0,.20);
+}
+.mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
+.routine-version-label{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-bottom:12px;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(255,90,31,.15);
+color:#ffd6c8;
+border:1px solid rgba(255,90,31,.25);
+font-size:.9rem;
+font-weight:800;
+}
+@media (max-width:900px){
+.exercise-card{grid-template-columns:1fr}
+.exercise-meta{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+.exercise-meta{grid-template-columns:1fr}
+.finish-session-btn{width:100%;min-width:unset}
+}
+@media (max-width:640px){
+.routine-intro{
+padding:18px;
+border-radius:22px;
+margin:18px 0;
+}
+.section{
+margin-top:16px;
+border-radius:22px;
+}
+.section-head{
+padding:14px 16px;
+}
+.section-head h2{
+font-size:1.18rem;
+}
+.section-head p{
+font-size:.92rem;
+}
+.section-body{
+padding:14px;
+gap:12px;
+}
+.exercise-card{
+display:block;
+padding:16px;
+border-radius:20px;
+background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+}
+.exercise-card:hover{
+transform:none;
+}
+.exercise-name{
+font-size:1.08rem;
+line-height:1.22;
+margin-bottom:8px;
+}
+.exercise-desc{
+font-size:.94rem;
+line-height:1.55;
+}
+.exercise-meta{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:14px;
+}
+.pill{
+flex:1 1 calc(50% - 8px);
+border-radius:999px;
+padding:8px 10px;
+font-size:.84rem;
+line-height:1.25;
+background:rgba(255,255,255,.065);
+}
+.pill span{
+display:inline;
+margin:0 5px 0 0;
+font-size:.76rem;
+opacity:.78;
+}
+.video-btn{
+margin-top:12px;
+padding:11px 14px;
+border-radius:14px;
+font-size:.94rem;
+}
+.simple-card,
+.note,
+.finish-session-text{
+border-radius:18px;
+padding:14px;
+}
+.quick-stats{
+grid-template-columns:repeat(2, minmax(0,1fr));
+gap:8px;
+margin:18px 0 8px;
+}
+.stat{
+padding:12px;
+border-radius:16px;
+}
+.stat small{
+font-size:.78rem;
+}
+.stat strong{
+font-size:.88rem;
+}
+}
+</style></head><body><div class="wrap"><header class="topbar"><div class="brand"><div class="brand-badge">M</div><div class="brand-text"><h1>MoveSmart</h1><p>Juan Ugalde · Rutina B Julio</p></div></div><a href="plan-juan-ugalde.html" class="back-btn">← Volver al plan</a></header><section class="hero"><div class="hero-image" aria-hidden="true"></div><div class="hero-copy"><div class="hello">¡Hola Juan!</div><h2>Para crear tu Rutina B ideal necesitamos conocer tu energía de hoy.</h2>
+<p>Responde estas 3 preguntas y MoveSmart personalizará tu sesión según tu tiempo disponible, tu nivel de energía y tu motivación.</p></div></section><main class="survey-card"><div class="survey-head"><div class="survey-title"><div class="survey-icon">✨</div><div><h3>Encuesta MoveSmart</h3><p>Toma 30 segundos. Tu rutina se adapta a cómo llegas hoy.</p></div></div></div><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-text" id="progressText">Pregunta 0 de 3</div></div><section class="question" data-question="tiempo"><div class="q-title"><div class="q-icon">⏱️</div><div><h4>1. ¿Cuánto tiempo tienes hoy?</h4><p>Sé realista con el tiempo del que dispones.</p></div></div><div class="choices"><button class="choice" type="button" data-value="express"><span class="emoji">⏱️</span><strong>10 – 20 min</strong><span>Poco tiempo</span></button><button class="choice" type="button" data-value="base"><span class="emoji">🕒</span><strong>25 – 40 min</strong><span>Tiempo moderado</span></button><button class="choice" type="button" data-value="completa"><span class="emoji">🕘</span><strong>45 – 60 min</strong><span>Más tiempo</span></button></div></section><section class="question" data-question="energia"><div class="q-title"><div class="q-icon">⚡</div><div><h4>2. ¿Cómo está tu energía hoy?</h4><p>Piensa en cómo se siente tu cuerpo físicamente.</p></div></div><div class="choices"><button class="choice" type="button" data-value="baja"><span class="emoji">🪫</span><strong>Baja</strong><span>Me siento cansado</span></button><button class="choice" type="button" data-value="media"><span class="emoji">⚡</span><strong>Media</strong><span>Me siento normal</span></button><button class="choice" type="button" data-value="alta"><span class="emoji">🔋</span><strong>Alta</strong><span>Me siento con energía</span></button></div></section><section class="question" data-question="motivacion"><div class="q-title"><div class="q-icon">⭐</div><div><h4>3. ¿Qué tan motivado te sientes hoy?</h4><p>Elige la actitud con la que quieres entrenar.</p></div></div><div class="choices"><button class="choice" type="button" data-value="baja"><span class="emoji">☹️</span><strong>Baja</strong><span>Nada motivado</span></button><button class="choice" type="button" data-value="media"><span class="emoji">🙂</span><strong>Media</strong><span>Motivado</span></button><button class="choice" type="button" data-value="alta"><span class="emoji">😊</span><strong>Alta</strong><span>Muy motivado</span></button></div></section><button class="submit-btn" type="button" id="createRoutine">Crear mi rutina personalizada →</button><p class="microcopy">Tu rutina se adapta a ti. Entrena con propósito, no por obligación.</p><div class="result-card" id="resultCard"></div><div class="smart-loading" id="smartLoading" aria-live="polite"><div class="smart-orb"></div><h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3><p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y motivación.</p></div><div class="routine-container" id="rutina-express">
+<div class="routine-intro">
+  <div class="routine-version-label">⚡ Rutina B Express · Julio · 10–20 min</div>
+  <h2>Rutina B · Bicicleta para mantener el hábito</h2>
+  <p>Versión breve para los días con poco tiempo o baja motivación. El objetivo es simple: subirse a la bicicleta y cumplir.</p>
+  <div class="mode-card"><strong>Enfoque de julio</strong>Crear adherencia. No buscamos velocidad ni rendimiento; buscamos continuidad.</div>
+</div>
+<section class="section">
+  <div class="section-head"><h2>Bicicleta</h2><p>Sesión corta, cómoda y fácil de completar.</p></div>
+  <div class="section-body">
+    <div class="simple-card"><strong>15 minutos de bicicleta estática</strong><br>Ritmo cómodo · RPE 3/10 · Debes poder conversar sin dificultad.</div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-head"><h2>Indicaciones</h2><p>Lo importante es terminar sintiéndote igual o mejor que al inicio.</p></div>
+  <div class="section-body">
+    <div class="simple-card">Si te sientes cansado, baja la resistencia. Si te sientes bien, mantén el mismo ritmo hasta completar los 15 minutos. No necesitas agregar ejercicios extra.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Estiramiento breve / vuelta a la calma</h2><p>Cierre corto para soltar la musculatura sin alargar demasiado la sesión.</p></div>
+  <div class="section-body">
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de cuádriceps</div>
+        <p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>1</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+  </div>
+</section>
+<div class="finish-session-wrap">
+  <p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p>
+  <a href="registro de sesion.html?rutina=Rutina%20B%20Express%20Julio" class="finish-session-btn">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-base">
+<div class="routine-intro">
+  <div class="routine-version-label">🕒 Rutina B Base · Julio · 25–40 min</div>
+  <h2>Rutina B · Bicicleta continua</h2>
+  <p>Versión principal de julio. Busca acumular minutos de bicicleta de forma cómoda, sostenible y sin sobrecargar la rodilla.</p>
+  <div class="mode-card"><strong>Enfoque de julio</strong>Construir el hábito con una sesión simple, predecible y fácil de repetir.</div>
+</div>
+<section class="section">
+  <div class="section-head"><h2>Bicicleta continua</h2><p>Trabajo cardiovascular suave a moderado.</p></div>
+  <div class="section-body">
+    <div class="simple-card">
+      <strong>Total: 30 minutos</strong>
+      <ul>
+        <li>5 minutos muy suaves · RPE 2</li>
+        <li>20 minutos continuos · RPE 3–4</li>
+        <li>5 minutos suaves · RPE 2</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-head"><h2>Indicaciones</h2><p>Debe sentirse cómodo y sostenible.</p></div>
+  <div class="section-body">
+    <div class="simple-card">Mantén una resistencia que te permita pedalear sin dolor y sin sensación de ahogo. La prioridad es completar la sesión, no hacerla más intensa.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Estiramientos / vuelta a la calma</h2><p>Opcional al final de la sesión para soltar musculatura y favorecer la recuperación.</p></div>
+  <div class="section-body">
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de cuádriceps</div>
+        <p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de isquiotibiales</div>
+        <p class="exercise-desc">Respira profundo y busca relajación progresiva del músculo. Mantén una tensión cómoda, sin rebotes y sin aumentar dolor de rodilla.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/uXF9niUANJ4">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de pantorrilla</div>
+        <p class="exercise-desc">Apoya las manos en la pared y lleva una pierna atrás para sentir tensión suave en la pantorrilla. Mantén el talón apoyado y evita compensar con el tronco.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=TyZAmDcD6mM">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+  </div>
+</section>
+<div class="finish-session-wrap">
+  <p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p>
+  <a href="registro de sesion.html?rutina=Rutina%20B%20Base%20Julio" class="finish-session-btn">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-completa">
+<div class="routine-intro">
+  <div class="routine-version-label">🕘 Rutina B Completa · Julio · 40–60 min</div>
+  <h2>Rutina B · Bicicleta continua extendida</h2>
+  <p>Versión para los días con más tiempo y buena disposición. Sigue siendo una sesión simple: solo bicicleta, sin ejercicios extra.</p>
+  <div class="quick-stats">
+    <div class="stat"><small>Duración</small><strong>35 min</strong></div>
+    <div class="stat"><small>Intensidad</small><strong>RPE 3–4</strong></div>
+    <div class="stat"><small>Material</small><strong>Bicicleta estática</strong></div>
+    <div class="stat"><small>Objetivo</small><strong>Adherencia y capacidad aeróbica</strong></div>
+  </div>
+  <div class="mode-card"><strong>Enfoque de julio</strong>Sumar minutos sin complicar la rutina. Más constancia, menos fricción.</div>
+</div>
+<section class="section">
+  <div class="section-head"><h2>Bicicleta continua extendida</h2><p>Sesión cómoda para mejorar tolerancia al esfuerzo.</p></div>
+  <div class="section-body">
+    <div class="simple-card">
+      <strong>Total: 35 minutos</strong>
+      <ul>
+        <li>5 minutos suaves · RPE 2</li>
+        <li>25 minutos continuos · RPE 3–4</li>
+        <li>5 minutos suaves · RPE 2</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-head"><h2>Regla de julio</h2><p>La meta es cumplir, no exigirse de más.</p></div>
+  <div class="section-body">
+    <div class="note"><strong>Progresión:</strong> durante julio no es necesario subir resistencia ni hacer intervalos. Si la sesión se siente fácil, mantén la misma intensidad y enfócate en repetirla semana a semana.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Estiramientos / vuelta a la calma</h2><p>Opcional al final de la sesión para soltar musculatura y favorecer la recuperación.</p></div>
+  <div class="section-body">
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de cuádriceps</div>
+        <p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de isquiotibiales</div>
+        <p class="exercise-desc">Respira profundo y busca relajación progresiva del músculo. Mantén una tensión cómoda, sin rebotes y sin aumentar dolor de rodilla.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/uXF9niUANJ4">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+    <article class="exercise-card">
+      <div>
+        <div class="exercise-name">Estiramiento de pantorrilla</div>
+        <p class="exercise-desc">Apoya las manos en la pared y lleva una pierna atrás para sentir tensión suave en la pantorrilla. Mantén el talón apoyado y evita compensar con el tronco.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=TyZAmDcD6mM">▶ Ver video</button>
+      </div>
+      <div class="exercise-meta">
+        <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div>
+      </div>
+    </article>
+  </div>
+</section>
+<div class="finish-session-wrap">
+  <p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p>
+  <a href="registro de sesion.html?rutina=Rutina%20B%20Julio" class="finish-session-btn">✅ Finalicé mi sesión</a>
+</div>
+</div>
+</main></div><div class="video-modal" id="videoModal" aria-hidden="true"><div class="video-box"><div class="video-box-head"><strong id="videoTitle">Video de ejercicio</strong><button class="close-video" type="button" id="closeVideo">Cerrar ✕</button></div><div class="video-frame-wrap"><iframe id="videoFrame" src="" title="Video de ejercicio" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div></div></div><script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const PREGUNTA_PERSONALIZADA = "Motivación";
+const respuestas = { tiempo:null, energia:null, motivacion:null };
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const resultCard = document.getElementById('resultCard');
+const surveyCard = document.querySelector('.survey-card');
+const smartLoading = document.getElementById('smartLoading');
+const smartLoadingTitle = document.getElementById('smartLoadingTitle');
+const smartLoadingText = document.getElementById('smartLoadingText');
+function updateProgress(){
+const answered = Object.values(respuestas).filter(Boolean).length;
+progressFill.style.width = `${(answered / 3) * 100}%`;
+progressText.textContent = `Pregunta ${answered} de 3`;
+}
+function modoSegunEnergia(){
+if(respuestas.energia === 'baja' || respuestas.motivacion === 'baja') return 'Recovery';
+if(respuestas.energia === 'alta' && respuestas.motivacion === 'alta') return 'Plus';
+return 'Normal';
+}
+function nombreEstructura(){
+// La rutina Completa es solo el mejor escenario:
+// tiene tiempo suficiente + energía alta + motivación alta.
+if(respuestas.tiempo === 'express') return 'Express';
+if(
+respuestas.tiempo === 'completa' &&
+respuestas.energia === 'alta' &&
+respuestas.motivacion === 'alta'
+) return 'Completa';
+return 'Base';
+}
+function guardarRespuestaEnSheets(estructura, modo){
+fetch(SCRIPT_URL, {
+method: "POST",
+mode: "no-cors",
+body: JSON.stringify({
+cliente: "Juan Ugalde",
+rutina: "Rutina B",
+tiempo: respuestas.tiempo,
+energia: respuestas.energia,
+preguntaPersonalizada: PREGUNTA_PERSONALIZADA,
+respuestaPersonalizada: respuestas.motivacion,
+estructura: estructura,
+modo: modo
+})
+}).catch(function(error){
+console.log("No se pudo guardar en Sheets:", error);
+});
+}
+document.querySelectorAll('.choice').forEach(btn => {
+btn.addEventListener('click', () => {
+const question = btn.closest('.question').dataset.question;
+respuestas[question] = btn.dataset.value;
+btn.closest('.choices').querySelectorAll('.choice').forEach(other => other.classList.remove('selected'));
+btn.classList.add('selected');
+resultCard.classList.remove('active');
+document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+updateProgress();
+});
+});
+document.getElementById('createRoutine').addEventListener('click', () => {
+const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
+if(faltan.length){
+resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y motivación para crear la recomendación.';
+resultCard.style.background = 'rgba(255,90,31,.12)';
+resultCard.style.borderColor = 'rgba(255,90,31,.28)';
+resultCard.style.color = '#ffe0d4';
+resultCard.classList.add('active');
+return;
+}
+const estructura = nombreEstructura();
+const modo = modoSegunEnergia();
+guardarRespuestaEnSheets(estructura, modo);
+const modoTexto = {
+Recovery: 'Hoy prioriza cumplir la bicicleta con baja resistencia. Puedes bajar el ritmo si aparece cansancio.',
+Normal: 'Sigue la bicicleta tal como está planificada hoy. Mantén un ritmo cómodo y sostenible.',
+Plus: 'Hoy tienes buena energía. Mantén la sesión completa, pero sin aumentar demasiado la resistencia.'
+};
+resultCard.classList.remove('active');
+document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+smartLoading.classList.add('active');
+surveyCard.classList.add('is-processing');
+smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
+smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y motivación.';
+smartLoading.scrollIntoView({ behavior:'smooth', block:'center' });
+setTimeout(() => {
+smartLoadingTitle.textContent = 'Adaptando tu sesión de bicicleta...';
+smartLoadingText.textContent = `Preparando bicicleta versión ${estructura} con modo ${modo}.`;
+}, 750);
+setTimeout(() => {
+smartLoadingTitle.textContent = '✨ Rutina lista';
+smartLoadingText.textContent = 'Tu sesión personalizada ya está preparada.';
+}, 1450);
+setTimeout(() => {
+smartLoading.classList.remove('active');
+surveyCard.classList.remove('is-processing');
+resultCard.style.background = 'rgba(29,191,115,.12)';
+resultCard.style.borderColor = 'rgba(29,191,115,.28)';
+resultCard.style.color = '#ddffea';
+resultCard.innerHTML = `<strong>✨ Recomendación MoveSmart:</strong><br>Rutina B ${estructura} · Modo ${modo}<br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+resultCard.classList.add('active');
+const idRutina = estructura === 'Express' ? 'rutina-express' : estructura === 'Base' ? 'rutina-base' : 'rutina-completa';
+const routineContainer = document.getElementById(idRutina);
+routineContainer.classList.add('active');
+routineContainer.scrollIntoView({ behavior:'smooth', block:'start' });
+}, 2200);
+});
+function toEmbedUrl(url) {
+if (!url) return null;
+const cleanUrl = String(url).trim();
+if (!cleanUrl) return null;
+try {
+const parsed = new URL(cleanUrl);
+const host = parsed.hostname.replace('www.', '');
+let videoId = '';
+if (cleanUrl.includes('youtube.com/embed/')) {
+videoId = parsed.pathname.split('/embed/')[1]?.split('/')[0] || '';
+} else if (host === 'youtu.be') {
+videoId = parsed.pathname.replace('/', '').trim();
+} else if (host === 'youtube.com' || host === 'm.youtube.com') {
+if (parsed.pathname.startsWith('/shorts/')) {
+videoId = parsed.pathname.split('/shorts/')[1].split('/')[0];
+} else if (parsed.pathname === '/watch') {
+videoId = parsed.searchParams.get('v') || '';
+}
+}
+if (!videoId) return null;
+return 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&rel=0&playsinline=1';
+} catch (err) {
+return null;
+}
+}
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoFrame');
+const closeVideo = document.getElementById('closeVideo');
+const videoTitle = document.getElementById('videoTitle');
+function showVideo(url, title) {
+videoTitle.textContent = title || 'Video de ejercicio';
+videoFrame.src = url;
+videoModal.classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+function hideVideo() {
+videoModal.classList.remove('active');
+videoFrame.src = '';
+document.body.style.overflow = '';
+}
+document.querySelectorAll('.video-btn').forEach(function (button) {
+button.addEventListener('click', function (e) {
+e.preventDefault();
+e.stopPropagation();
+const card = button.closest('.exercise-card');
+const nameEl = card ? card.querySelector('.exercise-name') : null;
+const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
+const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
+const embedUrl = toEmbedUrl(rawUrl);
+if (embedUrl) showVideo(embedUrl, title);
+else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+});
+});
+if (closeVideo) closeVideo.addEventListener('click', hideVideo);
+if (videoModal) {
+videoModal.addEventListener('click', function (e) {
+if (e.target === videoModal) hideVideo();
+});
+}
+document.addEventListener('keydown', function (e) {
+if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) hideVideo();
+});
+updateProgress();
+</script></body></html>

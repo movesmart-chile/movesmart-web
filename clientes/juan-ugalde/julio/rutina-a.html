@@ -1,0 +1,1455 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuesta Rutina A | Juan Ugalde</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --soft:rgba(255,255,255,.06);
+      --soft-2:rgba(255,255,255,.09);
+      --border:rgba(255,255,255,.13);
+      --accent:#ff5a1f;
+      --accent-2:#ff8a3d;
+      --blue:#2f63ff;
+      --green:#35d062;
+      --shadow:0 14px 34px rgba(0,0,0,.32);
+      --wrap:min(1120px, calc(100% - 32px));
+    }
+
+    body{
+      min-height:100vh;
+      font-family:'Segoe UI',system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(47,99,255,.16), transparent 28%),
+        radial-gradient(circle at 88% 20%, rgba(255,90,31,.18), transparent 26%),
+        linear-gradient(180deg, #070b16 0%, #0b0e1a 45%, #080a13 100%);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(4,6,14,.20), transparent 45%, rgba(255,90,31,.06)),
+        radial-gradient(circle at 50% 110%, rgba(255,255,255,.05), transparent 36%);
+      z-index:0;
+    }
+
+    .wrap{
+      width:var(--wrap);
+      margin:auto;
+      padding:30px 0 50px;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-badge{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight:900;
+      box-shadow:0 16px 34px rgba(255,90,31,.22);
+    }
+
+    .brand-text h1{
+      font-size:1.28rem;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+
+    .brand-text p{
+      color:var(--muted);
+      font-size:.92rem;
+      margin-top:4px;
+    }
+
+    .back-btn{
+      text-decoration:none;
+      color:#fff;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.13);
+      padding:12px 18px;
+      border-radius:16px;
+      font-weight:800;
+    }
+
+    .hero{
+      min-height:360px;
+      border-radius:34px;
+      overflow:hidden;
+      position:relative;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:stretch;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      background:#090d18;
+      margin-bottom:24px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(5,7,15,.96) 0%, rgba(5,7,15,.82) 42%, rgba(5,7,15,.34) 70%, rgba(5,7,15,.16) 100%),
+        linear-gradient(180deg, rgba(5,7,15,.12), rgba(5,7,15,.56));
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .hero-copy{
+      position:relative;
+      z-index:2;
+      padding:42px 42px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .hello{
+      color:var(--accent-2);
+      font-weight:900;
+      font-size:1.1rem;
+      margin-bottom:14px;
+    }
+
+    .hero h2{
+      font-size:clamp(2rem, 4vw, 3.6rem);
+      line-height:1.04;
+      letter-spacing:-.04em;
+      max-width:700px;
+      margin-bottom:16px;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.82);
+      font-size:1.05rem;
+      line-height:1.7;
+      max-width:560px;
+    }
+
+    .hero-image{
+      position:absolute;
+      inset:0;
+      background:url('../../../imagenes/contendor.webp') center right / cover no-repeat;
+      z-index:0;
+      transform:scale(1.01);
+    }
+
+    .survey-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:32px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+
+    .survey-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      margin-bottom:24px;
+    }
+
+    .survey-title{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .survey-icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:rgba(255,90,31,.14);
+      border:1px solid rgba(255,90,31,.24);
+      display:grid;
+      place-items:center;
+      font-size:1.35rem;
+    }
+
+    .survey-title h3{
+      font-size:1.55rem;
+      margin-bottom:4px;
+    }
+
+    .survey-title p{
+      color:var(--muted);
+    }
+
+    .progress-wrap{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:22px;
+      margin:8px 0 22px;
+    }
+
+    .progress-bar{
+      height:7px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+
+    .progress-fill{
+      height:100%;
+      width:33%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition:.25s ease;
+    }
+
+    .progress-text{
+      color:rgba(255,255,255,.72);
+      font-size:.98rem;
+      white-space:nowrap;
+    }
+
+    .question{
+      padding:26px 0;
+      border-top:1px solid rgba(255,255,255,.09);
+    }
+
+    .question:first-of-type{border-top:none}
+
+    .q-title{
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .q-icon{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(255,90,31,.11);
+      border:1px solid rgba(255,90,31,.24);
+      color:var(--accent-2);
+      font-size:1.45rem;
+      flex:0 0 auto;
+    }
+
+    .q-title h4{
+      color:var(--accent-2);
+      font-size:1.24rem;
+      margin-bottom:6px;
+    }
+
+    .q-title p{
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .choices{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .choice{
+      min-height:132px;
+      padding:20px 16px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-align:center;
+      font-family:inherit;
+      transition:.18s ease;
+    }
+
+    .choice:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,90,31,.45);
+    }
+
+    .choice.selected{
+      background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(255,90,31,.44), 0 16px 28px rgba(255,90,31,.10);
+    }
+
+    .choice .emoji{
+      font-size:1.7rem;
+      line-height:1;
+    }
+
+    .choice strong{
+      font-size:1.22rem;
+      display:block;
+    }
+
+    .choice span{
+      color:rgba(255,255,255,.74);
+      font-size:.94rem;
+    }
+
+    .submit-btn{
+      margin-top:16px;
+      width:100%;
+      border:none;
+      border-radius:18px;
+      padding:19px 24px;
+      background:linear-gradient(180deg, #ff7a1f, #ff4f13);
+      color:#fff;
+      font-weight:900;
+      font-size:1.18rem;
+      cursor:pointer;
+      box-shadow:0 16px 34px rgba(255,90,31,.25);
+      font-family:inherit;
+    }
+
+    .microcopy{
+      color:rgba(255,255,255,.68);
+      text-align:center;
+      margin-top:16px;
+      font-size:.95rem;
+    }
+
+    .result-card{
+      display:none;
+      margin-top:18px;
+      padding:18px;
+      border-radius:22px;
+      background:rgba(29,191,115,.12);
+      border:1px solid rgba(29,191,115,.28);
+      color:#ddffea;
+      line-height:1.65;
+    }
+
+    .result-card.active{display:block}
+
+
+
+    .quick-stats{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin:22px 0 28px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .stat small{
+      display:block;
+      color:var(--text-soft, rgba(255,255,255,.82));
+      margin-bottom:6px;
+    }
+
+    .stat strong{
+      font-size:1rem;
+      line-height:1.4;
+    }
+
+    .mode-card{
+      margin:20px 0 8px;
+      padding:20px;
+      border-radius:24px;
+      background:rgba(255,90,31,.12);
+      border:1px solid rgba(255,90,31,.26);
+      color:#ffe0d4;
+      line-height:1.7;
+      box-shadow:0 18px 38px rgba(0,0,0,.20);
+    }
+
+    .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
+
+    .routine-version-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,90,31,.15);
+      color:#ffd6c8;
+      border:1px solid rgba(255,90,31,.25);
+      font-size:.9rem;
+      font-weight:800;
+    }
+
+
+
+    .smart-loading{
+      display:none;
+      margin-top:22px;
+      padding:28px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.13);
+      box-shadow:var(--shadow);
+      text-align:center;
+      animation:fadeUp .35s ease both;
+    }
+
+    .smart-loading.active{display:block}
+
+    .smart-orb{
+      width:68px;
+      height:68px;
+      border-radius:50%;
+      margin:0 auto 16px;
+      background:
+        radial-gradient(circle at 30% 30%, #fff, transparent 24%),
+        linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 0 34px rgba(255,90,31,.45);
+      animation:pulseOrb 1.15s ease-in-out infinite;
+    }
+
+    .smart-loading h3{
+      font-size:1.35rem;
+      margin-bottom:8px;
+    }
+
+    .smart-loading p{
+      color:rgba(255,255,255,.76);
+      line-height:1.6;
+    }
+
+    .survey-card.is-processing{
+      opacity:.75;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    @keyframes pulseOrb{
+      0%,100%{transform:scale(.92);opacity:.72}
+      50%{transform:scale(1.06);opacity:1}
+    }
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;min-height:360px}
+      .hero-copy{padding:34px 26px}
+      .choices{grid-template-columns:1fr}
+      .survey-head,.progress-wrap{grid-template-columns:1fr;align-items:start}
+      .progress-text{white-space:normal}
+    }
+
+    @media (max-width:640px){
+
+  .quick-stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .stat{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .stat strong{
+    font-size:1.15rem;
+    line-height:1.4;
+    word-break:break-word;
+  }
+
+  .exercise-meta{
+    grid-template-columns:1fr;
+  }
+
+  .finish-session-btn{
+    width:100%;
+    min-width:unset;
+  }
+}
+  
+
+    /* Fondo MoveSmart */
+    body{
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+    }
+
+    .routine-container{
+      display:none;
+      margin-top:24px;
+      animation:fadeUp .35s ease both;
+    }
+
+    .routine-container.active{display:block}
+
+    .routine-intro{
+      margin:22px 0;
+      padding:26px;
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+    }
+
+    .routine-intro .eyebrow{
+      display:inline-block;
+      background:rgba(255,90,31,.15);
+      color:#ffd6c8;
+      border:1px solid rgba(255,90,31,.25);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.9rem;
+      margin-bottom:14px;
+    }
+
+    .routine-intro h2{
+      font-size:clamp(1.7rem,3vw,2.6rem);
+      line-height:1.05;
+      margin-bottom:10px;
+      letter-spacing:-.03em;
+    }
+
+    .routine-intro p{
+      color:var(--muted);
+      line-height:1.7;
+      max-width:760px;
+    }
+
+    .section{
+      margin-top:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .section-head{
+      background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
+      padding:20px 24px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+
+    .section-head h2{
+      font-size:1.45rem;
+      margin-bottom:5px;
+    }
+
+    .section-head p{
+      color:rgba(255,255,255,.78);
+      line-height:1.55;
+    }
+
+    .section-body{
+      padding:20px;
+      display:grid;
+      gap:16px;
+    }
+
+    .exercise-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:20px;
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:20px;
+      align-items:center;
+      transition:.18s ease;
+    }
+
+    .exercise-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,90,31,.38);
+    }
+
+    .exercise-name{
+      font-size:1.18rem;
+      font-weight:900;
+      margin-bottom:8px;
+      color:#fff;
+    }
+
+    .exercise-desc{
+      color:rgba(255,255,255,.76);
+      line-height:1.65;
+      font-size:.97rem;
+    }
+
+    .exercise-meta{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .pill{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:11px 12px;
+      font-size:.95rem;
+      color:#fff;
+    }
+
+    .pill span{
+      display:block;
+      color:rgba(255,255,255,.62);
+      font-size:.82rem;
+      margin-bottom:4px;
+    }
+
+    .video-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-top:14px;
+      text-decoration:none;
+      background:linear-gradient(180deg, #ff7a1f, #ff4f13);
+      color:#fff;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:800;
+      box-shadow:0 12px 28px rgba(255,90,31,.24);
+      border:none;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:1rem;
+    }
+
+    .simple-card,.note,.finish-session-text{
+      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:18px;
+      line-height:1.7;
+      color:rgba(255,255,255,.84);
+    }
+
+    .note{
+      margin-top:22px;
+      background:rgba(29,191,115,.12);
+      border-color:rgba(29,191,115,.28);
+      color:#ddffea;
+    }
+
+    .finish-session-wrap{
+      margin-top:22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+    }
+
+    .finish-session-text{
+      width:100%;
+      text-align:center;
+    }
+
+    .finish-session-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      background:linear-gradient(180deg,#ff8a1f,#ff5a1f);
+      color:#fff;
+      font-weight:900;
+      font-size:1.05rem;
+      padding:18px 28px;
+      border-radius:20px;
+      box-shadow:0 14px 30px rgba(255,90,31,.28);
+      border:none;
+      min-width:320px;
+    }
+
+    .video-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(4,6,14,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:9999;
+    }
+
+    .video-modal.active{ display:flex; }
+
+    .video-box{
+      width:min(900px, 100%);
+      background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(0,0,0,.35);
+    }
+
+    .video-box-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 18px;
+      background:rgba(255,255,255,.05);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .close-video{
+      border:none;
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:800;
+      font-family:inherit;
+    }
+
+    .video-frame-wrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
+    }
+
+    .video-frame-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(14px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+
+
+    .quick-stats{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin:22px 0 28px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .stat small{
+      display:block;
+      color:var(--text-soft, rgba(255,255,255,.82));
+      margin-bottom:6px;
+    }
+
+    .stat strong{
+      font-size:1rem;
+      line-height:1.4;
+    }
+
+    .mode-card{
+      margin:20px 0 8px;
+      padding:20px;
+      border-radius:24px;
+      background:rgba(255,90,31,.12);
+      border:1px solid rgba(255,90,31,.26);
+      color:#ffe0d4;
+      line-height:1.7;
+      box-shadow:0 18px 38px rgba(0,0,0,.20);
+    }
+
+    .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
+
+    .routine-version-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,90,31,.15);
+      color:#ffd6c8;
+      border:1px solid rgba(255,90,31,.25);
+      font-size:.9rem;
+      font-weight:800;
+    }
+
+    @media (max-width:900px){
+      .exercise-card{grid-template-columns:1fr}
+      .exercise-meta{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:640px){
+      .exercise-meta{grid-template-columns:1fr}
+      .finish-session-btn{width:100%;min-width:unset}
+    }
+
+
+
+    /* Corrección: la rutina completa no debe heredar el hero oscuro de la encuesta */
+    .routine-container .hero{
+      min-height:auto;
+      display:block;
+      border-radius:30px;
+      padding:26px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      margin:22px 0;
+      overflow:visible;
+    }
+
+    .routine-container .hero::before{
+      display:none;
+    }
+
+    .routine-container .hero h1,
+    .routine-container .hero .subtitle,
+    .routine-container .hero .eyebrow,
+    .routine-container .hero .quick-stats{
+      position:relative;
+      z-index:2;
+    }
+
+    .routine-container .hero .quick-stats{
+      margin-bottom:0;
+    }
+
+  
+
+    /* Ajuste final móvil: evita tarjetas estadísticas aplastadas en iPhone */
+    @media (max-width:640px){
+      .routine-container .quick-stats,
+      .quick-stats{
+        grid-template-columns:1fr !important;
+        gap:12px !important;
+      }
+
+      .routine-container .stat,
+      .stat{
+        min-height:auto !important;
+        padding:14px 16px !important;
+        border-radius:18px !important;
+      }
+
+      .routine-container .stat strong,
+      .stat strong{
+        font-size:1rem !important;
+        line-height:1.35 !important;
+        word-break:normal !important;
+        overflow-wrap:anywhere !important;
+      }
+
+      .routine-container .hero{
+        padding:22px !important;
+        border-radius:26px !important;
+      }
+
+      .routine-container .hero h1{
+        font-size:clamp(1.7rem, 8vw, 2.2rem) !important;
+        line-height:1.08 !important;
+      }
+
+      .routine-container .hero .subtitle{
+        font-size:1rem !important;
+        line-height:1.6 !important;
+      }
+
+      .section{
+        border-radius:24px !important;
+      }
+
+      .section-head,
+      .section-body{
+        padding:16px !important;
+      }
+
+      .exercise-card{
+        grid-template-columns:1fr !important;
+        padding:16px !important;
+        border-radius:20px !important;
+      }
+
+      .exercise-meta{
+        display:flex !important;
+        flex-wrap:wrap !important;
+        gap:8px !important;
+      }
+
+      .pill{
+        flex:1 1 130px !important;
+        padding:9px 10px !important;
+        border-radius:14px !important;
+      }
+
+      .finish-session-btn{
+        width:100% !important;
+        min-width:unset !important;
+      }
+    }
+
+    /* Optimización rendimiento móvil */
+    @media (max-width:640px){
+      body::before{
+        position:absolute;
+      }
+
+      .choice:hover,
+      .exercise-card:hover{
+        transform:none;
+      }
+
+      .smart-orb{
+        animation:none;
+      }
+
+      .survey-card,
+      .routine-intro,
+      .section,
+      .exercise-card{
+        box-shadow:0 10px 24px rgba(0,0,0,.25);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">M</div>
+        <div class="brand-text">
+          <h1>MoveSmart</h1>
+          <p>Juan Ugalde · Rutina A adaptativa</p>
+        </div>
+      </div>
+      <a href="plan-juan-ugalde.html" class="back-btn">← Volver al plan</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="hello">¡Hola Juan!</div>
+        <h2>Para crear tu rutina ideal necesitamos conocer tu energía de hoy.</h2>
+        <p>
+          Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina A según tu tiempo, energía y motivación.
+        </p>
+      </div>
+    </section>
+
+    <main class="survey-card">
+      <div class="survey-head">
+        <div class="survey-title">
+          <div class="survey-icon">✨</div>
+          <div>
+            <h3>Encuesta MoveSmart</h3>
+            <p>Toma 30 segundos. Tu rutina se adapta a cómo llegas hoy.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
+      </div>
+
+      <section class="question" data-question="tiempo">
+        <div class="q-title">
+          <div class="q-icon">⏱️</div>
+          <div>
+            <h4>1. ¿Cuánto tiempo tienes hoy?</h4>
+            <p>Sé realista con el tiempo del que dispones.</p>
+          </div>
+        </div>
+        <div class="choices">
+          <button class="choice" type="button" data-value="express">
+            <span class="emoji">⏱️</span>
+            <strong>10 – 20 min</strong>
+            <span>Poco tiempo</span>
+          </button>
+          <button class="choice" type="button" data-value="base">
+            <span class="emoji">🕒</span>
+            <strong>25 – 40 min</strong>
+            <span>Tiempo moderado</span>
+          </button>
+          <button class="choice" type="button" data-value="completa">
+            <span class="emoji">🕘</span>
+            <strong>45 – 60 min</strong>
+            <span>Más tiempo</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="question" data-question="energia">
+        <div class="q-title">
+          <div class="q-icon">⚡</div>
+          <div>
+            <h4>2. ¿Cómo está tu energía hoy?</h4>
+            <p>Piensa en cómo se siente tu cuerpo físicamente.</p>
+          </div>
+        </div>
+        <div class="choices">
+          <button class="choice" type="button" data-value="baja">
+            <span class="emoji">🪫</span>
+            <strong>Baja</strong>
+            <span>Me siento cansado</span>
+          </button>
+          <button class="choice" type="button" data-value="media">
+            <span class="emoji">⚡</span>
+            <strong>Media</strong>
+            <span>Me siento normal</span>
+          </button>
+          <button class="choice" type="button" data-value="alta">
+            <span class="emoji">🔋</span>
+            <strong>Alta</strong>
+            <span>Me siento con energía</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="question" data-question="motivacion">
+        <div class="q-title">
+          <div class="q-icon">⭐</div>
+          <div>
+            <h4>3. ¿Qué tan motivado te sientes hoy?</h4>
+            <p>Elige la actitud con la que quieres entrenar.</p>
+          </div>
+        </div>
+        <div class="choices">
+          <button class="choice" type="button" data-value="baja">
+            <span class="emoji">☹️</span>
+            <strong>Baja</strong>
+            <span>Nada motivado</span>
+          </button>
+          <button class="choice" type="button" data-value="media">
+            <span class="emoji">🙂</span>
+            <strong>Media</strong>
+            <span>Motivado</span>
+          </button>
+          <button class="choice" type="button" data-value="alta">
+            <span class="emoji">😊</span>
+            <strong>Alta</strong>
+            <span>Muy motivado</span>
+          </button>
+        </div>
+      </section>
+
+      <button class="submit-btn" type="button" id="createRoutine">Crear mi rutina personalizada →</button>
+      <p class="microcopy">Tu rutina se adapta a ti. Entrena con propósito, no por obligación.</p>
+
+      <div class="result-card" id="resultCard"></div>
+
+      <div class="smart-loading" id="smartLoading" aria-live="polite">
+        <div class="smart-orb"></div>
+        <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
+        <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y motivación.</p>
+      </div>
+
+
+      <div class="routine-container" id="rutina-express">
+        <div class="routine-intro">
+          <div class="routine-version-label">⚡ Rutina A Express · 10–20 min</div>
+          <h2>Rutina A · Fortalecimiento progresivo de rodilla</h2>
+          <p>Versión reducida para mantener continuidad cuando hay poco tiempo. Prioriza control de rodilla, activación de cadera y confianza de carga sin sobrecargar.</p>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Calentamiento</h2>
+            <p>Entrada breve para preparar la rodilla y entrar mejor a la sesión.</p>
+          </div>
+          <div class="section-body">
+            <div class="simple-card"><strong>Bicicleta estática o caminata suave</strong><br>3 minutos</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Bloque principal</h2>
+            <p>Quédate con los ejercicios esenciales del día. Calidad antes que cantidad.</p>
+          </div>
+          <div class="section-body">
+            
+
+            <article class="exercise-card">
+              <div>
+                <div class="exercise-name">Terminal Knee Extension con banda y control final</div>
+                <p class="exercise-desc">Coloca la banda detrás de la rodilla, flexiona apenas y luego extiende apretando cuádriceps. Mantén 2 segundos al final para reforzar estabilidad sin buscar dolor.</p>
+                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=WEcLkuvcMZc">▶ Ver video</button>
+              </div>
+              <div class="exercise-meta">
+                <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div>
+              </div>
+            </article>
+            <article class="exercise-card">
+              <div>
+                <div class="exercise-name">Caminata lateral con banda controlada</div>
+                <p class="exercise-desc">Da pasos cortos y lentos manteniendo tensión constante en la banda. Evita que las rodillas colapsen hacia adentro. Si no hay molestia, puedes usar una banda apenas más firme.</p>
+                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg">▶ Ver video</button>
+              </div>
+              <div class="exercise-meta">
+                <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 pasos por lado</div><div class="pill"><span>Descanso</span>45–60 seg</div><div class="pill"><span>Carga</span>Minibanda suave-media</div><div class="pill"><span>RPE</span>4–5</div>
+              </div>
+            </article>
+               
+          
+
+</div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Bloque final</h2><p>Cierre suave para bajar pulsaciones.</p></div>
+          <div class="section-body"><div class="simple-card"><strong>Caminata suave o bicicleta</strong><br>2–3 minutos</div></div>
+        </section>
+
+        <div class="finish-session-wrap">
+          <p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p>
+          <a href="registro de sesion.html?rutina=Rutina%20A%20Express" class="finish-session-btn">✅ Finalicé mi sesión</a>
+        </div>
+      </div>
+
+
+      <div class="routine-container" id="rutina-base">
+        <div class="routine-intro">
+          <div class="routine-version-label">🕒 Rutina A Base · 25–40 min</div>
+          <h2>Rutina A · Fortalecimiento progresivo de rodilla</h2>
+          <p>Versión intermedia. Mantiene el bloque principal completo y un trabajo corto de estabilidad, sin extender demasiado la vuelta a la calma.</p>
+        </div>
+
+        <section class="section">
+          <div class="section-head"><h2>Calentamiento</h2><p>Empieza suave para preparar el cuerpo y entrar mejor a la sesión.</p></div>
+          <div class="section-body"><div class="simple-card"><strong>Bicicleta estática o caminata suave</strong><br>5 minutos</div></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Bloque principal</h2><p>Trabajo esencial para rodilla, cadera y estabilidad, sin volver aún a sentarse y pararse si genera dolor.</p></div>
+          <div class="section-body">
+            
+            <article class="exercise-card"><div><div class="exercise-name">Terminal Knee Extension con banda y control final</div><p class="exercise-desc">Coloca la banda detrás de la rodilla, flexiona apenas y luego extiende apretando cuádriceps. Mantén 2 segundos al final para reforzar estabilidad sin buscar dolor.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=WEcLkuvcMZc">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>10–12 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div></div></article>
+            
+            <article class="exercise-card"><div><div class="exercise-name">Caminata lateral con banda controlada</div><p class="exercise-desc">Da pasos cortos y lentos manteniendo tensión constante en la banda. Evita que las rodillas colapsen hacia adentro. Si no hay molestia, puedes usar una banda apenas más firme.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 pasos por lado</div><div class="pill"><span>Descanso</span>45–60 seg</div><div class="pill"><span>Carga</span>Minibanda suave-media</div><div class="pill"><span>RPE</span>4–5</div></div></article>
+<article class="exercise-card"><div><div class="exercise-name">Apoyo unilateral con apoyo reducido</div><p class="exercise-desc">Mantén apoyo en una pared o silla si lo necesitas. Si te sientes seguro, usa solo la punta de los dedos como ayuda. La idea es progresar confianza, no dificultad máxima.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=5OKF9DJcP6M">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–30 seg por lado</div><div class="pill"><span>Descanso</span>30 seg</div><div class="pill"><span>Carga</span>Apoyo asistido</div><div class="pill"><span>RPE</span>3–4</div></div></article>
+<article class="exercise-card"><div><div class="exercise-name">Puente de glúteos con pausa</div><p class="exercise-desc">Eleva la cadera de forma controlada y mantén 2–3 segundos arriba. Busca activar glúteos para ayudar a descargar la rodilla desde la cadera.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>8–10</div><div class="pill"><span>Descanso</span>45 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>4</div></div></article>
+            
+          
+
+</div>
+        </section>
+
+        
+
+        <div class="note"><strong>Regla de progresión:</strong> esta rutina progresa aumentando control, pausas, rango cómodo o una serie extra. No se debe avanzar hacia sentarse y pararse, sentadillas, zancadas o ejercicios técnicos si la rodilla vuelve a doler.</div>
+
+        <section class="section"><div class="section-head"><h2>Bloque final</h2><p>Cierre suave de la sesión para bajar pulsaciones.</p></div><div class="section-body"><div class="simple-card"><strong>Caminata suave o bicicleta</strong><br>3–5 minutos</div></div></section>
+
+        <section class="section"><div class="section-head"><h2>Estiramientos / vuelta a la calma</h2><p>Opcional al final de la sesión para soltar musculatura y favorecer la recuperación.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Estiramiento de cuádriceps</div><p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>1–2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div></div></article><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p><a href="registro de sesion.html?rutina=Rutina%20A%20Base" class="finish-session-btn">✅ Finalicé mi sesión</a></div></div></section>
+      </div>
+
+      <div class="routine-container" id="rutina-completa">
+        <section class="hero">
+          <div class="eyebrow">Rutina personalizada · Julio</div>
+          <h1>Rutina A · Fortalecimiento progresivo de rodilla</h1>
+          <p class="subtitle">
+            Rutina enfocada en progresar el control de la rodilla, fortalecer la musculatura de apoyo
+            y aumentar la confianza al moverse, sin volver todavía a ejercicios que generen dolor como sentarse y pararse.
+          </p>
+
+          <div class="quick-stats">
+            <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
+            <div class="stat"><small>Intensidad</small><strong>RPE 3–5</strong></div>
+            <div class="stat"><small>Material</small><strong>Banda, bici o caminata</strong></div>
+            <div class="stat"><small>Objetivo</small><strong>Progresión, control y confianza de carga</strong></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Calentamiento</h2><p>Empieza suave para preparar el cuerpo y entrar mejor a la sesión.</p></div>
+          <div class="section-body"><div class="simple-card"><strong>Bicicleta estática o caminata suave</strong><br>5 minutos</div></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Bloque principal</h2><p>Trabajo esencial para rodilla, cadera y estabilidad, sin volver aún a sentarse y pararse si genera dolor.</p></div>
+          <div class="section-body">
+            
+
+            <article class="exercise-card">
+              <div>
+                <div class="exercise-name">Terminal Knee Extension con banda y control final</div>
+                <p class="exercise-desc">Coloca la banda detrás de la rodilla, flexiona apenas y luego extiende apretando cuádriceps. Mantén 2 segundos al final para reforzar estabilidad sin buscar dolor.</p>
+                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=WEcLkuvcMZc">▶ Ver video</button>
+              </div>
+              <div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>10–12 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div></div>
+            </article>
+
+            
+
+            <article class="exercise-card">
+              <div>
+                <div class="exercise-name">Caminata lateral con banda controlada</div>
+                <p class="exercise-desc">Da pasos cortos y lentos manteniendo tensión constante en la banda. Evita que las rodillas colapsen hacia adentro. Si no hay molestia, puedes usar una banda apenas más firme.</p>
+                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg">▶ Ver video</button>
+              </div>
+              <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 pasos por lado</div><div class="pill"><span>Descanso</span>45–60 seg</div><div class="pill"><span>Carga</span>Minibanda suave-media</div><div class="pill"><span>RPE</span>4–5</div></div>
+            </article>
+<article class="exercise-card"><div><div class="exercise-name">Apoyo unilateral con apoyo reducido</div><p class="exercise-desc">Mantén apoyo en una pared o silla si lo necesitas. Si te sientes seguro, usa solo la punta de los dedos como ayuda. La idea es progresar confianza, no dificultad máxima.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=5OKF9DJcP6M">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–30 seg por lado</div><div class="pill"><span>Descanso</span>30 seg</div><div class="pill"><span>Carga</span>Apoyo asistido</div><div class="pill"><span>RPE</span>3–4</div></div></article>
+<article class="exercise-card">
+              <div>
+                <div class="exercise-name">Puente de glúteos con pausa</div>
+                <p class="exercise-desc">Eleva la cadera de forma controlada y mantén 2–3 segundos arriba. Busca activar glúteos para ayudar a descargar la rodilla desde la cadera.</p>
+                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw">▶ Ver video</button>
+              </div>
+              <div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>8–10</div><div class="pill"><span>Descanso</span>45 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>4</div></div>
+            </article>
+
+            
+          
+
+</div>
+        </section>
+
+        
+
+        <div class="note"><strong>Regla de progresión:</strong> esta rutina progresa aumentando control, pausas, rango cómodo o una serie extra. No se debe avanzar hacia sentarse y pararse, sentadillas, zancadas o ejercicios técnicos si la rodilla vuelve a doler.</div>
+
+        <section class="section"><div class="section-head"><h2>Bloque final</h2><p>Cierre suave de la sesión para bajar pulsaciones.</p></div><div class="section-body"><div class="simple-card"><strong>Caminata suave o bicicleta</strong><br>3–5 minutos</div></div></section>
+
+        <section class="section">
+          <div class="section-head"><h2>Estiramientos / vuelta a la calma</h2><p>Opcional al final de la sesión para soltar musculatura y favorecer la recuperación.</p></div>
+          <div class="section-body">
+            <article class="exercise-card"><div><div class="exercise-name">Estiramiento de cuádriceps</div><p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div></div></article>
+            <article class="exercise-card"><div><div class="exercise-name">Estiramiento de isquiotibiales</div><p class="exercise-desc">Respira profundo y busca relajación progresiva del músculo.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/uXF9niUANJ4">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div></div></article>
+            <article class="exercise-card"><div><div class="exercise-name">Estiramiento de pantorrilla</div><p class="exercise-desc">Apoya las manos en la pared y lleva una pierna atrás para sentir tensión suave en la pantorrilla. Mantén el talón apoyado y evita compensar con el tronco.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=TyZAmDcD6mM">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div></div></article>
+
+            <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p><a href="registro de sesion.html?rutina=Rutina%20A" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+          </div>
+        </section>
+      </div>
+      </div>
+
+      </div>
+    </main>
+  </div>
+
+<div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-box">
+      <div class="video-box-head">
+        <strong id="videoTitle">Video de ejercicio</strong>
+        <button class="close-video" type="button" id="closeVideo">Cerrar ✕</button>
+      </div>
+      <div class="video-frame-wrap">
+        <iframe id="videoFrame" src="" title="Video de ejercicio" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const PREGUNTA_PERSONALIZADA = "Motivación";
+
+const respuestas = { tiempo:null, energia:null, motivacion:null };
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const resultCard = document.getElementById('resultCard');
+const surveyCard = document.querySelector('.survey-card');
+const smartLoading = document.getElementById('smartLoading');
+const smartLoadingTitle = document.getElementById('smartLoadingTitle');
+const smartLoadingText = document.getElementById('smartLoadingText');
+
+function updateProgress(){
+  const answered = Object.values(respuestas).filter(Boolean).length;
+  progressFill.style.width = `${(answered / 3) * 100}%`;
+  progressText.textContent = `Pregunta ${answered} de 3`;
+}
+
+function modoSegunEnergia(){
+  if(respuestas.energia === 'baja' || respuestas.motivacion === 'baja') return 'Recovery';
+  if(respuestas.energia === 'alta' && respuestas.motivacion === 'alta') return 'Plus';
+  return 'Normal';
+}
+
+function nombreEstructura(){
+  // La rutina completa solo se entrega cuando hay tiempo suficiente + energía alta + motivación alta.
+  if(respuestas.tiempo === 'express') return 'Express';
+  if(
+    respuestas.tiempo === 'completa' &&
+    respuestas.energia === 'alta' &&
+    respuestas.motivacion === 'alta'
+  ) return 'Completa';
+  return 'Base';
+}
+
+function guardarRespuestaEnSheets(estructura, modo){
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      cliente: "Juan Ugalde",
+      rutina: "Rutina A",
+      tiempo: respuestas.tiempo,
+      energia: respuestas.energia,
+      preguntaPersonalizada: PREGUNTA_PERSONALIZADA,
+      respuestaPersonalizada: respuestas.motivacion,
+      estructura: estructura,
+      modo: modo
+    })
+  }).catch(function(error){
+    console.log("No se pudo guardar en Sheets:", error);
+  });
+}
+
+document.querySelectorAll('.choice').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const question = btn.closest('.question').dataset.question;
+    respuestas[question] = btn.dataset.value;
+    btn.closest('.choices').querySelectorAll('.choice').forEach(other => other.classList.remove('selected'));
+    btn.classList.add('selected');
+    resultCard.classList.remove('active');
+    document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+    updateProgress();
+  });
+});
+
+document.getElementById('createRoutine').addEventListener('click', () => {
+  const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
+  if(faltan.length){
+    resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y motivación para crear la recomendación.';
+    resultCard.style.background = 'rgba(255,90,31,.12)';
+    resultCard.style.borderColor = 'rgba(255,90,31,.28)';
+    resultCard.style.color = '#ffe0d4';
+    resultCard.classList.add('active');
+    return;
+  }
+
+  const estructura = nombreEstructura();
+  const modo = modoSegunEnergia();
+
+  guardarRespuestaEnSheets(estructura, modo);
+
+  const modoTexto = {
+    Recovery: 'Hoy prioriza control, técnica y menor esfuerzo. Puedes descansar más y reducir una serie si aparece molestia.',
+    Normal: 'Sigue la rutina tal como está planificada hoy. Mantén control y buena técnica.',
+    Plus: 'Hoy tienes buena energía. Si la rodilla responde bien, puedes agregar una serie extra o disminuir ligeramente los descansos.'
+  };
+
+  resultCard.classList.remove('active');
+  document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+
+  smartLoading.classList.add('active');
+  surveyCard.classList.add('is-processing');
+  smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
+  smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y motivación.';
+  smartLoading.scrollIntoView({ behavior:'smooth', block:'center' });
+
+  setTimeout(() => {
+    smartLoadingTitle.textContent = 'Adaptando tu Rutina A...';
+    smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
+  }, 750);
+
+  setTimeout(() => {
+    smartLoadingTitle.textContent = '✨ Rutina lista';
+    smartLoadingText.textContent = 'Tu sesión personalizada ya está preparada.';
+  }, 1450);
+
+  setTimeout(() => {
+    smartLoading.classList.remove('active');
+    surveyCard.classList.remove('is-processing');
+
+    resultCard.style.background = 'rgba(29,191,115,.12)';
+    resultCard.style.borderColor = 'rgba(29,191,115,.28)';
+    resultCard.style.color = '#ddffea';
+    resultCard.innerHTML = `<strong>✨ Recomendación MoveSmart:</strong><br>Rutina A ${estructura} · Modo ${modo}<br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+    resultCard.classList.add('active');
+
+    const idRutina = estructura === 'Express' ? 'rutina-express' : estructura === 'Base' ? 'rutina-base' : 'rutina-completa';
+    const routineContainer = document.getElementById(idRutina);
+    routineContainer.classList.add('active');
+    routineContainer.scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 2200);
+});
+
+function toEmbedUrl(url) {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) return `https://www.youtube.com/embed/${u.pathname.replace('/', '')}`;
+    if (u.pathname.includes('/shorts/')) return `https://www.youtube.com/embed/${u.pathname.split('/shorts/')[1].split('/')[0]}`;
+    const v = u.searchParams.get('v');
+    if (v) return `https://www.youtube.com/embed/${v}`;
+    if (u.pathname.includes('/embed/')) return url;
+  } catch(e) {}
+  return url;
+}
+
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoFrame');
+const closeVideo = document.getElementById('closeVideo');
+
+document.querySelectorAll('.open-video').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const embed = toEmbedUrl(btn.dataset.video);
+    videoFrame.src = embed;
+    videoModal.classList.add('active');
+    videoModal.setAttribute('aria-hidden','false');
+  });
+});
+
+function cerrarVideo(){
+  videoModal.classList.remove('active');
+  videoModal.setAttribute('aria-hidden','true');
+  videoFrame.src = '';
+}
+
+closeVideo.addEventListener('click', cerrarVideo);
+videoModal.addEventListener('click', (e) => {
+  if(e.target === videoModal) cerrarVideo();
+});
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && videoModal.classList.contains('active')) cerrarVideo();
+});
+
+updateProgress();
+</script>
+</body>
+</html>
