@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artículos | MoveSmart</title>
+  <!-- Versión optimizada: solo se precarga la imagen principal visible. -->
+  <link rel="preload" as="image" href="../imagenes/blog/costo_de_recuperarse/el-verdadero-costo-de-recuperarse.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="../imagenes/logo.webp" fetchpriority="high">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+      }
+    }
+
+    :root{
+      --bg:#08060d;
+      --text:#f8f4fb;
+      --muted:rgba(248,244,251,.72);
+      --accent:#ff5a1f;
+      --accent2:#ff8b4f;
+      --line:rgba(255,255,255,.12);
+      --glass:rgba(255,255,255,.065);
+      --glass2:rgba(255,255,255,.035);
+      --shadow:0 14px 34px rgba(0,0,0,.30);
+      --wrap:min(1140px,calc(100% - 34px));
+    }
+
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
+      background-attachment:scroll;
+    }
+
+    .site-glow{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(73,58,146,.12), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(243,107,42,.12), transparent 22%);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:var(--wrap);margin:auto;position:relative;z-index:1}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+      background:rgba(8,6,13,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      font-size:1.5rem;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+    }
+
+    .brand span{color:var(--accent)}
+
+    .brand-logo{
+      height:46px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      color:var(--muted);
+      font-size:.96rem;
+      font-weight:700;
+    }
+
+    .menu a{
+      position:relative;
+      padding-bottom:8px;
+    }
+
+    .menu a.active,
+    .menu a:hover{
+      color:#fff;
+    }
+
+    .menu a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-10px;
+      height:3px;
+      border-radius:999px;
+      background:var(--accent);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-shrink:0;
+    }
+
+    .top-socials{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .top-social{
+      width:38px;
+      height:38px;
+      border-radius:13px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      transition:.22s ease;
+    }
+
+    .top-social:hover{
+      transform:none;
+      background:rgba(255,255,255,.10);
+    }
+
+    .top-social svg{
+      width:18px;
+      height:18px;
+      fill:currentColor;
+    }
+
+    .top-social.instagram{color:#ff5a8a}
+    .top-social.twitter{color:#4da3ff}
+    .top-social.linkedin{color:#58a6ff}
+    .top-social.spotify{color:#1ed760}
+
+    .search-pill{
+      border:1px solid var(--line);
+      padding:10px 16px;
+      border-radius:999px;
+      color:#fff;
+      background:rgba(255,255,255,.06);
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .page-title{
+      padding:54px 0 30px;
+      text-align:center;
+    }
+
+    .kicker{
+      display:inline-flex;
+      padding:9px 14px;
+      border:1px solid rgba(255,90,31,.26);
+      background:rgba(255,90,31,.12);
+      color:#ffd7ca;
+      border-radius:999px;
+      font-size:.88rem;
+      font-weight:900;
+      margin-bottom:16px;
+    }
+
+    .page-title h1{
+      font-size:clamp(2.5rem,7vw,5.6rem);
+      line-height:.9;
+      letter-spacing:-.07em;
+      margin-bottom:18px;
+    }
+
+    .page-title p{
+      max-width:680px;
+      margin:auto;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.05rem;
+    }
+
+    .featured{
+      background:rgba(255,255,255,.96);
+      color:#15131a;
+      border-radius:28px;
+      padding:14px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      min-height:330px;
+      margin-bottom:34px;
+    }
+
+    .featured-media{
+      display:block;
+      overflow:hidden;
+      border-radius:18px;
+      background:#111;
+    }
+
+    .featured-media img{
+      width:100%;
+      height:100%;
+      min-height:300px;
+      object-fit:cover;
+      display:block;
+      aspect-ratio:680/420;
+    }
+
+    .featured-content{
+      padding:24px 24px 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .date{
+      font-size:.82rem;
+      color:rgba(21,19,26,.62);
+      font-weight:800;
+      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    .featured h2{
+      font-size:clamp(1.7rem,3.5vw,2.75rem);
+      line-height:1.08;
+      letter-spacing:-.045em;
+      margin-bottom:14px;
+    }
+
+    .featured p{
+      font-size:1.03rem;
+      line-height:1.65;
+      color:#3f3948;
+      margin-bottom:20px;
+    }
+
+    .read-more{
+      align-self:flex-start;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      color:#c6422b;
+      font-weight:900;
+      font-size:1.05rem;
+    }
+
+    .arrow{font-size:1.4rem;line-height:1}
+
+    #articulos-en-desarrollo{
+      scroll-margin-top:96px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin:22px 0 18px;
+    }
+
+    .section-head h3{
+      font-size:clamp(1.4rem,3vw,2.05rem);
+      letter-spacing:-.04em;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .article-card{
+      background:linear-gradient(180deg,var(--glass),var(--glass2));
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:24px;
+      padding:18px;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+      transition:.22s ease;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+    }
+
+    .article-card:hover{
+      transform:none;
+      background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.055));
+      border-color:rgba(255,255,255,.20);
+    }
+
+    .thumb{
+      height:174px;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(8,6,13,.62);
+      border:1px solid rgba(255,255,255,.10);
+      margin-bottom:14px;
+    }
+
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      aspect-ratio:420/260;
+      transition:.25s ease;
+    }
+
+    .article-card:hover .thumb img{transform:none}
+
+    .article-card .date{
+      color:rgba(255,255,255,.58);
+    }
+
+    .article-card h4{
+      font-size:1.22rem;
+      line-height:1.25;
+      letter-spacing:-.03em;
+      margin-bottom:10px;
+      color:#fff;
+    }
+
+    .excerpt{
+      color:rgba(255,255,255,.76);
+      line-height:1.55;
+      font-size:.96rem;
+      margin-bottom:18px;
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .article-card .read-more{
+      margin-top:auto;
+      font-size:1rem;
+      color:#ff9b72;
+    }
+
+    .soon-badge{
+      position:absolute;
+      top:28px;
+      right:28px;
+      z-index:2;
+      background:rgba(255,90,31,.88);
+      color:#fff;
+      padding:8px 11px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:900;
+      box-shadow:0 12px 25px rgba(255,90,31,.26);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .soon .read-more{
+      color:rgba(255,255,255,.58);
+      pointer-events:none;
+    }
+
+    .pagination{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin:30px 0 44px;
+    }
+
+    .pagination a,
+    .pagination span{
+      width:auto;
+      min-width:110px;
+      height:38px;
+      padding:0 18px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      color:#fff;
+      font-weight:900;
+    }
+
+    .pagination .current{
+      background:var(--accent);
+      border-color:var(--accent);
+    }
+
+    .newsletter{
+      margin-bottom:52px;
+      border-radius:28px;
+      background:linear-gradient(135deg,rgba(255,90,31,.16),rgba(255,255,255,.07));
+      border:1px solid var(--line);
+      padding:26px;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:18px;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .newsletter .badge{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:1.3rem;
+    }
+
+    .newsletter h3{font-size:1.35rem;margin-bottom:6px}
+    .newsletter p{color:var(--muted);line-height:1.6}
+
+    .form{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+      max-width:620px;
+    }
+
+    .form input{
+      flex:1;
+      border:none;
+      border-radius:14px;
+      padding:14px 16px;
+      background:rgba(255,255,255,.92);
+      font-size:1rem;
+      outline:none;
+    }
+
+    .form button{
+      border:none;
+      border-radius:14px;
+      padding:14px 18px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:900;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+
+    .form button:hover{
+      background:var(--accent2);
+      transform:none;
+    }
+
+    #newsletterMensaje{
+      margin-top:12px;
+      color:rgba(255,255,255,.78);
+      font-weight:800;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:26px 0;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:1000px){
+      .nav{gap:12px}
+      .menu{gap:14px;font-size:.85rem}
+      .top-social{width:34px;height:34px}
+      .search-pill{padding:9px 13px}
+    }
+
+    @media(max-width:900px){
+      .nav{
+        overflow-x:auto;
+        justify-content:flex-start;
+        padding:14px 0;
+      }
+
+      .brand{font-size:1.25rem}
+      .menu{flex-shrink:0}
+      .nav-actions{flex-shrink:0}
+      .featured{grid-template-columns:1fr}
+      .featured-media img{height:280px}
+      .grid{grid-template-columns:1fr 1fr}
+      .section-head{display:block}
+      .newsletter{grid-template-columns:1fr}
+    }
+
+    @media(max-width:640px){
+      .nav{
+        min-height:auto;
+        gap:10px;
+        padding:12px 0;
+        flex-wrap:wrap;
+        overflow-x:hidden;
+        justify-content:flex-start;
+      }
+
+      .brand{
+        font-size:1.15rem;
+        width:auto;
+      }
+
+      .menu{
+        order:2;
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        gap:8px;
+        font-size:.78rem;
+        font-weight:800;
+        overflow:hidden;
+      }
+
+      .menu a{
+        padding-bottom:6px;
+        white-space:nowrap;
+      }
+
+      .menu a.active::after{
+        bottom:-6px;
+        height:2px;
+      }
+
+      .nav-actions{
+        order:3;
+        width:100%;
+        justify-content:center;
+      }
+
+      .top-socials{
+        justify-content:center;
+        gap:10px;
+        width:100%;
+        margin-top:6px;
+      }
+
+      .top-social{
+        width:34px;
+        height:34px;
+        border-radius:12px;
+      }
+
+      .top-social svg{
+        width:17px;
+        height:17px;
+      }
+
+      .search-pill{display:none}
+
+      .page-title{
+        text-align:left;
+        padding:36px 0 22px;
+      }
+
+      .featured{border-radius:22px}
+
+      .featured-content{
+        padding:14px 8px 8px;
+      }
+
+      .grid{grid-template-columns:1fr}
+
+      .form{flex-direction:column}
+
+      .thumb{height:155px}
+    }
+
+
+    /* Optimización de carga: el navegador no pinta secciones hasta que se acercan */
+    /* Versión celular rápida: usa el mismo fondo visible y reduce efectos pesados */
+    @media(max-width:640px){
+      body{
+        background:
+          linear-gradient(180deg, rgba(8,10,18,.22), rgba(8,10,18,.44)),
+          url('../imagenes/fondo-preview-rutina.webp') center top / cover no-repeat;
+        background-attachment:scroll;
+      }
+
+      .site-glow{display:none;}
+
+      .site-header,
+      .article-card{
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+      }
+
+      .site-header{
+        background:rgba(8,6,13,.62);
+      }
+
+      .featured{
+        box-shadow:0 14px 34px rgba(0,0,0,.28);
+      }
+
+      .article-card{
+        background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
+        box-shadow:0 12px 28px rgba(0,0,0,.20);
+      }
+
+      .featured-media img{
+        min-height:220px;
+        height:220px;
+      }
+
+      .thumb{height:120px;}
+
+      .article-card:hover,
+      .article-card:hover .thumb img,
+      .top-social:hover,
+      .form button:hover{
+        transform:none;
+      }
+    }
+
+
+    @media(max-width:900px){
+      .brand-logo{height:38px}
+    }
+
+    @media(max-width:640px){
+      .brand-logo{height:34px}
+    }
+
+
+    /* Header igual al index MoveSmart */
+    .container{width:min(1200px, calc(100% - 48px));margin:0 auto;position:relative;z-index:1}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(10,8,14,.44);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .topbar .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:20px;
+      flex-wrap:nowrap;
+      overflow:hidden;
+    }
+
+    .top-brand{
+      display:inline-flex;
+      align-items:center;
+      flex:0 0 auto;
+      color:#fff;
+      white-space:nowrap;
+      text-shadow:0 2px 16px rgba(0,0,0,.28);
+    }
+
+    .top-brand-logo{
+      height:70px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:nowrap;
+      font-size:1rem;
+      color:#fff;
+      font-weight:700;
+      white-space:nowrap;
+      min-width:0;
+    }
+
+    .nav-links a{
+      position:relative;
+      opacity:1;
+      color:#fff;
+      text-shadow:0 1px 12px rgba(0,0,0,.18);
+    }
+
+    .nav-links a:hover{color:#fff}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 28px;
+      border-radius:14px;
+      background:linear-gradient(180deg,var(--accent2),var(--accent));
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.01em;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 26px rgba(243,107,42,.22);
+      transition:transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(243,107,42,.28);
+      filter:brightness(1.03);
+    }
+
+    .btn.small{
+      min-height:50px;
+      padding:0 24px;
+      border-radius:12px;
+      font-size:1rem;
+    }
+
+    .topbar .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex:0 0 auto;
+      white-space:nowrap;
+      width:auto;
+      justify-content:flex-end;
+    }
+
+    .topbar .top-socials{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+      width:auto;
+      margin-top:0;
+    }
+
+    .topbar .top-social{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .topbar .top-social:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.10);
+      box-shadow:0 12px 26px rgba(0,0,0,.24);
+    }
+
+    .topbar .top-social svg{
+      width:19px;
+      height:19px;
+      fill:currentColor;
+    }
+
+    .topbar .top-social.instagram{color:#ff5a8a}
+    .topbar .top-social.twitter{color:#4da3ff}
+    .topbar .top-social.linkedin{color:#58a6ff}
+    .topbar .top-social.spotify{color:#1ed760}
+
+    @media (max-width:1100px){
+      .top-brand-logo{height:60px}
+      .topbar .nav{gap:12px}
+      .nav-links{gap:14px;font-size:.9rem}
+      .topbar .nav-actions{gap:9px}
+      .topbar .top-social{width:36px;height:36px;border-radius:12px}
+      .topbar .top-social svg{width:17px;height:17px}
+      .btn.small{min-height:42px;padding:0 18px}
+    }
+
+    @media (max-width:760px){
+      .container{
+        width:100%;
+        max-width:100%;
+        padding-left:34px;
+        padding-right:34px;
+      }
+
+      .topbar{
+        background:rgba(8,6,13,.78);
+        backdrop-filter:blur(14px);
+        -webkit-backdrop-filter:blur(14px);
+        border-bottom:1px solid rgba(255,255,255,.10);
+      }
+
+      .topbar .nav{
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-between;
+        align-items:center;
+        column-gap:8px;
+        row-gap:10px;
+        padding:14px 0 12px;
+        overflow:hidden;
+      }
+
+      .top-brand{
+        order:1;
+        width:auto;
+        margin:0 0 0 18px;
+        flex:0 0 auto;
+      }
+
+      .top-brand-logo{height:42px}
+
+      .topbar .nav-actions{
+        order:1;
+        width:auto;
+        margin-left:auto;
+        margin-right:18px;
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:6px;
+        flex:0 0 auto;
+        transform:translateX(-14px);
+      }
+
+      .topbar .top-socials{
+        width:auto;
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        gap:7px;
+        flex:0 0 auto;
+      }
+
+      .topbar .top-social{
+        width:auto;
+        height:auto;
+        border:none;
+        background:transparent;
+        border-radius:0;
+        box-shadow:none;
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+        padding:0;
+        flex:0 0 auto;
+      }
+
+      .topbar .top-social:hover{
+        transform:translateY(-1px);
+        background:transparent;
+        box-shadow:none;
+      }
+
+      .topbar .top-social svg{
+        width:14px;
+        height:14px;
+      }
+
+      .topbar .nav-actions > .btn.small{
+        display:inline-flex;
+        min-height:31px;
+        padding:0 11px;
+        border-radius:11px;
+        font-size:.68rem;
+        font-weight:850;
+        flex:0 0 auto;
+      }
+
+      .nav-links{
+        order:2;
+        width:100%;
+        display:grid;
+        grid-template-columns:auto auto auto;
+        align-items:center;
+        justify-content:center;
+        column-gap:30px;
+        row-gap:0;
+        font-size:.76rem;
+        line-height:1;
+        font-weight:850;
+        color:#fff;
+        white-space:nowrap;
+        overflow:visible;
+      }
+
+      .nav-links a{
+        position:relative;
+        padding-bottom:12px;
+        text-align:center;
+      }
+    }
+
+    @media (max-width:390px){
+      .container{padding-left:30px;padding-right:30px}
+      .top-brand{margin-left:14px}
+      .top-brand-logo{height:38px}
+      .topbar .nav{padding:13px 0 11px;row-gap:9px}
+      .topbar .nav-actions{gap:5px;margin-right:14px;transform:translateX(-12px)}
+      .topbar .top-socials{gap:6px}
+      .topbar .top-social svg{width:13px;height:13px}
+      .topbar .nav-actions > .btn.small{min-height:30px;padding:0 10px;font-size:.65rem;border-radius:10px}
+      .nav-links{font-size:.74rem;column-gap:24px}
+    }
+
+    @media (max-width:350px){
+      .container{padding-left:24px;padding-right:24px}
+      .top-brand{margin-left:10px}
+      .top-brand-logo{height:35px}
+      .topbar .top-socials{gap:5px}
+      .topbar .top-social svg{width:12px;height:12px}
+      .topbar .nav-actions > .btn.small{padding:0 8px;font-size:.62rem}
+      .nav-links{font-size:.69rem;column-gap:18px}
+    }
+
+  
+.archive-box{
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  overflow:hidden;
+  margin-bottom:48px;
+}
+.archive-item{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.10);transition:.2s ease;}
+.archive-item:last-child{border-bottom:none;}
+.archive-item:hover{background:rgba(255,255,255,.05);}
+.archive-item span:first-child{font-weight:700;}
+@media(max-width:640px){.archive-item{padding:16px;font-size:.95rem;}}
+
+
+/* Extra velocidad sin cambiar diseño:
+   las secciones fuera de pantalla se pintan cuando se acercan */
+@supports (content-visibility:auto){
+  #articulos-en-desarrollo,
+  #archivo-articulos,
+  .newsletter,
+  footer{
+    content-visibility:auto;
+    contain-intrinsic-size:1px 520px;
+  }
+}
+
+/* Reduce trabajo de render en tarjetas sin cambiar apariencia */
+.article-card,
+.featured,
+.newsletter,
+.archive-box{
+  contain:layout paint style;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="site-glow"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="../index.html#inicio" class="top-brand" aria-label="Inicio MoveSmart">
+        <img src="../imagenes/logo.webp" alt="MoveSmart" class="top-brand-logo" loading="eager" fetchpriority="high" decoding="async">
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="../index.html#inicio">Inicio</a>
+        <a href="../index.html#como-funciona">Cómo Funciona</a>
+        <a href="../acceso-clientes.html">Acceso Clientes</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="top-socials" aria-label="Redes sociales MoveSmart">
+
+          <a class="top-social instagram" href="https://www.instagram.com/movesmart.plan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2m0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2M17.2 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1"/></svg>
+          </a>
+
+          <a class="top-social twitter" href="https://x.com/movesmartchile" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.7 1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9A12 12 0 0 1 3 5.5a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1c-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1a4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.5 21c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.4 2.1-2.2z"/></svg>
+          </a>
+
+          <a class="top-social linkedin" href="https://www.linkedin.com/in/movesmart-chile-b4b03b40a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5M3 10h4v11H3zm6 0h3.8v1.5h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H9z"/></svg>
+          </a>
+
+          <a class="top-social spotify" href="https://open.spotify.com/user/31lcttv3ugvu6s5ifvcj5tf5syre" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.6 14.5c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-1-.4.1-.7-.1-.8-.5s.1-.7.5-.8c4-.9 7.5-.5 10.3 1.1.3.2.4.6.2 1m1.2-2.7c-.2.4-.7.5-1.1.3-2.8-1.7-7.1-2.2-10.4-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.1 8.6-.6 11.8 1.4.4.2.5.7.2 1m.1-2.8c-3.4-2-9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.1 9.8-.9 13.8 1.5.4.3.6.9.3 1.3-.3.4-.9.5-1.3.2"/></svg>
+          </a>
+        </div>
+        <a class="btn small" href="#articulos-en-desarrollo">Blog</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-title wrap">
+      <span class="kicker">Blog educativo MoveSmart</span>
+      <h1>ARTÍCULOS</h1>
+      <p>Ideas breves y aplicables sobre entrenamiento inteligente, adherencia, rehabilitación y rutinas que se adaptan a la vida real.</p>
+    </section>
+
+    <section class="wrap">
+      <article class="featured">
+        <a class="featured-media" href="articulo_principal/costo-recuperarse-movesmart.html">
+          <img src="../imagenes/blog/costo_de_recuperarse/el-verdadero-costo-de-recuperarse.webp" alt="El PDF sigue igual" loading="eager" fetchpriority="high" decoding="async" width="680" height="420" />
+        </a>
+
+        <div class="featured-content">
+          <div class="date">Artículo principal · MoveSmart</div>
+          <h2>Recuperarse también tiene un precio que casi nadie calcula.</h2>
+          <p>
+            No son solo consultas o sesiones. También son traslados, tiempo perdido, permisos, espera y oportunidades que vas dejando pasar mientras intentas volver a sentirte bien.
+          </p>
+          <a class="read-more" href="articulo_principal/costo-recuperarse-movesmart.html">Leer más <span class="arrow">↗</span></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="wrap" id="articulos-en-desarrollo">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Próximos artículos</span>
+          <h3>Próximamente</h3>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="article-card soon">
+          <span class="soon-badge">Próximamente</span>
+          <div class="thumb">
+            <img src="../imagenes/poco_tiempo_para_entrenar.webp" alt="Poco tiempo para entrenar" loading="lazy" fetchpriority="low" decoding="async" width="420" height="260" />
+          </div>
+          <div class="date">En desarrollo</div>
+          <h4>Cuando tienes poco tiempo, entrenar distinto sigue siendo entrenar</h4>
+          <p class="excerpt">No siempre necesitas una hora libre para avanzar. Aprender a adaptar el entrenamiento a tu energía, tiempo y realidad diaria permite mantener la constancia sin sentir que “fallaste” por no hacer la rutina perfecta.</p>
+          <a class="read-more" href="#">Próximamente <span class="arrow">↗</span></a>
+        </article>
+
+        <article class="article-card soon">
+          <span class="soon-badge">Próximamente</span>
+          <div class="thumb">
+            <img src="../imagenes/dolor_no_significa parar.webp" alt="Dolor y entreno" loading="lazy" fetchpriority="low" decoding="async" width="420" height="260" />
+          </div>
+          <div class="date">En desarrollo</div>
+          <h4>Dolor no siempre significa parar</h4>
+          <p class="excerpt">Aprender a diferenciar molestia, fatiga y dolor permite adaptar mejor el entrenamiento sin abandonar el proceso.</p>
+          <a class="read-more" href="#">Próximamente <span class="arrow">↗</span></a>
+        </article>
+
+        <article class="article-card soon">
+          <span class="soon-badge">Próximamente</span>
+          <div class="thumb">
+            <img src="../imagenes/dormir_y_grasa.webp" alt="Dormir poco y acumulación de grasa" loading="lazy" fetchpriority="low" decoding="async" width="420" height="260" />
+          </div>
+          <div class="date">En desarrollo</div>
+          <h4>Dormir poco también entrena tu cuerpo… para acumular grasa</h4>
+          <p class="excerpt">La falta de sueño altera hormonas como el cortisol, aumenta el apetito y reduce la recuperación. Incluso entrenando y comiendo “bien”, descansar menos puede favorecer el aumento de grasa y hacer más difícil mantener el progreso físico.</p>
+          <a class="read-more" href="#">Próximamente <span class="arrow">↗</span></a>
+        </article>
+      </div>
+
+       <section class="wrap" id="archivo-articulos">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Biblioteca MoveSmart</span>
+          <h3>Archivo de artículos</h3>
+        </div>
+      </div>
+      <div class="archive-box">
+        <a class="archive-item" href="entradas_antiguas/entradas_antiguas.html">
+          <span>📄 Un PDF no sabe cómo llegas del trabajo</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+    </section>
+
+    <section class="wrap newsletter">
+
+      <div class="badge">M</div>
+      <div>
+        <h3>Recibe ideas MoveSmart para entrenar con más continuidad.</h3>
+        <p>Material educativo sobre dolor, adherencia, fuerza, rehabilitación y sistemas de entrenamiento que se adaptan a tu realidad.</p>
+
+        <form class="form" id="newsletterForm">
+          <input type="email" id="newsletterEmail" placeholder="Tu correo" required />
+          <button type="submit">Suscribirme</button>
+        </form>
+
+        <p id="newsletterMensaje"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <p>© 2026 MoveSmart</p>
+      <p>Entrenamiento personalizado · Rehabilitación · Adherencia</p>
+    </div>
+  </footer>
+
+<script>
+  const newsletterForm = document.getElementById("newsletterForm");
+  const newsletterEmail = document.getElementById("newsletterEmail");
+  const newsletterMensaje = document.getElementById("newsletterMensaje");
+
+  newsletterForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = newsletterEmail.value.trim();
+
+    if (!email) {
+      newsletterMensaje.textContent = "Escribe un correo válido.";
+      return;
+    }
+
+    newsletterMensaje.textContent = "¡Listo! Ya estás suscrita a MoveSmart.";
+    newsletterForm.reset();
+
+    const url = "https://script.google.com/macros/s/AKfycby5yxE-1FxWmFIZyD_CJw2Ou9-balJIn-n25TJ_BbVhLTGLECFzOQoxdvelRDtmdI1Qpw/exec?email="
+      + encodeURIComponent(email);
+
+    const enviarCorreo = () => {
+      fetch(url, {
+        method: "GET",
+        mode: "no-cors",
+        keepalive: true
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(enviarCorreo);
+    } else {
+      setTimeout(enviarCorreo, 400);
+    }
+  });
+</script>
