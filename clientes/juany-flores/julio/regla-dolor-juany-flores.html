@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regla del Molestia | Juany Flores · MoveSmart</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    a{color:inherit;text-decoration:none}
+
+    :root{
+      --bg1:#090d18;
+      --bg2:#11192a;
+      --card:rgba(24,16,32,.58);
+      --card-soft:rgba(255,255,255,.05);
+      --border:rgba(255,255,255,.08);
+      --text:#f3edf7;
+      --text-soft:#cbc0d3;
+      --accent:#f36b2a;
+      --blue:#204aa8;
+      --green:#1dbf73;
+      --amber:#f6a623;
+      --danger:#ff6b6b;
+      --shadow:0 14px 34px rgba(0,0,0,.28);
+      --radius:28px;
+      --wrap:min(1100px, calc(100% - 28px));
+    }
+
+    body{
+      min-height:100vh;
+      font-family:'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      width:var(--wrap);
+      margin:auto;
+      padding:24px 0 42px;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:20px;
+    }
+
+    .back-btn{
+      border:none;
+      background:rgba(255,255,255,.09);
+      border:1px solid var(--border);
+      color:#fff;
+      padding:11px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .brand{
+      font-size:clamp(2rem, 5vw, 3rem);
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.04em;
+    }
+
+    .brand span{ color:var(--accent); }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:36px;
+      padding:34px 38px;
+      margin-bottom:22px;
+      min-height:360px;
+      display:flex;
+      align-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035)),
+        radial-gradient(circle at 78% 70%, rgba(243,107,42,.12), transparent 20%),
+        radial-gradient(circle at 18% 24%, rgba(109,83,150,.13), transparent 25%);
+    }
+
+    .hero-content{
+      max-width:640px;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-visual{
+      position:absolute;
+      right:22px;
+      top:50%;
+      transform:translateY(-50%);
+      width:46%;
+      max-width:560px;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      opacity:.96;
+      filter:drop-shadow(0 0 28px rgba(45,114,255,.22)) drop-shadow(0 0 24px rgba(255,106,33,.16));
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,90,31,.14);
+      color:#ffd9cb;
+      border:1px solid rgba(255,90,31,.24);
+      font-size:.92rem;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size:clamp(2rem, 4vw, 3.4rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      margin-bottom:12px;
+      text-wrap:balance;
+    }
+
+    .hero p{
+      max-width:620px;
+      color:var(--text-soft);
+      line-height:1.72;
+      font-size:1.05rem;
+    }
+
+    .score-card{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+    }
+
+    .panel h2{
+      font-size:1.18rem;
+      margin-bottom:10px;
+    }
+
+    .panel p{
+      color:var(--text-soft);
+      line-height:1.7;
+    }
+
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(11,1fr);
+      gap:8px;
+      margin-top:16px;
+    }
+
+    .scale div{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:10px 6px;
+      text-align:center;
+      font-weight:800;
+    }
+
+    .highlight-3{
+      background:rgba(246,166,35,.18) !important;
+      border-color:rgba(246,166,35,.40) !important;
+    }
+
+    .rules{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .rule-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:26px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .rule-icon{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:1.35rem;
+      margin-bottom:14px;
+      font-weight:900;
+    }
+
+    .rule-card h3{
+      font-size:1.2rem;
+      margin-bottom:9px;
+    }
+
+    .rule-card p{
+      color:var(--text-soft);
+      line-height:1.72;
+    }
+
+    .orange .rule-icon{ background:rgba(255,90,31,.18); color:#ffd4c8; }
+    .blue .rule-icon{ background:rgba(47,99,255,.18); color:#dbe5ff; }
+    .green .rule-icon{ background:rgba(29,191,115,.18); color:#d9ffea; }
+    .red .rule-icon{ background:rgba(255,107,107,.18); color:#ffdede; }
+
+    .action-box{
+      margin-top:22px;
+      background:linear-gradient(180deg, rgba(23,36,78,.80), rgba(14,23,52,.78));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .action-box h2{
+      margin-bottom:14px;
+      font-size:1.35rem;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .step{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .step .num{
+      display:inline-grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:var(--accent);
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .step strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.02rem;
+    }
+
+    .step p{
+      color:var(--text-soft);
+      line-height:1.65;
+      font-size:.97rem;
+    }
+
+    .note{
+      margin-top:20px;
+      background:rgba(29,191,115,.12);
+      border:1px solid rgba(29,191,115,.28);
+      color:#ddffea;
+      border-radius:22px;
+      padding:16px 18px;
+      line-height:1.72;
+    }
+
+    .footer{
+      margin-top:22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      color:rgba(255,255,255,.72);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 920px){
+      .score-card,
+      .rules,
+      .steps{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:28px 22px 24px;
+      }
+
+      .hero-content{
+        max-width:100%;
+      }
+
+      .hero-visual{
+        position:relative;
+        right:auto;
+        top:auto;
+        transform:none;
+        width:100%;
+        max-width:380px;
+        margin:24px auto 0;
+      }
+    }
+
+    @media (max-width: 680px){
+      .topbar,
+      .footer{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero{
+        padding:24px 20px;
+      }
+
+      .panel,
+      .rule-card,
+      .action-box{
+        padding:18px;
+      }
+
+      .scale{
+        grid-template-columns:repeat(6,1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a href="plan-juany-flores.html" class="back-btn">← Volver al plan</a>
+      <div class="brand">Move<span>Smart</span></div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">⚠️ Guía simple de seguridad</div>
+      <h1>Regla del Molestia</h1>
+      <p>
+        Esta guía resume la regla de sensaciones del plan de Juany. La idea principal es volver a moverse de forma progresiva, cuidando la respuesta de la caderas y caderas y rodillass y evitando que la molestia limite la continuidad del programa.
+      </p>
+
+      <div class="score-card">
+        <div class="panel">
+          <h2>Escala de molestia</h2>
+          <p>
+            Usa una escala de 0 a 10 para observar cómo se siente la caderas y caderas y rodillass durante la sesión. Si el molestia aparece por sobre <strong>3/10</strong>, el plan indica ajustar el ejercicio antes de continuar.
+          </p>
+          <div class="scale">
+            <div>0</div>
+            <div>1</div>
+            <div>2</div>
+            <div class="highlight-3">3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Objetivo de esta regla</h2>
+          <p>
+            Entrenar de manera segura, mantener continuidad y recuperar confianza en el movimiento. No se trata de “aguantar”, sino de adaptar la carga para seguir avanzando sin empeorar la respuesta de la caderas y rodillas.
+          </p>
+        </div>
+      </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <img src="../../imagenes/escala_molestia.webp" alt="">
+      </div>
+    </section>
+
+    <section class="rules">
+      <article class="rule-card orange">
+        <div class="rule-icon">1</div>
+        <h3>Si el molestia sube sobre 3/10</h3>
+        <p>
+          Reduce el rango de movimiento, baja la carga, disminuye repeticiones o evita flexionar tanto la caderas y rodillas durante ese ejercicio.
+        </p>
+      </article>
+
+      <article class="rule-card red">
+        <div class="rule-icon">2</div>
+        <h3>Evita señales de alerta</h3>
+        <p>
+          Evita movimientos que generen molestia punzante, sensación de inestabilidad, cojera, inflamación evidente o una molestia que vaya aumentando durante la sesión.
+        </p>
+      </article>
+
+      <article class="rule-card blue">
+        <div class="rule-icon">3</div>
+        <h3>Adapta, no abandones</h3>
+        <p>
+          La prioridad es mantener el hábito de entrenamiento sin agravar la caderas y rodillas. Si un ejercicio molesta, cambia a una variante más simple, reduce volumen o usa una versión con menor flexión.
+        </p>
+      </article>
+
+      <article class="rule-card green">
+        <div class="rule-icon">4</div>
+        <h3>Aplica la regla de 24 horas</h3>
+        <p>
+          Si al día siguiente la caderas y rodillas está igual o mejor, la carga fue adecuada. Si el molestia aumenta o dura más de 24 horas, la próxima sesión debe ser más suave.
+        </p>
+      </article>
+    </section>
+
+    <section class="action-box">
+      <h2>Qué hacer si aparece molestia durante la rutina</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <strong>Detente un momento</strong>
+          <p>Observa la intensidad del molestia en la caderas y caderas y rodillass usando la escala del 0 al 10 antes de seguir.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <strong>Ajusta el ejercicio</strong>
+          <p>Reduce rango, velocidad, carga, repeticiones o tiempo bajo tensión para que el movimiento sea tolerable.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <strong>Evita empeorar síntomas</strong>
+          <p>Si hay molestia punzante, inestabilidad, cojera o aumento claro de la molestia, cambia ese ejercicio por una variante más suave o sáltalo ese día.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Recuerda:</strong> el objetivo inicial no es exigir la caderas y rodillas al máximo, sino recuperar tolerancia, fuerza y confianza para flexionar, subir y bajar de forma progresiva.
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Camila Alvarez Cortés · Terapeuta en Actividad Física y Salud</div>
+      <div>MoveSmart</div>
+    </div>
+  </div>
+</body>
+</html>
