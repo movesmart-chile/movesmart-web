@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check-in rutina | MoveSmart</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+      color: #fff;
+    }
+
+    .rutina-checkin-final {
+      position: relative;
+      min-height: 100vh;
+      padding: 80px 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rutina-checkin-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,10,18,.46) 0%, rgba(8,10,18,.78) 100%);
+      z-index: 1;
+    }
+
+    .rutina-checkin-contenido {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .rutina-checkin-card {
+      background: rgba(24,16,32,.58);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 34px 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+
+    .top-actions { margin-bottom: 18px; }
+
+    .back-access-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-weight: 700;
+    }
+
+    .rutina-checkin-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #ffb27f;
+      font-weight: 700;
+    }
+
+    .rutina-checkin-title {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      color: #fff;
+    }
+
+    .rutina-checkin-subtitle {
+      margin-bottom: 22px;
+      color: rgba(255,255,255,0.78);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    .word-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      font-weight: 800;
+    }
+
+    .inline-arrow {
+      display: inline-block;
+      color: #ff3b30;
+      font-size: 1.45rem;
+      font-weight: 900;
+      animation: flechaInline 1s ease-in-out infinite;
+    }
+
+    @keyframes flechaInline {
+      0% { transform: translateY(0) scale(1); opacity: .82; }
+      50% { transform: translateY(6px) scale(1.08); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: .82; }
+    }
+
+    .seguimiento-box {
+      margin-bottom: 34px;
+      padding: 24px 20px;
+      border-radius: 24px;
+      background: rgba(255, 140, 0, 0.10);
+      border: 1px solid rgba(255, 140, 0, 0.28);
+      box-shadow: 0 10px 30px rgba(255, 140, 0, 0.10);
+    }
+
+    .seguimiento-title {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffb45c;
+      text-align: center;
+    }
+
+    .seguimiento-text {
+      max-width: 680px;
+      margin: 0 auto 18px;
+      color: rgba(255,255,255,0.78);
+      font-size: .98rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .seguimiento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .seguimiento-item {
+      padding: 14px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      text-align: center;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .rutina-checkin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .checkin-bloque {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkin-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .checkin-helper {
+      color: rgba(255,255,255,0.72);
+      font-size: .92rem;
+      line-height: 1.5;
+    }
+
+    .checkin-grid { display: grid; gap: 12px; }
+    .checkin-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .checkin-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .checkin-opcion {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 14px 12px;
+      text-align: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #f5f5f5;
+      cursor: pointer;
+      font-size: .96rem;
+    }
+
+    input[type="radio"]:checked + .checkin-opcion {
+      background: rgba(255,140,0,0.16);
+      border-color: #ff8c00;
+      color: #fff;
+      box-shadow: 0 0 0 1px rgba(255,140,0,0.24);
+    }
+
+    .checkin-range-wrap {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px 16px 16px;
+    }
+
+    .checkin-range-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: .95rem;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .checkin-slider-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: #ffb45c;
+      font-size: .92rem;
+      font-weight: 600;
+    }
+
+    .checkin-slider-hand {
+      font-size: 1.2rem;
+      animation: moverManito 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes moverManito {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+      100% { transform: translateX(0); }
+    }
+
+    .checkin-range {
+      width: 100%;
+      accent-color: #ff8c00;
+      cursor: pointer;
+    }
+
+    .checkin-scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: .8rem;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .checkin-textarea {
+      width: 100%;
+      min-height: 96px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      resize: vertical;
+    }
+
+    .checkin-textarea::placeholder { color: rgba(255,255,255,0.45); }
+
+    .camera-upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 58px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed rgba(255,140,0,0.55);
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .foto-nombre {
+      font-size: .9rem;
+      color: #9cffb0;
+    }
+
+    .preview-foto-wrap {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 220px;
+    }
+
+    .preview-foto-img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .checkin-boton {
+      width: 100%;
+      padding: 16px 18px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff8c00, #ff6a00);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(255,140,0,0.24);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkin-boton:disabled {
+      opacity: .7;
+      cursor: not-allowed;
+    }
+
+    .checkin-exito {
+      margin-top: 8px;
+      text-align: center;
+      color: #9cffb0;
+      font-weight: 600;
+    }
+
+    .checkin-error {
+      margin-top: 8px;
+      text-align: center;
+      color: #ffb3b3;
+      font-weight: 600;
+    }
+
+    .checkin-bloque.falta {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 90, 31, 0.65);
+      background: rgba(255, 90, 31, 0.08);
+    }
+
+    .checkin-bloque.falta .checkin-label::after {
+      content: " · Falta completar";
+      color: #ffb3b3;
+      font-size: .88rem;
+      font-weight: 800;
+    }
+
+    .checkin-bloque.falta .checkin-opcion,
+    .checkin-bloque.falta .checkin-range-wrap,
+    .checkin-bloque.falta .checkin-textarea {
+      border-color: rgba(255, 90, 31, 0.75);
+    }
+
+    .checkin-carga {
+      margin-top: 8px;
+      text-align: center;
+      color: #ffd59c;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 768px) {
+      .rutina-checkin-final { padding: 50px 16px; }
+      .rutina-checkin-card { padding: 24px 18px; border-radius: 22px; }
+      .rutina-checkin-title { font-size: 1.75rem; }
+      .checkin-grid-2, .checkin-grid-3 { grid-template-columns: 1fr; }
+      .preview-foto-wrap, .preview-foto-img { max-width: 100%; }
+      .inline-arrow { font-size: 1.55rem; }
+      .seguimiento-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="rutina-checkin-final">
+    <div class="rutina-checkin-overlay"></div>
+
+    <div class="rutina-checkin-contenido">
+      <div class="rutina-checkin-card">
+        <div class="top-actions">
+          <a href="acceso-clientes.html" class="back-access-btn">← Volver a Acceso Clientes</a>
+        </div>
+
+        <span class="rutina-checkin-kicker">Cierre de sesión</span>
+        <h2 class="rutina-checkin-title">Registra tu sesión MoveSmart</h2>
+        <p id="clienteVisible" class="checkin-helper" style="margin-bottom:18px;font-weight:800;color:#ffb45c;"></p>
+
+        <p class="rutina-checkin-subtitle">
+          Registra tu sesión acá
+          <span class="word-arrow">abajo <span class="inline-arrow">⬇</span></span>
+          y comparte una foto de tu entreno. Cada registro me ayuda a seguir tu evolución y ajustar tu plan según cómo responde tu cuerpo.
+        </p>
+
+        <div class="seguimiento-box">
+          <p class="seguimiento-title">Tu registro ayuda a personalizar tu evolución</p>
+          <p class="seguimiento-text">
+            Cada check-in permite ajustar tu plan según tu esfuerzo, tus sensaciones y cualquier molestia que aparezca.
+            No se trata solo de completar rutinas, sino de avanzar con inteligencia.
+          </p>
+
+          <div class="seguimiento-grid">
+            <div class="seguimiento-item">📊 Seguimiento</div>
+            <div class="seguimiento-item">🧠 Ajustes personalizados</div>
+            <div class="seguimiento-item">💪 Progreso real</div>
+          </div>
+        </div>
+
+        <form id="checkinForm" class="rutina-checkin-form">
+          <div class="checkin-bloque">
+            <p class="checkin-label">¿Terminaste la rutina?</p>
+            <div class="checkin-grid checkin-grid-3">
+              <input type="radio" name="completada" id="full" value="Sí, completa" hidden required>
+              <label for="full" class="checkin-opcion">✅ Sí, completa</label>
+
+              <input type="radio" name="completada" id="partial" value="Sí, parcial" hidden>
+              <label for="partial" class="checkin-opcion">🟡 Sí, parcial</label>
+
+              <input type="radio" name="completada" id="nope" value="No pude terminarla" hidden>
+              <label for="nope" class="checkin-opcion">⚪ No pude</label>
+            </div>
+          </div>
+
+          <div class="checkin-bloque">
+            <p class="checkin-label">¿Cómo te sentiste hoy?</p>
+            <div class="checkin-grid checkin-grid-2">
+              <input type="radio" name="sensacion" id="muybien" value="Muy bien" hidden required>
+              <label for="muybien" class="checkin-opcion">😄 Muy bien</label>
+
+              <input type="radio" name="sensacion" id="bien" value="Bien" hidden>
+              <label for="bien" class="checkin-opcion">🙂 Bien</label>
+
+              <input type="radio" name="sensacion" id="masomenos" value="Más o menos" hidden>
+              <label for="masomenos" class="checkin-opcion">😐 Más o menos</label>
+
+              <input type="radio" name="sensacion" id="mal" value="Mal" hidden>
+              <label for="mal" class="checkin-opcion">😣 Mal</label>
+            </div>
+          </div>
+
+          <div class="checkin-bloque">
+            <label for="esfuerzo" class="checkin-label">Esfuerzo percibido</label>
+            <div class="checkin-range-wrap">
+              <div class="checkin-range-top">
+                <span>Suave</span>
+                <strong><span id="esfuerzoValor">5</span>/10</strong>
+                <span>Muy intenso</span>
+              </div>
+              <div class="checkin-slider-hint">
+                <span class="checkin-slider-hand">👉</span>
+                <span>Desliza para marcar tu esfuerzo</span>
+              </div>
+              <input type="range" id="esfuerzo" name="esfuerzo" min="1" max="10" value="5" class="checkin-range">
+              <div class="checkin-scale"><span>1</span><span>10</span></div>
+            </div>
+          </div>
+
+          <div class="checkin-bloque">
+            <p class="checkin-label">¿Tuviste dolor o molestia?</p>
+            <div class="checkin-grid checkin-grid-3">
+              <input type="radio" name="molestia" id="nomolestia" value="No" hidden required>
+              <label for="nomolestia" class="checkin-opcion">✅ No</label>
+
+              <input type="radio" name="molestia" id="leve" value="Sí, leve" hidden>
+              <label for="leve" class="checkin-opcion">🟡 Sí, leve</label>
+
+              <input type="radio" name="molestia" id="moderado" value="Sí, moderado" hidden>
+              <label for="moderado" class="checkin-opcion">🔴 Sí, moderado</label>
+            </div>
+          </div>
+
+          <div class="checkin-bloque hidden" id="zonaBlock">
+            <p class="checkin-label">¿Dónde sentiste la molestia?</p>
+            <div class="checkin-grid checkin-grid-2">
+              <input type="radio" name="zona" id="lumbar" value="Zona lumbar" hidden>
+              <label for="lumbar" class="checkin-opcion">Zona lumbar</label>
+
+              <input type="radio" name="zona" id="gluteo" value="Glúteo / piriforme" hidden>
+              <label for="gluteo" class="checkin-opcion">Glúteo / piriforme</label>
+
+              <input type="radio" name="zona" id="cadera" value="Cadera" hidden>
+              <label for="cadera" class="checkin-opcion">Cadera</label>
+
+              <input type="radio" name="zona" id="piernaizq" value="Pierna izquierda" hidden>
+              <label for="piernaizq" class="checkin-opcion">Pierna izquierda</label>
+
+              <input type="radio" name="zona" id="pieizq" value="Pie izquierdo / equilibrio" hidden>
+              <label for="pieizq" class="checkin-opcion">Pie izquierdo / equilibrio</label>
+
+              <input type="radio" name="zona" id="otra" value="Otra" hidden>
+              <label for="otra" class="checkin-opcion">Otra</label>
+            </div>
+          </div>
+
+          <div class="checkin-bloque">
+            <label for="comentario" class="checkin-label">Comentario opcional</label>
+            <textarea id="comentario" name="comentario" class="checkin-textarea" placeholder="Ej: me sentí más estable, me costó mantener el equilibrio o apareció una molestia leve..."></textarea>
+          </div>
+
+          <div class="checkin-bloque">
+            <label class="checkin-label">Comparte una foto de tu entreno</label>
+            <p class="checkin-helper">Sube una foto de tu sesión de hoy para registrar tu avance.</p>
+
+            <input type="file" id="fotoEntreno" name="foto_entreno" accept="image/*" capture="environment" hidden>
+
+            <label for="fotoEntreno" class="camera-upload-btn" id="fotoUploadLabel">
+              <span class="camera-icon">📷</span>
+              <span>Tomar o subir foto</span>
+            </label>
+
+            <p id="fotoNombre" class="foto-nombre hidden"></p>
+
+            <div id="previewFotoWrap" class="preview-foto-wrap hidden">
+              <img id="previewFoto" class="preview-foto-img" alt="Vista previa de la foto subida">
+            </div>
+          </div>
+
+          <input type="hidden" name="cliente" id="clienteHidden" value="">
+          <input type="hidden" name="rutina" id="rutinaHidden" value="">
+          <input type="hidden" name="sesion_objetivo" id="sesionObjetivoHidden" value="">
+          <input type="hidden" name="semana" id="semanaCalculada">
+          <input type="hidden" name="fecha" id="fechaActual">
+
+          <button type="submit" class="checkin-boton" id="submitBtn">✅ Registrar mi sesión</button>
+
+          <p id="mensajeCarga" class="checkin-carga hidden">Guardando tu sesión...</p>
+          <p id="mensajeFinal" class="checkin-exito hidden">✨ Sesión registrada con éxito. ¡Buen trabajo!</p>
+          <p id="mensajeError" class="checkin-error hidden">No se pudo guardar tu sesión. Inténtalo nuevamente.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_LLxfYHVTos8NyG_ncJuRXMvaDVczVUuRRY-ubgxNtoojDyXgf5EFhG7Ou2bCrMOl/exec";
+
+    const esfuerzo = document.getElementById("esfuerzo");
+    const esfuerzoValor = document.getElementById("esfuerzoValor");
+    const fechaActual = document.getElementById("fechaActual");
+    const semanaCalculada = document.getElementById("semanaCalculada");
+    const molestiaRadios = document.querySelectorAll('input[name="molestia"]');
+    const zonaBlock = document.getElementById("zonaBlock");
+    const form = document.getElementById("checkinForm");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+    const mensajeError = document.getElementById("mensajeError");
+    const mensajeCarga = document.getElementById("mensajeCarga");
+    const fotoEntreno = document.getElementById("fotoEntreno");
+    const fotoNombre = document.getElementById("fotoNombre");
+    const previewFotoWrap = document.getElementById("previewFotoWrap");
+    const previewFoto = document.getElementById("previewFoto");
+    const submitBtn = document.getElementById("submitBtn");
+    const fotoUploadLabel = document.getElementById("fotoUploadLabel");
+    const clienteHidden = document.getElementById("clienteHidden");
+    const rutinaHidden = document.getElementById("rutinaHidden");
+    const sesionObjetivoHidden = document.getElementById("sesionObjetivoHidden");
+    const clienteVisible = document.getElementById("clienteVisible");
+
+    const params = new URLSearchParams(window.location.search);
+    const clienteParam = (params.get("cliente") || "").trim();
+    const rutinaParam = (params.get("rutina") || "Rutina A").trim();
+    const sesionObjetivoParam = (params.get("sesion_objetivo") || "").trim();
+
+    clienteHidden.value = clienteParam;
+    rutinaHidden.value = rutinaParam;
+    sesionObjetivoHidden.value = sesionObjetivoParam;
+    clienteVisible.textContent = clienteParam ? `Cliente: ${clienteParam} · ${rutinaParam}` : "";
+
+    if (!clienteParam) {
+      mensajeError.textContent = "No se pudo identificar al cliente. Abre este registro desde el botón de su rutina.";
+      mensajeError.classList.remove("hidden");
+      submitBtn.disabled = true;
+    }
+
+    esfuerzo.addEventListener("input", () => {
+      esfuerzoValor.textContent = esfuerzo.value;
+    });
+
+    function obtenerFechaChile() {
+      return new Intl.DateTimeFormat("sv-SE", {
+        timeZone: "America/Santiago",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).format(new Date());
+    }
+
+    function resetFotoUI() {
+      fotoNombre.textContent = "";
+      fotoNombre.classList.add("hidden");
+      previewFoto.src = "";
+      previewFotoWrap.classList.add("hidden");
+      fotoUploadLabel.style.borderColor = "rgba(255,140,0,0.55)";
+      fotoUploadLabel.style.background = "rgba(255,255,255,0.05)";
+      fotoUploadLabel.innerHTML = `
+        <span class="camera-icon">📷</span>
+        <span>Tomar o subir foto</span>
+      `;
+    }
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          const img = new Image();
+
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const maxWidth = 320;
+
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            resolve(canvas.toDataURL("image/jpeg", 0.2));
+          };
+
+          img.onerror = reject;
+          img.src = event.target.result;
+        };
+
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    molestiaRadios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        if (radio.value === "Sí, leve" || radio.value === "Sí, moderado") {
+          zonaBlock.classList.remove("hidden");
+        } else {
+          zonaBlock.classList.add("hidden");
+          document.querySelectorAll('input[name="zona"]').forEach(input => input.checked = false);
+        }
+      });
+    });
+
+    if (fotoEntreno) {
+      fotoEntreno.addEventListener("change", () => {
+        if (fotoEntreno.files && fotoEntreno.files.length > 0) {
+          const file = fotoEntreno.files[0];
+
+          fotoNombre.textContent = "✅ Foto cargada: " + file.name;
+          fotoNombre.classList.remove("hidden");
+
+          fotoUploadLabel.style.borderColor = "#22c55e";
+          fotoUploadLabel.style.background = "rgba(34, 197, 94, 0.10)";
+          fotoUploadLabel.innerHTML = `
+            <span class="camera-icon">✅</span>
+            <span>Foto seleccionada</span>
+          `;
+
+          const imageUrl = URL.createObjectURL(file);
+          previewFoto.src = imageUrl;
+          previewFotoWrap.classList.remove("hidden");
+        } else {
+          resetFotoUI();
+        }
+      });
+    }
+
+    function limpiarAlertasFormulario() {
+      document.querySelectorAll(".checkin-bloque.falta").forEach(bloque => {
+        bloque.classList.remove("falta");
+      });
+    }
+
+    function marcarFalta(selector) {
+      const elemento = document.querySelector(selector);
+      if (!elemento) return null;
+
+      const bloque = elemento.closest(".checkin-bloque");
+      if (bloque) bloque.classList.add("falta");
+
+      return bloque;
+    }
+
+    function validarFormularioCompleto() {
+      limpiarAlertasFormulario();
+
+      const faltantes = [];
+      let primerBloque = null;
+
+      if (!form.completada.value) {
+        faltantes.push("si terminaste la rutina");
+        primerBloque = primerBloque || marcarFalta('input[name="completada"]');
+      }
+
+      if (!form.sensacion.value) {
+        faltantes.push("cómo te sentiste hoy");
+        primerBloque = primerBloque || marcarFalta('input[name="sensacion"]');
+      }
+
+      if (!form.molestia.value) {
+        faltantes.push("si tuviste dolor o molestia");
+        primerBloque = primerBloque || marcarFalta('input[name="molestia"]');
+      }
+
+      if ((form.molestia.value === "Sí, leve" || form.molestia.value === "Sí, moderado") && !form.zona.value) {
+        faltantes.push("dónde sentiste la molestia");
+        primerBloque = primerBloque || marcarFalta('input[name="zona"]');
+      }
+
+      if (faltantes.length > 0) {
+        mensajeError.textContent = "Te falta completar: " + faltantes.join(", ") + ".";
+        mensajeError.classList.remove("hidden");
+        mensajeCarga.classList.add("hidden");
+
+        if (primerBloque) {
+          primerBloque.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        return false;
+      }
+
+      return true;
+    }
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      mensajeFinal.classList.add("hidden");
+      mensajeError.classList.add("hidden");
+      mensajeCarga.classList.add("hidden");
+
+      if (!validarFormularioCompleto()) {
+        return;
+      }
+
+      mensajeCarga.textContent = "Guardando tu sesión...";
+      mensajeCarga.classList.remove("hidden");
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Guardando tu sesión...";
+
+      try {
+        fechaActual.value = obtenerFechaChile();
+
+        let fotoBase64 = "";
+        let fotoTipo = "";
+        let fotoNombreArchivo = "";
+
+        if (fotoEntreno.files && fotoEntreno.files.length > 0) {
+          submitBtn.textContent = "Preparando foto...";
+          mensajeCarga.textContent = "Preparando foto...";
+          const file = fotoEntreno.files[0];
+          fotoBase64 = await toBase64(file);
+          fotoTipo = "image/jpeg";
+          fotoNombreArchivo = file.name;
+        }
+
+        const payload = {
+          fecha: fechaActual.value,
+          semana: semanaCalculada.value || "Semana no calculada",
+          cliente: form.cliente.value,
+          rutina: form.rutina.value,
+          sesion_objetivo: form.sesion_objetivo.value || "",
+          completada: form.completada.value,
+          sensacion: form.sensacion.value,
+          esfuerzo: form.esfuerzo.value,
+          molestia: form.molestia.value,
+          zona: form.zona.value || "",
+          comentario: form.comentario.value || "",
+          fotoBase64: fotoBase64,
+          fotoTipo: fotoTipo,
+          fotoNombre: fotoNombreArchivo
+        };
+
+        submitBtn.textContent = "Enviando tu registro...";
+        mensajeCarga.textContent = "Enviando tu registro...";
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(payload)
+        });
+
+        mensajeFinal.textContent = "✨ Sesión registrada con éxito. ¡Buen trabajo!";
+        mensajeFinal.classList.remove("hidden");
+
+        form.reset();
+        esfuerzoValor.textContent = "5";
+        zonaBlock.classList.add("hidden");
+        resetFotoUI();
+        fechaActual.value = obtenerFechaChile();
+        clienteHidden.value = clienteParam;
+        rutinaHidden.value = rutinaParam;
+        sesionObjetivoHidden.value = sesionObjetivoParam;
+        limpiarAlertasFormulario();
+      } catch (error) {
+        mensajeError.textContent = "No se pudo guardar tu sesión. Inténtalo nuevamente.";
+        mensajeError.classList.remove("hidden");
+        console.error(error);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "✅ Registrar mi sesión";
+        mensajeCarga.classList.add("hidden");
+      }
+    });
+
+    fechaActual.value = obtenerFechaChile();
+  </script>
+</body>
+</html>
