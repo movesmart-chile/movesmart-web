@@ -1,10 +1,13 @@
+
+
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Encuesta Rutina A | Juany Flores</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Encuesta Rutina A | Juany Flores</title>
+<style>
     *{box-sizing:border-box;margin:0;padding:0}
 
     :root{
@@ -951,620 +954,414 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-badge">M</div>
-        <div class="brand-text">
-          <h1>MoveSmart</h1>
-          <p>Juany Flores · Rutina A adaptativa</p>
-        </div>
-      </div>
-      <a href="plan-juany-flores.html" class="back-btn">← Volver al plan</a>
-    </header>
-
-    <section class="hero">
-      <div class="hero-image" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <div class="hello">¡Hola Juany!</div>
-        <h2>Para crear tu rutina ideal necesitamos conocer cómo llegas hoy.</h2>
-        <p>
+<div class="wrap">
+<header class="topbar">
+<div class="brand">
+<div class="brand-badge">M</div>
+<div class="brand-text">
+<h1>MoveSmart</h1>
+<p>Juany Flores · Rutina A adaptativa</p>
+</div>
+</div>
+<a class="back-btn" href="plan-juany-flores.html">← Volver al plan</a>
+</header>
+<section class="hero">
+<div aria-hidden="true" class="hero-image"></div>
+<div class="hero-copy">
+<div class="hello">¡Hola Juany!</div>
+<h2>Para crear tu rutina ideal necesitamos conocer cómo llegas hoy.</h2>
+<p>
           Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina A según tu tiempo, energía y sensación articular.
         </p>
-      </div>
-    </section>
+</div>
+</section>
+<main class="survey-card">
+<div class="survey-head">
+<div class="survey-title">
+<div class="survey-icon">✨</div>
+<div>
+<h3>Encuesta MoveSmart</h3>
+<p>Toma 30 segundos. Tu rutina se adapta a cómo llegas hoy.</p>
+</div>
+</div>
+</div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">Pregunta 0 de 3</div>
+</div>
+<section class="question" data-question="tiempo">
+<div class="q-title">
+<div class="q-icon">⏱️</div>
+<div>
+<h4>1. ¿Cuánto tiempo tienes hoy?</h4>
+<p>Sé realista con el tiempo del que dispones.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="express" type="button">
+<span class="emoji">⏱️</span>
+<strong>10 – 20 min</strong>
+<span>Poco tiempo</span>
+</button>
+<button class="choice" data-value="base" type="button">
+<span class="emoji">🕒</span>
+<strong>20 – 30 min</strong>
+<span>Tiempo moderado</span>
+</button>
+<button class="choice" data-value="completa" type="button">
+<span class="emoji">🕘</span>
+<strong>30 – 40 min</strong>
+<span>Más tiempo</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="energia">
+<div class="q-title">
+<div class="q-icon">⚡</div>
+<div>
+<h4>2. ¿Cómo está tu energía hoy?</h4>
+<p>Piensa en cómo se siente tu cuerpo físicamente.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="baja" type="button">
+<span class="emoji">🪫</span>
+<strong>Baja</strong>
+<span>Me siento cansada</span>
+</button>
+<button class="choice" data-value="media" type="button">
+<span class="emoji">⚡</span>
+<strong>Media</strong>
+<span>Me siento normal</span>
+</button>
+<button class="choice" data-value="alta" type="button">
+<span class="emoji">🔋</span>
+<strong>Alta</strong>
+<span>Me siento con energía</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="personalizada">
+<div class="q-title">
+<div class="q-icon">⭐</div>
+<div>
+<h4>3. ¿Cómo está tu cadera y rodillas hoy?</h4>
+<p>Elige cómo se siente tus caderas y rodillas antes de entrenar.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="leve" type="button"><span class="emoji">🟢</span>
+<strong>Leve</strong>
+<span>0–3/10</span>
+</button>
+<button class="choice" data-value="moderado" type="button">
+<span class="emoji">🟡</span>
+<strong>Moderado</strong>
+<span>4–5/10</span>
+</button>
+<button class="choice" data-value="alto" type="button">
+<span class="emoji">🔴</span>
+<strong>Alto</strong>
+<span>6/10 o más</span>
+</button>
+</div>
+</section>
+<button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
+<p class="microcopy">Tu rutina se adapta a ti. Entrena con propósito, no por obligación.</p>
+<div class="result-card" id="resultCard"></div>
+<div aria-live="polite" class="smart-loading" id="smartLoading">
+<div class="smart-orb"></div>
+<h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
+<p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de caderas y rodillas.</p>
+</div>
+<div class="routine-container" id="rutina-express">
+<div class="routine-intro">
+<div class="routine-version-label">⚡ Rutina A Express · 10–20 min</div>
+<h2>Rutina A · Fuerza base</h2>
+<p>Versión corta para mantener continuidad con los ejercicios esenciales.</p>
+</div>
+<section class="section">
+<div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>4 minutos a ritmo cómodo.</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Bloque principal de fuerza</h2><p>Calidad de movimiento antes que cantidad.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Sentarse y levantarse de una silla alta</div>
+<p class="exercise-desc">Apoya bien los pies, inclina ligeramente el tronco y levántate usando una altura cómoda. Baja con control.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>6–8</div>
+<div class="pill"><span>Descanso</span>60 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Puente de glúteo con pausa</div>
+<p class="exercise-desc">Eleva la cadera y mantén 2 segundos arriba. Evita arquear la espalda.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Caminata lateral con banda</div>
+<p class="exercise-desc">Haz pasos cortos, lentos y controlados. Mantén las rodillas alineadas.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>6 pasos por lado</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Minibanda suave</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article></div>
+</section>
+<div class="note"><strong>Regla de progresión:</strong> mantén la técnica y no agregues dificultad si llegas con poca energía.</div>
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta suave o respiración</strong><br/>3–5 minutos.</div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo=Fuerza%20base">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-base">
+<div class="routine-intro">
+<div class="routine-version-label">🕒 Rutina A Base · 20–30 min</div>
+<h2>Rutina A · Fuerza base</h2>
+<p>Versión principal del programa. Trabaja piernas, glúteos, pantorrillas y core.</p>
+</div>
+<section class="section">
+<div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>5 minutos a ritmo cómodo.</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Bloque principal de fuerza</h2><p>Calidad de movimiento antes que cantidad.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Sentarse y levantarse de una silla alta</div>
+<p class="exercise-desc">Apoya bien los pies, inclina ligeramente el tronco y levántate usando una altura cómoda. Baja con control.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>6–8</div>
+<div class="pill"><span>Descanso</span>60 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Puente de glúteo con pausa</div>
+<p class="exercise-desc">Eleva la cadera y mantén 2 segundos arriba. Evita arquear la espalda.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Caminata lateral con banda</div>
+<p class="exercise-desc">Haz pasos cortos, lentos y controlados. Mantén las rodillas alineadas.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>6 pasos por lado</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Minibanda suave</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Elevación de talones de pie</div>
+<p class="exercise-desc">Sube lentamente, mantén 1 segundo arriba y baja con control. Usa apoyo si lo necesitas.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xDrezw4UkoE" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10–12</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Press antirotación con banda</div>
+<p class="exercise-desc">Empuja la banda al frente sin permitir que el tronco gire.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=y1fOBVtANdM" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8 por lado</div>
+<div class="pill"><span>Descanso</span>40 seg</div>
+<div class="pill"><span>Carga</span>Banda suave</div>
+<div class="pill"><span>RPE</span>3–4</div>
+</div>
+</article></div>
+</section>
+<div class="note"><strong>Regla de progresión:</strong> aumenta solo una variable por vez: repeticiones, una serie o una banda un poco más firme.</div>
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta suave o respiración</strong><br/>3–5 minutos.</div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo=Fuerza%20base">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-completa">
+<div class="routine-intro">
+<div class="routine-version-label">🕘 Rutina A Completa · 30–40 min</div>
+<h2>Rutina A · Fuerza base completa</h2>
+<p>La misma estructura de la versión Base, con más volumen y una progresión controlada.</p>
+</div>
+<section class="section">
+<div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>7–8 minutos a ritmo cómodo.</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Bloque principal de fuerza</h2><p>Calidad de movimiento antes que cantidad.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Sentarse y levantarse de una silla alta</div>
+<p class="exercise-desc">Baja en 3 segundos y sube con control. Mantén las rodillas alineadas.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>3</div>
+<div class="pill"><span>Reps</span>8–10</div>
+<div class="pill"><span>Descanso</span>60–75 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>4–5</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Puente de glúteo con pausa</div>
+<p class="exercise-desc">Mantén 3 segundos arriba en cada repetición.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>3</div>
+<div class="pill"><span>Reps</span>10</div>
+<div class="pill"><span>Descanso</span>45–60 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal o banda</div>
+<div class="pill"><span>RPE</span>4–5</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Caminata lateral con banda</div>
+<p class="exercise-desc">Pasos cortos, pelvis estable y tensión constante.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>3</div>
+<div class="pill"><span>Reps</span>8–10 pasos por lado</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Minibanda suave-media</div>
+<div class="pill"><span>RPE</span>4–5</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Elevación de talones de pie</div>
+<p class="exercise-desc">Sube, mantén 1–2 segundos y baja lentamente.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xDrezw4UkoE" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>3</div>
+<div class="pill"><span>Reps</span>12–15</div>
+<div class="pill"><span>Descanso</span>45 seg</div>
+<div class="pill"><span>Carga</span>Peso corporal</div>
+<div class="pill"><span>RPE</span>4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Press antirotación con banda</div>
+<p class="exercise-desc">Empuja la banda al frente sin permitir que el tronco gire.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=y1fOBVtANdM" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>3</div>
+<div class="pill"><span>Reps</span>8–10 por lado</div>
+<div class="pill"><span>Descanso</span>40–45 seg</div>
+<div class="pill"><span>Carga</span>Banda suave-media</div>
+<div class="pill"><span>RPE</span>4</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Apoyo unipodal asistido</div>
+<p class="exercise-desc">Mantén una mano cerca de una pared o silla. Busca estabilidad, no dificultad máxima.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=5OKF9DJcP6M" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>15–20 seg por lado</div>
+<div class="pill"><span>Descanso</span>30 seg</div>
+<div class="pill"><span>Carga</span>Apoyo asistido</div>
+<div class="pill"><span>RPE</span>3</div>
+</div>
+</article></div>
+</section>
+<div class="note"><strong>Regla de progresión:</strong> si aparece modo Recovery, reduce una serie o el rango, pero conserva los mismos ejercicios.</div>
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Bicicleta suave o respiración</strong><br/>3–5 minutos.</div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo=Fuerza%20base">✅ Finalicé mi sesión</a>
+</div>
+</div>
+</main></div>
 
-    <main class="survey-card">
-      <div class="survey-head">
-        <div class="survey-title">
-          <div class="survey-icon">✨</div>
-          <div>
-            <h3>Encuesta MoveSmart</h3>
-            <p>Toma 30 segundos. Tu rutina se adapta a cómo llegas hoy.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="progress-wrap">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
-      </div>
-
-      <section class="question" data-question="tiempo">
-        <div class="q-title">
-          <div class="q-icon">⏱️</div>
-          <div>
-            <h4>1. ¿Cuánto tiempo tienes hoy?</h4>
-            <p>Sé realista con el tiempo del que dispones.</p>
-          </div>
-        </div>
-        <div class="choices">
-          <button class="choice" type="button" data-value="express">
-            <span class="emoji">⏱️</span>
-            <strong>10 – 20 min</strong>
-            <span>Poco tiempo</span>
-          </button>
-          <button class="choice" type="button" data-value="base">
-            <span class="emoji">🕒</span>
-            <strong>25 – 40 min</strong>
-            <span>Tiempo moderado</span>
-          </button>
-          <button class="choice" type="button" data-value="completa">
-            <span class="emoji">🕘</span>
-            <strong>45 – 60 min</strong>
-            <span>Más tiempo</span>
-          </button>
-        </div>
-      </section>
-
-      <section class="question" data-question="energia">
-        <div class="q-title">
-          <div class="q-icon">⚡</div>
-          <div>
-            <h4>2. ¿Cómo está tu energía hoy?</h4>
-            <p>Piensa en cómo se siente tu cuerpo físicamente.</p>
-          </div>
-        </div>
-        <div class="choices">
-          <button class="choice" type="button" data-value="baja">
-            <span class="emoji">🪫</span>
-            <strong>Baja</strong>
-            <span>Me siento cansado</span>
-          </button>
-          <button class="choice" type="button" data-value="media">
-            <span class="emoji">⚡</span>
-            <strong>Media</strong>
-            <span>Me siento normal</span>
-          </button>
-          <button class="choice" type="button" data-value="alta">
-            <span class="emoji">🔋</span>
-            <strong>Alta</strong>
-            <span>Me siento con energía</span>
-          </button>
-        </div>
-      </section>
-
-      <section class="question" data-question="personalizada">
-        <div class="q-title">
-          <div class="q-icon">⭐</div>
-          <div>
-            <h4>3. ¿Cómo está tu cadera y rodillas hoy?</h4>
-            <p>Elige cómo se siente tu caderas y rodillas antes de entrenar.</p>
-          </div>
-        </div>
-        <div class="choices">
-          <button class="choice" type="button" data-value="baja">
-            <span class="emoji">🟢</span>
-            <strong>Leve</strong>
-            <span>0–3/10</span>
-          </button>
-          <button class="choice" type="button" data-value="moderado">
-            <span class="emoji">🟡</span>
-            <strong>Moderado</strong>
-            <span>4–5/10</span>
-          </button>
-          <button class="choice" type="button" data-value="alto">
-            <span class="emoji">🔴</span>
-            <strong>Alto</strong>
-            <span>6/10 o más</span>
-          </button>
-        </div>
-      </section>
-
-      <button class="submit-btn" type="button" id="createRoutine">Crear mi rutina personalizada →</button>
-      <p class="microcopy">Tu rutina se adapta a ti. Entrena con propósito, no por obligación.</p>
-
-      <div class="result-card" id="resultCard"></div>
-
-      <div class="smart-loading" id="smartLoading" aria-live="polite">
-        <div class="smart-orb"></div>
-        <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-        <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de caderas y rodillas.</p>
-      </div>
 
 
-      <div class="routine-container" id="rutina-express">
-        <div class="routine-intro">
-          <div class="routine-version-label">⚡ Rutina A Express · 10–20 min</div>
-          <h2>Rutina A · Recovery articular inicial</h2>
-          <p>Versión reducida para mantener continuidad cuando hay poco tiempo. Prioriza control de caderas y rodillas, activación de cadera y confianza de carga sin sobrecargar.</p>
-        </div>
 
-        <section class="section">
-          <div class="section-head">
-            <h2>Calentamiento</h2>
-            <p>Entrada breve para preparar la caderas y rodillas y entrar mejor a la sesión.</p>
-          </div>
-          <div class="section-body">
-            <div class="simple-card"><strong>Bicicleta estática</strong><br>3 minutos</div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Bloque principal</h2>
-            <p>Quédate con los ejercicios más importantes del día. Calidad antes que cantidad.</p>
-          </div>
-          <div class="section-body">
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Bicicleta cómoda o marcha suave</div>
-                  </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Movilidad de tobillo en pared</div>
-                <p class="exercise-desc">Coloca la banda detrás de la caderas y rodillas, flexiona apenas y luego extiende apretando cuádriceps. Mantén 2 segundos al final para reforzar estabilidad sin buscar molestia.</p>
-                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=WEcLkuvcMZc">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Puente de glúteo</div>
-                <p class="exercise-desc">Eleva la cadera de forma controlada y mantén 2–3 segundos arriba. Busca activar glúteos para ayudar a descargar la caderas y rodillas desde la cadera.</p>
-                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/FfXq0AUz_Xw">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10</div><div class="pill"><span>Descanso</span>45 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>4</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Caminata lateral con banda controlada</div>
-                <p class="exercise-desc">Da pasos cortos y lentos manteniendo tensión constante en la banda. Evita que las caderas y rodillass colapsen hacia adentro. Si no hay molestia, puedes usar una banda apenas más firme.</p>
-                <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 pasos por lado</div><div class="pill"><span>Descanso</span>45–60 seg</div><div class="pill"><span>Carga</span>Minibanda suave-media</div><div class="pill"><span>RPE</span>4–5</div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head"><h2>Bloque final</h2><p>Cierre suave para bajar pulsaciones.</p></div>
-          <div class="section-body"><div class="simple-card"><strong>Caminata suave o bicicleta</strong><br>2–3 minutos</div></div>
-        </section>
-
-        <div class="finish-session-wrap">
-          <p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p>
-          <a href="movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&registro de sesion.html?rutina=Rutina%20A%20Express&sesion_objetivo=Sesion%201" class="finish-session-btn">✅ Finalicé mi sesión</a>
-        </div>
-      </div>
-
-
-      <div class="routine-container" id="rutina-base">
-        <div class="routine-intro">
-          <div class="routine-version-label">🕒 Rutina A Base · 25–40 min</div>
-          <h2>Rutina A · Recovery articular inicial</h2>
-          <p>Versión intermedia. Mantiene el bloque principal completo y un trabajo corto de estabilidad, sin extender demasiado la vuelta a la calma.</p>
-        </div>
-
-        <section class="section">
-          <div class="section-head"><h2>Calentamiento</h2><p>Empieza suave para preparar el cuerpo y entrar mejor a la sesión.</p></div>
-          <div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br>5 minutos</div></div>
-        </section>
-
-        <section class="section">
-          <div class="section-head"><h2>Bloque principal</h2><p>Progresión controlada para caderas y rodillas, cadera y estabilidad, sin volver aún a sentarse y pararse si genera molestia.</p></div>
-          <div class="section-body">
-            <article class="exercise-card"><div><div class="exercise-name">Bicicleta cómoda o marcha suave</div><p class="exercise-desc">Extiende la caderas y rodillas con control, mantén 2 segundos arriba y baja lento. La progresión está en la pausa y el control, no en hacerlo más rápido.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/_CYERLDR4z0">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>8–10 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div></div></article>
-            <article class="exercise-card"><div><div class="exercise-name">Movilidad de tobillo en pared</div><p class="exercise-desc">Coloca la banda detrás de la caderas y rodillas, flexiona apenas y luego extiende apretando cuádriceps. Mantén 2 segundos al final para reforzar estabilidad sin buscar molestia.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=WEcLkuvcMZc">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>10–12 por lado</div><div class="pill"><span>Descanso</span>30–40 seg</div><div class="pill"><span>Carga</span>Banda suave</div><div class="pill"><span>RPE</span>3–4</div></div></article>
-            <article class="exercise-card"><div><div class="exercise-name">Puente de glúteo bilateral con pausa</div><p class="exercise-desc">Eleva la cadera de forma controlada y mantén 2–3 segundos arriba. Busca activar glúteos para ayudar a descargar la caderas y rodillas desde la cadera.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>8–10</div><div class="pill"><span>Descanso</span>45 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>4</div></div></article>
-            <article class="exercise-card"><div><div class="exercise-name">Caminata lateral con banda controlada</div><p class="exercise-desc">Da pasos cortos y lentos manteniendo tensión constante en la banda. Evita que las caderas y rodillass colapsen hacia adentro. Si no hay molestia, puedes usar una banda apenas más firme.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=9AHnDT4mqrg">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 pasos por lado</div><div class="pill"><span>Descanso</span>45–60 seg</div><div class="pill"><span>Carga</span>Minibanda suave-media</div><div class="pill"><span>RPE</span>4–5</div></div></article>
-            <article class="exercise-card"><div><div class="exercise-name">Sentarse y levantarse de silla alta</div><p class="exercise-desc">Lleva la carga hacia la cadera más que hacia la caderas y rodillas. Baja en 3 segundos, sube controlado y mantén la espalda larga. Este será el principal ejercicio de fuerza de pierna sin cargar directamente la caderas y rodillas.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=wmtbtxQcPLc">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2–3</div><div class="pill"><span>Reps</span>8–10</div><div class="pill"><span>Descanso</span>60 seg</div><div class="pill"><span>Carga</span>Banda liviana-media</div><div class="pill"><span>RPE</span>4–5</div></div></article>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head"><h2>Estabilidad progresiva</h2><p>Un bloque corto para reforzar control y confianza al cargar la pierna, reduciendo el apoyo solo si se siente seguro.</p></div>
-          <div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Balanceo suave de cadera de pie</div><p class="exercise-desc">Mantén apoyo en una pared o silla si lo necesitas. Si te sientes seguro, usa solo la punta de los dedos como ayuda. La idea es progresar confianza, no dificultad máxima.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=5OKF9DJcP6M">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>20–30 seg por lado</div><div class="pill"><span>Descanso</span>30 seg</div><div class="pill"><span>Carga</span>Apoyo asistido</div><div class="pill"><span>RPE</span>3–4</div></div></article></div>
-        </section>
-
-        <div class="note"><strong>Regla de progresión:</strong> esta rutina progresa aumentando control, pausas, rango cómodo o una serie extra. No se debe avanzar hacia sentarse y pararse, sentadillas o zancadas si la caderas y rodillas vuelve a doler.</div>
-
-        <section class="section"><div class="section-head"><h2>Bloque final</h2><p>Cierre suave de la sesión para bajar pulsaciones.</p></div><div class="section-body"><div class="simple-card"><strong>Caminata suave o bicicleta</strong><br>3–5 minutos</div></div></section>
-
-        <section class="section"><div class="section-head"><h2>Estiramientos / vuelta a la calma</h2><p>Opcional al final de la sesión para soltar musculatura y favorecer la recuperación.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Respiración + movilidad suave</div><p class="exercise-desc">Busca una tensión suave en la parte frontal del muslo sin arquear la espalda ni perder equilibrio. Mantén el abdomen activo y sostén la posición con comodidad.</p><button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=boJBuKVUwG0">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>1–2</div><div class="pill"><span>Reps</span>20–25 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>Carga</span>Peso corporal</div><div class="pill"><span>RPE</span>2</div></div></article><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines esta sesión, presiona el botón de abajo para registrar cómo te fue.</p><a href="registro de sesion.html?rutina=Rutina%20A%20Base&sesion_objetivo=Sesion%201" class="finish-session-btn">✅ Finalicé mi sesión</a></div></div></section>
-      </div>
-
-      <div class="routine-container" id="rutina-completa">
-        <div class="routine-intro">
-          <div class="routine-version-label">🕘 Rutina A Completa · 45–60 min</div>
-          <h2>Rutina A · Sesión completa</h2>
-          <p>
-            Versión completa para los días en que tienes más tiempo. Incluye calentamiento,
-            fuerza, estabilidad, trabajo complementario y vuelta a la calma.
-          </p>
-        </div>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Calentamiento</h2>
-            <p>Entrada progresiva para preparar el cuerpo antes del bloque principal.</p>
-          </div>
-          <div class="section-body">
-            <div class="simple-card">
-              <strong>Bicicleta estática</strong><br>
-              8–10 minutos a intensidad cómoda.
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Bloque principal de fuerza</h2>
-            <p>Realiza los movimientos con control, sin apurar las repeticiones.</p>
-          </div>
-          <div class="section-body">
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Extensión de rodilla con banda</div>
-                <p class="exercise-desc">
-                  Extiende la rodilla con control, mantén 2 segundos al final y vuelve lentamente.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>10–12 por lado</div>
-                <div class="pill"><span>Descanso</span>40–45 seg</div>
-                <div class="pill"><span>Carga</span>Banda suave</div>
-                <div class="pill"><span>RPE</span>4</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Movilidad de tobillo en pared</div>
-                <p class="exercise-desc">
-                  Lleva la rodilla hacia la pared sin despegar el talón y mantén el pie alineado.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>10–12 por lado</div>
-                <div class="pill"><span>Descanso</span>30–40 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>3</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Puente de glúteo bilateral con pausa</div>
-                <p class="exercise-desc">
-                  Eleva la cadera, aprieta glúteos y mantén 2–3 segundos arriba antes de bajar.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>10–12</div>
-                <div class="pill"><span>Descanso</span>45–60 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal o banda</div>
-                <div class="pill"><span>RPE</span>4–5</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Caminata lateral con banda controlada</div>
-                <p class="exercise-desc">
-                  Mantén tensión constante en la banda y realiza pasos cortos con las rodillas alineadas.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>10–12 pasos por lado</div>
-                <div class="pill"><span>Descanso</span>45–60 seg</div>
-                <div class="pill"><span>Carga</span>Minibanda suave-media</div>
-                <div class="pill"><span>RPE</span>4–5</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Sentarse y levantarse de silla alta</div>
-                <p class="exercise-desc">
-                  Baja en 3 segundos, toca suavemente la silla y sube manteniendo las rodillas alineadas.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>8–10</div>
-                <div class="pill"><span>Descanso</span>60–75 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal o banda</div>
-                <div class="pill"><span>RPE</span>4–5</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Elevación de talones de pie</div>
-                <p class="exercise-desc">
-                  Sube lentamente, mantén 1–2 segundos arriba y baja con control.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>12–15</div>
-                <div class="pill"><span>Descanso</span>45 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>4</div>
-              </div>
-            </article>
-
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Estabilidad y control</h2>
-            <p>Refuerza la confianza al cargar una pierna con apoyo seguro.</p>
-          </div>
-          <div class="section-body">
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Balanceo suave de cadera de pie</div>
-                <p class="exercise-desc">
-                  Usa una pared o silla como apoyo y reduce la ayuda solo cuando te sientas segura.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Tiempo</span>25–30 seg por lado</div>
-                <div class="pill"><span>Descanso</span>30 seg</div>
-                <div class="pill"><span>Carga</span>Apoyo asistido</div>
-                <div class="pill"><span>RPE</span>3–4</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Marcha controlada en el lugar</div>
-                <p class="exercise-desc">
-                  Eleva una rodilla a la vez manteniendo el tronco estable.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>3</div>
-                <div class="pill"><span>Reps</span>10 por lado</div>
-                <div class="pill"><span>Descanso</span>30–40 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>3–4</div>
-              </div>
-            </article>
-
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Bloque complementario</h2>
-            <p>Trabajo adicional de cadera para completar la sesión.</p>
-          </div>
-          <div class="section-body">
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Abducción de cadera de pie con apoyo</div>
-                <p class="exercise-desc">
-                  Lleva la pierna hacia un lado sin inclinar el tronco.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2–3</div>
-                <div class="pill"><span>Reps</span>10–12 por lado</div>
-                <div class="pill"><span>Descanso</span>45 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal o banda</div>
-                <div class="pill"><span>RPE</span>4</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Extensión de cadera de pie con apoyo</div>
-                <p class="exercise-desc">
-                  Lleva la pierna hacia atrás sin arquear la espalda y vuelve lentamente.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2–3</div>
-                <div class="pill"><span>Reps</span>10–12 por lado</div>
-                <div class="pill"><span>Descanso</span>45 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal o banda</div>
-                <div class="pill"><span>RPE</span>4</div>
-              </div>
-            </article>
-
-          </div>
-        </section>
-
-        <div class="note">
-          <strong>Adaptación del día:</strong>
-          aunque aparezca modo Recovery por energía baja o dolor alto, esta seguirá siendo la
-          <strong>Rutina Completa</strong>. Solo se reduce una serie o el rango de movimiento.
-        </div>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Bloque final</h2>
-            <p>Baja las pulsaciones antes de terminar.</p>
-          </div>
-          <div class="section-body">
-            <div class="simple-card">
-              <strong>Bicicleta estática suave</strong><br>
-              5 minutos.
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <h2>Estiramientos</h2>
-            <p>Realiza cada posición de forma suave, sin rebotes y sin llegar al dolor.</p>
-          </div>
-          <div class="section-body">
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Estiramiento de cuádriceps de pie</div>
-                <p class="exercise-desc">
-                  Lleva el talón hacia el glúteo manteniendo las rodillas juntas.
-                  Evita arquear la espalda y utiliza una pared o silla como apoyo si lo necesitas.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div>
-                <div class="pill"><span>Tiempo</span>20–30 seg por lado</div>
-                <div class="pill"><span>Descanso</span>10 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>2</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Estiramiento de glúteo y cadera</div>
-                <p class="exercise-desc">
-                  Cruza una pierna sobre la otra y lleva suavemente la rodilla hacia el pecho.
-                  Mantén la espalda cómoda y respira de manera lenta.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div>
-                <div class="pill"><span>Tiempo</span>20–30 seg por lado</div>
-                <div class="pill"><span>Descanso</span>10 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>2</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Estiramiento de pantorrilla en pared</div>
-                <p class="exercise-desc">
-                  Apoya las manos en la pared, lleva una pierna hacia atrás y mantén el talón apoyado.
-                  Inclina el cuerpo suavemente hacia adelante sin levantar el pie.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div>
-                <div class="pill"><span>Tiempo</span>20–30 seg por lado</div>
-                <div class="pill"><span>Descanso</span>10 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>2</div>
-              </div>
-            </article>
-
-            <article class="exercise-card">
-              <div>
-                <div class="exercise-name">Estiramiento de isquiotibiales sentado</div>
-                <p class="exercise-desc">
-                  Extiende una pierna, mantén la espalda larga e inclina el tronco suavemente desde la cadera.
-                  No es necesario tocar el pie.
-                </p>
-                <button class="video-btn open-video" type="button"
-                  data-video="">▶ Ver video</button>
-              </div>
-              <div class="exercise-meta">
-                <div class="pill"><span>Series</span>2</div>
-                <div class="pill"><span>Tiempo</span>20–30 seg por lado</div>
-                <div class="pill"><span>Descanso</span>10 seg</div>
-                <div class="pill"><span>Carga</span>Peso corporal</div>
-                <div class="pill"><span>RPE</span>2</div>
-              </div>
-            </article>
-
-            <div class="finish-session-wrap">
-              <p class="finish-session-text">
-                Cuando termines esta sesión, presiona el botón para registrar cómo te fue.
-              </p>
-              <a href="registro de sesion.html?rutina=Rutina%20A%20Completa&sesion_objetivo=Sesion%201"
-                class="finish-session-btn">✅ Finalicé mi sesión</a>
-            </div>
-
-          </div>
-        </section>
-      </div>
-      </div>
-      </div>
-
-      </div>
-    </main>
-  </div>
-
-<div class="video-modal" id="videoModal" aria-hidden="true">
-    <div class="video-box">
-      <div class="video-box-head">
-        <strong id="videoTitle">Video de ejercicio</strong>
-        <button class="close-video" type="button" id="closeVideo">Cerrar ✕</button>
-      </div>
-      <div class="video-frame-wrap">
-        <iframe id="videoFrame" src="" title="Video de ejercicio" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-  
-
-  <script>
+<div aria-hidden="true" class="video-modal" id="videoModal">
+<div class="video-box">
+<div class="video-box-head">
+<strong id="videoTitle">Video de ejercicio</strong>
+<button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
+</div>
+<div class="video-frame-wrap">
+<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+</div>
+</div>
+</div>
+<script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
-    const PREGUNTA_PERSONALIZADA = "Caderas y rodillas derecha";
+    const PREGUNTA_PERSONALIZADA = "Caderas y rodillas";
 
     const respuestas = { tiempo:null, energia:null, personalizada:null };
     const progressFill = document.getElementById('progressFill');
@@ -1657,9 +1454,9 @@
       guardarRespuestaEnSheets(estructura, modo);
 
       const modoTexto = {
-        Recovery: 'Hoy prioriza control, técnica y menor esfuerzo. Reduce rango o una serie si la caderas y rodillas se siente más sensible.',
+        Recovery: 'Hoy prioriza control, técnica y menor esfuerzo. Reduce rango o una serie si las caderas y rodillas se siente más sensible.',
         Normal: 'Sigue la rutina tal como está planificada hoy. Mantén control y buena técnica.',
-        Plus: 'Hoy tienes buena energía. Si la caderas y rodillas responde bien, puedes agregar una serie extra o disminuir ligeramente los descansos.'
+        Plus: 'Hoy tienes buena energía. Si las caderas y rodillas responde bien, puedes agregar una serie extra o disminuir ligeramente los descansos.'
       };
 
       resultCard.classList.remove('active');
