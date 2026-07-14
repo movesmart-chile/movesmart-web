@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -561,7 +563,7 @@
       <div class="step-progress-label" id="stepProgressLabel">Paso 1 de 8</div>
     </div>
 
-    <form id="evaluationForm">
+    <form id="evaluationForm" novalidate>
 
       <section class="section step active" data-step="1"><div class="section-head"><h2>🚶 Datos básicos</h2><p>Información general para entender tu punto de partida.</p></div><div class="section-body">
         <div class="field"><label class="title" for="fullName">Nombre y apellido <span class="req">*</span></label><input id="fullName" name="fullName" type="text" required></div>
@@ -706,7 +708,7 @@
         <div id="formStatus" class="status"></div>
         <div class="actions">
           <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
-          <button type="submit" class="primary">Enviar evaluación</button>
+          <button type="submit" class="primary" id="submitBtn">Enviar evaluación</button>
           <button type="button" class="secondary" id="resetBtn">Limpiar formulario</button>
         </div>
       </div>
@@ -720,6 +722,7 @@
     const form = document.getElementById("evaluationForm");
     const statusBox = document.getElementById("formStatus");
     const resetBtn = document.getElementById("resetBtn");
+    const submitBtn = document.getElementById("submitBtn");
     const totalSteps = 8;
     let currentStep = 1;
 
@@ -826,13 +829,17 @@
     }
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      statusBox.className = "status"; statusBox.textContent = "";
+
+      statusBox.className = "status";
+      statusBox.textContent = "";
+
       if (!validateCustomFields()) return;
+
       const payload = buildPayload();
-      if (APPS_SCRIPT_URL === "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT") {
-        showStatus("El formulario ya está listo. Solo falta pegar la URL de tu Apps Script para que envíe a Google Sheets.", "ok");
-        console.log(payload); return;
-      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+
       try {
         await fetch(APPS_SCRIPT_URL, {
           method: "POST",
@@ -844,17 +851,21 @@
         });
 
         showStatus("Tu evaluación fue enviada correctamente. Pronto recibirás tu propuesta MoveSmart.", "ok");
-        form.reset();
-        goToStep(1);
+        submitBtn.textContent = "Evaluación enviada";
       } catch (error) {
         showStatus("Hubo un problema al enviar el formulario. Revisa la URL del Apps Script o intenta nuevamente.", "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar evaluación";
         console.error(error);
       }
     });
+
     resetBtn.addEventListener("click", () => {
       form.reset();
       statusBox.className = "status";
       statusBox.textContent = "";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Enviar evaluación";
       goToStep(1);
     });
 
