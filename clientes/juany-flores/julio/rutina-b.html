@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -796,24 +798,30 @@
 
     function youtubeEmbedUrl(url){
       if(!url) return "";
-      let cleanUrl = url.trim();
 
-      if(cleanUrl.includes("youtube.com/shorts/")){
-        const id = cleanUrl.split("youtube.com/shorts/")[1].split(/[?&/]/)[0];
-        return `https://www.youtube.com/embed/${id}`;
+      try{
+        const parsed = new URL(url.trim());
+        const host = parsed.hostname.replace("www.", "");
+        let videoId = "";
+
+        if(parsed.pathname.includes("/embed/")){
+          videoId = parsed.pathname.split("/embed/")[1]?.split("/")[0] || "";
+        } else if(host === "youtu.be"){
+          videoId = parsed.pathname.replace("/", "").split("/")[0];
+        } else if(host === "youtube.com" || host === "m.youtube.com"){
+          if(parsed.pathname.startsWith("/shorts/")){
+            videoId = parsed.pathname.split("/shorts/")[1].split("/")[0];
+          } else if(parsed.pathname === "/watch"){
+            videoId = parsed.searchParams.get("v") || "";
+          }
+        }
+
+        if(!videoId) return "";
+
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&playsinline=1`;
+      } catch(error){
+        return "";
       }
-
-      if(cleanUrl.includes("watch?v=")){
-        const id = cleanUrl.split("watch?v=")[1].split("&")[0];
-        return `https://www.youtube.com/embed/${id}`;
-      }
-
-      if(cleanUrl.includes("youtu.be/")){
-        const id = cleanUrl.split("youtu.be/")[1].split(/[?&/]/)[0];
-        return `https://www.youtube.com/embed/${id}`;
-      }
-
-      return cleanUrl;
     }
 
     document.querySelectorAll(".open-video").forEach(button => {
