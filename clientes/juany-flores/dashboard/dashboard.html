@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -176,19 +178,61 @@
       margin-top: 18px;
     }
 
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .evaluation-top-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(180deg, #ff7a1f, #ff4f13);
+      border: 1px solid rgba(255,138,61,.45);
+      border-radius: 14px;
+      padding: 13px 16px;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(255,90,31,.22);
+    }
+
+    .evaluation-top-btn:hover {
+      transform: translateY(-1px);
+    }
+
     .tab {
       border: 1px solid var(--border);
       background: rgba(255,255,255,.06);
       color: #fff;
       border-radius: 14px;
       padding: 12px 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
       font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
       cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
     }
 
     .tab.active {
       background: var(--accent);
       border-color: var(--accent);
+    }
+
+    .tab-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .kpis {
@@ -409,6 +453,60 @@
       align-items: start;
     }
 
+    .closing-evaluation {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid rgba(255,90,31,.30);
+      background:
+        radial-gradient(circle at 90% 20%, rgba(255,90,31,.16), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+    }
+
+    .closing-evaluation h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      letter-spacing: -.035em;
+    }
+
+    .closing-evaluation-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,90,31,.14);
+      border: 1px solid rgba(255,90,31,.30);
+      color: #ffd9ca;
+      font-size: .8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .closing-evaluation-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 245px;
+      padding: 17px 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(180deg, #ff7a1f, #ff4f13);
+      box-shadow: 0 16px 34px rgba(255,90,31,.25);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .closing-evaluation-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 38px rgba(255,90,31,.32);
+    }
+
     .plan-summary .big-icon {
       font-size: 2.4rem;
       color: var(--accent);
@@ -464,6 +562,15 @@
       .plan-summary {
         grid-template-columns: 1fr;
       }
+
+      .closing-evaluation {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-evaluation-btn {
+        width: 100%;
+        min-width: 0;
+      }
     }
 
     @media (max-width: 520px) {
@@ -471,8 +578,16 @@
         grid-template-columns: 1fr;
       }
 
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .tab {
-        flex: 1;
+        width: 100%;
+        min-height: 48px;
+        padding: 11px 10px;
+        font-size: .92rem;
       }
 
       .chart-box {
@@ -510,6 +625,7 @@
           <button class="tab active" data-tab="evolucion">Mi evolución</button>
           <button class="tab" data-tab="registro">Mi registro</button>
           <button class="tab" data-tab="proximo">Mi plan</button>
+          <a class="tab tab-link" href="evaluacion-cierre-mes-1.html">Evaluación</a>
         </div>
       </div>
 
@@ -674,6 +790,25 @@
             </ul>
           </article>
         </div>
+
+        <article class="card closing-evaluation">
+          <div>
+            <div class="closing-evaluation-tag">🏁 Cierre del primer bloque</div>
+            <h2>Evaluación final del programa</h2>
+            <p class="muted">
+              Completa este test al terminar el primer mes. Revisaremos dolor, fuerza,
+              equilibrio, confianza y constancia para decidir si corresponde avanzar,
+              mantener el plan o ajustar el proceso.
+            </p>
+          </div>
+
+          <a
+            class="closing-evaluation-btn"
+            href="evaluacion-cierre-mes-1.html"
+          >
+            📋 Realizar evaluación final →
+          </a>
+        </article>
 
         <div class="grid">
           <article class="card">
