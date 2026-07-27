@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prueba reevaluación MoveSmart</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #243247;
+    }
+
+    .contenedor {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .tarjeta {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .estado {
+      margin-bottom: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #eef3f8;
+      line-height: 1.5;
+    }
+
+    .estado.exito {
+      background: #e9f8ef;
+      color: #166534;
+    }
+
+    .estado.error {
+      background: #fff0f0;
+      color: #b42318;
+    }
+
+    .evaluacion {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #dfe5ec;
+    }
+
+    .evaluacion.visible {
+      display: block;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="contenedor">
+
+    <section class="tarjeta">
+
+      <h1>MoveSmart</h1>
+
+      <div id="estado" class="estado">
+        Consultando si la reevaluación está disponible...
+      </div>
+
+      <div id="evaluacion" class="evaluacion">
+
+        <h2>Reevaluación Funcional MoveSmart</h2>
+
+        <p>
+          Completaste un nuevo mes de tu programa.
+          Ahora queremos saber cómo te has sentido,
+          qué ha mejorado y qué debemos ajustar para el próximo mes.
+        </p>
+
+        <button type="button" id="botonComenzar">
+          Comenzar reevaluación
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    /*
+      PEGA AQUÍ LA URL DE TU APPS SCRIPT.
+      Debe terminar en /exec.
+    */
+    const APPS_SCRIPT_URL =
+      "PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT";
+
+    const CLIENTE_ID = "juany-flores";
+
+    const estado = document.getElementById("estado");
+    const evaluacion = document.getElementById("evaluacion");
+    const botonComenzar = document.getElementById("botonComenzar");
+
+    async function consultarReevaluacion() {
+      try {
+        const url =
+          APPS_SCRIPT_URL +
+          "?cliente_id=" +
+          encodeURIComponent(CLIENTE_ID);
+
+        const respuesta = await fetch(url);
+
+        if (!respuesta.ok) {
+          throw new Error(
+            "El servidor respondió con código " +
+            respuesta.status
+          );
+        }
+
+        const datos = await respuesta.json();
+
+        if (datos.ok !== true) {
+          throw new Error(
+            datos.message ||
+            "No fue posible consultar la reevaluación"
+          );
+        }
+
+        if (datos.mostrar_evaluacion === true) {
+          estado.textContent =
+            "La reevaluación está disponible para Juany.";
+
+          estado.classList.add("exito");
+          evaluacion.classList.add("visible");
+
+        } else {
+          estado.textContent =
+            "La reevaluación todavía no está disponible.";
+
+          evaluacion.classList.remove("visible");
+        }
+
+      } catch (error) {
+        console.error("Error al consultar:", error);
+
+        estado.textContent =
+          "No se pudo consultar la reevaluación. " +
+          error.message;
+
+        estado.classList.add("error");
+        evaluacion.classList.remove("visible");
+      }
+    }
+
+    botonComenzar.addEventListener("click", function () {
+      alert(
+        "¡La conexión funciona! El siguiente paso será agregar el formulario."
+      );
+    });
+
+    consultarReevaluacion();
+  </script>
+
+</body>
+</html>
