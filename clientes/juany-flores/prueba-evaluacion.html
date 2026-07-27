@@ -1,205 +1,1050 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Prueba reevaluación MoveSmart</title>
+  <title>Reevaluación Funcional | MoveSmart</title>
+  <meta name="description" content="Reevaluación mensual MoveSmart de Juany Flores">
+  <link rel="preload" as="image" href="/movesmart-web/imagenes/fondo-preview-rutina.webp">
 
   <style>
-    * {
-      box-sizing: border-box;
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0c0812; --card:rgba(24,16,32,.62); --border:rgba(255,255,255,.10);
+      --text:#f7f2fb; --muted:#d5c9dd; --accent:#ff5a1f; --accent-2:#ff8b4f;
+      --container:min(1100px, calc(100% - 32px)); --shadow:0 10px 24px rgba(0,0,0,.24);
+    }
+    body{
+      font-family:'Segoe UI', Inter, system-ui, sans-serif; color:var(--text);
+      background:linear-gradient(180deg, rgba(8,10,18,.55), rgba(8,10,18,.78)), url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center/cover no-repeat;
+      min-height:100vh; overflow-x:hidden;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(73,58,146,.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(243,107,42,.18), transparent 20%),
+        linear-gradient(90deg, rgba(6,8,18,.18) 0%, rgba(6,8,18,.04) 38%, rgba(6,8,18,.10) 100%);
+    }
+    .wrap{width:var(--container); margin:0 auto; padding:28px 0 48px; position:relative; z-index:1;}
+    a{color:inherit; text-decoration:none}
+    .back{display:inline-flex; align-items:center; min-height:46px; padding:0 18px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid var(--border); font-weight:700;}
+    .brand{font-size:clamp(1.9rem, 4vw, 2.8rem); font-weight:800; letter-spacing:-.03em;}
+    .brand span{color:var(--accent)}
+    .hero,.section,.submit-card{background:rgba(24,16,32,.82); border:1px solid var(--border); box-shadow:var(--shadow);}
+    .hero{border-radius:32px; padding:30px; margin-bottom:22px;}
+    .eyebrow{display:inline-flex; padding:10px 14px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid var(--border); font-weight:700; margin-bottom:14px; color:var(--muted); font-size:.95rem;}
+    .hero h1{font-size:clamp(2rem, 4vw, 3.5rem); line-height:1.02; letter-spacing:-.04em; margin-bottom:12px;}
+    .hero p,.section-head p,.helper,.mini{color:var(--muted); line-height:1.7}
+    .notice{margin-top:18px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
+    .mini{border-radius:18px; padding:16px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);}
+    .mini strong{display:block; color:var(--text); margin-bottom:6px;}
+    form{display:grid; gap:18px}
+    .section{border-radius:28px; overflow:hidden;}
+    .section-head{background:rgba(23,36,79,.88); padding:18px 22px;}
+    .section-head h2{font-size:1.2rem; margin-bottom:4px;}
+    .section-body{padding:20px; display:grid; gap:16px;}
+    .field{border-radius:22px; padding:18px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);}
+    .title{display:block; font-size:1rem; font-weight:700; margin-bottom:12px; line-height:1.45;}
+    .req{color:#ff9b8a; margin-left:4px}
+    input[type="text"],input[type="number"],input[type="email"],input[type="tel"],textarea{
+      width:100%; border:none; outline:none; color:#17151d; background:rgba(255,255,255,.92); border-radius:16px; padding:14px 16px; font:inherit;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .options{display:grid; gap:12px}
+    .option{display:flex; align-items:flex-start; gap:10px; color:var(--muted); line-height:1.5}
+    .option input{margin-top:3px; accent-color:var(--accent); width:18px; height:18px; flex:0 0 auto;}
+    .inline-other{display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:center}
+    .submit-card{border-radius:26px; padding:22px;}
+    .submit-card h3{font-size:1.25rem; margin-bottom:8px;}
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+      margin-top:18px;
+    }
+    button{border:none; cursor:pointer; border-radius:16px; padding:14px 22px; font:inherit; font-weight:800}
+    .primary{background:linear-gradient(180deg, var(--accent), var(--accent-2)); color:white;}
+    .secondary{background:rgba(255,255,255,.08); color:white; border:1px solid rgba(255,255,255,.10);}
+    .status{display:none; border-radius:18px; padding:14px 16px; line-height:1.6; font-weight:600;}
+    .status.show{display:block}.status.ok{background:rgba(29,191,115,.12); border:1px solid rgba(29,191,115,.22); color:#d7ffea;}
+    .status.error{background:rgba(255,107,107,.12); border:1px solid rgba(255,107,107,.22); color:#ffe1e1;}
+    @media (max-width:860px){.notice{grid-template-columns:1fr}.actions{flex-direction:column;align-items:stretch}button{width:100%}}
+    @media (max-width:640px){.wrap{padding:18px 0 34px}.hero,.section-body,.submit-card{padding:18px}.section-head{padding:16px 18px}}
+
+    /* Header MoveSmart */
+    .container{
+      width:min(1200px, calc(100% - 48px));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
     }
 
-    body {
-      margin: 0;
-      padding: 24px 16px;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #243247;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(10,8,14,.44);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      margin-bottom:0;
+      padding:0;
+      display:block;
     }
 
-    .contenedor {
-      width: 100%;
-      max-width: 620px;
-      margin: 0 auto;
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:20px;
+      flex-wrap:nowrap;
+      overflow:hidden;
     }
 
-    .tarjeta {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    .top-brand{
+      font-size:0 !important;
+      line-height:0 !important;
+      letter-spacing:0 !important;
+      text-shadow:none !important;
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:flex-start !important;
+      flex:0 0 auto !important;
+      width:auto !important;
+      min-width:max-content !important;
+      color:#fff;
+      white-space:nowrap;
     }
 
-    .estado {
-      margin-bottom: 20px;
-      padding: 16px;
-      border-radius: 12px;
-      background: #eef3f8;
-      line-height: 1.5;
+    .top-brand span{display:none !important;}
+
+    .top-logo{
+      display:block;
+      height:68px;
+      width:auto;
+      max-width:none;
+      object-fit:contain;
+      filter:drop-shadow(0 12px 22px rgba(0,0,0,.42));
     }
 
-    .estado.exito {
-      background: #e9f8ef;
-      color: #166534;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:nowrap;
+      font-size:1rem;
+      color:#fff;
+      font-weight:700;
+      white-space:nowrap;
+      min-width:0;
     }
 
-    .estado.error {
-      background: #fff0f0;
-      color: #b42318;
+    .nav-links a{
+      position:relative;
+      opacity:1;
+      color:#fff;
+      text-shadow:0 1px 12px rgba(0,0,0,.18);
+      padding:0;
+      border-radius:0;
+      background:transparent;
+      border:none;
     }
 
-    .evaluacion {
-      display: none;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #dfe5ec;
+    .nav-links a.active,
+    .nav-links a:hover{color:#fff}
+
+    .nav-links a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-12px;
+      height:3px;
+      border-radius:999px;
+      background:var(--accent);
     }
 
-    .evaluacion.visible {
-      display: block;
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex:0 0 auto;
+      white-space:nowrap;
     }
 
-    h1 {
-      margin-top: 0;
-      font-size: 28px;
-      line-height: 1.2;
+    .top-socials{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
     }
 
-    h2 {
-      margin-top: 0;
-      font-size: 22px;
+    .top-social{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      transition:transform .22s ease, background .22s ease, box-shadow .22s ease;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
     }
 
-    p {
-      line-height: 1.6;
+    .top-social:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.10);
+      box-shadow:0 12px 26px rgba(0,0,0,.24);
     }
 
-    button {
-      width: 100%;
-      margin-top: 12px;
-      padding: 14px 18px;
-      border: none;
-      border-radius: 12px;
-      background: #2563eb;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
+    .top-social svg{
+      width:19px;
+      height:19px;
+      fill:currentColor;
     }
 
-    button:hover {
-      opacity: 0.92;
+    .top-social.instagram{color:#ff5a8a;}
+    .top-social.twitter{color:#4da3ff;}
+    .top-social.linkedin{color:#58a6ff;}
+    .top-social.spotify{color:#1ed760;}
+
+    .mobile-blog-link{display:none;}
+
+    .btn.small{
+      min-height:50px;
+      padding:0 24px;
+      border-radius:12px;
+      font-size:1rem;
     }
-  </style>
-</head>
 
-<body>
+    .page-wrap{
+      width:var(--container);
+      margin:0 auto;
+      padding:28px 0 48px;
+      position:relative;
+      z-index:1;
+    }
 
-  <main class="contenedor">
+    @media (max-width: 820px){
+      .top-logo{height:52px;}
+      .nav{min-height:66px;gap:10px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+      .nav::-webkit-scrollbar{display:none}
+      .nav-links{gap:12px;font-size:.78rem;font-weight:800;flex:0 0 auto;}
+      .nav-links a.active::after{bottom:-8px;height:3px;}
+      .nav-actions{gap:8px;}
+      .top-socials{gap:6px;}
+      .top-social{width:34px;height:34px;border-radius:11px;}
+      .top-social svg{width:16px;height:16px;}
+      .btn.small{min-height:36px;padding:0 13px;border-radius:11px;font-size:.8rem;}
+    }
 
-    <section class="tarjeta">
+    @media (max-width: 760px){
+      :root{--container:100%}
 
-      <h1>MoveSmart</h1>
+      .topbar{
+        position:sticky;
+        top:0;
+        background:rgba(8,6,13,.78);
+        backdrop-filter:blur(14px);
+        -webkit-backdrop-filter:blur(14px);
+        border-bottom:1px solid rgba(255,255,255,.10);
+      }
 
-      <div id="estado" class="estado">
-        Consultando si la reevaluación está disponible...
-      </div>
+      .container{
+        width:100%;
+        max-width:100%;
+        padding-left:34px;
+        padding-right:34px;
+      }
 
-      <div id="evaluacion" class="evaluacion">
+      .nav{
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-between;
+        align-items:center;
+        column-gap:8px;
+        row-gap:10px;
+        padding:14px 0 12px;
+        overflow:hidden;
+      }
 
-        <h2>Reevaluación Funcional MoveSmart</h2>
+      .top-brand{
+        order:1;
+        width:auto;
+        margin:0 0 0 18px !important;
+        flex:0 0 auto;
+      }
 
-        <p>
-          Completaste un nuevo mes de tu programa.
-          Ahora queremos saber cómo te has sentido,
-          qué ha mejorado y qué debemos ajustar para el próximo mes.
-        </p>
+      .top-logo{height:46px;}
 
-        <button type="button" id="botonComenzar">
-          Comenzar reevaluación
-        </button>
+      .nav-actions{
+        order:1;
+        width:auto;
+        margin-left:auto;
+        margin-right:18px;
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:6px;
+        flex:0 0 auto;
+        transform:translateX(-14px);
+      }
 
-      </div>
+      .top-socials{
+        width:auto;
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        gap:7px;
+        flex:0 0 auto;
+      }
 
-    </section>
+      .top-social{
+        width:auto;
+        height:auto;
+        border:none;
+        background:transparent;
+        border-radius:0;
+        box-shadow:none;
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+        padding:0;
+        flex:0 0 auto;
+      }
 
-  </main>
+      .top-social:hover{
+        transform:translateY(-1px);
+        background:transparent;
+        box-shadow:none;
+      }
 
-  <script>
-    /*
-      PEGA AQUÍ LA URL DE TU APPS SCRIPT.
-      Debe terminar en /exec.
-    */
-    const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbw-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOZ8/exec";
+      .top-social svg{
+        width:14px;
+        height:14px;
+      }
 
-    const CLIENTE_ID = "juany-flores";
+      .nav-actions > .btn.small{
+        display:inline-flex;
+        min-height:31px;
+        padding:0 11px;
+        border-radius:11px;
+        font-size:.68rem;
+        font-weight:850;
+        flex:0 0 auto;
+      }
 
-    const estado = document.getElementById("estado");
-    const evaluacion = document.getElementById("evaluacion");
-    const botonComenzar = document.getElementById("botonComenzar");
+      .nav-links{
+        order:2;
+        width:100%;
+        display:grid;
+        grid-template-columns:auto auto auto;
+        align-items:center;
+        justify-content:center;
+        column-gap:30px;
+        row-gap:0;
+        font-size:.76rem;
+        line-height:1;
+        font-weight:850;
+        color:#fff;
+        white-space:nowrap;
+        overflow:visible;
+      }
 
-    async function consultarReevaluacion() {
-      try {
-        const url =
-          APPS_SCRIPT_URL +
-          "?cliente_id=" +
-          encodeURIComponent(CLIENTE_ID);
+      .nav-links a{
+        position:relative;
+        padding-bottom:12px;
+        text-align:center;
+      }
 
-        const respuesta = await fetch(url);
+      .nav-links a.active::after{
+        left:50%;
+        right:auto;
+        width:46px;
+        transform:translateX(-50%);
+        bottom:0;
+        height:3px;
+      }
 
-        if (!respuesta.ok) {
-          throw new Error(
-            "El servidor respondió con código " +
-            respuesta.status
-          );
-        }
+      .mobile-blog-link{display:none !important;}
+      .page-wrap{padding:18px 0 34px;}
+    }
 
-        const datos = await respuesta.json();
+    @media (max-width: 390px){
+      .container{padding-left:30px;padding-right:30px;}
+      .top-brand{margin-left:14px !important;}
+      .top-logo{height:42px;}
+      .nav{padding:13px 0 11px;row-gap:9px;}
+      .nav-actions{gap:5px;margin-right:14px;transform:translateX(-12px);}
+      .top-socials{gap:6px;}
+      .top-social svg{width:13px;height:13px;}
+      .nav-actions > .btn.small{min-height:30px;padding:0 10px;font-size:.65rem;border-radius:10px;}
+      .nav-links{font-size:.74rem;column-gap:24px;}
+    }
 
-        if (datos.ok !== true) {
-          throw new Error(
-            datos.message ||
-            "No fue posible consultar la reevaluación"
-          );
-        }
+    @media (max-width: 350px){
+      .container{padding-left:24px;padding-right:24px;}
+      .top-brand{margin-left:10px !important;}
+      .top-logo{height:38px;}
+      .top-socials{gap:5px;}
+      .top-social svg{width:12px;height:12px;}
+      .nav-actions > .btn.small{padding:0 8px;font-size:.62rem;}
+      .nav-links{font-size:.69rem;column-gap:18px;}
+    }
 
-        if (datos.mostrar_evaluacion === true) {
-          estado.textContent =
-            "La reevaluación está disponible para Juany.";
+    /* Botón Blog naranjo del header */
+    .blog-header-btn{
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      min-height:54px !important;
+      padding:0 28px !important;
+      border-radius:14px !important;
+      background:linear-gradient(180deg, var(--accent-2), var(--accent)) !important;
+      color:#fff !important;
+      font-weight:800 !important;
+      letter-spacing:.01em !important;
+      border:1px solid rgba(255,255,255,.08) !important;
+      box-shadow:0 10px 26px rgba(243,107,42,.22) !important;
+      text-decoration:none !important;
+      white-space:nowrap !important;
+    }
 
-          estado.classList.add("exito");
-          evaluacion.classList.add("visible");
+    .blog-header-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(243,107,42,.28) !important;
+      filter:brightness(1.03);
+    }
 
-        } else {
-          estado.textContent =
-            "La reevaluación todavía no está disponible.";
-
-          evaluacion.classList.remove("visible");
-        }
-
-      } catch (error) {
-        console.error("Error al consultar:", error);
-
-        estado.textContent =
-          "No se pudo consultar la reevaluación. " +
-          error.message;
-
-        estado.classList.add("error");
-        evaluacion.classList.remove("visible");
+    @media (max-width:820px){
+      .blog-header-btn{
+        min-height:36px !important;
+        padding:0 13px !important;
+        border-radius:11px !important;
+        font-size:.8rem !important;
       }
     }
 
-    botonComenzar.addEventListener("click", function () {
-      alert(
-        "¡La conexión funciona! El siguiente paso será agregar el formulario."
-      );
+    @media (max-width:760px){
+      .blog-header-btn{
+        min-height:31px !important;
+        padding:0 11px !important;
+        border-radius:11px !important;
+        font-size:.68rem !important;
+        font-weight:850 !important;
+      }
+    }
+
+    @media (max-width:390px){
+      .blog-header-btn{
+        min-height:30px !important;
+        padding:0 10px !important;
+        font-size:.65rem !important;
+        border-radius:10px !important;
+      }
+    }
+
+    @media (max-width:350px){
+      .blog-header-btn{
+        padding:0 8px !important;
+        font-size:.62rem !important;
+      }
+    }
+
+    /* ============ MODO INTERACTIVO PASO A PASO ============ */
+    .step-progress{
+      margin-bottom:20px;
+    }
+
+    .step-progress-track{
+      width:100%;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      overflow:hidden;
+      margin-bottom:10px;
+    }
+
+    .step-progress-bar{
+      height:100%;
+      width:12.5%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent-2), var(--accent));
+      transition:width .3s ease;
+    }
+
+    .step-progress-label{
+      color:var(--muted);
+      font-size:.85rem;
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    .step{display:none;}
+    .step.active{display:block;}
+
+    .step-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:0 20px 20px;
+    }
+
+    .step-actions .primary,
+    .step-actions .secondary{
+      min-width:150px;
+    }
+
+    .step-actions.first{
+      justify-content:flex-end;
+    }
+
+    @media (max-width:640px){
+      .step-actions{flex-direction:column-reverse; align-items:stretch; padding:0 18px 18px;}
+      .step-actions button{width:100%;}
+    }
+  
+
+    /* Ajustes específicos de la reevaluación */
+    .evaluation-gate{display:none}
+    .evaluation-gate.active{display:block}
+    .step-progress{margin:0 0 20px}
+    .step-progress-track{width:100%;height:8px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden;margin-bottom:10px}
+    .step-progress-bar{height:100%;width:20%;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));transition:width .3s ease}
+    .step-progress-label{color:var(--muted);font-size:.85rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase}
+    .step{display:none}
+    .step.active{display:block}
+    .step-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 20px 20px}
+    .step-actions.first{justify-content:flex-end}
+    .scale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+    .scale.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .scale .option{position:relative}
+    .scale .option input{position:absolute;opacity:0;pointer-events:none}
+    .scale .option span{display:grid;place-items:center;min-height:44px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);font-weight:800;color:var(--muted);cursor:pointer}
+    .scale .option input:checked + span{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:white;border-color:transparent}
+    .scale-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-top:8px}
+    .choice-card{position:relative}
+    .choice-card input{position:absolute;opacity:0;pointer-events:none}
+    .choice-card span{display:block;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:var(--muted);line-height:1.5;cursor:pointer}
+    .choice-card input:checked + span{background:rgba(243,107,42,.14);border-color:rgba(243,107,42,.44);color:var(--text)}
+    .summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+    .summary-item{padding:15px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+    .summary-item small{display:block;color:var(--muted);margin-bottom:5px}
+    .next-month{background:rgba(23,36,79,.72);border-left:4px solid var(--accent)}
+    .hidden{display:none!important}
+    .status-inline{display:none;border-radius:18px;padding:14px 16px;line-height:1.6;font-weight:700;margin-bottom:14px}
+    .status-inline.show{display:block}
+    .status-inline.ok{background:rgba(29,191,115,.12);border:1px solid rgba(29,191,115,.22);color:#d7ffea}
+    .status-inline.error{background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.22);color:#ffe1e1}
+
+    .autosave-note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.5;
+    }
+
+    @media(max-width:640px){
+      .scale{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .scale.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+      .summary-grid{grid-template-columns:1fr}
+      .step-actions{flex-direction:column-reverse;align-items:stretch;padding:0 18px 18px}
+      .step-actions button{width:100%}
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+    <div class="container nav">
+      <a href="/movesmart-web/index.html#inicio" class="top-brand" aria-label="Inicio MoveSmart">
+        <img class="top-logo" src="/movesmart-web/imagenes/logo.webp" alt="MoveSmart">
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="/movesmart-web/index.html#inicio" class="active">Inicio</a>
+        <a href="/movesmart-web/index.html#como-funciona">Cómo Funciona</a>
+        <a href="/movesmart-web/acceso-clientes.html">Acceso Clientes</a>
+        <a href="/movesmart-web/blog/portada.html" class="mobile-blog-link">Blog</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="top-socials" aria-label="Redes sociales MoveSmart">
+          <a class="top-social instagram" href="https://www.instagram.com/movesmart.plan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2m0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2M17.2 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1"/></svg>
+          </a>
+          <a class="top-social twitter" href="https://x.com/movesmartchile" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.7 1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9A12 12 0 0 1 3 5.5a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1c-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1a4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.5 21c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.4 2.1-2.2z"/></svg>
+          </a>
+          <a class="top-social linkedin" href="https://www.linkedin.com/in/movesmart-chile-b4b03b40a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5M3 10h4v11H3zm6 0h3.8v1.5h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H9z"/></svg>
+          </a>
+          <a class="top-social spotify" href="https://open.spotify.com/user/31lcttv3ugvu6s5ifvcj5tf5syre" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.6 14.5c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-1-.4.1-.7-.1-.8-.5s.1-.7.5-.8c4-.9 7.5-.5 10.3 1.1.3.2.4.6.2 1m1.2-2.7c-.2.4-.7.5-1.1.3-2.8-1.7-7.1-2.2-10.4-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.1 8.6-.6 11.8 1.4.4.2.5.7.2 1m.1-2.8c-3.4-2-9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.1 9.8-.9 13.8 1.5.4.3.6.9.3 1.3-.3.4-.9.5-1.3.2"/></svg>
+          </a>
+        </div>
+        <a href="/movesmart-web/blog/portada.html" class="blog-header-btn">Blog</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <section class="hero">
+      <div class="eyebrow">📋 Reevaluación mensual</div>
+      <h1>Reevaluación Funcional MoveSmart</h1>
+      <p>
+        Completaste un nuevo mes de tu programa. Esta reevaluación nos permitirá conocer tus avances y adaptar el siguiente mes a lo que realmente necesitas.
+      </p>
+      <div class="notice">
+        <div class="mini"><strong>Breve y sencilla</strong>Te tomará aproximadamente 3 a 5 minutos.</div>
+        <div class="mini"><strong>Seguimiento real</strong>Tus respuestas se utilizarán para adaptar tu próximo mes.</div>
+        <div class="mini"><strong>Sin respuestas correctas</strong>Responde según cómo te has sentido realmente.</div>
+      </div>
+    </section>
+
+    <section class="submit-card">
+      <div id="availabilityStatus" class="status-inline show">Consultando si tu reevaluación está disponible...</div>
+      <div id="startGate" class="evaluation-gate">
+        <h3>Tu opinión guía el próximo paso</h3>
+        <p class="mini">Son 5 bloques breves. Puedes avanzar con calma y volver atrás si necesitas corregir una respuesta.</p>
+        <div class="actions">
+          <button type="button" class="primary" id="startBtn">Comenzar reevaluación</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="evaluationArea" class="hidden">
+      <div class="step-progress">
+        <div class="step-progress-track"><div class="step-progress-bar" id="stepProgressBar"></div></div>
+        <div class="step-progress-label" id="stepProgressLabel">Paso 1 de 6</div><div class="autosave-note">Tus respuestas se guardan automáticamente en este dispositivo.</div>
+      </div>
+
+      <form id="reevaluationForm" novalidate>
+
+        <section class="section step active" data-step="1">
+          <div class="section-head">
+            <h2>🩺 ¿Cómo te has sentido?</h2>
+            <p>Cuéntanos cómo han estado tus molestias y tu energía.</p>
+          </div>
+          <div class="section-body">
+            <div class="field">
+              <span class="title">Dolor o molestia en las rodillas durante la última semana <span class="req">*</span></span>
+              <div class="scale">
+                <label class="option"><input type="radio" name="dolor_rodillas" value="0" required><span>0</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="1" required><span>1</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="2" required><span>2</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="3" required><span>3</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="4" required><span>4</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="5" required><span>5</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="6" required><span>6</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="7" required><span>7</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="8" required><span>8</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="9" required><span>9</span></label><label class="option"><input type="radio" name="dolor_rodillas" value="10" required><span>10</span></label>
+              </div>
+              <div class="scale-labels"><span>Sin dolor</span><span>Muy intenso</span></div>
+            </div>
+
+            <div class="field">
+              <span class="title">Dolor o molestia en la cadera durante la última semana <span class="req">*</span></span>
+              <div class="scale">
+                <label class="option"><input type="radio" name="dolor_cadera" value="0" required><span>0</span></label><label class="option"><input type="radio" name="dolor_cadera" value="1" required><span>1</span></label><label class="option"><input type="radio" name="dolor_cadera" value="2" required><span>2</span></label><label class="option"><input type="radio" name="dolor_cadera" value="3" required><span>3</span></label><label class="option"><input type="radio" name="dolor_cadera" value="4" required><span>4</span></label><label class="option"><input type="radio" name="dolor_cadera" value="5" required><span>5</span></label><label class="option"><input type="radio" name="dolor_cadera" value="6" required><span>6</span></label><label class="option"><input type="radio" name="dolor_cadera" value="7" required><span>7</span></label><label class="option"><input type="radio" name="dolor_cadera" value="8" required><span>8</span></label><label class="option"><input type="radio" name="dolor_cadera" value="9" required><span>9</span></label><label class="option"><input type="radio" name="dolor_cadera" value="10" required><span>10</span></label>
+              </div>
+              <div class="scale-labels"><span>Sin dolor</span><span>Muy intenso</span></div>
+            </div>
+
+            <div class="field">
+              <span class="title">En comparación con el inicio del programa, ¿cómo sientes tus molestias? <span class="req">*</span></span>
+              <div class="options">
+                <label class="choice-card"><input type="radio" name="cambio_molestias" value="Mucho mejor" required><span>Mucho mejor</span></label><label class="choice-card"><input type="radio" name="cambio_molestias" value="Un poco mejor" required><span>Un poco mejor</span></label><label class="choice-card"><input type="radio" name="cambio_molestias" value="Igual" required><span>Igual</span></label><label class="choice-card"><input type="radio" name="cambio_molestias" value="Un poco peor" required><span>Un poco peor</span></label><label class="choice-card"><input type="radio" name="cambio_molestias" value="Mucho peor" required><span>Mucho peor</span></label>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="title">¿Cómo sientes tu nivel de energía actualmente? <span class="req">*</span></span>
+              <div class="scale five">
+                <label class="option"><input type="radio" name="energia" value="1" required><span>1</span></label><label class="option"><input type="radio" name="energia" value="2" required><span>2</span></label><label class="option"><input type="radio" name="energia" value="3" required><span>3</span></label><label class="option"><input type="radio" name="energia" value="4" required><span>4</span></label><label class="option"><input type="radio" name="energia" value="5" required><span>5</span></label>
+              </div>
+              <div class="scale-labels"><span>Muy bajo</span><span>Muy bueno</span></div>
+            </div>
+          </div>
+          <div class="step-actions first">
+            <button type="button" class="primary" onclick="nextStep()">Siguiente ›</button>
+          </div>
+        </section>
+
+        <section class="section step" data-step="2">
+          <div class="section-head">
+            <h2>🚶 Cambios en tu vida diaria</h2>
+            <p>Queremos saber si las actividades cotidianas se sienten diferentes.</p>
+          </div>
+          <div class="section-body">
+            <div class="field">
+              <span class="title">¿Cómo te sientes al levantarte de una silla? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="levantarse_silla" value="Mucho más fácil" required><span>Mucho más fácil</span></label><label class="choice-card"><input type="radio" name="levantarse_silla" value="Un poco más fácil" required><span>Un poco más fácil</span></label><label class="choice-card"><input type="radio" name="levantarse_silla" value="Igual" required><span>Igual</span></label><label class="choice-card"><input type="radio" name="levantarse_silla" value="Más difícil" required><span>Más difícil</span></label></div>
+            </div>
+            <div class="field">
+              <span class="title">¿Cómo te sientes al subir o bajar escaleras? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="escaleras" value="Mucho más segura" required><span>Mucho más segura</span></label><label class="choice-card"><input type="radio" name="escaleras" value="Un poco más segura" required><span>Un poco más segura</span></label><label class="choice-card"><input type="radio" name="escaleras" value="Igual" required><span>Igual</span></label><label class="choice-card"><input type="radio" name="escaleras" value="Menos segura" required><span>Menos segura</span></label></div>
+            </div>
+            <div class="field">
+              <span class="title">¿Puedes permanecer de pie durante tu trabajo con menos molestias? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="trabajo_de_pie" value="Sí, claramente" required><span>Sí, claramente</span></label><label class="choice-card"><input type="radio" name="trabajo_de_pie" value="Un poco" required><span>Un poco</span></label><label class="choice-card"><input type="radio" name="trabajo_de_pie" value="No he notado cambios" required><span>No he notado cambios</span></label><label class="choice-card"><input type="radio" name="trabajo_de_pie" value="Me siento peor" required><span>Me siento peor</span></label></div>
+            </div>
+            <div class="field">
+              <span class="title">¿Cómo sientes tu confianza al moverte? <span class="req">*</span></span>
+              <div class="scale five"><label class="option"><input type="radio" name="confianza_movimiento" value="1" required><span>1</span></label><label class="option"><input type="radio" name="confianza_movimiento" value="2" required><span>2</span></label><label class="option"><input type="radio" name="confianza_movimiento" value="3" required><span>3</span></label><label class="option"><input type="radio" name="confianza_movimiento" value="4" required><span>4</span></label><label class="option"><input type="radio" name="confianza_movimiento" value="5" required><span>5</span></label></div>
+              <div class="scale-labels"><span>Muy baja</span><span>Muy buena</span></div>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
+            <button type="button" class="primary" onclick="nextStep()">Siguiente ›</button>
+          </div>
+        </section>
+
+        <section class="section step" data-step="3">
+          <div class="section-head">
+            <h2>🏋️ ¿Cómo fue tu programa?</h2>
+            <p>Esto nos ayuda a ajustar la duración, la dificultad y los ejercicios.</p>
+          </div>
+          <div class="section-body">
+            <div class="field">
+              <span class="title">¿Cuántas sesiones realizaste normalmente por semana? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="sesiones_semana" value="3 sesiones" required><span>3 sesiones</span></label><label class="choice-card"><input type="radio" name="sesiones_semana" value="2 sesiones" required><span>2 sesiones</span></label><label class="choice-card"><input type="radio" name="sesiones_semana" value="1 sesión" required><span>1 sesión</span></label><label class="choice-card"><input type="radio" name="sesiones_semana" value="Algunas semanas ninguna" required><span>Algunas semanas ninguna</span></label></div>
+            </div>
+            <div class="field">
+              <span class="title">¿Qué tan fácil te resultó seguir el programa? <span class="req">*</span></span>
+              <div class="scale five"><label class="option"><input type="radio" name="facilidad_programa" value="1" required><span>1</span></label><label class="option"><input type="radio" name="facilidad_programa" value="2" required><span>2</span></label><label class="option"><input type="radio" name="facilidad_programa" value="3" required><span>3</span></label><label class="option"><input type="radio" name="facilidad_programa" value="4" required><span>4</span></label><label class="option"><input type="radio" name="facilidad_programa" value="5" required><span>5</span></label></div>
+              <div class="scale-labels"><span>Muy difícil</span><span>Muy fácil</span></div>
+            </div>
+            <div class="field">
+              <span class="title">¿Cuál fue la principal dificultad para cumplirlo? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="principal_dificultad" value="Falta de tiempo" required><span>Falta de tiempo</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="Cansancio" required><span>Cansancio</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="Dolor o molestias" required><span>Dolor o molestias</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="Me costó motivarme" required><span>Me costó motivarme</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="No entendía algunos ejercicios" required><span>No entendía algunos ejercicios</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="La rutina era muy larga" required><span>La rutina era muy larga</span></label><label class="choice-card"><input type="radio" name="principal_dificultad" value="Otra" required><span>Otra</span></label></div>
+              <input id="otraDificultad" name="otra_dificultad" type="text" class="hidden" placeholder="Escribe la otra dificultad" style="margin-top:12px">
+            </div>
+            <div class="field">
+              <span class="title">¿En qué aspecto sientes que has mejorado más? <span class="req">*</span></span>
+              <div class="options"><label class="choice-card"><input type="radio" name="mayor_mejora" value="Fuerza" required><span>Fuerza</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Movilidad" required><span>Movilidad</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Equilibrio" required><span>Equilibrio</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Dolor" required><span>Dolor</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Energía" required><span>Energía</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Confianza al moverme" required><span>Confianza al moverme</span></label><label class="choice-card"><input type="radio" name="mayor_mejora" value="Aún no noto mejoras" required><span>Aún no noto mejoras</span></label></div>
+            </div>
+
+          </div>
+          <div class="step-actions">
+            <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
+            <button type="button" class="primary" onclick="nextStep()">Siguiente ›</button>
+          </div>
+        </section>
+
+        <section class="section step" data-step="4">
+          <div class="section-head">
+            <h2>💬 Ayúdanos a mejorar tu programa</h2>
+            <p>Cuéntanos qué ejercicios te ayudaron y qué podríamos adaptar.</p>
+          </div>
+          <div class="section-body">
+            <div class="field"><label class="title" for="ejercicioIncomodo">¿Hubo algún ejercicio incómodo o difícil?</label><textarea id="ejercicioIncomodo" name="ejercicio_incomodo"></textarea></div>
+            <div class="field"><label class="title" for="ejercicioUtil">¿Hubo algún ejercicio especialmente útil o agradable?</label><textarea id="ejercicioUtil" name="ejercicio_util"></textarea></div>
+            <div class="field"><label class="title" for="cambiosProximoMes">¿Hay algo que te gustaría cambiar para el próximo mes?</label><textarea id="cambiosProximoMes" name="cambios_proximo_mes"></textarea></div>
+          </div>
+          <div class="step-actions">
+            <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
+            <button type="button" class="primary" onclick="nextStep()">Siguiente ›</button>
+          </div>
+        </section>
+
+        <section class="section step" data-step="5">
+          <div class="section-head">
+            <h2>📈 Tu próximo mes en MoveSmart</h2>
+            <p>La siguiente etapa se adaptará según tus respuestas.</p>
+          </div>
+          <div class="section-body">
+            <div class="field next-month">
+              <span class="title">¿Qué trabajaremos?</span>
+              <p class="mini">
+                Seguiremos fortaleciendo los músculos que protegen tus rodillas y cadera.
+                También progresaremos gradualmente la movilidad, el equilibrio y la confianza
+                al realizar movimientos cotidianos. Los ajustes específicos se definirán
+                considerando cómo te hayas sentido durante este mes.
+              </p>
+            </div>
+            <div class="field">
+              <span class="title">¿Quieres continuar con tu programa MoveSmart el próximo mes? <span class="req">*</span></span>
+              <div class="options">
+                <label class="choice-card"><input type="radio" name="continuidad" value="Sí, quiero continuar" required><span><strong>Sí, quiero continuar</strong><br>Quiero recibir mi programa adaptado para el próximo mes.</span></label>
+                <label class="choice-card"><input type="radio" name="continuidad" value="Quiero conversar antes de decidir" required><span><strong>Quiero conversar antes de decidir</strong><br>Prefiero resolver algunas dudas antes de continuar.</span></label>
+                <label class="choice-card"><input type="radio" name="continuidad" value="Por ahora no quiero continuar" required><span><strong>Por ahora no quiero continuar</strong><br>Mi decisión quedará registrada sin presión.</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
+            <button type="button" class="primary" onclick="nextStep()">Revisar respuestas ›</button>
+          </div>
+        </section>
+
+        <section class="step" data-step="6">
+          <div class="submit-card">
+            <h3>Revisa y envía tu reevaluación</h3>
+            <p class="mini">Al enviarla, revisaré tus respuestas para definir los ajustes de tu próximo mes.</p>
+            <div id="formStatus" class="status"></div>
+            <div class="actions">
+              <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
+              <button type="submit" class="primary" id="submitBtn">Enviar mi reevaluación</button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <section id="resultCard" class="submit-card hidden">
+      <h3>Evaluación enviada correctamente 💙</h3>
+      <p class="mini">Gracias por responder. Tus respuestas ya fueron enviadas para revisión.</p>
+      <div id="summaryGrid" class="summary-grid"></div>
+      <div id="continuityMessage" class="status-inline ok show"></div>
+    </section>
+  </div>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbW-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOz8/exec";
+    const CLIENTE_ID = "juany-flores";
+    const NOMBRE_CLIENTE = "Juany Flores";
+    const MES_PROGRAMA = 1;
+
+    const totalSteps = 6;
+    let currentStep = 1;
+    let sending = false;
+
+    const form = document.getElementById("reevaluationForm");
+    const statusBox = document.getElementById("formStatus");
+    const submitBtn = document.getElementById("submitBtn");
+    const availabilityStatus = document.getElementById("availabilityStatus");
+    const startGate = document.getElementById("startGate");
+    const evaluationArea = document.getElementById("evaluationArea");
+    const resultCard = document.getElementById("resultCard");
+    const otraDificultad = document.getElementById("otraDificultad");
+
+    function showStatus(message, type) {
+      statusBox.className = "status show " + type;
+      statusBox.textContent = message;
+    }
+
+    function getRadioValue(name) {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      return selected ? selected.value : "";
+    }
+
+    async function checkAvailability() {
+      try {
+        const response = await fetch(APPS_SCRIPT_URL + "?cliente_id=" + encodeURIComponent(CLIENTE_ID));
+        const data = await response.json();
+
+        if (!response.ok || data.ok !== true) throw new Error(data.message || "No fue posible consultar la reevaluación");
+
+        if (data.mostrar_evaluacion === true) {
+          availabilityStatus.className = "status-inline ok show";
+          availabilityStatus.textContent = "Tu reevaluación mensual está disponible.";
+          startGate.classList.add("active");
+        } else {
+          availabilityStatus.className = "status-inline show";
+          availabilityStatus.textContent = "Tu reevaluación todavía no está disponible.";
+        }
+      } catch (error) {
+        availabilityStatus.className = "status-inline error show";
+        availabilityStatus.textContent = "No pudimos consultar la reevaluación. Inténtalo más tarde.";
+        console.error(error);
+      }
+    }
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      startGate.classList.remove("active");
+      evaluationArea.classList.remove("hidden");
+      window.scrollTo({ top: evaluationArea.offsetTop - 90, behavior: "smooth" });
     });
 
-    consultarReevaluacion();
-  </script>
+    document.querySelectorAll('input[name="principal_dificultad"]').forEach(input => {
+      input.addEventListener("change", () => {
+        const show = input.value === "Otra";
+        otraDificultad.classList.toggle("hidden", !show);
+        otraDificultad.required = show;
+        if (!show) otraDificultad.value = "";
+      });
+    });
 
+    function goToStep(n) {
+      document.querySelectorAll(".step").forEach(step => step.classList.remove("active"));
+      document.querySelector(`.step[data-step="${n}"]`).classList.add("active");
+      document.getElementById("stepProgressBar").style.width = `${(n / totalSteps) * 100}%`;
+      document.getElementById("stepProgressLabel").textContent = `Paso ${n} de ${totalSteps}`;
+      currentStep = n;
+      statusBox.className = "status";
+      window.scrollTo({ top: evaluationArea.offsetTop - 90, behavior: "smooth" });
+    }
+
+    function validateCurrentStep() {
+      const section = document.querySelector(`.step[data-step="${currentStep}"]`);
+      if (!section) return true;
+
+      const required = [...section.querySelectorAll("[required]")];
+      const checkedNames = new Set();
+
+      for (const field of required) {
+        if (field.type === "radio") {
+          if (checkedNames.has(field.name)) continue;
+          checkedNames.add(field.name);
+          if (!section.querySelector(`input[name="${field.name}"]:checked`)) return false;
+        } else if (!field.checkValidity()) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function nextStep() {
+      if (!validateCurrentStep()) {
+        alert("Completa las preguntas obligatorias antes de continuar.");
+        return;
+      }
+      if (currentStep < totalSteps) goToStep(currentStep + 1);
+    }
+
+    function prevStep() {
+      if (currentStep > 1) goToStep(currentStep - 1);
+    }
+
+    function buildPayload() {
+      return {
+        nombre: NOMBRE_CLIENTE,
+        cliente_id: CLIENTE_ID,
+        mes_programa: MES_PROGRAMA,
+        dolor_rodillas: getRadioValue("dolor_rodillas"),
+        dolor_cadera: getRadioValue("dolor_cadera"),
+        cambio_molestias: getRadioValue("cambio_molestias"),
+        energia: getRadioValue("energia"),
+        levantarse_silla: getRadioValue("levantarse_silla"),
+        escaleras: getRadioValue("escaleras"),
+        trabajo_de_pie: getRadioValue("trabajo_de_pie"),
+        confianza_movimiento: getRadioValue("confianza_movimiento"),
+        sesiones_semana: getRadioValue("sesiones_semana"),
+        facilidad_programa: getRadioValue("facilidad_programa"),
+        principal_dificultad: getRadioValue("principal_dificultad"),
+        otra_dificultad: otraDificultad.value.trim(),
+        mayor_mejora: getRadioValue("mayor_mejora"),
+        ejercicio_incomodo: document.getElementById("ejercicioIncomodo").value.trim(),
+        ejercicio_util: document.getElementById("ejercicioUtil").value.trim(),
+        cambios_proximo_mes: document.getElementById("cambiosProximoMes").value.trim(),
+        continuidad: getRadioValue("continuidad"),
+        fecha_envio: new Date().toISOString(),
+        url_pagina: window.location.href,
+        user_agent: navigator.userAgent
+      };
+    }
+
+
+    const STORAGE_KEY = `movesmart_reevaluacion_${CLIENTE_ID}_mes_${MES_PROGRAMA}`;
+    const SENT_KEY = `${STORAGE_KEY}_enviada`;
+
+    function saveDraft() {
+      const draft = {};
+      form.querySelectorAll("input, textarea").forEach(field => {
+        if (field.type === "radio") {
+          if (field.checked) draft[field.name] = field.value;
+        } else {
+          draft[field.name] = field.value;
+        }
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+    }
+
+    function restoreDraft() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const draft = JSON.parse(raw);
+        Object.entries(draft).forEach(([name, value]) => {
+          const radios = form.querySelectorAll(`input[type="radio"][name="${name}"]`);
+          if (radios.length) {
+            radios.forEach(radio => radio.checked = radio.value === value);
+          } else {
+            const field = form.elements[name];
+            if (field) field.value = value;
+          }
+        });
+
+        if (getRadioValue("principal_dificultad") === "Otra") {
+          otraDificultad.classList.remove("hidden");
+          otraDificultad.required = true;
+        }
+      } catch (error) {
+        console.warn("No se pudo restaurar el borrador", error);
+      }
+    }
+
+    form.addEventListener("input", saveDraft);
+    form.addEventListener("change", saveDraft);
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (sending) return;
+
+      if (!form.checkValidity()) {
+        showStatus("Completa las preguntas obligatorias antes de enviar.", "error");
+        return;
+      }
+
+      sending = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+      const payload = buildPayload();
+
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        if (!response.ok || result.ok !== true) throw new Error(result.message || "No fue posible guardar la reevaluación");
+
+        localStorage.setItem(SENT_KEY, "true");
+        localStorage.removeItem(STORAGE_KEY);
+        evaluationArea.classList.add("hidden");
+        resultCard.classList.remove("hidden");
+
+        document.getElementById("summaryGrid").innerHTML = `
+          <div class="summary-item"><small>Dolor en rodillas</small><strong>${payload.dolor_rodillas}/10</strong></div>
+          <div class="summary-item"><small>Dolor en cadera</small><strong>${payload.dolor_cadera}/10</strong></div>
+          <div class="summary-item"><small>Sesiones por semana</small><strong>${payload.sesiones_semana}</strong></div>
+          <div class="summary-item"><small>Mayor mejora</small><strong>${payload.mayor_mejora}</strong></div>
+          <div class="summary-item"><small>Principal dificultad</small><strong>${payload.principal_dificultad}</strong></div>
+          <div class="summary-item"><small>Continuidad</small><strong>${payload.continuidad}</strong></div>
+        `;
+
+        const continuityMessage = document.getElementById("continuityMessage");
+        if (payload.continuidad === "Sí, quiero continuar") {
+          continuityMessage.innerHTML = "<strong>¡Excelente!</strong><br>Revisaré tus respuestas y adaptaré tu programa para el próximo mes.";
+        } else if (payload.continuidad === "Quiero conversar antes de decidir") {
+          continuityMessage.innerHTML = "<strong>Gracias por contármelo.</strong><br>Me pondré en contacto contigo para conversar antes de continuar.";
+        } else {
+          continuityMessage.innerHTML = "<strong>Gracias por completar tu reevaluación.</strong><br>Tu decisión quedó registrada y será respetada.";
+        }
+
+        window.scrollTo({ top: resultCard.offsetTop - 90, behavior: "smooth" });
+      } catch (error) {
+        showStatus("No pudimos enviar tu reevaluación. Revisa tu conexión e inténtalo nuevamente.", "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar mi reevaluación";
+        sending = false;
+        console.error(error);
+      }
+    });
+
+    restoreDraft();
+    goToStep(1);
+
+    if (localStorage.getItem(SENT_KEY) === "true") {
+      availabilityStatus.className = "status-inline ok show";
+      availabilityStatus.textContent = "Esta reevaluación ya fue enviada desde este dispositivo.";
+      startGate.classList.remove("active");
+    } else {
+      checkAvailability();
+    }
+  </script>
 </body>
 </html>
