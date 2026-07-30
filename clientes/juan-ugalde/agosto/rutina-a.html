@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -581,6 +583,11 @@ cursor:pointer;
 font-family:inherit;
 font-size:1rem;
 }
+.video-btn:disabled{
+opacity:.5;
+cursor:not-allowed;
+box-shadow:none;
+}
 .simple-card,.note,.finish-session-text{
 background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
 border:1px solid rgba(255,255,255,.12);
@@ -915,6 +922,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Respiración y cambio de postura</div>
         <p class="exercise-desc">Ponte de pie, alarga suavemente la columna y realiza tres respiraciones profundas.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/isUJGq_GLas" data-title="Respiración y cambio de postura">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Respiraciones</span>3</div>
@@ -925,6 +933,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Círculos de hombros</div>
         <p class="exercise-desc">Lleva los hombros hacia atrás y abajo sin tensar el cuello.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/F-jzIIg4nWw" data-title="Círculos de hombros">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8</div>
@@ -935,6 +944,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación suave de cuello</div>
         <p class="exercise-desc">Gira la cabeza hacia cada lado dentro de un rango cómodo.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=UrRPuBnXuBY" data-title="Rotación suave de cuello">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>4 por lado</div>
@@ -945,6 +955,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Abrir y cerrar las manos</div>
         <p class="exercise-desc">Abre los dedos y luego cierra las manos sin apretar con fuerza.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/yAwXed7mmH4" data-title="Abrir y cerrar las manos">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -987,6 +998,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación cervical suave</div>
         <p class="exercise-desc">Gira la cabeza lentamente hacia cada lado sin llevar el movimiento al dolor.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/zcHMG-X2nlQ" data-title="Rotación cervical suave">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>5 por lado</div>
@@ -997,6 +1009,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Círculos de hombros</div>
         <p class="exercise-desc">Realiza círculos amplios hacia atrás, manteniendo los brazos relajados.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/F-jzIIg4nWw" data-title="Círculos de hombros">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1007,6 +1020,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación torácica</div>
         <p class="exercise-desc">Con los brazos cruzados frente al pecho, gira suavemente el tronco hacia cada lado.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/y_77QfxXYe0" data-title="Rotación torácica">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>6 por lado</div>
@@ -1017,6 +1031,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Movilidad de muñecas</div>
         <p class="exercise-desc">Haz círculos pequeños hacia ambos lados y abre y cierra los dedos.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/81ymcRwgrD4" data-title="Movilidad de muñecas">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8 por lado</div>
@@ -1027,6 +1042,8 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Sentarse y levantarse</div>
         <p class="exercise-desc">Desde una silla estable, ponte de pie y vuelve a sentarte con control.</p>
+        <!-- Falta definir el enlace del video de este ejercicio -->
+        <button class="video-btn" type="button" disabled title="Video pendiente de agregar">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8</div>
@@ -1069,6 +1086,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación cervical suave</div>
         <p class="exercise-desc">Gira la cabeza hacia cada lado manteniendo los hombros relajados.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/zcHMG-X2nlQ" data-title="Rotación cervical suave">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>5 por lado</div>
@@ -1079,6 +1097,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Inclinación lateral de cuello</div>
         <p class="exercise-desc">Acerca suavemente la oreja al hombro sin levantar el hombro contrario.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/yDYnBz5oQCU" data-title="Inclinación lateral de cuello">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Duración</span>10 seg por lado</div>
@@ -1089,6 +1108,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Círculos de hombros</div>
         <p class="exercise-desc">Realiza círculos hacia atrás buscando soltar la parte alta de la espalda.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/F-jzIIg4nWw" data-title="Círculos de hombros">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1099,6 +1119,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación torácica</div>
         <p class="exercise-desc">Gira el tronco hacia cada lado manteniendo la pelvis estable.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/y_77QfxXYe0" data-title="Rotación torácica">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8 por lado</div>
@@ -1109,6 +1130,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Apertura de pecho</div>
         <p class="exercise-desc">Lleva suavemente los brazos hacia atrás sin arquear demasiado la zona lumbar.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=URceRsgda0g" data-title="Apertura de pecho">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8</div>
@@ -1119,6 +1141,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Movilidad de muñecas y dedos</div>
         <p class="exercise-desc">Combina círculos de muñeca con abrir, cerrar y separar los dedos.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/81ymcRwgrD4" data-title="Movilidad de muñecas y dedos">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1129,6 +1152,8 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Sentarse y levantarse</div>
         <p class="exercise-desc">Ponte de pie desde una silla estable y vuelve a sentarte lentamente.</p>
+        <!-- Falta definir el enlace del video de este ejercicio -->
+        <button class="video-btn" type="button" disabled title="Video pendiente de agregar">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1139,6 +1164,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Movilidad de tobillos</div>
         <p class="exercise-desc">Eleva alternadamente punta y talón para recuperar movimiento.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=yubU17YnuUs" data-title="Movilidad de tobillos">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1149,6 +1175,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Elevaciones de talones</div>
         <p class="exercise-desc">Eleva ambos talones y baja lentamente.</p>
+        <button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=xDrezw4UkoE" data-title="Elevaciones de talones">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>12</div>
@@ -1173,6 +1200,19 @@ font-size:.88rem;
       </div>
     </div>
   </main>
+</div>
+
+
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-box" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
+    <div class="video-box-head">
+      <strong id="videoTitle">Video de ejercicio</strong>
+      <button class="close-video" type="button" id="closeVideo">Cerrar ✕</button>
+    </div>
+    <div class="video-frame-wrap">
+      <iframe id="videoFrame" src="" title="Video de ejercicio" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1275,6 +1315,76 @@ document.getElementById('createRoutine').addEventListener('click', () => {
     container.classList.add('active');
     container.scrollIntoView({behavior:'smooth', block:'start'});
   }, 1400);
+});
+
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) {
+      return u.pathname.replace('/', '').split('/')[0];
+    }
+    if (u.pathname.includes('/shorts/')) {
+      return u.pathname.split('/shorts/')[1].split('/')[0];
+    }
+    if (u.pathname.includes('/embed/')) {
+      return u.pathname.split('/embed/')[1].split('/')[0];
+    }
+    return u.searchParams.get('v');
+  } catch (e) {
+    return null;
+  }
+}
+
+function toEmbedUrl(url) {
+  const videoId = getYouTubeId(url);
+  if (!videoId) return url;
+
+  const params = new URLSearchParams({
+    autoplay: '1',
+    loop: '1',
+    playlist: videoId,
+    rel: '0',
+    playsinline: '1'
+  });
+
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
+
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoFrame');
+const videoTitle = document.getElementById('videoTitle');
+const closeVideo = document.getElementById('closeVideo');
+
+document.querySelectorAll('.open-video').forEach(button => {
+  button.addEventListener('click', () => {
+    const embedUrl = toEmbedUrl(button.dataset.video);
+    videoTitle.textContent = button.dataset.title || 'Video de ejercicio';
+    videoFrame.src = embedUrl;
+    videoModal.classList.add('active');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function cerrarVideo() {
+  videoModal.classList.remove('active');
+  videoModal.setAttribute('aria-hidden', 'true');
+  videoFrame.src = '';
+  document.body.style.overflow = '';
+}
+
+closeVideo.addEventListener('click', cerrarVideo);
+
+videoModal.addEventListener('click', event => {
+  if (event.target === videoModal) cerrarVideo();
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && videoModal.classList.contains('active')) {
+    cerrarVideo();
+  }
 });
 
 updateProgress();
