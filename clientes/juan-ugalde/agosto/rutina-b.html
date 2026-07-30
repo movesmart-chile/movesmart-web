@@ -1,8 +1,11 @@
+
+
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Preparación para guitarra | Juan Ugalde</title>
 <style>
 
@@ -828,365 +831,331 @@ font-size:.88rem;
 </head>
 <body>
 <div class="wrap">
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-badge">M</div>
-      <div class="brand-text">
-        <h1>MoveSmart</h1>
-        <p>Juan Ugalde · Preparación para guitarra</p>
-      </div>
-    </div>
-    <a href="plan-juan-ugalde.html" class="back-btn">← Volver al plan</a>
-  </header>
+<header class="topbar">
+<div class="brand">
+<div class="brand-badge">M</div>
+<div class="brand-text">
+<h1>MoveSmart</h1>
+<p>Juan Ugalde · Preparación para guitarra</p>
+</div>
+</div>
+<a class="back-btn" href="plan-juan-ugalde.html">← Volver al plan</a>
+</header>
+<section class="hero">
+<div aria-hidden="true" class="hero-image"></div>
+<div class="hero-copy">
+<div class="hello">¡Hola Juan!</div>
+<h2>Prepara tu cuerpo antes de tocar guitarra.</h2>
+<p>Responde estas 3 preguntas y MoveSmart adaptará la preparación según el tiempo que tengas, cómo se sienten tus manos y brazos, y cuánto planeas tocar hoy.</p>
+</div>
+</section>
+<main class="survey-card">
+<div class="survey-head">
+<div class="survey-title">
+<div class="survey-icon">🎸</div>
+<div>
+<h3>Preparación MoveSmart</h3>
+<p>Toma 30 segundos. La actividad se adapta a cómo llegas hoy.</p>
+</div>
+</div>
+</div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">Pregunta 0 de 3</div>
+</div>
+<section class="question" data-question="tiempo">
+<div class="q-title">
+<div class="q-icon">⏱️</div>
+<div>
+<h4>1. ¿Cuánto tiempo tienes para prepararte?</h4>
+<p>Elige una opción realista antes de comenzar a tocar.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="breve" type="button">
+<span class="emoji">⚡</span><strong>3 minutos</strong><span>Preparación breve</span>
+</button>
+<button class="choice" data-value="estandar" type="button">
+<span class="emoji">🕒</span><strong>5 minutos</strong><span>Preparación estándar</span>
+</button>
+<button class="choice" data-value="completa" type="button">
+<span class="emoji">🕘</span><strong>8–10 minutos</strong><span>Preparación completa</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="sensacion">
+<div class="q-title">
+<div class="q-icon">🤲</div>
+<div>
+<h4>2. ¿Cómo se sienten tus manos y brazos?</h4>
+<p>Piensa en la tensión, rigidez o molestias que sientes ahora.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="sueltos" type="button">
+<span class="emoji">🙌</span><strong>Sueltos</strong><span>Sin tensión ni molestias</span>
+</button>
+<button class="choice" data-value="tensos" type="button">
+<span class="emoji">🫳</span><strong>Algo tensos</strong><span>Rigidez leve o cansancio</span>
+</button>
+<button class="choice" data-value="molestias" type="button">
+<span class="emoji">⚠️</span><strong>Con molestias</strong><span>Necesito una opción suave</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="duracion">
+<div class="q-title">
+<div class="q-icon">🎶</div>
+<div>
+<h4>3. ¿Cuánto tiempo planeas tocar hoy?</h4>
+<p>Esto ayuda a preparar mejor las zonas que más utilizarás.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="corta" type="button">
+<span class="emoji">🎵</span><strong>Menos de 30 min</strong><span>Práctica corta</span>
+</button>
+<button class="choice" data-value="media" type="button">
+<span class="emoji">🎼</span><strong>30–60 min</strong><span>Práctica habitual</span>
+</button>
+<button class="choice" data-value="larga" type="button">
+<span class="emoji">🎸</span><strong>Más de 60 min</strong><span>Práctica prolongada</span>
+</button>
+</div>
+</section>
+<button class="submit-btn" id="createRoutine" type="button">Preparar mi actividad →</button>
+<p class="microcopy">La meta del mes es completar 3 preparaciones antes de tocar guitarra.</p>
+<div class="result-card" id="resultCard"></div>
+<div aria-live="polite" class="smart-loading" id="smartLoading">
+<div class="smart-orb"></div>
+<h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
+<p id="smartLoadingText">MoveSmart está adaptando tu preparación.</p>
+</div>
+<div class="routine-container" id="rutina-breve">
+<div class="routine-intro">
+<div class="routine-version-label">⚡ Preparación breve · 3 minutos</div>
+<h2>Activa manos, muñecas y hombros</h2>
+<p>Una preparación corta para reducir la rigidez y comenzar a tocar de forma progresiva.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>3 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>Muy suave</strong></div>
+<div class="stat"><small>Material</small><strong>Sin material</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Prepararte para tocar</strong></div>
+</div>
+</div>
+<section class="section">
+<div class="section-head"><h2>Preparación</h2><p>Realiza los movimientos lentamente y sin provocar dolor.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Abrir y cerrar las manos</div>
+<p class="exercise-desc">Abre los dedos ampliamente y luego cierra la mano sin apretar con fuerza. Mantén los hombros relajados.</p><button class="video-btn open-video" data-title="Abrir y cerrar las manos" data-video="https://www.youtube.com/shorts/yAwXed7mmH4" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>10</div>
+<div class="pill"><span>Ritmo</span>Lento</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Círculos de muñeca</div>
+<p class="exercise-desc">Haz círculos pequeños y cómodos hacia ambos lados, evitando forzar el rango.</p><button class="video-btn open-video" data-title="Círculos de muñeca" data-video="https://www.youtube.com/shorts/81ymcRwgrD4" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8 por lado</div>
+<div class="pill"><span>Ritmo</span>Controlado</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Relajación de hombros</div>
+<p class="exercise-desc">Eleva suavemente los hombros y déjalos caer mientras exhalas. Evita tensar el cuello.</p><button class="video-btn open-video" data-title="Relajación de hombros" data-video="https://www.youtube.com/watch?v=iXCJWDPLIQU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>6</div>
+<div class="pill"><span>Respiración</span>Lenta</div>
+</div>
+</article>
+</div>
+</section>
+<div class="note"><strong>Antes de comenzar:</strong> toca los primeros minutos a una intensidad cómoda y aumenta progresivamente.</div>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Preparacion%20Guitarra%20Breve">✅ Registrar preparación</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-estandar">
+<div class="routine-intro">
+<div class="routine-version-label">🕒 Preparación estándar · 5 minutos</div>
+<h2>Prepara manos, antebrazos y postura</h2>
+<p>La opción principal para llegar con menos tensión y comenzar a tocar con mayor comodidad.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>5 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>Suave</strong></div>
+<div class="stat"><small>Material</small><strong>Guitarra al final</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Movilidad y postura</strong></div>
+</div>
+</div>
+<section class="section">
+<div class="section-head"><h2>Manos y muñecas</h2><p>Movilidad suave antes de sostener el instrumento.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Secuencia de dedos</div>
+<p class="exercise-desc">Toca el pulgar con cada dedo de la misma mano, desde el índice hasta el meñique y de regreso.</p><button class="video-btn open-video" data-title="Secuencia de dedos" data-video="https://www.youtube.com/watch?v=H5qap5KtrIk" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Vueltas</span>3 por mano</div>
+<div class="pill"><span>Ritmo</span>Controlado</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión y extensión de muñeca</div>
+<p class="exercise-desc">Mueve las muñecas hacia arriba y abajo dentro de un rango cómodo, sin rebotes.</p><button class="video-btn open-video" data-title="Flexión y extensión de muñeca" data-video="https://www.youtube.com/shorts/vfr30tXFCjA" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8</div>
+<div class="pill"><span>Dolor</span>0–2/10</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Giro de antebrazos</div>
+<p class="exercise-desc">Con los codos junto al cuerpo, gira las palmas hacia arriba y hacia abajo lentamente.</p><button class="video-btn open-video" data-title="Giro de antebrazos" data-video="https://www.youtube.com/shorts/JMxhT-THFdU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8</div>
+<div class="pill"><span>Postura</span>Codos relajados</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Hombros y postura</h2><p>Reduce tensión antes de posicionar la guitarra.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Círculos de hombros</div>
+<p class="exercise-desc">Realiza círculos amplios hacia atrás, manteniendo el cuello relajado.</p><button class="video-btn open-video" data-title="Círculos de hombros" data-video="https://www.youtube.com/shorts/F-jzIIg4nWw" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8</div>
+<div class="pill"><span>Dirección</span>Hacia atrás</div>
+</div>
+</article>
 
-  <section class="hero">
-    <div class="hero-image" aria-hidden="true"></div>
-    <div class="hero-copy">
-      <div class="hello">¡Hola Juan!</div>
-      <h2>Prepara tu cuerpo antes de tocar guitarra.</h2>
-      <p>Responde estas 3 preguntas y MoveSmart adaptará la preparación según el tiempo que tengas, cómo se sienten tus manos y brazos, y cuánto planeas tocar hoy.</p>
-    </div>
-  </section>
+</div>
+</section>
+<div class="note"><strong>Durante la práctica:</strong> cambia de posición y realiza una pausa breve antes de que aparezca tensión.</div>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Preparacion%20Guitarra%20Estandar">✅ Registrar preparación</a>
+</div>
+</div>
+<div class="routine-container" id="rutina-completa">
+<div class="routine-intro">
+<div class="routine-version-label">🕘 Preparación completa · 8–10 minutos</div>
+<h2>Preparación integral antes de tocar</h2>
+<p>Recomendada cuando tocarás durante más tiempo o notas mayor rigidez en manos, brazos, hombros o cuello.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>8–10 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>Suave</strong></div>
+<div class="stat"><small>Material</small><strong>Guitarra al final</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Preparación integral</strong></div>
+</div>
+</div>
+<section class="section">
+<div class="section-head"><h2>Movilidad de manos y antebrazos</h2><p>Prepara las zonas que tendrán mayor demanda.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Abrir, cerrar y separar dedos</div>
+<p class="exercise-desc">Alterna entre cerrar suavemente la mano, abrirla y separar los dedos sin forzar.</p><button class="video-btn open-video" data-title="Abrir, cerrar y separar dedos" data-video="https://www.youtube.com/shorts/yAwXed7mmH4" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>10</div>
+<div class="pill"><span>Series</span>2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Secuencia pulgar–dedos</div>
+<p class="exercise-desc">Une el pulgar con cada dedo procurando precisión y fluidez, sin apretar.</p><button class="video-btn open-video" data-title="Secuencia pulgar–dedos" data-video="https://www.youtube.com/watch?v=H5qap5KtrIk" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Vueltas</span>4 por mano</div>
+<div class="pill"><span>Ritmo</span>Lento</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Movilidad de muñecas y antebrazos</div>
+<p class="exercise-desc">Combina círculos de muñeca con giros de palma hacia arriba y abajo.</p><button class="video-btn open-video" data-title="Movilidad de muñecas y antebrazos" data-video="https://youtu.be/OPBbDBWJyuM?si=4zdUR8zZ_CssBoi7" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8 de cada uno</div>
+<div class="pill"><span>Dolor</span>0–2/10</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Cuello, hombros y espalda alta</h2><p>Busca disminuir la tensión asociada a permanecer sentado y sostener el instrumento.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Rotación cervical suave</div>
+<p class="exercise-desc">Gira la cabeza lentamente hacia cada lado sin llevar el movimiento al dolor.</p><button class="video-btn open-video" data-title="Rotación cervical suave" data-video="https://www.youtube.com/shorts/zcHMG-X2nlQ" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>5 por lado</div>
+<div class="pill"><span>Ritmo</span>Lento</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Círculos de hombros</div>
+<p class="exercise-desc">Lleva los hombros hacia atrás y abajo, evitando encoger el cuello.</p><button class="video-btn open-video" data-title="Círculos de hombros" data-video="https://www.youtube.com/shorts/F-jzIIg4nWw" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>10</div>
+<div class="pill"><span>Respiración</span>Fluida</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Apertura de pecho</div>
+<p class="exercise-desc">Lleva suavemente los brazos hacia atrás y abre el pecho sin arquear la zona lumbar.</p><button class="video-btn open-video" data-title="Apertura de pecho" data-video="https://www.youtube.com/watch?v=URceRsgda0g" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Repeticiones</span>8</div>
+<div class="pill"><span>Rango</span>Cómodo</div>
+</div>
+</article>
+</div>
+</section>
 
-  <main class="survey-card">
-    <div class="survey-head">
-      <div class="survey-title">
-        <div class="survey-icon">🎸</div>
-        <div>
-          <h3>Preparación MoveSmart</h3>
-          <p>Toma 30 segundos. La actividad se adapta a cómo llegas hoy.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="progress-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
-    </div>
-
-    <section class="question" data-question="tiempo">
-      <div class="q-title">
-        <div class="q-icon">⏱️</div>
-        <div>
-          <h4>1. ¿Cuánto tiempo tienes para prepararte?</h4>
-          <p>Elige una opción realista antes de comenzar a tocar.</p>
-        </div>
-      </div>
-      <div class="choices">
-        <button class="choice" type="button" data-value="breve">
-          <span class="emoji">⚡</span><strong>3 minutos</strong><span>Preparación breve</span>
-        </button>
-        <button class="choice" type="button" data-value="estandar">
-          <span class="emoji">🕒</span><strong>5 minutos</strong><span>Preparación estándar</span>
-        </button>
-        <button class="choice" type="button" data-value="completa">
-          <span class="emoji">🕘</span><strong>8–10 minutos</strong><span>Preparación completa</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="question" data-question="sensacion">
-      <div class="q-title">
-        <div class="q-icon">🤲</div>
-        <div>
-          <h4>2. ¿Cómo se sienten tus manos y brazos?</h4>
-          <p>Piensa en la tensión, rigidez o molestias que sientes ahora.</p>
-        </div>
-      </div>
-      <div class="choices">
-        <button class="choice" type="button" data-value="sueltos">
-          <span class="emoji">🙌</span><strong>Sueltos</strong><span>Sin tensión ni molestias</span>
-        </button>
-        <button class="choice" type="button" data-value="tensos">
-          <span class="emoji">🫳</span><strong>Algo tensos</strong><span>Rigidez leve o cansancio</span>
-        </button>
-        <button class="choice" type="button" data-value="molestias">
-          <span class="emoji">⚠️</span><strong>Con molestias</strong><span>Necesito una opción suave</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="question" data-question="duracion">
-      <div class="q-title">
-        <div class="q-icon">🎶</div>
-        <div>
-          <h4>3. ¿Cuánto tiempo planeas tocar hoy?</h4>
-          <p>Esto ayuda a preparar mejor las zonas que más utilizarás.</p>
-        </div>
-      </div>
-      <div class="choices">
-        <button class="choice" type="button" data-value="corta">
-          <span class="emoji">🎵</span><strong>Menos de 30 min</strong><span>Práctica corta</span>
-        </button>
-        <button class="choice" type="button" data-value="media">
-          <span class="emoji">🎼</span><strong>30–60 min</strong><span>Práctica habitual</span>
-        </button>
-        <button class="choice" type="button" data-value="larga">
-          <span class="emoji">🎸</span><strong>Más de 60 min</strong><span>Práctica prolongada</span>
-        </button>
-      </div>
-    </section>
-
-    <button class="submit-btn" type="button" id="createRoutine">Preparar mi actividad →</button>
-    <p class="microcopy">La meta del mes es completar 3 preparaciones antes de tocar guitarra.</p>
-
-    <div class="result-card" id="resultCard"></div>
-
-    <div class="smart-loading" id="smartLoading" aria-live="polite">
-      <div class="smart-orb"></div>
-      <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-      <p id="smartLoadingText">MoveSmart está adaptando tu preparación.</p>
-    </div>
-
-    <div class="routine-container" id="rutina-breve">
-      <div class="routine-intro">
-        <div class="routine-version-label">⚡ Preparación breve · 3 minutos</div>
-        <h2>Activa manos, muñecas y hombros</h2>
-        <p>Una preparación corta para reducir la rigidez y comenzar a tocar de forma progresiva.</p>
-        <div class="quick-stats">
-          <div class="stat"><small>Duración</small><strong>3 min</strong></div>
-          <div class="stat"><small>Intensidad</small><strong>Muy suave</strong></div>
-          <div class="stat"><small>Material</small><strong>Sin material</strong></div>
-          <div class="stat"><small>Objetivo</small><strong>Prepararte para tocar</strong></div>
-        </div>
-      </div>
-
-      <section class="section">
-        <div class="section-head"><h2>Preparación</h2><p>Realiza los movimientos lentamente y sin provocar dolor.</p></div>
-        <div class="section-body">
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Abrir y cerrar las manos</div>
-              <p class="exercise-desc">Abre los dedos ampliamente y luego cierra la mano sin apretar con fuerza. Mantén los hombros relajados.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>10</div>
-              <div class="pill"><span>Ritmo</span>Lento</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Círculos de muñeca</div>
-              <p class="exercise-desc">Haz círculos pequeños y cómodos hacia ambos lados, evitando forzar el rango.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8 por lado</div>
-              <div class="pill"><span>Ritmo</span>Controlado</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Relajación de hombros</div>
-              <p class="exercise-desc">Eleva suavemente los hombros y déjalos caer mientras exhalas. Evita tensar el cuello.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>6</div>
-              <div class="pill"><span>Respiración</span>Lenta</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <div class="note"><strong>Antes de comenzar:</strong> toca los primeros minutos a una intensidad cómoda y aumenta progresivamente.</div>
-
-      <div class="finish-session-wrap">
-        <p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Preparacion%20Guitarra%20Breve" class="finish-session-btn">✅ Registrar preparación</a>
-      </div>
-    </div>
-
-    <div class="routine-container" id="rutina-estandar">
-      <div class="routine-intro">
-        <div class="routine-version-label">🕒 Preparación estándar · 5 minutos</div>
-        <h2>Prepara manos, antebrazos y postura</h2>
-        <p>La opción principal para llegar con menos tensión y comenzar a tocar con mayor comodidad.</p>
-        <div class="quick-stats">
-          <div class="stat"><small>Duración</small><strong>5 min</strong></div>
-          <div class="stat"><small>Intensidad</small><strong>Suave</strong></div>
-          <div class="stat"><small>Material</small><strong>Guitarra al final</strong></div>
-          <div class="stat"><small>Objetivo</small><strong>Movilidad y postura</strong></div>
-        </div>
-      </div>
-
-      <section class="section">
-        <div class="section-head"><h2>Manos y muñecas</h2><p>Movilidad suave antes de sostener el instrumento.</p></div>
-        <div class="section-body">
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Secuencia de dedos</div>
-              <p class="exercise-desc">Toca el pulgar con cada dedo de la misma mano, desde el índice hasta el meñique y de regreso.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Vueltas</span>3 por mano</div>
-              <div class="pill"><span>Ritmo</span>Controlado</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Flexión y extensión de muñeca</div>
-              <p class="exercise-desc">Mueve las muñecas hacia arriba y abajo dentro de un rango cómodo, sin rebotes.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8</div>
-              <div class="pill"><span>Dolor</span>0–2/10</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Giro de antebrazos</div>
-              <p class="exercise-desc">Con los codos junto al cuerpo, gira las palmas hacia arriba y hacia abajo lentamente.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8</div>
-              <div class="pill"><span>Postura</span>Codos relajados</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Hombros y postura</h2><p>Reduce tensión antes de posicionar la guitarra.</p></div>
-        <div class="section-body">
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Círculos de hombros</div>
-              <p class="exercise-desc">Realiza círculos amplios hacia atrás, manteniendo el cuello relajado.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8</div>
-              <div class="pill"><span>Dirección</span>Hacia atrás</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Ajuste de posición con guitarra</div>
-              <p class="exercise-desc">Apoya ambos pies, acerca el instrumento al cuerpo y busca una posición donde no tengas que elevar los hombros ni inclinar demasiado el cuello.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Duración</span>30–45 seg</div>
-              <div class="pill"><span>Objetivo</span>Comodidad</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <div class="note"><strong>Durante la práctica:</strong> cambia de posición y realiza una pausa breve antes de que aparezca tensión.</div>
-
-      <div class="finish-session-wrap">
-        <p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Preparacion%20Guitarra%20Estandar" class="finish-session-btn">✅ Registrar preparación</a>
-      </div>
-    </div>
-
-    <div class="routine-container" id="rutina-completa">
-      <div class="routine-intro">
-        <div class="routine-version-label">🕘 Preparación completa · 8–10 minutos</div>
-        <h2>Preparación integral antes de tocar</h2>
-        <p>Recomendada cuando tocarás durante más tiempo o notas mayor rigidez en manos, brazos, hombros o cuello.</p>
-        <div class="quick-stats">
-          <div class="stat"><small>Duración</small><strong>8–10 min</strong></div>
-          <div class="stat"><small>Intensidad</small><strong>Suave</strong></div>
-          <div class="stat"><small>Material</small><strong>Guitarra al final</strong></div>
-          <div class="stat"><small>Objetivo</small><strong>Preparación integral</strong></div>
-        </div>
-      </div>
-
-      <section class="section">
-        <div class="section-head"><h2>Movilidad de manos y antebrazos</h2><p>Prepara las zonas que tendrán mayor demanda.</p></div>
-        <div class="section-body">
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Abrir, cerrar y separar dedos</div>
-              <p class="exercise-desc">Alterna entre cerrar suavemente la mano, abrirla y separar los dedos sin forzar.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>10</div>
-              <div class="pill"><span>Series</span>2</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Secuencia pulgar–dedos</div>
-              <p class="exercise-desc">Une el pulgar con cada dedo procurando precisión y fluidez, sin apretar.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Vueltas</span>4 por mano</div>
-              <div class="pill"><span>Ritmo</span>Lento</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Movilidad de muñecas y antebrazos</div>
-              <p class="exercise-desc">Combina círculos de muñeca con giros de palma hacia arriba y abajo.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8 de cada uno</div>
-              <div class="pill"><span>Dolor</span>0–2/10</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Cuello, hombros y espalda alta</h2><p>Busca disminuir la tensión asociada a permanecer sentado y sostener el instrumento.</p></div>
-        <div class="section-body">
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Rotación cervical suave</div>
-              <p class="exercise-desc">Gira la cabeza lentamente hacia cada lado sin llevar el movimiento al dolor.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>5 por lado</div>
-              <div class="pill"><span>Ritmo</span>Lento</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Círculos de hombros</div>
-              <p class="exercise-desc">Lleva los hombros hacia atrás y abajo, evitando encoger el cuello.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>10</div>
-              <div class="pill"><span>Respiración</span>Fluida</div>
-            </div>
-          </article>
-          <article class="exercise-card">
-            <div>
-              <div class="exercise-name">Apertura de pecho</div>
-              <p class="exercise-desc">Lleva suavemente los brazos hacia atrás y abre el pecho sin arquear la zona lumbar.</p>
-            </div>
-            <div class="exercise-meta">
-              <div class="pill"><span>Repeticiones</span>8</div>
-              <div class="pill"><span>Rango</span>Cómodo</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Preparación con la guitarra</h2><p>Termina ajustando la postura e iniciando de manera progresiva.</p></div>
-        <div class="section-body">
-          <div class="simple-card">
-            <strong>1. Ajusta tu posición</strong><br>
-            Apoya los pies, acerca la guitarra y relaja los hombros.<br><br>
-            <strong>2. Comienza suave</strong><br>
-            Usa los primeros 2–3 minutos para tocar lentamente, sin buscar velocidad ni fuerza.<br><br>
-            <strong>3. Programa una pausa</strong><br>
-            Si tocarás más de 60 minutos, realiza una pausa breve aproximadamente cada 30–40 minutos.
-          </div>
-        </div>
-      </section>
-
-      <div class="note"><strong>Importante:</strong> si aparece dolor agudo, hormigueo o pérdida de fuerza, detén la práctica y registra lo ocurrido.</div>
-
-      <div class="finish-session-wrap">
-        <p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Preparacion%20Guitarra%20Completa" class="finish-session-btn">✅ Registrar preparación</a>
-      </div>
-    </div>
-  </main>
+<div class="note"><strong>Importante:</strong> si aparece dolor agudo, hormigueo o pérdida de fuerza, detén la práctica y registra lo ocurrido.</div>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra esta preparación para avanzar en tu meta mensual de 3.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Preparacion%20Guitarra%20Completa">✅ Registrar preparación</a>
+</div>
+</div>
+</main>
 </div>
 
+<div aria-hidden="true" class="video-modal" id="videoModal">
+<div aria-labelledby="videoTitle" aria-modal="true" class="video-box" role="dialog">
+<div class="video-box-head">
+<strong id="videoTitle">Video de ejercicio</strong>
+<button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
+</div>
+<div class="video-frame-wrap">
+<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+</div>
+</div>
+</div>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const PREGUNTA_PERSONALIZADA = "Duración práctica de guitarra";
@@ -1300,6 +1269,63 @@ document.getElementById('createRoutine').addEventListener('click', () => {
     routineContainer.classList.add('active');
     routineContainer.scrollIntoView({ behavior:'smooth', block:'start' });
   }, 1450);
+});
+
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) return u.pathname.replace('/', '').split('/')[0];
+    if (u.pathname.includes('/shorts/')) return u.pathname.split('/shorts/')[1].split('/')[0];
+    if (u.pathname.includes('/embed/')) return u.pathname.split('/embed/')[1].split('/')[0];
+    return u.searchParams.get('v');
+  } catch (e) {
+    return null;
+  }
+}
+
+function toEmbedUrl(url) {
+  const videoId = getYouTubeId(url);
+  if (!videoId) return url;
+  const params = new URLSearchParams({
+    autoplay: '1',
+    loop: '1',
+    playlist: videoId,
+    rel: '0',
+    playsinline: '1'
+  });
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
+
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoFrame');
+const videoTitle = document.getElementById('videoTitle');
+const closeVideo = document.getElementById('closeVideo');
+
+document.querySelectorAll('.open-video').forEach(button => {
+  button.addEventListener('click', () => {
+    videoFrame.src = toEmbedUrl(button.dataset.video);
+    videoTitle.textContent = button.dataset.title || 'Video de ejercicio';
+    videoModal.classList.add('active');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function cerrarVideo() {
+  videoModal.classList.remove('active');
+  videoModal.setAttribute('aria-hidden', 'true');
+  videoFrame.src = '';
+  document.body.style.overflow = '';
+}
+
+closeVideo.addEventListener('click', cerrarVideo);
+videoModal.addEventListener('click', event => {
+  if (event.target === videoModal) cerrarVideo();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && videoModal.classList.contains('active')) cerrarVideo();
 });
 
 updateProgress();
