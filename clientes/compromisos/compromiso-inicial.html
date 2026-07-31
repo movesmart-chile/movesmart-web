@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1f
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Compromiso inicial MoveSmart</title>
 <style>
 :root{
@@ -186,26 +188,134 @@ input[type=range]{width:100%;accent-color:var(--azul)}
 </main>
 
 <script>
-const form=document.getElementById('form'),result=document.getElementById('result');
-const fecha=new Intl.DateTimeFormat('es-CL',{day:'2-digit',month:'long',year:'numeric'}).format(new Date());
-function radio(){return document.querySelector('input[name="minimo"]:checked')?.value||''}
-function showError(el,show){const e=el.parentElement.querySelector('.error');if(e)e.style.display=show?'block':'none'}
-form.addEventListener('submit',e=>{
- e.preventDefault();document.querySelectorAll('.error').forEach(x=>x.style.display='none');let ok=true;
- const objetivo=document.getElementById('objetivo'),si=document.getElementById('si'),entonces=document.getElementById('entonces'),nombre=document.getElementById('nombre'),acepta=document.getElementById('acepta');
- [objetivo,nombre].forEach(x=>{if(!x.value.trim()){showError(x,true);ok=false}});
- if(!radio()){document.getElementById('errMinimo').style.display='block';ok=false}
- if(!si.value.trim()||!entonces.value.trim()){document.getElementById('errPlan').style.display='block';ok=false}
- if(!acepta.checked){document.getElementById('errAcepta').style.display='block';ok=false}
- if(!ok)return;
- document.getElementById('rObjetivo').textContent=objetivo.value.trim();
- document.getElementById('rMinimo').textContent=radio();
- document.getElementById('rPlan').textContent=`Si ${si.value.trim()}, entonces ${entonces.value.trim()}`;
- document.getElementById('rFirma').textContent=`${nombre.value.trim()} · ${fecha}`;
- document.getElementById('saludo').textContent=`${nombre.value.trim()}, no necesitas hacerlo perfecto. Solo volver a este acuerdo cuando lo necesites.`;
- localStorage.setItem('movesmart_compromiso_inicial',JSON.stringify({objetivo:objetivo.value,minimo:radio(),si:si.value,entonces:entonces.value,nombre:nombre.value,fecha}));
- form.style.display='none';result.classList.add('show');result.scrollIntoView({behavior:'smooth'});
+const form = document.getElementById('form');
+const result = document.getElementById('result');
+
+const params = new URLSearchParams(window.location.search);
+const cliente = params.get('cliente') || '';
+const destino = params.get('destino') || '';
+
+const clienteClave = cliente
+  .trim()
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '_')
+  .replace(/^_+|_+$/g, '') || 'cliente';
+
+const claveCompromiso = `movesmart_compromiso_inicial_${clienteClave}`;
+
+const fecha = new Intl.DateTimeFormat('es-CL', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+}).format(new Date());
+
+function radio() {
+  return document.querySelector('input[name="minimo"]:checked')?.value || '';
+}
+
+function showError(el, show) {
+  const error = el.parentElement.querySelector('.error');
+  if (error) error.style.display = show ? 'block' : 'none';
+}
+
+function irAlDestino() {
+  if (destino) {
+    window.location.href = destino;
+  }
+}
+
+if (localStorage.getItem(claveCompromiso) && destino) {
+  irAlDestino();
+}
+
+if (cliente) {
+  const nombreInput = document.getElementById('nombre');
+  nombreInput.value = cliente;
+
+  const saludoHero = document.querySelector('.hero p');
+  if (saludoHero) {
+    saludoHero.innerHTML =
+      `<strong>Hola, ${cliente}.</strong><br>` +
+      `No quiero que prometas hacerlo perfecto. Solo quiero que tomes una decisión: ` +
+      `¿qué harás cuando aparezca una semana difícil?`;
+  }
+}
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+
+  document.querySelectorAll('.error').forEach(error => {
+    error.style.display = 'none';
+  });
+
+  let ok = true;
+
+  const objetivo = document.getElementById('objetivo');
+  const si = document.getElementById('si');
+  const entonces = document.getElementById('entonces');
+  const nombre = document.getElementById('nombre');
+  const acepta = document.getElementById('acepta');
+
+  [objetivo, nombre].forEach(campo => {
+    if (!campo.value.trim()) {
+      showError(campo, true);
+      ok = false;
+    }
+  });
+
+  if (!radio()) {
+    document.getElementById('errMinimo').style.display = 'block';
+    ok = false;
+  }
+
+  if (!si.value.trim() || !entonces.value.trim()) {
+    document.getElementById('errPlan').style.display = 'block';
+    ok = false;
+  }
+
+  if (!acepta.checked) {
+    document.getElementById('errAcepta').style.display = 'block';
+    ok = false;
+  }
+
+  if (!ok) return;
+
+  const datos = {
+    cliente: cliente || nombre.value.trim(),
+    objetivo: objetivo.value.trim(),
+    minimo: radio(),
+    si: si.value.trim(),
+    entonces: entonces.value.trim(),
+    nombre: nombre.value.trim(),
+    fecha
+  };
+
+  document.getElementById('rObjetivo').textContent = datos.objetivo;
+  document.getElementById('rMinimo').textContent = datos.minimo;
+  document.getElementById('rPlan').textContent =
+    `Si ${datos.si}, entonces ${datos.entonces}`;
+  document.getElementById('rFirma').textContent =
+    `${datos.nombre} · ${datos.fecha}`;
+  document.getElementById('saludo').textContent =
+    `${datos.nombre}, no necesitas hacerlo perfecto. Solo volver a este acuerdo cuando lo necesites.`;
+
+  localStorage.setItem(claveCompromiso, JSON.stringify(datos));
+
+  form.style.display = 'none';
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth' });
+
+  if (destino) {
+    setTimeout(irAlDestino, 2500);
+  }
 });
-document.getElementById('editar').onclick=()=>{result.classList.remove('show');form.style.display='block';form.scrollIntoView({behavior:'smooth'})};
+
+document.getElementById('editar').onclick = () => {
+  result.classList.remove('show');
+  form.style.display = 'block';
+  form.scrollIntoView({ behavior: 'smooth' });
+};
 </script>
 </body></html>
