@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -612,6 +614,7 @@
   <script>
     const form = document.getElementById('form');
     const result = document.getElementById('result');
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyk33sXnUcNYSu3pkGUTMjgjEhUpxioXc7cT4_eJhtlw8xJbTWHrxAHFwVuAXYf6IfOw/exec";
 
     const params = new URLSearchParams(window.location.search);
     const cliente = params.get('cliente') || '';
@@ -700,10 +703,12 @@
 
       const datos = {
         cliente: cliente || nombre.value.trim(),
+        tipo: "Inicial",
         objetivo: objetivo.value.trim(),
         minimo: radio(),
         si: si.value.trim(),
         entonces: entonces.value.trim(),
+        firma: nombre.value.trim(),
         nombre: nombre.value.trim(),
         fecha
       };
@@ -716,6 +721,17 @@
         `${datos.nombre} · ${datos.fecha}`;
       document.getElementById('saludo').textContent =
         `${datos.nombre}, no necesitas hacerlo perfecto. Solo volver a este acuerdo cuando lo necesites.`;
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(datos)
+      }).catch(error => {
+        console.log("No se pudo guardar el compromiso en Google Sheets:", error);
+      });
 
       localStorage.setItem(claveCompromiso, JSON.stringify(datos));
 
