@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -646,9 +647,8 @@
       if (destino) window.location.href = destino;
     }
 
-    if (localStorage.getItem(claveCompromiso) && destino) {
-      irAlDestino();
-    }
+    /* En esta versión de prueba no redirigimos automáticamente
+       aunque ya exista el compromiso en localStorage. */
 
     if (cliente) {
       document.getElementById('nombre').value = cliente;
@@ -732,18 +732,15 @@
 
       localStorage.setItem(claveCompromiso, JSON.stringify(datos));
 
-      form.style.display = 'none';
+      /* El formulario permanece visible. */
       result.classList.add('show');
       result.scrollIntoView({ behavior: 'smooth' });
 
-      if (destino) {
-        setTimeout(irAlDestino, 2500);
-      }
+      /* Redirección desactivada temporalmente para poder revisar el resultado. */
     });
 
     document.getElementById('editar').onclick = () => {
       result.classList.remove('show');
-      form.style.display = 'grid';
       form.scrollIntoView({ behavior: 'smooth' });
     };
   </script>
