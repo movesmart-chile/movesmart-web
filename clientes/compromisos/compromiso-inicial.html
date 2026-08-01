@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -410,9 +412,17 @@
     }
 
     .result-actions button{
+      flex:1 1 220px;
+      min-height:58px;
       background:rgba(255,255,255,.09);
       color:#fff;
       border:1px solid rgba(255,255,255,.12);
+    }
+
+    .result-actions .start-program{
+      background:linear-gradient(180deg,var(--accent-2),var(--accent));
+      border-color:rgba(243,107,42,.45);
+      box-shadow:0 14px 30px rgba(243,107,42,.22);
     }
 
     .footer{
@@ -568,7 +578,7 @@
       </section>
 
       <div class="actions">
-        <button class="primary" type="submit">Comenzar mi programa</button>
+        <button class="primary" type="submit">Confirmar mi compromiso</button>
       </div>
     </form>
 
@@ -600,8 +610,8 @@
         </div>
 
         <div class="result-actions">
-          <button type="button" onclick="window.print()">Guardar o imprimir</button>
-          <button type="button" id="editar">Editar</button>
+          <button type="button" id="guardarCompromiso">Guardar compromiso</button>
+          <button type="button" id="comenzarPrograma" class="start-program">Comenzar mi programa →</button>
         </div>
       </div>
     </section>
@@ -732,17 +742,25 @@
 
       localStorage.setItem(claveCompromiso, JSON.stringify(datos));
 
-      /* El formulario permanece visible. */
+      /* El formulario permanece visible, pero ocultamos su botón de envío
+         porque el botón para entrar al programa aparece ahora en el resumen. */
+      document.querySelector('.actions').style.display = 'none';
+
       result.classList.add('show');
       result.scrollIntoView({ behavior: 'smooth' });
-
-      /* Redirección desactivada temporalmente para poder revisar el resultado. */
     });
 
-    document.getElementById('editar').onclick = () => {
-      result.classList.remove('show');
-      form.scrollIntoView({ behavior: 'smooth' });
-    };
+    document.getElementById('guardarCompromiso').addEventListener('click', () => {
+      window.print();
+    });
+
+    document.getElementById('comenzarPrograma').addEventListener('click', () => {
+      if (destino) {
+        irAlDestino();
+      } else {
+        alert('No se encontró la dirección del programa. Vuelve a ingresar desde el acceso de clientes.');
+      }
+    });
   </script>
 </body>
 </html>
