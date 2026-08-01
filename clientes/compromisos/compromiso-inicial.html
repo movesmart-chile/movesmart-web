@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -607,7 +612,7 @@
         </div>
 
         <div class="result-actions">
-          <button type="button" id="guardarCompromiso">Guardar como PDF</button>
+          <button type="button" id="guardarCompromiso">Guardar en mi dispositivo</button>
           <button type="button" id="comenzarPrograma" class="start-program">Comenzar mi programa →</button>
         </div>
       </div>
@@ -615,6 +620,8 @@
 
     <p class="footer">MoveSmart · Más contexto. Menos recetas.</p>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script>
     const form = document.getElementById('form');
@@ -747,8 +754,56 @@
       result.scrollIntoView({ behavior: 'smooth' });
     });
 
-    document.getElementById('guardarCompromiso').addEventListener('click', () => {
-      window.print();
+    document.getElementById('guardarCompromiso').addEventListener('click', async () => {
+      const boton = document.getElementById('guardarCompromiso');
+      const textoOriginal = boton.textContent;
+
+      try {
+        boton.disabled = true;
+        boton.textContent = 'Preparando imagen...';
+
+        const canvas = await html2canvas(result, {
+          backgroundColor: '#1a1420',
+          scale: 2,
+          useCORS: true
+        });
+
+        const blob = await new Promise(resolve => {
+          canvas.toBlob(resolve, 'image/png', 1);
+        });
+
+        if (!blob) {
+          throw new Error('No se pudo crear la imagen.');
+        }
+
+        const nombreArchivo = `compromiso-movesmart-${clienteClave}.png`;
+        const archivo = new File([blob], nombreArchivo, { type: 'image/png' });
+
+        /* En celulares compatibles abre el menú para guardar o compartir. */
+        if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+          await navigator.share({
+            files: [archivo],
+            title: 'Mi compromiso MoveSmart',
+            text: 'Mi compromiso MoveSmart'
+          });
+        } else {
+          /* En computador descarga la imagen directamente. */
+          const enlace = document.createElement('a');
+          enlace.href = URL.createObjectURL(blob);
+          enlace.download = nombreArchivo;
+          document.body.appendChild(enlace);
+          enlace.click();
+          enlace.remove();
+          URL.revokeObjectURL(enlace.href);
+        }
+
+      } catch (error) {
+        console.error(error);
+        alert('No fue posible guardar la imagen. Inténtalo nuevamente.');
+      } finally {
+        boton.disabled = false;
+        boton.textContent = textoOriginal;
+      }
     });
 
     document.getElementById('comenzarPrograma').addEventListener('click', () => {
