@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparando tu espacio | MoveSmart</title>
+  <style>
+    :root{
+      --bg:#0c0812;--card:rgba(24,16,32,.62);--border:rgba(255,255,255,.10);
+      --text:#f3edf7;--muted:#cbc0d3;--accent:#f36b2a;--accent-2:#ff8b4f;
+      --error:#ff9d8b;--shadow:0 18px 42px rgba(0,0,0,.34)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%}
+    body{
+      min-height:100vh;display:grid;place-items:center;padding:22px;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg,rgba(8,10,18,.48),rgba(8,10,18,.68)),
+        url('../imagenes/fondo-index-realista.webp') center center/cover no-repeat fixed,
+        var(--bg)
+    }
+    .glow{
+      position:fixed;inset:0;pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 18%,rgba(73,58,146,.18),transparent 30%),
+        radial-gradient(circle at 82% 18%,rgba(243,107,42,.20),transparent 22%)
+    }
+    .card{
+      position:relative;z-index:1;width:min(560px,100%);padding:34px;border-radius:30px;
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025)),var(--card);
+      border:1px solid var(--border);box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:center
+    }
+    .brand{margin:0 0 26px;font-size:clamp(2rem,8vw,3.3rem);line-height:1;font-weight:900;letter-spacing:-.05em}
+    .brand span{color:var(--accent)}
+    .loader{
+      width:64px;height:64px;margin:0 auto 24px;border-radius:50%;
+      border:5px solid rgba(255,255,255,.12);border-top-color:var(--accent);
+      animation:girar .85s linear infinite
+    }
+    h1{margin:0 0 10px;font-size:clamp(1.55rem,5vw,2.2rem);letter-spacing:-.03em}
+    p{margin:0;color:var(--muted);line-height:1.65}
+    .estado{
+      margin-top:20px;padding:14px 16px;border-radius:16px;
+      background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);
+      color:#fff;font-weight:750
+    }
+    .error{color:var(--error)}
+    .acciones{display:none;gap:10px;margin-top:18px}
+    .acciones.visible{display:grid}
+    a,button{
+      min-height:52px;display:flex;align-items:center;justify-content:center;padding:14px 18px;
+      border-radius:15px;border:1px solid rgba(255,255,255,.12);
+      font:inherit;font-weight:850;text-decoration:none;cursor:pointer
+    }
+    a{color:#fff;background:rgba(255,255,255,.08)}
+    button{color:#fff;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
+    @keyframes girar{to{transform:rotate(360deg)}}
+    @media(max-width:560px){.card{padding:26px 20px;border-radius:24px}}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <main class="card">
+    <h2 class="brand">Move<span>Smart</span></h2>
+    <div class="loader" id="loader" aria-hidden="true"></div>
+    <h1 id="titulo">Preparando tu espacio</h1>
+    <p id="descripcion">Estamos revisando qué parte de tu programa corresponde mostrarte hoy.</p>
+    <div class="estado" id="estado">Consultando tu avance…</div>
+
+    <div class="acciones" id="acciones">
+      <button type="button" id="reintentar">Intentar nuevamente</button>
+      <a href="../acceso-clientes.html">Volver al acceso</a>
+    </div>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyk33sXnUcNYSu3pkGUTMjgjEhUpxioXc7cT4_eJhtlw8xJbTWHrxAHFwVuAXYf6IfOw/exec";
+
+    const params = new URLSearchParams(window.location.search);
+    const cliente = (params.get("cliente") || "").trim();
+    const plan = (params.get("plan") || "").trim();
+    const fechaPrueba = (params.get("fecha") || "").trim();
+
+    const estado = document.getElementById("estado");
+    const titulo = document.getElementById("titulo");
+    const descripcion = document.getElementById("descripcion");
+    const loader = document.getElementById("loader");
+    const acciones = document.getElementById("acciones");
+
+    function mostrarError(mensaje){
+      loader.style.display="none";
+      titulo.textContent="No pudimos abrir tu espacio";
+      descripcion.textContent="Puedes intentarlo nuevamente o volver al acceso de clientes.";
+      estado.textContent=mensaje;
+      estado.classList.add("error");
+      acciones.classList.add("visible");
+    }
+
+    function crearRutaCompromiso(archivo){
+      const destinoDesdeCompromisos = `../${plan}`;
+      const query = new URLSearchParams({
+        cliente: cliente,
+        destino: destinoDesdeCompromisos
+      });
+      return `compromisos/${archivo}?${query.toString()}`;
+    }
+
+    function redirigirSegunEstado(respuesta){
+      if(respuesta.mostrar==="inicial"){
+        estado.textContent="Abriendo tu compromiso inicial…";
+        window.location.replace(crearRutaCompromiso("compromiso-inicial.html"));
+        return;
+      }
+      if(respuesta.mostrar==="mitad"){
+        estado.textContent="Abriendo tu revisión de mitad del programa…";
+        window.location.replace(crearRutaCompromiso("compromiso-mitad.html"));
+        return;
+      }
+      if(respuesta.mostrar==="plan"){
+        estado.textContent="Abriendo tu programa…";
+        window.location.replace(plan);
+        return;
+      }
+      throw new Error("El servidor devolvió un estado desconocido.");
+    }
+
+    async function consultarEstado(){
+      estado.classList.remove("error");
+      acciones.classList.remove("visible");
+      loader.style.display="block";
+      titulo.textContent="Preparando tu espacio";
+      descripcion.textContent="Estamos revisando qué parte de tu programa corresponde mostrarte hoy.";
+      estado.textContent="Consultando tu avance…";
+
+      if(!cliente){mostrarError("No se recibió el nombre del cliente.");return}
+      if(!plan){mostrarError("No se recibió la dirección del programa.");return}
+
+      try{
+        const consulta = new URL(SCRIPT_URL);
+        consulta.searchParams.set("cliente",cliente);
+        if(fechaPrueba) consulta.searchParams.set("fecha",fechaPrueba);
+
+        const respuestaHttp = await fetch(consulta.toString(),{method:"GET",cache:"no-store"});
+        if(!respuestaHttp.ok) throw new Error("No fue posible consultar el servidor.");
+
+        const respuesta = await respuestaHttp.json();
+        if(!respuesta.ok) throw new Error(respuesta.mensaje || "El servidor no pudo revisar tu estado.");
+
+        redirigirSegunEstado(respuesta);
+      }catch(error){
+        console.error(error);
+        mostrarError(error.message || "Ocurrió un problema inesperado.");
+      }
+    }
+
+    document.getElementById("reintentar").addEventListener("click",consultarEstado);
+    consultarEstado();
+  </script>
+</body>
+</html>
