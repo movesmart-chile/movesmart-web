@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -752,12 +757,34 @@
     document.getElementById('guardarCompromiso').addEventListener('click', async () => {
       const boton = document.getElementById('guardarCompromiso');
       const textoOriginal = boton.textContent;
+      let copia = null;
 
       try {
         boton.disabled = true;
-        boton.textContent = 'Preparando imagen...';
+        boton.textContent = 'Preparando archivo...';
 
-        const canvas = await html2canvas(result, {
+        /* Creamos una copia temporal para que el archivo incluya
+           solo el compromiso, sin botones ni elementos externos. */
+        copia = result.cloneNode(true);
+        copia.id = 'compromisoParaGuardar';
+
+        const accionesCopia = copia.querySelector('.result-actions');
+        if (accionesCopia) accionesCopia.remove();
+
+        copia.style.display = 'block';
+        copia.style.position = 'fixed';
+        copia.style.left = '-10000px';
+        copia.style.top = '0';
+        copia.style.width = '760px';
+        copia.style.maxWidth = '760px';
+        copia.style.margin = '0';
+        copia.style.background = '#1a1420';
+        copia.style.borderRadius = '28px';
+        copia.style.overflow = 'hidden';
+
+        document.body.appendChild(copia);
+
+        const canvas = await html2canvas(copia, {
           backgroundColor: '#1a1420',
           scale: 2,
           useCORS: true
@@ -796,6 +823,7 @@
         console.error(error);
         alert('No fue posible guardar la imagen. Inténtalo nuevamente.');
       } finally {
+        if (copia && copia.parentNode) copia.remove();
         boton.disabled = false;
         boton.textContent = textoOriginal;
       }
