@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -212,7 +213,7 @@ function mostrarEstado(texto, error = false){
   $("statusBox").classList.toggle("error", error);
 }
 
-async function cargarProgreso(){
+function cargarProgreso(){
   const card = document.querySelector(".mission-card");
   const button = $("refreshButton");
 
@@ -221,48 +222,113 @@ async function cargarProgreso(){
   button.textContent = "Actualizando...";
   mostrarEstado("Conectando con tu registro MoveSmart...");
 
-  try {
-    const url = `${SCRIPT_URL}?accion=progresoMensual&cliente=${encodeURIComponent(CLIENTE)}&_=${Date.now()}`;
-    const response = await fetch(url, { cache: "no-store" });
+  const callbackName = "recibirProgresoJuan_" + Date.now();
+  const script = document.createElement("script");
 
-    if (!response.ok) {
-      throw new Error(`Respuesta HTTP ${response.status}`);
-    }
+  let finalizado = false;
 
-    const data = await response.json();
+  const timeout = setTimeout(() => {
+    if (finalizado) return;
+    finalizado = true;
 
-    if (!data.ok) {
-      throw new Error(data.message || "No se pudo leer el progreso");
-    }
+    limpiar();
 
-    progreso = {
-      pausas: Number(data.pausas) || 0,
-      guitarra: Number(data.guitarra) || 0,
-      metaPausas: Number(data.metaPausas) || 12,
-      metaGuitarra: Number(data.metaGuitarra) || 3,
-      mes: String(data.mes || "")
-    };
-
-    render();
-
-    const hora = new Intl.DateTimeFormat("es-CL", {
-      hour: "2-digit",
-      minute: "2-digit"
-    }).format(new Date());
-
-    mostrarEstado(`Progreso actualizado correctamente · ${hora}`);
-  } catch (error) {
-    console.error(error);
-    render();
-    mostrarEstado(
-      "No pudimos actualizar el progreso ahora. Puedes continuar a tu plan y volver a intentarlo más tarde.",
-      true
-    );
-  } finally {
     card.classList.remove("loading");
     button.disabled = false;
     button.textContent = "↻ Actualizar progreso";
+
+    mostrarEstado(
+      "No pudimos actualizar el progreso ahora. Intenta nuevamente.",
+      true
+    );
+  }, 10000);
+
+  function limpiar(){
+    clearTimeout(timeout);
+
+    if (script.parentNode) {
+      script.parentNode.removeChild(script);
+    }
+
+    try {
+      delete window[callbackName];
+    } catch (error) {
+      window[callbackName] = undefined;
+    }
   }
+
+  window[callbackName] = function(data){
+    if (finalizado) return;
+    finalizado = true;
+
+    limpiar();
+
+    try {
+      if (!data || !data.ok) {
+        throw new Error(
+          data && data.message
+            ? data.message
+            : "No se pudo leer el progreso"
+        );
+      }
+
+      progreso = {
+        pausas: Number(data.pausas) || 0,
+        guitarra: Number(data.guitarra) || 0,
+        metaPausas: Number(data.metaPausas) || 12,
+        metaGuitarra: Number(data.metaGuitarra) || 3,
+        mes: String(data.mes || "")
+      };
+
+      render();
+
+      const hora = new Intl.DateTimeFormat("es-CL", {
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(new Date());
+
+      mostrarEstado(
+        `Progreso actualizado correctamente · ${hora}`
+      );
+
+    } catch (error) {
+      console.error("Error al interpretar el progreso:", error);
+
+      mostrarEstado(
+        "No pudimos interpretar el progreso registrado.",
+        true
+      );
+    } finally {
+      card.classList.remove("loading");
+      button.disabled = false;
+      button.textContent = "↻ Actualizar progreso";
+    }
+  };
+
+  script.onerror = function(){
+    if (finalizado) return;
+    finalizado = true;
+
+    limpiar();
+
+    card.classList.remove("loading");
+    button.disabled = false;
+    button.textContent = "↻ Actualizar progreso";
+
+    mostrarEstado(
+      "No pudimos conectar con el registro MoveSmart.",
+      true
+    );
+  };
+
+  script.src =
+    `${SCRIPT_URL}` +
+    `?accion=progresoMensual` +
+    `&cliente=${encodeURIComponent(CLIENTE)}` +
+    `&callback=${encodeURIComponent(callbackName)}` +
+    `&_=${Date.now()}`;
+
+  document.body.appendChild(script);
 }
 
 $("refreshButton").addEventListener("click", cargarProgreso);
