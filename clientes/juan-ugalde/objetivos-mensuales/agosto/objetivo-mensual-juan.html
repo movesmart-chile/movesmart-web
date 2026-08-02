@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +8,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--text:#fff;--muted:rgba(255,255,255,.76);--border:rgba(255,255,255,.13);--accent:#ff5a1f;--accent2:#ff8a3d;--shadow:0 22px 60px rgba(0,0,0,.42);--wrap:min(1050px,calc(100% - 30px))}
-body{min-height:100vh;font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,rgba(8,10,18,.44),rgba(8,10,18,.62)),url('../../../../imagenes/fondo-index-realista.webp') center/cover no-repeat fixed}
+body{min-height:100vh;font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,rgba(8,10,18,.44),rgba(8,10,18,.62)),url('../../../imagenes/fondo-index-realista.webp') center/cover no-repeat fixed}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 8%,rgba(47,99,255,.15),transparent 30%),radial-gradient(circle at 88% 18%,rgba(255,90,31,.17),transparent 28%);z-index:0}
 .wrap{width:var(--wrap);margin:auto;padding:30px 0 50px;position:relative;z-index:1}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
@@ -23,6 +24,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 .mission-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:24px}
 .mission-head h3{font-size:1.7rem;margin-bottom:8px}.mission-head p{color:var(--muted);line-height:1.6;max-width:680px}
 .month-badge{padding:10px 14px;border-radius:999px;background:rgba(47,99,255,.13);border:1px solid rgba(47,99,255,.24);font-weight:800;white-space:nowrap}
+.general-progress{margin-bottom:20px;padding:22px;border-radius:24px;background:rgba(47,99,255,.11);border:1px solid rgba(47,99,255,.23)}
+.general-top{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:12px}
+.general-title{font-size:1.08rem;font-weight:900}.general-value{font-size:2rem;font-weight:900}
+.general-caption{color:rgba(255,255,255,.7);font-size:.9rem;margin-top:5px}
+.general-fill{background:linear-gradient(90deg,#2f63ff,var(--accent))}
+.status-box{margin-top:18px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75);font-size:.92rem}
+.status-box.error{background:rgba(255,90,31,.12);border-color:rgba(255,90,31,.28);color:#ffe0d4}
+.loading{opacity:.65}
 .goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .goal-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:22px}
 .goal-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
@@ -50,7 +59,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 
 <section class="hero">
   <div class="eyebrow">🎯 Tu misión de este mes</div>
-  <h2>Pequeños momentos de movimiento también cuentan.</h2>
+  <h2>¡Hola Juan! Pequeños momentos de movimiento también cuentan.</h2>
   <p>Este mes no necesitas hacer entrenamientos largos. Tu objetivo es incorporar movimiento de forma simple, durante el trabajo y antes de tocar guitarra.</p>
 </section>
 
@@ -59,6 +68,19 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
     <div><h3>Tu progreso</h3><p>Cada vez que vuelvas a esta página podrás ver cuánto llevas y cuánto te falta para completar tu misión.</p></div>
     <div class="month-badge" id="monthBadge">Mes actual</div>
   </div>
+
+  <section class="general-progress">
+    <div class="general-top">
+      <div>
+        <div class="general-title">Progreso general de la misión</div>
+        <div class="general-caption" id="generalCaption">Cargando tus actividades...</div>
+      </div>
+      <div class="general-value" id="generalValue">0 %</div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill general-fill" id="generalFill"></div>
+    </div>
+  </section>
 
   <section class="goals">
     <article class="goal-card">
@@ -79,49 +101,173 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
   <div class="summary" id="summaryBox"><strong>Comienza a tu ritmo</strong>Cada actividad cuenta, incluso si eliges la versión más breve.</div>
 
   <div class="actions">
-    <a class="btn btn-primary" href="../../plan-juan-ugalde.html">Continuar a mi plan →</a>
-    <button class="btn btn-secondary" id="demoButton" type="button">Probar progreso de ejemplo</button>
+    <a class="btn btn-primary" href="plan-juan-ugalde.html">Continuar a mi plan →</a>
+    <button class="btn btn-secondary" id="refreshButton" type="button">↻ Actualizar progreso</button>
   </div>
 
-  <p class="dev-note">Esta versión usa datos de prueba. Luego se conectará con Google Sheets.</p>
+  <div class="status-box" id="statusBox">Conectando con tu registro MoveSmart...</div>
 </main>
 </div>
 
 <script>
-let progreso={pausas:0,guitarra:0,metaPausas:12,metaGuitarra:3};
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const CLIENTE = "Juan Ugalde";
 
-const $=id=>document.getElementById(id);
-function pct(actual,meta){return meta?Math.min(100,Math.round(actual/meta*100)):0}
-function estado(actual,meta,tipo){
-  if(actual>=meta)return tipo==='pausas'?'🎉 Completaste tu meta de pausas activas de este mes.':'🎉 Completaste tu meta de preparación para guitarra.';
-  const faltan=meta-actual;
-  if(actual===0)return tipo==='pausas'?'Tu meta es completar 12 pausas durante el mes.':'Tu meta es completar 3 preparaciones durante el mes.';
-  return `Te ${faltan===1?'falta':'faltan'} ${faltan} para completar esta meta.`;
+let progreso = {
+  pausas: 0,
+  guitarra: 0,
+  metaPausas: 12,
+  metaGuitarra: 3,
+  mes: ""
+};
+
+const $ = id => document.getElementById(id);
+
+function porcentaje(actual, meta){
+  return meta ? Math.min(100, Math.round((actual / meta) * 100)) : 0;
 }
+
+function nombreMes(mesISO){
+  if (/^\d{4}-\d{2}$/.test(mesISO || "")) {
+    const [anio, mes] = mesISO.split("-").map(Number);
+    return new Intl.DateTimeFormat("es-CL", {
+      month: "long",
+      year: "numeric"
+    }).format(new Date(anio, mes - 1, 1));
+  }
+
+  return new Intl.DateTimeFormat("es-CL", {
+    month: "long",
+    year: "numeric"
+  }).format(new Date());
+}
+
+function mensajeMeta(actual, meta, tipo){
+  if (actual >= meta) {
+    return tipo === "pausas"
+      ? "🎉 Completaste tu meta de pausas activas de este mes."
+      : "🎉 Completaste tu meta de preparación para guitarra.";
+  }
+
+  if (actual === 0) {
+    return tipo === "pausas"
+      ? "Tu meta es completar 12 pausas durante el mes."
+      : "Tu meta es completar 3 preparaciones durante el mes.";
+  }
+
+  const faltan = meta - actual;
+  return `Te ${faltan === 1 ? "falta" : "faltan"} ${faltan} para completar esta meta.`;
+}
+
 function render(){
-  const pp=pct(progreso.pausas,progreso.metaPausas),pg=pct(progreso.guitarra,progreso.metaGuitarra);
-  $('monthBadge').textContent=new Intl.DateTimeFormat('es-CL',{month:'long',year:'numeric'}).format(new Date());
-  $('pausasValue').textContent=`${progreso.pausas} / ${progreso.metaPausas}`;
-  $('pausasPercent').textContent=`${pp} % completado`;
-  $('pausasFill').style.width=`${pp}%`;
-  $('pausasStatus').textContent=estado(progreso.pausas,progreso.metaPausas,'pausas');
-  $('guitarraValue').textContent=`${progreso.guitarra} / ${progreso.metaGuitarra}`;
-  $('guitarraPercent').textContent=`${pg} % completado`;
-  $('guitarraFill').style.width=`${pg}%`;
-  $('guitarraStatus').textContent=estado(progreso.guitarra,progreso.metaGuitarra,'guitarra');
+  const pp = porcentaje(progreso.pausas, progreso.metaPausas);
+  const pg = porcentaje(progreso.guitarra, progreso.metaGuitarra);
+  const totalActual = progreso.pausas + progreso.guitarra;
+  const totalMeta = progreso.metaPausas + progreso.metaGuitarra;
+  const general = porcentaje(totalActual, totalMeta);
 
-  const ambas=progreso.pausas>=progreso.metaPausas&&progreso.guitarra>=progreso.metaGuitarra;
-  const total=progreso.pausas+progreso.guitarra;
-  $('summaryBox').innerHTML=ambas
-    ?'<strong>🏆 ¡Misión cumplida, Juan!</strong>Este mes incorporaste movimiento durante el trabajo y antes de tocar guitarra.'
-    :total>=8
-      ?'<strong>👏 Vas avanzando muy bien</strong>Ya completaste más de la mitad de tu misión mensual.'
-      :total>0
-        ?'<strong>💪 Buen comienzo</strong>Ya estás acumulando movimiento. Sigue avanzando paso a paso.'
-        :'<strong>Comienza a tu ritmo</strong>Cada actividad cuenta, incluso si eliges la versión más breve.';
+  $("monthBadge").textContent = nombreMes(progreso.mes);
+
+  $("generalValue").textContent = `${general} %`;
+  $("generalCaption").textContent = `${totalActual} de ${totalMeta} actividades completadas`;
+  $("generalFill").style.width = `${general}%`;
+
+  $("pausasValue").textContent = `${progreso.pausas} / ${progreso.metaPausas}`;
+  $("pausasPercent").textContent = `${pp} % completado`;
+  $("pausasFill").style.width = `${pp}%`;
+  $("pausasStatus").textContent = mensajeMeta(
+    progreso.pausas,
+    progreso.metaPausas,
+    "pausas"
+  );
+
+  $("guitarraValue").textContent = `${progreso.guitarra} / ${progreso.metaGuitarra}`;
+  $("guitarraPercent").textContent = `${pg} % completado`;
+  $("guitarraFill").style.width = `${pg}%`;
+  $("guitarraStatus").textContent = mensajeMeta(
+    progreso.guitarra,
+    progreso.metaGuitarra,
+    "guitarra"
+  );
+
+  const ambas = progreso.pausas >= progreso.metaPausas &&
+                progreso.guitarra >= progreso.metaGuitarra;
+
+  if (ambas) {
+    $("summaryBox").innerHTML =
+      "<strong>🏆 ¡Misión cumplida, Juan!</strong>Este mes incorporaste movimiento durante el trabajo y antes de tocar guitarra.";
+  } else if (totalActual >= Math.ceil(totalMeta / 2)) {
+    $("summaryBox").innerHTML =
+      "<strong>👏 Vas avanzando muy bien</strong>Ya completaste más de la mitad de tu misión mensual.";
+  } else if (totalActual > 0) {
+    $("summaryBox").innerHTML =
+      "<strong>💪 Buen comienzo</strong>Ya estás acumulando movimiento. Sigue avanzando paso a paso.";
+  } else {
+    $("summaryBox").innerHTML =
+      "<strong>Comienza a tu ritmo</strong>Cada actividad cuenta, incluso si eliges la versión más breve.";
+  }
 }
-$('demoButton').addEventListener('click',()=>{progreso={pausas:6,guitarra:1,metaPausas:12,metaGuitarra:3};render();$('demoButton').textContent='Ejemplo cargado ✓'});
-render();
+
+function mostrarEstado(texto, error = false){
+  $("statusBox").textContent = texto;
+  $("statusBox").classList.toggle("error", error);
+}
+
+async function cargarProgreso(){
+  const card = document.querySelector(".mission-card");
+  const button = $("refreshButton");
+
+  card.classList.add("loading");
+  button.disabled = true;
+  button.textContent = "Actualizando...";
+  mostrarEstado("Conectando con tu registro MoveSmart...");
+
+  try {
+    const url = `${SCRIPT_URL}?accion=progresoMensual&cliente=${encodeURIComponent(CLIENTE)}&_=${Date.now()}`;
+    const response = await fetch(url, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error(`Respuesta HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.ok) {
+      throw new Error(data.message || "No se pudo leer el progreso");
+    }
+
+    progreso = {
+      pausas: Number(data.pausas) || 0,
+      guitarra: Number(data.guitarra) || 0,
+      metaPausas: Number(data.metaPausas) || 12,
+      metaGuitarra: Number(data.metaGuitarra) || 3,
+      mes: String(data.mes || "")
+    };
+
+    render();
+
+    const hora = new Intl.DateTimeFormat("es-CL", {
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(new Date());
+
+    mostrarEstado(`Progreso actualizado correctamente · ${hora}`);
+  } catch (error) {
+    console.error(error);
+    render();
+    mostrarEstado(
+      "No pudimos actualizar el progreso ahora. Puedes continuar a tu plan y volver a intentarlo más tarde.",
+      true
+    );
+  } finally {
+    card.classList.remove("loading");
+    button.disabled = false;
+    button.textContent = "↻ Actualizar progreso";
+  }
+}
+
+$("refreshButton").addEventListener("click", cargarProgreso);
+cargarProgreso();
 </script>
 </body>
 </html>
