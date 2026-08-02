@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misión del mes | Juan Ugalde</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--text:#fff;--muted:rgba(255,255,255,.76);--border:rgba(255,255,255,.13);--accent:#ff5a1f;--accent2:#ff8a3d;--shadow:0 22px 60px rgba(0,0,0,.42);--wrap:min(1050px,calc(100% - 30px))}
+body{min-height:100vh;font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:linear-gradient(180deg,rgba(8,10,18,.44),rgba(8,10,18,.62)),url('../../../imagenes/fondo-index-realista.webp') center/cover no-repeat fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 8%,rgba(47,99,255,.15),transparent 30%),radial-gradient(circle at 88% 18%,rgba(255,90,31,.17),transparent 28%);z-index:0}
+.wrap{width:var(--wrap);margin:auto;padding:30px 0 50px;position:relative;z-index:1}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-badge{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));font-weight:900}
+.brand-text h1{font-size:1.28rem}.brand-text p{color:var(--muted);font-size:.92rem;margin-top:4px}
+.hero,.mission-card{border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:blur(14px)}
+.hero{border-radius:34px;padding:42px;margin-bottom:24px;background:linear-gradient(135deg,rgba(11,15,29,.96),rgba(22,15,29,.88))}
+.eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,90,31,.14);border:1px solid rgba(255,90,31,.24);color:#ffd8ca;font-weight:800;font-size:.9rem;margin-bottom:16px}
+.hero h2{font-size:clamp(2rem,4vw,3.7rem);line-height:1.04;letter-spacing:-.04em;max-width:780px;margin-bottom:14px}
+.hero p{color:var(--muted);font-size:1.06rem;line-height:1.72;max-width:720px}
+.mission-card{background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.04));border-radius:32px;padding:28px}
+.mission-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:24px}
+.mission-head h3{font-size:1.7rem;margin-bottom:8px}.mission-head p{color:var(--muted);line-height:1.6;max-width:680px}
+.month-badge{padding:10px 14px;border-radius:999px;background:rgba(47,99,255,.13);border:1px solid rgba(47,99,255,.24);font-weight:800;white-space:nowrap}
+.goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.goal-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:22px}
+.goal-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.goal-icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:1.35rem;background:rgba(255,90,31,.13);border:1px solid rgba(255,90,31,.23)}
+.goal-title{font-size:1.14rem;font-weight:900;margin-bottom:5px}.goal-desc{color:var(--muted);line-height:1.5;font-size:.94rem}
+.progress-row{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:10px}
+.progress-value{font-size:1.9rem;font-weight:900}.progress-label{color:rgba(255,255,255,.68);font-size:.9rem;text-align:right}
+.progress-track{height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.progress-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .7s ease}
+.goal-status{margin-top:12px;color:rgba(255,255,255,.74);font-size:.92rem;line-height:1.45}
+.summary{margin-top:20px;padding:20px;border-radius:24px;background:rgba(29,191,115,.11);border:1px solid rgba(29,191,115,.25);color:#ddffea;line-height:1.65}
+.summary strong{display:block;color:#fff;margin-bottom:4px}
+.actions{display:flex;gap:14px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:none;border-radius:18px;padding:16px 22px;font:900 1rem inherit;cursor:pointer}
+.btn-primary{color:#fff;background:linear-gradient(180deg,#ff7a1f,#ff4f13);min-width:260px}.btn-secondary{color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13)}
+.dev-note{margin-top:18px;color:rgba(255,255,255,.52);font-size:.82rem;text-align:center}
+@media(max-width:760px){.hero{padding:28px 22px;border-radius:26px}.mission-card{padding:20px;border-radius:26px}.mission-head{flex-direction:column}.goals{grid-template-columns:1fr}.actions{flex-direction:column}.btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand"><div class="brand-badge">M</div><div class="brand-text"><h1>MoveSmart</h1><p>Juan Ugalde · Misión mensual</p></div></div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">🎯 Tu misión de este mes</div>
+  <h2>Pequeños momentos de movimiento también cuentan.</h2>
+  <p>Este mes no necesitas hacer entrenamientos largos. Tu objetivo es incorporar movimiento de forma simple, durante el trabajo y antes de tocar guitarra.</p>
+</section>
+
+<main class="mission-card">
+  <div class="mission-head">
+    <div><h3>Tu progreso</h3><p>Cada vez que vuelvas a esta página podrás ver cuánto llevas y cuánto te falta para completar tu misión.</p></div>
+    <div class="month-badge" id="monthBadge">Mes actual</div>
+  </div>
+
+  <section class="goals">
+    <article class="goal-card">
+      <div class="goal-top"><div class="goal-icon">💻</div><div><div class="goal-title">Pausas activas en el trabajo</div><div class="goal-desc">Interrumpe el tiempo sentado y ayuda a reducir la rigidez durante la jornada.</div></div></div>
+      <div class="progress-row"><div class="progress-value" id="pausasValue">0 / 12</div><div class="progress-label" id="pausasPercent">0 % completado</div></div>
+      <div class="progress-track"><div class="progress-fill" id="pausasFill"></div></div>
+      <p class="goal-status" id="pausasStatus">Tu meta es completar 12 pausas durante el mes.</p>
+    </article>
+
+    <article class="goal-card">
+      <div class="goal-top"><div class="goal-icon">🎸</div><div><div class="goal-title">Preparación antes de tocar guitarra</div><div class="goal-desc">Prepara manos, muñecas, hombros y postura antes de comenzar a tocar.</div></div></div>
+      <div class="progress-row"><div class="progress-value" id="guitarraValue">0 / 3</div><div class="progress-label" id="guitarraPercent">0 % completado</div></div>
+      <div class="progress-track"><div class="progress-fill" id="guitarraFill"></div></div>
+      <p class="goal-status" id="guitarraStatus">Tu meta es completar 3 preparaciones durante el mes.</p>
+    </article>
+  </section>
+
+  <div class="summary" id="summaryBox"><strong>Comienza a tu ritmo</strong>Cada actividad cuenta, incluso si eliges la versión más breve.</div>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="plan-juan-ugalde.html">Continuar a mi plan →</a>
+    <button class="btn btn-secondary" id="demoButton" type="button">Probar progreso de ejemplo</button>
+  </div>
+
+  <p class="dev-note">Esta versión usa datos de prueba. Luego se conectará con Google Sheets.</p>
+</main>
+</div>
+
+<script>
+let progreso={pausas:0,guitarra:0,metaPausas:12,metaGuitarra:3};
+
+const $=id=>document.getElementById(id);
+function pct(actual,meta){return meta?Math.min(100,Math.round(actual/meta*100)):0}
+function estado(actual,meta,tipo){
+  if(actual>=meta)return tipo==='pausas'?'🎉 Completaste tu meta de pausas activas de este mes.':'🎉 Completaste tu meta de preparación para guitarra.';
+  const faltan=meta-actual;
+  if(actual===0)return tipo==='pausas'?'Tu meta es completar 12 pausas durante el mes.':'Tu meta es completar 3 preparaciones durante el mes.';
+  return `Te ${faltan===1?'falta':'faltan'} ${faltan} para completar esta meta.`;
+}
+function render(){
+  const pp=pct(progreso.pausas,progreso.metaPausas),pg=pct(progreso.guitarra,progreso.metaGuitarra);
+  $('monthBadge').textContent=new Intl.DateTimeFormat('es-CL',{month:'long',year:'numeric'}).format(new Date());
+  $('pausasValue').textContent=`${progreso.pausas} / ${progreso.metaPausas}`;
+  $('pausasPercent').textContent=`${pp} % completado`;
+  $('pausasFill').style.width=`${pp}%`;
+  $('pausasStatus').textContent=estado(progreso.pausas,progreso.metaPausas,'pausas');
+  $('guitarraValue').textContent=`${progreso.guitarra} / ${progreso.metaGuitarra}`;
+  $('guitarraPercent').textContent=`${pg} % completado`;
+  $('guitarraFill').style.width=`${pg}%`;
+  $('guitarraStatus').textContent=estado(progreso.guitarra,progreso.metaGuitarra,'guitarra');
+
+  const ambas=progreso.pausas>=progreso.metaPausas&&progreso.guitarra>=progreso.metaGuitarra;
+  const total=progreso.pausas+progreso.guitarra;
+  $('summaryBox').innerHTML=ambas
+    ?'<strong>🏆 ¡Misión cumplida, Juan!</strong>Este mes incorporaste movimiento durante el trabajo y antes de tocar guitarra.'
+    :total>=8
+      ?'<strong>👏 Vas avanzando muy bien</strong>Ya completaste más de la mitad de tu misión mensual.'
+      :total>0
+        ?'<strong>💪 Buen comienzo</strong>Ya estás acumulando movimiento. Sigue avanzando paso a paso.'
+        :'<strong>Comienza a tu ritmo</strong>Cada actividad cuenta, incluso si eliges la versión más breve.';
+}
+$('demoButton').addEventListener('click',()=>{progreso={pausas:6,guitarra:1,metaPausas:12,metaGuitarra:3};render();$('demoButton').textContent='Ejemplo cargado ✓'});
+render();
+</script>
+</body>
+</html>
