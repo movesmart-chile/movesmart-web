@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -565,8 +566,11 @@
 
     if(cliente){
       document.getElementById('nombre').value = cliente;
+
+      const primerNombreCliente = cliente.trim().split(" ")[0];
+
       document.getElementById('heroText').innerHTML =
-        `<span class="hello">Hola, ${cliente}.</span>` +
+        `<span class="hello">Hola, ${primerNombreCliente}.</span>` +
         `No se trata de evaluar si lo hiciste bien o mal. Se trata de descubrir qué funcionó y qué necesitas para continuar.`;
     }
 
@@ -621,8 +625,10 @@
       document.getElementById('rDificultad').textContent = datos.dificultad;
       document.getElementById('rAjuste').textContent = datos.ajuste;
       document.getElementById('rFirma').textContent = `${datos.nombre} · ${datos.fecha}`;
+      const primerNombreFirma = datos.nombre.trim().split(" ")[0];
+
       document.getElementById('saludo').textContent =
-        `${datos.nombre}, ajustar el plan no significa retroceder. Significa hacerlo sostenible.`;
+        `${primerNombreFirma}, ajustar el plan no significa retroceder. Significa hacerlo sostenible.`;
 
       fetch(SCRIPT_URL,{
         method:"POST",
