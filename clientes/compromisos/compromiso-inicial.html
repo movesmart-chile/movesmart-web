@@ -665,8 +665,10 @@
     if (cliente) {
       document.getElementById('nombre').value = cliente;
 
+      const primerNombreCliente = cliente.trim().split(" ")[0];
+
       document.getElementById('heroText').innerHTML =
-        `<span class="hello">Hola, ${cliente}.</span>` +
+        `<span class="hello">Hola, ${primerNombreCliente}.</span>` +
         `No quiero que prometas hacerlo perfecto. Solo quiero que tomes una decisión: ` +
         `¿qué harás cuando aparezca una semana difícil?`;
     }
@@ -728,8 +730,10 @@
         `Si ${datos.si}, entonces ${datos.entonces}`;
       document.getElementById('rFirma').textContent =
         `${datos.nombre} · ${datos.fecha}`;
+      const primerNombreFirma = datos.nombre.trim().split(" ")[0];
+
       document.getElementById('saludo').textContent =
-        `${datos.nombre}, no necesitas hacerlo perfecto. Solo volver a este acuerdo cuando lo necesites.`;
+        `${primerNombreFirma}, no necesitas hacerlo perfecto. Solo volver a este acuerdo cuando lo necesites.`;
 
       fetch(SCRIPT_URL, {
         method: "POST",
