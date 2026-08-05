@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -382,79 +383,6 @@
       font-size: .95rem;
     }
 
-    .reevaluacion-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(6, 5, 10, 0.78);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .reevaluacion-modal-card {
-      width: min(760px, 100%);
-      padding: 42px 34px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(48, 25, 18, 0.98), rgba(34, 20, 28, 0.98));
-      border: 1px solid rgba(255, 140, 0, 0.48);
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
-      text-align: center;
-      animation: aparecerReevaluacion .28s ease-out;
-    }
-
-    .reevaluacion-modal-title {
-      margin-bottom: 18px;
-      color: #ffb45c;
-      font-size: clamp(1.65rem, 4vw, 2.45rem);
-      line-height: 1.15;
-      font-weight: 900;
-    }
-
-    .reevaluacion-modal-text {
-      max-width: 620px;
-      margin: 0 auto 28px;
-      color: rgba(255, 255, 255, 0.84);
-      font-size: clamp(1rem, 2.4vw, 1.2rem);
-      line-height: 1.65;
-    }
-
-    .reevaluacion-modal-btn {
-      min-height: 64px;
-      font-size: 1.15rem;
-      border-radius: 18px;
-    }
-
-    @keyframes aparecerReevaluacion {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .reevaluacion-modal {
-        padding: 18px;
-      }
-
-      .reevaluacion-modal-card {
-        padding: 32px 22px;
-        border-radius: 24px;
-      }
-
-      .reevaluacion-modal-btn {
-        min-height: 58px;
-        font-size: 1rem;
-      }
-    }
-
     .hidden { display: none !important; }
 
     @media (max-width: 768px) {
@@ -622,22 +550,6 @@
           <p id="mensajeCarga" class="checkin-carga hidden">Guardando tu sesión...</p>
           <p id="mensajeFinal" class="checkin-exito hidden">✨ Sesión registrada con éxito. ¡Buen trabajo!</p>
           <p id="mensajeError" class="checkin-error hidden">No se pudo guardar tu sesión. Inténtalo nuevamente.</p>
-
-          <div id="reevaluacionDisponible" class="reevaluacion-modal hidden">
-            <div class="reevaluacion-modal-card">
-              <p class="reevaluacion-modal-title">📋 Tu reevaluación mensual está disponible</p>
-              <p class="reevaluacion-modal-text">
-                Completarla permitirá revisar tus avances y adaptar tu próximo mes según cómo te has sentido.
-              </p>
-              <a
-                id="botonReevaluacion"
-                class="checkin-boton reevaluacion-modal-btn"
-              href="https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/reevaluaciones/julio/reevaluacion-mensual-juany-final.html"
-              >
-                Completar mi reevaluación
-              </a>
-            </div>
-          </div>
         </form>
       </div>
     </div>
@@ -645,15 +557,6 @@
 
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_LLxfYHVTos8NyG_ncJuRXMvaDVczVUuRRY-ubgxNtoojDyXgf5EFhG7Ou2bCrMOl/exec";
-
-    // Reevaluaciones por cliente.
-    // La fecha se compara directamente en este HTML para evitar bloqueos del navegador.
-    const REEVALUACIONES_CLIENTES = {
-      "juany-flores": {
-        fechaDisponible: "2026-08-05",
-        pagina: "https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/reevaluaciones/julio/reevaluacion-mensual-juany-final.html"
-      }
-    };
 
     const esfuerzo = document.getElementById("esfuerzo");
     const esfuerzoValor = document.getElementById("esfuerzoValor");
@@ -675,8 +578,6 @@
     const rutinaHidden = document.getElementById("rutinaHidden");
     const sesionObjetivoHidden = document.getElementById("sesionObjetivoHidden");
     const clienteVisible = document.getElementById("clienteVisible");
-    const reevaluacionDisponible = document.getElementById("reevaluacionDisponible");
-    const botonReevaluacion = document.getElementById("botonReevaluacion");
 
     const params = new URLSearchParams(window.location.search);
     const clienteParam = (params.get("cliente") || "").trim();
@@ -705,16 +606,6 @@
         month: "2-digit",
         day: "2-digit"
       }).format(new Date());
-    }
-
-    function normalizarCliente(valor) {
-      return String(valor || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
     }
 
     function resetFotoUI() {
@@ -859,33 +750,12 @@
       return true;
     }
 
-    async function consultarReevaluacion() {
-      const clienteId = normalizarCliente(clienteParam);
-      const configuracion = REEVALUACIONES_CLIENTES[clienteId];
-
-      if (!configuracion) {
-        reevaluacionDisponible.classList.add("hidden");
-        return;
-      }
-
-      const hoy = obtenerFechaChile();
-      const disponible = hoy >= configuracion.fechaDisponible;
-
-      if (disponible) {
-        botonReevaluacion.href = configuracion.pagina;
-        reevaluacionDisponible.classList.remove("hidden");
-      } else {
-        reevaluacionDisponible.classList.add("hidden");
-      }
-    }
-
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
 
       mensajeFinal.classList.add("hidden");
       mensajeError.classList.add("hidden");
       mensajeCarga.classList.add("hidden");
-      reevaluacionDisponible.classList.add("hidden");
 
       if (!validarFormularioCompleto()) {
         return;
@@ -941,9 +811,6 @@
 
         mensajeFinal.textContent = "✨ Sesión registrada con éxito. ¡Buen trabajo!";
         mensajeFinal.classList.remove("hidden");
-
-        // Después de registrar la sesión, consulta si corresponde mostrar la reevaluación.
-        await consultarReevaluacion();
 
         form.reset();
         esfuerzoValor.textContent = "5";
