@@ -571,25 +571,13 @@
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_LLxfYHVTos8NyG_ncJuRXMvaDVczVUuRRY-ubgxNtoojDyXgf5EFhG7Ou2bCrMOl/exec";
 
-    // Apps Script que controla la disponibilidad de la reevaluación mensual.
-    const REEVALUACION_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbW-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOz8/exec";
-
-    // Configuración de reevaluaciones por cliente.
-    // Este registro sigue siendo común para todos:
-    // solo se mostrará una reevaluación si el cliente aparece aquí
-    // y Apps Script indica que ya está disponible por fecha.
+    // Reevaluaciones por cliente.
+    // La fecha se compara directamente en este HTML para evitar bloqueos del navegador.
     const REEVALUACIONES_CLIENTES = {
-      "Juany Flores": {
-        clienteId: "juany-flores",
+      "juany-flores": {
+        fechaDisponible: "2026-08-05",
         pagina: "https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/reevaluaciones/julio/reevaluacion-mensual-juany-final.html"
       }
-
-      // Más adelante puedes agregar otros clientes así:
-      // ,"Juan Ugalde": {
-      //   clienteId: "juan-ugalde",
-      //   pagina: "reevaluacion-mensual-juan-final.html"
-      // }
     };
 
     const esfuerzo = document.getElementById("esfuerzo");
@@ -642,6 +630,16 @@
         month: "2-digit",
         day: "2-digit"
       }).format(new Date());
+    }
+
+    function normalizarCliente(valor) {
+      return String(valor || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
     }
 
     function resetFotoUI() {
@@ -787,34 +785,22 @@
     }
 
     async function consultarReevaluacion() {
-      const configuracion = REEVALUACIONES_CLIENTES[clienteParam];
+      const clienteId = normalizarCliente(clienteParam);
+      const configuracion = REEVALUACIONES_CLIENTES[clienteId];
 
-      // Si el cliente no tiene una reevaluación configurada,
-      // el registro funciona normalmente y no muestra ningún botón.
       if (!configuracion) {
         reevaluacionDisponible.classList.add("hidden");
         return;
       }
 
-      try {
-        const url =
-          REEVALUACION_SCRIPT_URL +
-          "?cliente_id=" +
-          encodeURIComponent(configuracion.clienteId);
+      const hoy = obtenerFechaChile();
+      const disponible = hoy >= configuracion.fechaDisponible;
 
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.ok === true && data.mostrar_evaluacion === true) {
-          botonReevaluacion.href = configuracion.pagina;
-          reevaluacionDisponible.classList.remove("hidden");
-        } else {
-          reevaluacionDisponible.classList.add("hidden");
-        }
-      } catch (error) {
-        // La sesión queda registrada aunque falle esta consulta.
+      if (disponible) {
+        botonReevaluacion.href = configuracion.pagina;
+        reevaluacionDisponible.classList.remove("hidden");
+      } else {
         reevaluacionDisponible.classList.add("hidden");
-        console.error("No se pudo consultar la reevaluación:", error);
       }
     }
 
