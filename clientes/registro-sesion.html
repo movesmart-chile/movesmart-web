@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -549,6 +550,20 @@
           <p id="mensajeCarga" class="checkin-carga hidden">Guardando tu sesión...</p>
           <p id="mensajeFinal" class="checkin-exito hidden">✨ Sesión registrada con éxito. ¡Buen trabajo!</p>
           <p id="mensajeError" class="checkin-error hidden">No se pudo guardar tu sesión. Inténtalo nuevamente.</p>
+
+          <div id="reevaluacionDisponible" class="seguimiento-box hidden" style="margin:8px 0 0;">
+            <p class="seguimiento-title">📋 Tu reevaluación mensual está disponible</p>
+            <p class="seguimiento-text">
+              Completarla permitirá revisar tus avances y adaptar tu próximo mes según cómo te has sentido.
+            </p>
+            <a
+              id="botonReevaluacion"
+              class="checkin-boton"
+              href="reevaluacion-mensual-juany-final.html"
+            >
+              Completar mi reevaluación
+            </a>
+          </div>
         </form>
       </div>
     </div>
@@ -556,6 +571,27 @@
 
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_LLxfYHVTos8NyG_ncJuRXMvaDVczVUuRRY-ubgxNtoojDyXgf5EFhG7Ou2bCrMOl/exec";
+
+    // Apps Script que controla la disponibilidad de la reevaluación mensual.
+    const REEVALUACION_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbW-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOz8/exec";
+
+    // Configuración de reevaluaciones por cliente.
+    // Este registro sigue siendo común para todos:
+    // solo se mostrará una reevaluación si el cliente aparece aquí
+    // y Apps Script indica que ya está disponible por fecha.
+    const REEVALUACIONES_CLIENTES = {
+      "Juany Flores": {
+        clienteId: "juany-flores",
+        pagina: "reevaluacion-mensual-juany-final.html"
+      }
+
+      // Más adelante puedes agregar otros clientes así:
+      // ,"Juan Ugalde": {
+      //   clienteId: "juan-ugalde",
+      //   pagina: "reevaluacion-mensual-juan-final.html"
+      // }
+    };
 
     const esfuerzo = document.getElementById("esfuerzo");
     const esfuerzoValor = document.getElementById("esfuerzoValor");
@@ -577,6 +613,8 @@
     const rutinaHidden = document.getElementById("rutinaHidden");
     const sesionObjetivoHidden = document.getElementById("sesionObjetivoHidden");
     const clienteVisible = document.getElementById("clienteVisible");
+    const reevaluacionDisponible = document.getElementById("reevaluacionDisponible");
+    const botonReevaluacion = document.getElementById("botonReevaluacion");
 
     const params = new URLSearchParams(window.location.search);
     const clienteParam = (params.get("cliente") || "").trim();
@@ -749,12 +787,45 @@
       return true;
     }
 
+    async function consultarReevaluacion() {
+      const configuracion = REEVALUACIONES_CLIENTES[clienteParam];
+
+      // Si el cliente no tiene una reevaluación configurada,
+      // el registro funciona normalmente y no muestra ningún botón.
+      if (!configuracion) {
+        reevaluacionDisponible.classList.add("hidden");
+        return;
+      }
+
+      try {
+        const url =
+          REEVALUACION_SCRIPT_URL +
+          "?cliente_id=" +
+          encodeURIComponent(configuracion.clienteId);
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.ok === true && data.mostrar_evaluacion === true) {
+          botonReevaluacion.href = configuracion.pagina;
+          reevaluacionDisponible.classList.remove("hidden");
+        } else {
+          reevaluacionDisponible.classList.add("hidden");
+        }
+      } catch (error) {
+        // La sesión queda registrada aunque falle esta consulta.
+        reevaluacionDisponible.classList.add("hidden");
+        console.error("No se pudo consultar la reevaluación:", error);
+      }
+    }
+
     form.addEventListener("submit", async function(e) {
       e.preventDefault();
 
       mensajeFinal.classList.add("hidden");
       mensajeError.classList.add("hidden");
       mensajeCarga.classList.add("hidden");
+      reevaluacionDisponible.classList.add("hidden");
 
       if (!validarFormularioCompleto()) {
         return;
@@ -810,6 +881,9 @@
 
         mensajeFinal.textContent = "✨ Sesión registrada con éxito. ¡Buen trabajo!";
         mensajeFinal.classList.remove("hidden");
+
+        // Después de registrar la sesión, consulta si corresponde mostrar la reevaluación.
+        await consultarReevaluacion();
 
         form.reset();
         esfuerzoValor.textContent = "5";
