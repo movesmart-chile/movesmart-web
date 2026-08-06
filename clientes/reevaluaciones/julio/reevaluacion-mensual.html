@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reevaluación mensual | MoveSmart</title>
+  <meta
+    name="description"
+    content="Reevaluación mensual personalizada y reutilizable para clientes MoveSmart."
+  />
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --bg:#0b0811;
+      --card:rgba(24,16,32,.88);
+      --soft:rgba(255,255,255,.055);
+      --border:rgba(255,255,255,.11);
+      --text:#f8f4fb;
+      --muted:rgba(255,255,255,.74);
+      --accent:#ff5a1f;
+      --accent-2:#ff8b4f;
+      --ok:#b9f3c9;
+      --error:#ffb4aa;
+      --shadow:0 24px 70px rgba(0,0,0,.42);
+      --wrap:min(790px, calc(100% - 28px));
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      min-height:100vh;
+      color:var(--text);
+      font-family:"Segoe UI",Inter,system-ui,sans-serif;
+      background:
+        linear-gradient(180deg,rgba(5,7,14,.58),rgba(5,7,14,.84)),
+        url("/movesmart-web/imagenes/fondo-index-realista.webp") center/cover no-repeat fixed,
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 14% 12%,rgba(76,58,146,.24),transparent 30%),
+        radial-gradient(circle at 86% 18%,rgba(255,90,31,.22),transparent 24%);
+    }
+
+    button,input,textarea{font:inherit}
+    button{border:0}
+
+    .page{
+      position:relative;
+      z-index:1;
+      width:var(--wrap);
+      margin:0 auto;
+      padding:22px 0 46px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .logo{
+      width:170px;
+      max-width:46vw;
+      display:block;
+      filter:drop-shadow(0 12px 24px rgba(0,0,0,.34));
+    }
+
+    .back{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 16px;
+      border-radius:14px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:850;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--border);
+    }
+
+    .card{
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025)),
+        var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border-radius:30px;
+    }
+
+    .loading{
+      padding:34px;
+      text-align:center;
+    }
+
+    .spinner{
+      width:58px;
+      height:58px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      border:5px solid rgba(255,255,255,.12);
+      border-top-color:var(--accent);
+      animation:girar .85s linear infinite;
+    }
+
+    .loading h1{margin-bottom:10px}
+    .loading p{color:var(--muted);line-height:1.65}
+
+    .hero{
+      display:none;
+      padding:clamp(26px,5vw,42px);
+      margin-bottom:18px;
+      text-align:center;
+    }
+
+    .hero.active{display:block}
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      color:#ffd5c3;
+      font-size:.86rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.035em;
+      background:rgba(255,90,31,.11);
+      border:1px solid rgba(255,90,31,.28);
+    }
+
+    .hero h1{
+      margin:16px 0 14px;
+      font-size:clamp(2.1rem,7vw,4rem);
+      line-height:.98;
+      letter-spacing:-.045em;
+    }
+
+    .hero h1 span{color:var(--accent-2)}
+
+    .hero p{
+      max-width:660px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:clamp(1rem,2.3vw,1.15rem);
+      line-height:1.7;
+    }
+
+    .context-box{
+      margin-top:24px;
+      padding:18px;
+      border-radius:20px;
+      text-align:left;
+      background:rgba(23,36,79,.54);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .context-box strong{
+      display:block;
+      margin-bottom:7px;
+      color:#fff;
+    }
+
+    .context-box p{font-size:.98rem}
+
+    .progress-wrap{
+      display:none;
+      margin-bottom:18px;
+      padding:16px 18px;
+      border-radius:20px;
+      background:rgba(10,8,16,.56);
+      border:1px solid var(--border);
+    }
+
+    .progress-wrap.active{display:block}
+
+    .progress-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+      color:var(--muted);
+      font-size:.88rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    .progress-track{
+      height:8px;
+      overflow:hidden;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+    }
+
+    .progress-bar{
+      width:20%;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      transition:width .25s ease;
+    }
+
+    form{display:none}
+    form.active{display:grid;gap:18px}
+
+    .step{display:none}
+    .step.active{display:block;animation:fadeUp .28s ease both}
+
+    .step-card{overflow:hidden}
+
+    .step-head{
+      padding:22px 24px;
+      background:
+        linear-gradient(135deg,rgba(47,99,255,.30),rgba(255,90,31,.16));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .step-head h2{
+      margin-bottom:7px;
+      font-size:clamp(1.35rem,4vw,1.85rem);
+    }
+
+    .step-head p{
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .step-body{
+      display:grid;
+      gap:16px;
+      padding:22px;
+    }
+
+    .field{
+      padding:18px;
+      border-radius:20px;
+      background:var(--soft);
+      border:1px solid rgba(255,255,255,.075);
+    }
+
+    .field-title{
+      display:block;
+      margin-bottom:12px;
+      font-weight:850;
+      line-height:1.45;
+    }
+
+    .helper{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:.87rem;
+      line-height:1.5;
+    }
+
+    .choices{
+      display:grid;
+      gap:10px;
+    }
+
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .five{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .six{grid-template-columns:repeat(6,minmax(0,1fr))}
+
+    .choice{position:relative}
+    .choice input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .choice span{
+      min-height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+      border-radius:16px;
+      text-align:center;
+      color:var(--muted);
+      font-weight:800;
+      line-height:1.35;
+      cursor:pointer;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.095);
+      transition:.18s ease;
+    }
+
+    .choice input:checked + span{
+      color:#fff;
+      background:linear-gradient(180deg,rgba(255,90,31,.28),rgba(255,90,31,.12));
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(255,90,31,.28);
+    }
+
+    textarea,input[type="text"]{
+      width:100%;
+      min-height:52px;
+      padding:14px 15px;
+      color:#17131c;
+      background:rgba(255,255,255,.95);
+      border:0;
+      border-radius:15px;
+      outline:none;
+    }
+
+    textarea{
+      min-height:104px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    .future-box{
+      padding:20px;
+      border-left:4px solid var(--accent);
+      border-radius:18px;
+      background:rgba(23,36,79,.62);
+    }
+
+    .future-box h3{margin-bottom:8px}
+    .future-box p{color:var(--muted);line-height:1.6}
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:0 22px 22px;
+    }
+
+    .actions.first{justify-content:flex-end}
+
+    .btn{
+      min-height:54px;
+      padding:13px 20px;
+      border-radius:16px;
+      color:#fff;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .primary{
+      background:linear-gradient(180deg,var(--accent-2),var(--accent));
+      box-shadow:0 14px 30px rgba(255,90,31,.24);
+    }
+
+    .secondary{
+      background:rgba(255,255,255,.075);
+      border:1px solid var(--border);
+    }
+
+    .status{
+      display:none;
+      margin:0 22px 18px;
+      padding:14px 16px;
+      border-radius:16px;
+      font-weight:800;
+      line-height:1.55;
+    }
+
+    .status.show{display:block}
+
+    .status.error{
+      color:var(--error);
+      background:rgba(255,90,31,.09);
+      border:1px solid rgba(255,90,31,.24);
+    }
+
+    .status.ok{
+      color:var(--ok);
+      background:rgba(55,198,116,.10);
+      border:1px solid rgba(55,198,116,.24);
+    }
+
+    .result{
+      display:none;
+      padding:clamp(28px,5vw,42px);
+      text-align:center;
+    }
+
+    .result.active{display:block;animation:fadeUp .28s ease both}
+    .result h2{margin-bottom:12px;font-size:clamp(1.8rem,5vw,2.6rem)}
+    .result p{color:var(--muted);line-height:1.7}
+
+    .next-step{
+      margin-top:24px;
+      padding:20px;
+      border-radius:20px;
+      text-align:left;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .next-step strong{
+      display:block;
+      margin-bottom:8px;
+      color:#fff;
+    }
+
+    .hidden{display:none!important}
+
+    @keyframes girar{to{transform:rotate(360deg)}}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @media(max-width:700px){
+      .two,.three,.five{grid-template-columns:1fr}
+      .six{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .actions{flex-direction:column-reverse}
+      .actions .btn{width:100%}
+      .step-body{padding:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <img
+        class="logo"
+        src="/movesmart-web/imagenes/logo.webp"
+        alt="MoveSmart"
+      />
+      <a class="back" href="/movesmart-web/acceso-clientes.html">
+        ← Volver
+      </a>
+    </header>
+
+    <section class="card loading" id="loadingCard">
+      <div class="spinner" aria-hidden="true"></div>
+      <h1>Preparando tu reevaluación</h1>
+      <p>
+        Estamos cargando tu información inicial para personalizar esta experiencia.
+      </p>
+    </section>
+
+    <section class="card hero" id="hero">
+      <div class="eyebrow">🎉 Cierre de ciclo</div>
+
+      <h1 id="heroTitle">
+        Completaste un nuevo <span>mes</span>
+      </h1>
+
+      <p>
+        Queremos ayudarte a reconocer lo que cambió, valorar lo que te sirvió
+        y visualizar el siguiente paso de tu proceso.
+      </p>
+
+      <div class="context-box">
+        <strong>Tu objetivo de este ciclo</strong>
+        <p id="objectiveText"></p>
+      </div>
+    </section>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-head">
+        <span id="progressLabel">Bloque 1 de 5</span>
+        <span id="progressPercent">20%</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <form id="reevaluationForm" novalidate>
+      <section class="step active" data-step="1">
+        <article class="card step-card">
+          <div class="step-head">
+            <h2>1. Reconoce lo que cambió</h2>
+            <p>
+              Compara cómo llegaste al programa con cómo te sientes hoy.
+            </p>
+          </div>
+
+          <div class="step-body">
+            <div class="field">
+              <span class="field-title">
+                En general, comparado con el inicio del mes, hoy te sientes… *
+              </span>
+
+              <div class="choices five">
+                <label class="choice">
+                  <input type="radio" name="cambio_molestias" value="Mucho mejor" required />
+                  <span>🌟 Mucho mejor</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="cambio_molestias" value="Algo mejor" required />
+                  <span>🙂 Algo mejor</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="cambio_molestias" value="Igual" required />
+                  <span>😐 Igual</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="cambio_molestias" value="Algo peor" required />
+                  <span>🙁 Algo peor</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="cambio_molestias" value="Mucho peor" required />
+                  <span>😣 Mucho peor</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="field-title" id="zone1Label">
+                Molestia principal durante la última semana *
+              </span>
+              <div class="choices six" id="zone1Scale"></div>
+            </div>
+
+            <div class="field">
+              <span class="field-title" id="zone2Label">
+                Molestia secundaria durante la última semana *
+              </span>
+              <div class="choices six" id="zone2Scale"></div>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                ¿Cómo estuvo tu energía durante la última semana? *
+              </span>
+              <div class="choices five" id="energyScale"></div>
+            </div>
+          </div>
+
+          <div class="actions first">
+            <button class="btn primary" type="button" data-next>
+              Continuar →
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section class="step" data-step="2">
+        <article class="card step-card">
+          <div class="step-head">
+            <h2>2. Mira tus avances cotidianos</h2>
+            <p>
+              Los cambios en tus actividades diarias también son progreso.
+            </p>
+          </div>
+
+          <div class="step-body" id="activitiesContainer"></div>
+
+          <div class="actions">
+            <button class="btn secondary" type="button" data-prev>← Atrás</button>
+            <button class="btn primary" type="button" data-next>Continuar →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="step" data-step="3">
+        <article class="card step-card">
+          <div class="step-head">
+            <h2>3. Tu experiencia con el programa</h2>
+            <p>
+              Queremos saber si el programa fue realista para tu vida.
+            </p>
+          </div>
+
+          <div class="step-body">
+            <div class="field">
+              <span class="field-title">
+                ¿Cuántas sesiones realizaste normalmente por semana? *
+              </span>
+              <div class="choices five" id="sessionsScale"></div>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                ¿Qué tan fácil fue adaptar el programa a tu tiempo y energía? *
+              </span>
+              <div class="choices five" id="easeScale"></div>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                ¿Cuál fue tu principal dificultad? *
+              </span>
+              <div class="choices two" id="difficultyOptions"></div>
+
+              <input
+                id="otherDifficulty"
+                class="hidden"
+                type="text"
+                name="otra_dificultad"
+                placeholder="Cuéntanos brevemente cuál fue"
+              />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn secondary" type="button" data-prev>← Atrás</button>
+            <button class="btn primary" type="button" data-next>Continuar →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="step" data-step="4">
+        <article class="card step-card">
+          <div class="step-head">
+            <h2>4. Reconoce lo que te ayudó</h2>
+            <p>
+              Identificar tus avances permite construir mejor el siguiente paso.
+            </p>
+          </div>
+
+          <div class="step-body">
+            <div class="field">
+              <label class="field-title">
+                ¿Cuál fue el cambio más importante que notaste este mes? *
+              </label>
+              <textarea
+                name="mayor_mejora"
+                required
+                placeholder="Puede ser un cambio pequeño o grande."
+              ></textarea>
+            </div>
+
+            <div class="field">
+              <label class="field-title">
+                ¿Qué parte del programa te resultó más útil? *
+              </label>
+              <textarea
+                name="ejercicio_util"
+                required
+                placeholder="Por ejemplo: las sesiones cortas, la adaptación, el seguimiento o una parte específica del programa."
+              ></textarea>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                ¿Hay alguna parte del programa que necesitemos revisar? *
+              </span>
+
+              <div class="choices two">
+                <label class="choice">
+                  <input type="radio" name="revisar_programa" value="No" required />
+                  <span>✅ No</span>
+                </label>
+
+                <label class="choice">
+                  <input type="radio" name="revisar_programa" value="Sí" required />
+                  <span>💬 Sí, quiero comentarlo</span>
+                </label>
+              </div>
+
+              <textarea
+                id="reviewDetail"
+                class="hidden"
+                name="ejercicio_incomodo"
+                placeholder="Cuéntanos brevemente qué te gustaría revisar."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn secondary" type="button" data-prev>← Atrás</button>
+            <button class="btn primary" type="button" data-next>Continuar →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="step" data-step="5">
+        <article class="card step-card">
+          <div class="step-head">
+            <h2>5. Visualiza tu siguiente etapa</h2>
+            <p>
+              El siguiente ciclo puede construir sobre lo que ya lograste.
+            </p>
+          </div>
+
+          <div class="step-body">
+            <div class="future-box">
+              <h3>Un mes puede mostrarte que el cambio es posible.</h3>
+              <p id="continuityMessage"></p>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                ¿Qué te gustaría conseguir durante las próximas semanas? *
+              </span>
+              <div class="choices two" id="nextGoals"></div>
+            </div>
+
+            <div class="field">
+              <span class="field-title">
+                Sabiendo lo que avanzaste y lo que aún quieres lograr,
+                ¿cómo te gustaría continuar? *
+              </span>
+
+              <div class="choices">
+                <label class="choice">
+                  <input type="radio" name="continuidad" value="Sí, quiero continuar" required />
+                  <span>🚀 Sí, quiero continuar con el siguiente mes</span>
+                </label>
+
+                <label class="choice">
+                  <input type="radio" name="continuidad" value="Quiero conversar primero" required />
+                  <span>💬 Quiero conversar primero sobre mis resultados</span>
+                </label>
+
+                <label class="choice">
+                  <input type="radio" name="continuidad" value="Por ahora prefiero detenerme" required />
+                  <span>⏸️ Por ahora prefiero detener el programa</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-title">
+                Opcional: ¿qué te dirías al recordar que completaste este mes?
+              </label>
+              <textarea
+                name="reflexion_final"
+                placeholder="Una frase breve sobre tu esfuerzo o aprendizaje."
+              ></textarea>
+            </div>
+          </div>
+
+          <div id="formStatus" class="status"></div>
+
+          <div class="actions">
+            <button class="btn secondary" type="button" data-prev>← Atrás</button>
+            <button class="btn primary" id="submitBtn" type="submit">
+              Enviar mi reevaluación
+            </button>
+          </div>
+        </article>
+      </section>
+    </form>
+
+    <section class="card result" id="resultCard">
+      <h2 id="resultTitle">¡Reevaluación enviada!</h2>
+      <p id="resultText"></p>
+
+      <div class="next-step">
+        <strong>Próximo paso</strong>
+        <p id="nextStepText"></p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /*
+      ============================================================
+      URLS DE LOS DOS APPS SCRIPT
+      ============================================================
+
+      CONFIG_SCRIPT_URL:
+      Lee la evaluación inicial y devuelve la configuración personalizada.
+
+      SAVE_SCRIPT_URL:
+      Guarda las respuestas de la reevaluación mensual.
+    */
+
+    const CONFIG_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbzhuPqwYu8RH4EJwXMamDWtqcCJgooq40aeCFbayooREac1WvAYRpeFSE0PIwk3E8dzRA/exec";
+
+    const SAVE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbW-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOz8/exec";
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const clienteId =
+      (
+        params.get("cliente_id") ||
+        params.get("cliente") ||
+        ""
+      )
+        .trim()
+        .toLowerCase();
+
+    const mesPrograma =
+      Math.max(
+        1,
+        Number(
+          params.get("mes") || 1
+        )
+      );
+
+    const totalSteps = 5;
+
+    let currentStep = 1;
+    let sending = false;
+    let config = null;
+
+    const loadingCard =
+      document.getElementById("loadingCard");
+
+    const hero =
+      document.getElementById("hero");
+
+    const form =
+      document.getElementById("reevaluationForm");
+
+    const progressWrap =
+      document.getElementById("progressWrap");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const progressLabel =
+      document.getElementById("progressLabel");
+
+    const progressPercent =
+      document.getElementById("progressPercent");
+
+    const formStatus =
+      document.getElementById("formStatus");
+
+    const submitBtn =
+      document.getElementById("submitBtn");
+
+    const resultCard =
+      document.getElementById("resultCard");
+
+    const otherDifficulty =
+      document.getElementById("otherDifficulty");
+
+    const reviewDetail =
+      document.getElementById("reviewDetail");
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function makeRadioOptions(
+      containerId,
+      name,
+      items
+    ) {
+      const container =
+        document.getElementById(
+          containerId
+        );
+
+      container.innerHTML =
+        items
+          .map(
+            ([value, label]) => `
+              <label class="choice">
+                <input
+                  type="radio"
+                  name="${escapeHtml(name)}"
+                  value="${escapeHtml(value)}"
+                  required
+                />
+                <span>${label}</span>
+              </label>
+            `
+          )
+          .join("");
+    }
+
+    function buildFixedOptions() {
+      makeRadioOptions(
+        "zone1Scale",
+        "dolor_rodillas",
+        [
+          ["0", "0<br>Nada"],
+          ["2", "2<br>Muy leve"],
+          ["4", "4<br>Leve"],
+          ["6", "6<br>Moderada"],
+          ["8", "8<br>Alta"],
+          ["10", "10<br>Muy alta"]
+        ]
+      );
+
+      makeRadioOptions(
+        "zone2Scale",
+        "dolor_cadera",
+        [
+          ["0", "0<br>Nada"],
+          ["2", "2<br>Muy leve"],
+          ["4", "4<br>Leve"],
+          ["6", "6<br>Moderada"],
+          ["8", "8<br>Alta"],
+          ["10", "10<br>Muy alta"]
+        ]
+      );
+
+      makeRadioOptions(
+        "energyScale",
+        "energia",
+        [
+          ["1", "1<br>Muy baja"],
+          ["2", "2<br>Baja"],
+          ["3", "3<br>Media"],
+          ["4", "4<br>Buena"],
+          ["5", "5<br>Muy buena"]
+        ]
+      );
+
+      makeRadioOptions(
+        "sessionsScale",
+        "sesiones_semana",
+        [
+          ["Ninguna", "Ninguna"],
+          ["1 sesión", "1"],
+          ["2 sesiones", "2"],
+          ["3 sesiones", "3"],
+          ["4 o más", "4 o más"]
+        ]
+      );
+
+      makeRadioOptions(
+        "easeScale",
+        "facilidad_programa",
+        [
+          ["1", "1<br>Muy difícil"],
+          ["2", "2<br>Difícil"],
+          ["3", "3<br>Intermedio"],
+          ["4", "4<br>Fácil"],
+          ["5", "5<br>Muy fácil"]
+        ]
+      );
+
+      makeRadioOptions(
+        "difficultyOptions",
+        "principal_dificultad",
+        [
+          ["Falta de tiempo", "⏱️ Falta de tiempo"],
+          ["Cansancio", "😴 Cansancio"],
+          ["Dolor o molestias", "🩺 Dolor o molestias"],
+          ["Organización", "📅 Organización"],
+          ["Falta de motivación", "🧠 Falta de motivación"],
+          ["Otra", "✍️ Otra"]
+        ]
+      );
+
+      makeRadioOptions(
+        "nextGoals",
+        "cambios_proximo_mes",
+        [
+          ["Reducir más las molestias", "🩺 Reducir más las molestias"],
+          ["Tener más fuerza", "💪 Tener más fuerza"],
+          ["Moverme con mayor seguridad", "🧭 Moverme con más seguridad"],
+          ["Tener más energía", "⚡ Tener más energía"],
+          ["Ser más constante", "📅 Ser más constante"],
+          ["Otro objetivo", "✨ Otro objetivo"]
+        ]
+      );
+    }
+
+    function buildActivities(activities) {
+      const container =
+        document.getElementById(
+          "activitiesContainer"
+        );
+
+      const names = [
+        "levantarse_silla",
+        "escaleras",
+        "trabajo_de_pie"
+      ];
+
+      container.innerHTML =
+        activities
+          .slice(0, 3)
+          .map(
+            (activity, index) => `
+              <div class="field">
+                <span class="field-title">
+                  Comparado con el inicio del mes,
+                  ${escapeHtml(activity).toLowerCase()} se siente… *
+                </span>
+
+                <div class="choices three">
+                  <label class="choice">
+                    <input
+                      type="radio"
+                      name="${names[index]}"
+                      value="Más fácil"
+                      required
+                    />
+                    <span>✨ Más fácil</span>
+                  </label>
+
+                  <label class="choice">
+                    <input
+                      type="radio"
+                      name="${names[index]}"
+                      value="Igual"
+                      required
+                    />
+                    <span>😐 Igual</span>
+                  </label>
+
+                  <label class="choice">
+                    <input
+                      type="radio"
+                      name="${names[index]}"
+                      value="Más difícil"
+                      required
+                    />
+                    <span>🙁 Más difícil</span>
+                  </label>
+                </div>
+              </div>
+            `
+          )
+          .join("");
+
+      container.insertAdjacentHTML(
+        "beforeend",
+        `
+          <div class="field">
+            <span class="field-title">
+              ¿Qué tan segura o seguro te sientes al moverte? *
+            </span>
+
+            <div class="choices five" id="confidenceScale"></div>
+          </div>
+        `
+      );
+
+      makeRadioOptions(
+        "confidenceScale",
+        "confianza_movimiento",
+        [
+          ["1", "1<br>Muy poca"],
+          ["2", "2<br>Poca"],
+          ["3", "3<br>Media"],
+          ["4", "4<br>Buena"],
+          ["5", "5<br>Muy buena"]
+        ]
+      );
+    }
+
+    async function loadConfiguration() {
+      if (!clienteId) {
+        throw new Error(
+          "La URL no incluye cliente_id."
+        );
+      }
+
+      const url =
+        new URL(
+          CONFIG_SCRIPT_URL
+        );
+
+      url.searchParams.set(
+        "accion",
+        "configuracion_reevaluacion"
+      );
+
+      url.searchParams.set(
+        "cliente_id",
+        clienteId
+      );
+
+      const response =
+        await fetch(
+          url.toString(),
+          {
+            method: "GET",
+            cache: "no-store"
+          }
+        );
+
+      const data =
+        await response.json();
+
+      if (
+        !response.ok ||
+        data.ok !== true ||
+        !data.configuracion
+      ) {
+        throw new Error(
+          data.mensaje ||
+          "No se pudo cargar la configuración del cliente."
+        );
+      }
+
+      config =
+        data.configuracion;
+
+      document.title =
+        `Reevaluación mes ${mesPrograma} | ${config.nombre} · MoveSmart`;
+
+      document.getElementById(
+        "heroTitle"
+      ).innerHTML =
+        `${escapeHtml(config.nombre)}, completaste tu <span>mes ${mesPrograma}</span>`;
+
+      document.getElementById(
+        "objectiveText"
+      ).textContent =
+        config.objetivo_seguimiento ||
+        config.objetivo_principal ||
+        "Seguir mejorando tu bienestar y capacidad física.";
+
+      document.getElementById(
+        "zone1Label"
+      ).textContent =
+        `Molestia en ${config.zona_1} durante la última semana *`;
+
+      document.getElementById(
+        "zone2Label"
+      ).textContent =
+        `Molestia en ${config.zona_2} durante la última semana *`;
+
+      document.getElementById(
+        "continuityMessage"
+      ).textContent =
+        config.mensaje_continuidad ||
+        "Continuar puede ayudarte a consolidar tus avances y trabajar lo que todavía quieres mejorar.";
+
+      buildActivities(
+        Array.isArray(config.actividades)
+          ? config.actividades
+          : [
+              "Realizar tus actividades diarias con mayor facilidad",
+              "Moverte con mayor seguridad",
+              "Mantener tus actividades con menos esfuerzo"
+            ]
+      );
+
+      loadingCard.classList.add(
+        "hidden"
+      );
+
+      hero.classList.add(
+        "active"
+      );
+
+      progressWrap.classList.add(
+        "active"
+      );
+
+      form.classList.add(
+        "active"
+      );
+    }
+
+    function updateProgress() {
+      const percent =
+        Math.round(
+          currentStep /
+          totalSteps *
+          100
+        );
+
+      progressBar.style.width =
+        `${percent}%`;
+
+      progressLabel.textContent =
+        `Bloque ${currentStep} de ${totalSteps}`;
+
+      progressPercent.textContent =
+        `${percent}%`;
+    }
+
+    function goToStep(stepNumber) {
+      document
+        .querySelectorAll(".step")
+        .forEach(
+          step =>
+            step.classList.remove(
+              "active"
+            )
+        );
+
+      currentStep =
+        stepNumber;
+
+      document
+        .querySelector(
+          `.step[data-step="${stepNumber}"]`
+        )
+        .classList.add(
+          "active"
+        );
+
+      updateProgress();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function validateCurrentStep() {
+      const step =
+        document.querySelector(
+          `.step[data-step="${currentStep}"]`
+        );
+
+      const required =
+        Array.from(
+          step.querySelectorAll(
+            "[required]"
+          )
+        );
+
+      const checkedNames =
+        new Set();
+
+      for (
+        const field of required
+      ) {
+        if (
+          field.type === "radio"
+        ) {
+          if (
+            checkedNames.has(
+              field.name
+            )
+          ) {
+            continue;
+          }
+
+          checkedNames.add(
+            field.name
+          );
+
+          if (
+            !step.querySelector(
+              `input[name="${field.name}"]:checked`
+            )
+          ) {
+            alert(
+              "Completa todas las preguntas antes de continuar."
+            );
+
+            return false;
+          }
+
+        } else if (
+          !String(
+            field.value || ""
+          ).trim()
+        ) {
+          field.focus();
+
+          alert(
+            "Completa todas las preguntas antes de continuar."
+          );
+
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    document
+      .querySelectorAll(
+        "[data-next]"
+      )
+      .forEach(
+        button => {
+          button.addEventListener(
+            "click",
+            () => {
+              if (
+                validateCurrentStep()
+              ) {
+                goToStep(
+                  Math.min(
+                    totalSteps,
+                    currentStep + 1
+                  )
+                );
+              }
+            }
+          );
+        }
+      );
+
+    document
+      .querySelectorAll(
+        "[data-prev]"
+      )
+      .forEach(
+        button => {
+          button.addEventListener(
+            "click",
+            () => {
+              goToStep(
+                Math.max(
+                  1,
+                  currentStep - 1
+                )
+              );
+            }
+          );
+        }
+      );
+
+    document.addEventListener(
+      "change",
+      event => {
+        if (
+          event.target.name ===
+          "principal_dificultad"
+        ) {
+          const show =
+            event.target.value ===
+            "Otra";
+
+          otherDifficulty
+            .classList
+            .toggle(
+              "hidden",
+              !show
+            );
+
+          otherDifficulty.required =
+            show;
+
+          if (!show) {
+            otherDifficulty.value =
+              "";
+          }
+        }
+
+        if (
+          event.target.name ===
+          "revisar_programa"
+        ) {
+          const show =
+            event.target.value ===
+            "Sí";
+
+          reviewDetail
+            .classList
+            .toggle(
+              "hidden",
+              !show
+            );
+
+          reviewDetail.required =
+            show;
+
+          if (!show) {
+            reviewDetail.value =
+              "";
+          }
+        }
+
+        saveDraft();
+      }
+    );
+
+    function buildPayload() {
+      const formData =
+        new FormData(form);
+
+      return {
+        nombre:
+          config.nombre,
+
+        cliente_id:
+          config.cliente_id ||
+          clienteId,
+
+        mes_programa:
+          mesPrograma,
+
+        dolor_rodillas:
+          formData.get(
+            "dolor_rodillas"
+          ),
+
+        dolor_cadera:
+          formData.get(
+            "dolor_cadera"
+          ),
+
+        cambio_molestias:
+          formData.get(
+            "cambio_molestias"
+          ),
+
+        energia:
+          formData.get(
+            "energia"
+          ),
+
+        levantarse_silla:
+          formData.get(
+            "levantarse_silla"
+          ),
+
+        escaleras:
+          formData.get(
+            "escaleras"
+          ),
+
+        trabajo_de_pie:
+          formData.get(
+            "trabajo_de_pie"
+          ),
+
+        confianza_movimiento:
+          formData.get(
+            "confianza_movimiento"
+          ),
+
+        sesiones_semana:
+          formData.get(
+            "sesiones_semana"
+          ),
+
+        facilidad_programa:
+          formData.get(
+            "facilidad_programa"
+          ),
+
+        principal_dificultad:
+          formData.get(
+            "principal_dificultad"
+          ),
+
+        otra_dificultad:
+          formData.get(
+            "otra_dificultad"
+          ) || "",
+
+        mayor_mejora:
+          formData.get(
+            "mayor_mejora"
+          ),
+
+        ejercicio_incomodo:
+          formData.get(
+            "ejercicio_incomodo"
+          ) || "",
+
+        ejercicio_util:
+          formData.get(
+            "ejercicio_util"
+          ),
+
+        cambios_proximo_mes:
+          formData.get(
+            "cambios_proximo_mes"
+          ),
+
+        continuidad:
+          formData.get(
+            "continuidad"
+          )
+      };
+    }
+
+    function showResult(
+      continuity
+    ) {
+      hero.classList.add(
+        "hidden"
+      );
+
+      progressWrap.classList.add(
+        "hidden"
+      );
+
+      form.classList.add(
+        "hidden"
+      );
+
+      resultCard.classList.add(
+        "active"
+      );
+
+      const resultTitle =
+        document.getElementById(
+          "resultTitle"
+        );
+
+      const resultText =
+        document.getElementById(
+          "resultText"
+        );
+
+      const nextStepText =
+        document.getElementById(
+          "nextStepText"
+        );
+
+      if (
+        continuity ===
+        "Sí, quiero continuar"
+      ) {
+        resultTitle.textContent =
+          `¡Gracias, ${config.nombre}! 🚀`;
+
+        resultText.textContent =
+          "Reconocer tus avances y decidir seguir construyendo sobre ellos es un paso importante.";
+
+        nextStepText.textContent =
+          "Revisaremos tus respuestas y conversaremos sobre los ajustes del próximo ciclo antes de confirmar su inicio.";
+
+      } else if (
+        continuity ===
+        "Quiero conversar primero"
+      ) {
+        resultTitle.textContent =
+          "Gracias por responder 💬";
+
+        resultText.textContent =
+          "Tus dudas también forman parte del proceso y vale la pena revisarlas con calma.";
+
+        nextStepText.textContent =
+          "Conversaremos sobre tus resultados antes de tomar una decisión.";
+
+      } else {
+        resultTitle.textContent =
+          "Gracias por completar tu reevaluación 💙";
+
+        resultText.textContent =
+          "Este mes te permitió reconocer tus avances y necesidades.";
+
+        nextStepText.textContent =
+          "Revisaremos tus respuestas y cerraremos este ciclo de forma ordenada.";
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    form.addEventListener(
+      "submit",
+      async event => {
+        event.preventDefault();
+
+        if (
+          sending ||
+          !validateCurrentStep()
+        ) {
+          return;
+        }
+
+        sending = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent =
+          "Enviando…";
+
+        formStatus.className =
+          "status";
+
+        const payload =
+          buildPayload();
+
+        try {
+          const response =
+            await fetch(
+              SAVE_SCRIPT_URL,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+                },
+                body:
+                  JSON.stringify(
+                    payload
+                  )
+              }
+            );
+
+          const data =
+            await response.json();
+
+          if (
+            !response.ok ||
+            data.ok !== true
+          ) {
+            throw new Error(
+              data.message ||
+              "No se pudo guardar la reevaluación."
+            );
+          }
+
+          localStorage.removeItem(
+            storageKey
+          );
+
+          showResult(
+            payload.continuidad
+          );
+
+        } catch (error) {
+          console.error(error);
+
+          formStatus.className =
+            "status show error";
+
+          formStatus.textContent =
+            error.message ||
+            "No se pudo enviar la reevaluación. Inténtalo nuevamente.";
+
+        } finally {
+          sending = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent =
+            "Enviar mi reevaluación";
+        }
+      }
+    );
+
+    const storageKey =
+      `movesmart-reevaluacion-${clienteId}-mes-${mesPrograma}`;
+
+    function saveDraft() {
+      const data = {};
+
+      new FormData(form)
+        .forEach(
+          (value, key) => {
+            data[key] =
+              value;
+          }
+        );
+
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(data)
+      );
+    }
+
+    function restoreDraft() {
+      const saved =
+        localStorage.getItem(
+          storageKey
+        );
+
+      if (!saved) {
+        return;
+      }
+
+      try {
+        const data =
+          JSON.parse(saved);
+
+        Object.entries(data)
+          .forEach(
+            ([key, value]) => {
+              document
+                .querySelectorAll(
+                  `[name="${key}"]`
+                )
+                .forEach(
+                  field => {
+                    if (
+                      field.type ===
+                      "radio"
+                    ) {
+                      field.checked =
+                        field.value ===
+                        value;
+                    } else {
+                      field.value =
+                        value;
+                    }
+                  }
+                );
+            }
+          );
+
+        document
+          .querySelector(
+            'input[name="principal_dificultad"]:checked'
+          )
+          ?.dispatchEvent(
+            new Event(
+              "change",
+              { bubbles: true }
+            )
+          );
+
+        document
+          .querySelector(
+            'input[name="revisar_programa"]:checked'
+          )
+          ?.dispatchEvent(
+            new Event(
+              "change",
+              { bubbles: true }
+            )
+          );
+
+      } catch (error) {
+        console.warn(
+          "No se pudo restaurar el borrador.",
+          error
+        );
+      }
+    }
+
+    form.addEventListener(
+      "input",
+      saveDraft
+    );
+
+    async function initialize() {
+      try {
+        buildFixedOptions();
+        await loadConfiguration();
+        restoreDraft();
+        updateProgress();
+
+      } catch (error) {
+        console.error(error);
+
+        loadingCard.innerHTML = `
+          <h1>No pudimos preparar tu reevaluación</h1>
+          <p>${escapeHtml(error.message)}</p>
+        `;
+      }
+    }
+
+    initialize();
+  </script>
+</body>
+</html>
