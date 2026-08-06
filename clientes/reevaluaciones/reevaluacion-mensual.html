@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reevaluación mensual | MoveSmart</title>
+  <title>Reevaluación mensual V2 | MoveSmart</title>
   <meta
     name="description"
-    content="Reevaluación mensual personalizada y reutilizable para clientes MoveSmart."
+    content="Reevaluación mensual MoveSmart V2 con reflexión y feedback personalizado."
   />
 
   <style>
@@ -411,6 +412,15 @@
       color:#fff;
     }
 
+    #feedbackBox{
+      border-left:4px solid var(--accent);
+      background:rgba(23,36,79,.58);
+    }
+
+    #feedbackText{
+      color:#f0e8f5;
+    }
+
     .hidden{display:none!important}
 
     @keyframes girar{to{transform:rotate(360deg)}}
@@ -458,8 +468,7 @@
       </h1>
 
       <p>
-        Queremos ayudarte a reconocer lo que cambió, valorar lo que te sirvió
-        y visualizar el siguiente paso de tu proceso.
+        Antes de comenzar un nuevo ciclo, queremos ayudarte a reconocer tus avances, entender qué funcionó y decidir cómo seguir construyendo sobre lo logrado.
       </p>
 
       <div class="context-box">
@@ -483,9 +492,9 @@
       <section class="step active" data-step="1">
         <article class="card step-card">
           <div class="step-head">
-            <h2>1. Reconoce lo que cambió</h2>
+            <h2>1. Mira cuánto has avanzado</h2>
             <p>
-              Compara cómo llegaste al programa con cómo te sientes hoy.
+              Piensa en cómo comenzaste este ciclo y en cómo te sientes hoy.
             </p>
           </div>
 
@@ -552,9 +561,9 @@
       <section class="step" data-step="2">
         <article class="card step-card">
           <div class="step-head">
-            <h2>2. Mira tus avances cotidianos</h2>
+            <h2>2. Observa los cambios en tu vida diaria</h2>
             <p>
-              Los cambios en tus actividades diarias también son progreso.
+              A veces el progreso se nota primero en pequeños momentos del día.
             </p>
           </div>
 
@@ -617,16 +626,16 @@
       <section class="step" data-step="4">
         <article class="card step-card">
           <div class="step-head">
-            <h2>4. Reconoce lo que te ayudó</h2>
+            <h2>4. Descubre qué hizo la diferencia</h2>
             <p>
-              Identificar tus avances permite construir mejor el siguiente paso.
+              Reconocer lo que funcionó nos ayuda a diseñar mejor el próximo ciclo.
             </p>
           </div>
 
           <div class="step-body">
             <div class="field">
               <label class="field-title">
-                ¿Cuál fue el cambio más importante que notaste este mes? *
+                ¿Qué cambio de este mes te sorprendió o te hizo sentir que estabas avanzando? *
               </label>
               <textarea
                 name="mayor_mejora"
@@ -637,12 +646,12 @@
 
             <div class="field">
               <label class="field-title">
-                ¿Qué parte del programa te resultó más útil? *
+                ¿Qué fue lo que más te ayudó a mantenerte en movimiento este mes? *
               </label>
               <textarea
                 name="ejercicio_util"
                 required
-                placeholder="Por ejemplo: las sesiones cortas, la adaptación, el seguimiento o una parte específica del programa."
+                placeholder="Puede ser el seguimiento, la duración de las sesiones, sentirte acompañada o acompañado, la adaptación del plan o una parte específica del programa."
               ></textarea>
             </div>
 
@@ -682,9 +691,9 @@
       <section class="step" data-step="5">
         <article class="card step-card">
           <div class="step-head">
-            <h2>5. Visualiza tu siguiente etapa</h2>
+            <h2>5. Decide cómo quieres seguir avanzando</h2>
             <p>
-              El siguiente ciclo puede construir sobre lo que ya lograste.
+              No se trata de empezar de nuevo, sino de construir sobre la base que ya tienes.
             </p>
           </div>
 
@@ -703,24 +712,19 @@
 
             <div class="field">
               <span class="field-title">
-                Sabiendo lo que avanzaste y lo que aún quieres lograr,
-                ¿cómo te gustaría continuar? *
+                Sabiendo lo que avanzaste y lo que todavía quieres lograr,
+                ¿qué te gustaría hacer ahora? *
               </span>
 
               <div class="choices">
                 <label class="choice">
                   <input type="radio" name="continuidad" value="Sí, quiero continuar" required />
-                  <span>🚀 Sí, quiero continuar con el siguiente mes</span>
+                  <span>🚀 Quiero continuar con el siguiente ciclo</span>
                 </label>
 
                 <label class="choice">
                   <input type="radio" name="continuidad" value="Quiero conversar primero" required />
-                  <span>💬 Quiero conversar primero sobre mis resultados</span>
-                </label>
-
-                <label class="choice">
-                  <input type="radio" name="continuidad" value="Por ahora prefiero detenerme" required />
-                  <span>⏸️ Por ahora prefiero detener el programa</span>
+                  <span>💬 Quiero revisar mis resultados contigo antes de comenzar</span>
                 </label>
               </div>
             </div>
@@ -751,6 +755,11 @@
     <section class="card result" id="resultCard">
       <h2 id="resultTitle">¡Reevaluación enviada!</h2>
       <p id="resultText"></p>
+
+      <div class="next-step" id="feedbackBox">
+        <strong>Lo que vemos en este ciclo</strong>
+        <p id="feedbackText"></p>
+      </div>
 
       <div class="next-step">
         <strong>Próximo paso</strong>
@@ -1472,6 +1481,114 @@
       };
     }
 
+    function generarFeedback(datos, mes) {
+      const partes = [];
+
+      const mejoras = [
+        datos.levantarse_silla,
+        datos.escaleras,
+        datos.trabajo_de_pie
+      ].filter(
+        valor => valor === "Más fácil"
+      ).length;
+
+      const empeoramientos = [
+        datos.levantarse_silla,
+        datos.escaleras,
+        datos.trabajo_de_pie
+      ].filter(
+        valor => valor === "Más difícil"
+      ).length;
+
+      const cambio = datos.cambio_molestias || "";
+      const sesiones = datos.sesiones_semana || "";
+      const dificultad = datos.principal_dificultad || "";
+      const proximoObjetivo = (
+        datos.cambios_proximo_mes || ""
+      ).toLowerCase();
+
+      const aperturaPorMes = {
+        1: "Este primer ciclo te permitió construir una base y reconocer tus primeras señales de progreso.",
+        2: "En este segundo ciclo ya no partiste desde cero: comenzaste a consolidar lo aprendido anteriormente.",
+        3: "Este tercer ciclo muestra una etapa de mayor experiencia, adaptación y autonomía dentro del programa."
+      };
+
+      partes.push(
+        aperturaPorMes[mes] ||
+        `En este ciclo número ${mes} pudiste seguir observando cómo responde tu cuerpo y qué necesitas para avanzar.`
+      );
+
+      if (
+        cambio === "Mucho mejor" ||
+        cambio === "Algo mejor"
+      ) {
+        partes.push(
+          mejoras > 0
+            ? `Tus respuestas muestran una evolución positiva y ${mejoras} de tus actividades cotidianas hoy se sienten más fáciles.`
+            : "Tus respuestas muestran una evolución positiva en cómo te has sentido durante estas semanas."
+        );
+      } else if (cambio === "Igual") {
+        partes.push(
+          mejoras > 0
+            ? `Aunque tu percepción general se mantiene similar, reconociste mejoras en ${mejoras} actividades de tu vida diaria.`
+            : "Aunque todavía no percibas un cambio general importante, este ciclo nos entregó información útil para ajustar mejor el siguiente paso."
+        );
+      } else {
+        partes.push(
+          empeoramientos > 0
+            ? `Tus respuestas indican que ${empeoramientos} actividades necesitan ser revisadas antes de aumentar la exigencia.`
+            : "Tus respuestas muestran que algunas molestias necesitan ser revisadas antes de avanzar."
+        );
+      }
+
+      if (dificultad === "Falta de tiempo") {
+        partes.push(
+          "La falta de tiempo fue la principal barrera, por lo que el próximo ciclo puede priorizar sesiones más simples y fáciles de integrar."
+        );
+      } else if (dificultad === "Cansancio") {
+        partes.push(
+          "El cansancio influyó en tu experiencia, por lo que será importante ajustar la carga y la duración de las sesiones."
+        );
+      } else if (dificultad === "Dolor o molestias") {
+        partes.push(
+          "El dolor o las molestias condicionaron parte del proceso, así que primero revisaremos qué ajustes necesitas."
+        );
+      } else if (dificultad === "Organización") {
+        partes.push(
+          "La organización fue una barrera relevante, por lo que buscaremos una estructura más clara y sostenible."
+        );
+      } else if (dificultad === "Falta de motivación") {
+        partes.push(
+          "La motivación fue una dificultad, por lo que el próximo ciclo puede enfocarse en objetivos más visibles y sesiones que se sientan alcanzables."
+        );
+      }
+
+      if (
+        sesiones === "3 sesiones" ||
+        sesiones === "4 o más"
+      ) {
+        partes.push(
+          "Además, lograste una frecuencia que puede transformarse en una base sólida para seguir progresando."
+        );
+      } else if (
+        sesiones === "1 sesión" ||
+        sesiones === "2 sesiones"
+      ) {
+        partes.push(
+          "La frecuencia alcanzada ya entrega un punto de partida; ahora podemos buscar una estructura que te permita sostenerla o aumentarla."
+        );
+      }
+
+      if (proximoObjetivo) {
+        partes.push(
+          `Tu siguiente foco será ${proximoObjetivo}.`
+        );
+      }
+
+      return partes.join(" ");
+    }
+
+
     function showResult(
       continuity
     ) {
@@ -1506,41 +1623,42 @@
           "nextStepText"
         );
 
+      const feedbackText =
+        document.getElementById(
+          "feedbackText"
+        );
+
+      const feedbackData =
+        buildPayload();
+
+      feedbackText.textContent =
+        generarFeedback(
+          feedbackData,
+          mesPrograma
+        );
+
       if (
         continuity ===
         "Sí, quiero continuar"
       ) {
         resultTitle.textContent =
-          `¡Gracias, ${config.nombre}! 🚀`;
+          `¡Terminaste este ciclo, ${config.nombre}! 🚀`;
 
         resultText.textContent =
-          "Reconocer tus avances y decidir seguir construyendo sobre ellos es un paso importante.";
+          "Tus respuestas nos permiten reconocer lo que avanzó y preparar una nueva etapa con mayor claridad.";
 
         nextStepText.textContent =
-          "Revisaremos tus respuestas y conversaremos sobre los ajustes del próximo ciclo antes de confirmar su inicio.";
-
-      } else if (
-        continuity ===
-        "Quiero conversar primero"
-      ) {
-        resultTitle.textContent =
-          "Gracias por responder 💬";
-
-        resultText.textContent =
-          "Tus dudas también forman parte del proceso y vale la pena revisarlas con calma.";
-
-        nextStepText.textContent =
-          "Conversaremos sobre tus resultados antes de tomar una decisión.";
+          "Revisaremos tus resultados y definiremos los ajustes del próximo ciclo antes de confirmar su inicio.";
 
       } else {
         resultTitle.textContent =
-          "Gracias por completar tu reevaluación 💙";
+          "Gracias por mirar tu proceso con honestidad 💬";
 
         resultText.textContent =
-          "Este mes te permitió reconocer tus avances y necesidades.";
+          "Tus dudas y observaciones también son información valiosa para decidir cómo continuar.";
 
         nextStepText.textContent =
-          "Revisaremos tus respuestas y cerraremos este ciclo de forma ordenada.";
+          "Conversaremos sobre tus resultados y revisaremos juntas o juntos qué opción tiene más sentido para ti.";
       }
 
       window.scrollTo({
