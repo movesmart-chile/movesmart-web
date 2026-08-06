@@ -719,7 +719,7 @@
               <div class="choices">
                 <label class="choice">
                   <input type="radio" name="continuidad" value="Sí, quiero continuar" required />
-                  <span>🚀 Quiero continuar con el siguiente ciclo</span>
+                  <span>🚀 Quiero continuar y seguir mejorando en el siguiente ciclo</span>
                 </label>
 
                 <label class="choice">
@@ -740,12 +740,18 @@
             </div>
           </div>
 
+          <div class="field">
+            <p class="helper" style="margin:0;text-align:center;">
+              Al enviar, verás un resumen breve y personalizado de este ciclo.
+            </p>
+          </div>
+
           <div id="formStatus" class="status"></div>
 
           <div class="actions">
             <button class="btn secondary" type="button" data-prev>← Atrás</button>
             <button class="btn primary" id="submitBtn" type="submit">
-              Enviar mi reevaluación
+              Enviar y ver mi resultado
             </button>
           </div>
         </article>
@@ -1375,7 +1381,6 @@
           }
         }
 
-        saveDraft();
       }
     );
 
@@ -1720,10 +1725,6 @@
             );
           }
 
-          localStorage.removeItem(
-            storageKey
-          );
-
           showResult(
             payload.continuidad
           );
@@ -1742,110 +1743,16 @@
           sending = false;
           submitBtn.disabled = false;
           submitBtn.textContent =
-            "Enviar mi reevaluación";
+            "Enviar y ver mi resultado";
         }
       }
-    );
-
-    const storageKey =
-      `movesmart-reevaluacion-${clienteId}-mes-${mesPrograma}`;
-
-    function saveDraft() {
-      const data = {};
-
-      new FormData(form)
-        .forEach(
-          (value, key) => {
-            data[key] =
-              value;
-          }
-        );
-
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(data)
-      );
-    }
-
-    function restoreDraft() {
-      const saved =
-        localStorage.getItem(
-          storageKey
-        );
-
-      if (!saved) {
-        return;
-      }
-
-      try {
-        const data =
-          JSON.parse(saved);
-
-        Object.entries(data)
-          .forEach(
-            ([key, value]) => {
-              document
-                .querySelectorAll(
-                  `[name="${key}"]`
-                )
-                .forEach(
-                  field => {
-                    if (
-                      field.type ===
-                      "radio"
-                    ) {
-                      field.checked =
-                        field.value ===
-                        value;
-                    } else {
-                      field.value =
-                        value;
-                    }
-                  }
-                );
-            }
-          );
-
-        document
-          .querySelector(
-            'input[name="principal_dificultad"]:checked'
-          )
-          ?.dispatchEvent(
-            new Event(
-              "change",
-              { bubbles: true }
-            )
-          );
-
-        document
-          .querySelector(
-            'input[name="revisar_programa"]:checked'
-          )
-          ?.dispatchEvent(
-            new Event(
-              "change",
-              { bubbles: true }
-            )
-          );
-
-      } catch (error) {
-        console.warn(
-          "No se pudo restaurar el borrador.",
-          error
-        );
-      }
-    }
-
-    form.addEventListener(
-      "input",
-      saveDraft
     );
 
     async function initialize() {
       try {
         buildFixedOptions();
         await loadConfiguration();
-        restoreDraft();
+        form.reset();
         updateProgress();
 
       } catch (error) {
