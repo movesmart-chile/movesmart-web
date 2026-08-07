@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -27,7 +29,7 @@
       color:var(--text);
       background:
         linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-        url('../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
 
@@ -157,7 +159,7 @@
     .hero-image{
       position:absolute;
       inset:0;
-      background:url('../../../imagenes/contendor.webp') center right / cover no-repeat;
+      background:url('/movesmart-web/imagenes/contendor.webp') center right / cover no-repeat;
       z-index:0;
       transform:scale(1.01);
     }
@@ -731,556 +733,504 @@
     }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 <header class="topbar">
-  <div class="brand">
-    <div class="brand-badge">M</div>
-    <div class="brand-text">
-      <h1>MoveSmart</h1>
-      <p>Dixie Acosta · Rutina B recuperación adaptativa</p>
-    </div>
-  </div>
-  <a class="back-btn" href="../plan-dixie-acosta.html">← Volver al plan</a>
+<div class="brand">
+<div class="brand-badge">M</div>
+<div class="brand-text">
+<h1>MoveSmart</h1>
+<p>Dixie Acosta · Rutina B recuperación adaptativa</p>
+</div>
+</div>
+<a class="back-btn" href="../plan-dixie-acosta.html">← Volver al plan</a>
 </header>
-
 <section class="hero">
-  <div aria-hidden="true" class="hero-image"></div>
-  <div class="hero-copy">
-    <div class="hello">¡Hola Dixie!</div>
-    <h2>Hoy el objetivo no es exigirte: es mantenerte en movimiento mientras te recuperas.</h2>
-    <p>
+<div aria-hidden="true" class="hero-image"></div>
+<div class="hero-copy">
+<div class="hello">¡Hola Dixie!</div>
+<h2>Hoy el objetivo no es exigirte: es mantenerte en movimiento mientras te recuperas.</h2>
+<p>
       Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B de recuperación según tu tiempo,
       energía y cómo están hoy tus molestias o zonas lesionadas.
     </p>
-  </div>
+</div>
 </section>
-
 <main class="survey-card">
-  <div class="survey-head">
-    <div class="survey-title">
-      <div class="survey-icon">✨</div>
-      <div>
-        <h3>Encuesta MoveSmart</h3>
-        <p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
-  </div>
-
-  <section class="question" data-question="tiempo">
-    <div class="q-title">
-      <div class="q-icon">⏱️</div>
-      <div>
-        <h4>1. ¿Cuánto tiempo tienes hoy?</h4>
-        <p>Sé realista con el tiempo del que dispones.</p>
-      </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="express" type="button">
-        <span class="emoji">⏱️</span>
-        <strong>10 – 15 min</strong>
-        <span>Poco tiempo</span>
-      </button>
-      <button class="choice" data-value="base" type="button">
-        <span class="emoji">🕒</span>
-        <strong>20 – 25 min</strong>
-        <span>Tiempo moderado</span>
-      </button>
-      <button class="choice" data-value="completa" type="button">
-        <span class="emoji">🕘</span>
-        <strong>25 – 30 min</strong>
-        <span>Más tiempo</span>
-      </button>
-    </div>
-  </section>
-
-  <section class="question" data-question="energia">
-    <div class="q-title">
-      <div class="q-icon">⚡</div>
-      <div>
-        <h4>2. ¿Cómo está tu energía hoy?</h4>
-        <p>Piensa en cómo se siente tu cuerpo físicamente.</p>
-      </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="baja" type="button">
-        <span class="emoji">🪫</span>
-        <strong>Baja</strong>
-        <span>Necesito moverme muy suave</span>
-      </button>
-      <button class="choice" data-value="media" type="button">
-        <span class="emoji">⚡</span>
-        <strong>Media</strong>
-        <span>Me siento normal</span>
-      </button>
-      <button class="choice" data-value="alta" type="button">
-        <span class="emoji">🔋</span>
-        <strong>Alta</strong>
-        <span>Me siento con buena energía</span>
-      </button>
-    </div>
-  </section>
-
-  <section class="question" data-question="personalizada">
-    <div class="q-title">
-      <div class="q-icon">🩹</div>
-      <div>
-        <h4>3. ¿Cómo están hoy tus molestias o zonas lesionadas?</h4>
-        <p>Piensa en el pie, el tendón de Aquiles y cualquier otra zona que actualmente esté en recuperación.</p>
-      </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="leve" type="button">
-        <span class="emoji">🟢</span>
-        <strong>Leves</strong>
-        <span>Sin molestias importantes o entre 0–3/10</span>
-      </button>
-      <button class="choice" data-value="moderado" type="button">
-        <span class="emoji">🟡</span>
-        <strong>Moderadas</strong>
-        <span>Hay molestias o rigidez, pero puedo moverme con cuidado</span>
-      </button>
-      <button class="choice" data-value="alto" type="button">
-        <span class="emoji">🔴</span>
-        <strong>Altas o diferentes</strong>
-        <span>Más dolor, inflamación, debilidad o alguna molestia nueva</span>
-      </button>
-    </div>
-  </section>
-
-  <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
-  <p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
-
-  <div class="result-card" id="resultCard"></div>
-
-  <div aria-live="polite" class="smart-loading" id="smartLoading">
-    <div class="smart-orb"></div>
-    <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-    <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
-  </div>
-
-
-  <!-- EXPRESS -->
-  <div class="routine-container" id="rutina-express">
-    <div class="routine-intro">
-      <div class="routine-version-label">⚡ Rutina B Recuperación Express · 10–15 min</div>
-      <h2>Rutina B · Movilidad funcional esencial</h2>
-      <p>Versión corta para mantener movilidad de cadera, rodilla y tobillo sin cargar el brazo.</p>
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad funcional</strong></div>
-      </div>
-    </div>
-
-    <div class="warning">
-      <strong>Importante:</strong> esta sesión no incluye pesas, bandas ni trabajo de fuerza del brazo.
+<div class="survey-head">
+<div class="survey-title">
+<div class="survey-icon">✨</div>
+<div>
+<h3>Encuesta MoveSmart</h3>
+<p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p>
+</div>
+</div>
+</div>
+<div class="progress-wrap">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">Pregunta 0 de 3</div>
+</div>
+<section class="question" data-question="tiempo">
+<div class="q-title">
+<div class="q-icon">⏱️</div>
+<div>
+<h4>1. ¿Cuánto tiempo tienes hoy?</h4>
+<p>Sé realista con el tiempo del que dispones.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="express" type="button">
+<span class="emoji">⏱️</span>
+<strong>10 – 15 min</strong>
+<span>Poco tiempo</span>
+</button>
+<button class="choice" data-value="base" type="button">
+<span class="emoji">🕒</span>
+<strong>20 – 25 min</strong>
+<span>Tiempo moderado</span>
+</button>
+<button class="choice" data-value="completa" type="button">
+<span class="emoji">🕘</span>
+<strong>25 – 30 min</strong>
+<span>Más tiempo</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="energia">
+<div class="q-title">
+<div class="q-icon">⚡</div>
+<div>
+<h4>2. ¿Cómo está tu energía hoy?</h4>
+<p>Piensa en cómo se siente tu cuerpo físicamente.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="baja" type="button">
+<span class="emoji">🪫</span>
+<strong>Baja</strong>
+<span>Necesito moverme muy suave</span>
+</button>
+<button class="choice" data-value="media" type="button">
+<span class="emoji">⚡</span>
+<strong>Media</strong>
+<span>Me siento normal</span>
+</button>
+<button class="choice" data-value="alta" type="button">
+<span class="emoji">🔋</span>
+<strong>Alta</strong>
+<span>Me siento con buena energía</span>
+</button>
+</div>
+</section>
+<section class="question" data-question="personalizada">
+<div class="q-title">
+<div class="q-icon">🩹</div>
+<div>
+<h4>3. ¿Cómo están hoy tus molestias o zonas lesionadas?</h4>
+<p>Piensa en el pie, el tendón de Aquiles y cualquier otra zona que actualmente esté en recuperación.</p>
+</div>
+</div>
+<div class="choices">
+<button class="choice" data-value="leve" type="button">
+<span class="emoji">🟢</span>
+<strong>Leves</strong>
+<span>Sin molestias importantes o entre 0–3/10</span>
+</button>
+<button class="choice" data-value="moderado" type="button">
+<span class="emoji">🟡</span>
+<strong>Moderadas</strong>
+<span>Hay molestias o rigidez, pero puedo moverme con cuidado</span>
+</button>
+<button class="choice" data-value="alto" type="button">
+<span class="emoji">🔴</span>
+<strong>Altas o diferentes</strong>
+<span>Más dolor, inflamación, debilidad o alguna molestia nueva</span>
+</button>
+</div>
+</section>
+<button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
+<p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
+<div class="result-card" id="resultCard"></div>
+<div aria-live="polite" class="smart-loading" id="smartLoading">
+<div class="smart-orb"></div>
+<h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
+<p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
+</div>
+<!-- EXPRESS -->
+<div class="routine-container" id="rutina-express">
+<div class="routine-intro">
+<div class="routine-version-label">⚡ Rutina B Recuperación Express · 10–15 min</div>
+<h2>Rutina B · Movilidad funcional esencial</h2>
+<p>Versión corta para mantener movilidad de cadera, rodilla y tobillo sin cargar el brazo.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
+<div class="stat"><small>Material</small><strong>Silla</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Movilidad funcional</strong></div>
+</div>
+</div>
+<div class="warning">
+<strong>Importante:</strong> esta sesión no incluye pesas, bandas ni trabajo de fuerza del brazo.
       Si el médico indicó reposo completo, no realices la rutina.
     </div>
-
-    <section class="section">
-      <div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas con ambos pies apoyados.</div>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Marcha sentada</div>
-            <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra sin impulsarte con los brazos.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por lado</div>
-            <div class="pill"><span>Ritmo</span>Suave</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Movilidad funcional</h2><p>Cadera, rodilla y tobillo sin carga externa.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Deslizamiento de talón sentado</div>
-            <p class="exercise-desc">Desliza un pie hacia delante y vuelve lentamente, alternando lados.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Extensión de rodilla sentada</div>
-            <p class="exercise-desc">Extiende la rodilla y vuelve con control. No agregues peso.</p>
-            <button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por lado</div>
-            <div class="pill"><span>Carga</span>Sin peso</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión dorsal sentada</div>
-            <p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos.</div></div>
-    </section>
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo se sintieron tus zonas lesionadas durante la sesión.</p>
-      <a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Express&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
+<section class="section">
+<div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div>
+<div class="section-body">
+<div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas con ambos pies apoyados.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Marcha sentada</div>
+<p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra sin impulsarte con los brazos.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xxf93bq9-vA" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8 por lado</div>
+<div class="pill"><span>Ritmo</span>Suave</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Movilidad funcional</h2><p>Cadera, rodilla y tobillo sin carga externa.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Deslizamiento de talón sentado</div>
+<p class="exercise-desc">Desliza un pie hacia delante y vuelve lentamente, alternando lados.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=deslizamiento+de+talon+sentado+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8 por lado</div>
+<div class="pill"><span>Rango</span>Cómodo</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Extensión de rodilla sentada</div>
+<p class="exercise-desc">Extiende la rodilla y vuelve con control. No agregues peso.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8 por lado</div>
+<div class="pill"><span>Carga</span>Sin peso</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión dorsal sentada</div>
+<p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=L39qQS6hTu8" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10</div>
+<div class="pill"><span>Dolor pie</span>0–3/10</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo se sintieron tus zonas lesionadas durante la sesión.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Express&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<!-- BASE -->
+<div class="routine-container" id="rutina-base">
+<div class="routine-intro">
+<div class="routine-version-label">🕒 Rutina B Recuperación Base · 20–25 min</div>
+<h2>Rutina B · Movilidad funcional y control</h2>
+<p>Versión principal para conservar movilidad de cadera, rodilla y tobillo durante esta fase de recuperación.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
+<div class="stat"><small>Material</small><strong>Silla</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Movilidad + control</strong></div>
+</div>
+</div>
+<div class="warning">
+<strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones o apoyo de peso sobre el brazo afectado.
     </div>
-  </div>
-
-  <!-- BASE -->
-  <div class="routine-container" id="rutina-base">
-    <div class="routine-intro">
-      <div class="routine-version-label">🕒 Rutina B Recuperación Base · 20–25 min</div>
-      <h2>Rutina B · Movilidad funcional y control</h2>
-      <p>Versión principal para conservar movilidad de cadera, rodilla y tobillo durante esta fase de recuperación.</p>
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad + control</strong></div>
-      </div>
-    </div>
-
-    <div class="warning">
-      <strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones o apoyo de peso sobre el brazo afectado.
-    </div>
-
-    <section class="section">
-      <div class="section-head"><h2>Preparación</h2><p>Entrada suave y control postural.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas.</div>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Marcha sentada</div>
-            <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Ritmo</span>Suave</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Cadera y rodilla</h2><p>Movilidad sin impacto ni carga externa.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Deslizamiento de talón sentado</div>
-            <p class="exercise-desc">Desliza un pie hacia delante y regresa lentamente, alternando lados.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Abducción de cadera sentada</div>
-            <p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro sin inclinar el tronco.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10 por lado</div>
-            <div class="pill"><span>Carga</span>Sin banda</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Extensión de rodilla sentada</div>
-            <p class="exercise-desc">Extiende una rodilla, mantén 1 segundo y vuelve lentamente.</p>
-            <button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Carga</span>Sin peso</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Tobillo y pie</h2><p>Movilidad suave y control sin irritar el Aquiles.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión dorsal sentada</div>
-            <p class="exercise-desc">Sube la punta del pie manteniendo el talón apoyado.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión plantar sentada sin resistencia</div>
-            <p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro, sin peso adicional.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Carga</span>Sin resistencia</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Arco activo del pie</div>
-            <p class="exercise-desc">Activa suavemente el arco manteniendo los tres puntos de apoyo del pie.</p>
-            <button class="video-btn open-video" data-video="https://www.youtube.com/shorts/Ye--xJj2OnU" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>6–8</div>
-            <div class="pill"><span>Tiempo</span>3–5 seg</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.</div></div>
-    </section>
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo respondieron el pie y las demás zonas lesionadas durante la sesión.</p>
-      <a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Base&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
-    </div>
-  </div>
-
-  <!-- COMPLETA -->
-  <div class="routine-container" id="rutina-completa">
-    <div class="routine-intro">
-      <div class="routine-version-label">🕘 Rutina B Recuperación Completa · 25–30 min</div>
-      <h2>Rutina B · Movilidad funcional completa</h2>
-      <p>Versión ampliada para días con más tiempo, manteniendo el trabajo suave y sin carga externa.</p>
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div>
-      </div>
-    </div>
-
-    <div class="warning">
-      <strong>Importante:</strong> esta es una sesión de recuperación, no de entrenamiento de fuerza.
+<section class="section">
+<div class="section-head"><h2>Preparación</h2><p>Entrada suave y control postural.</p></div>
+<div class="section-body">
+<div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Marcha sentada</div>
+<p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xxf93bq9-vA" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10 por lado</div>
+<div class="pill"><span>Ritmo</span>Suave</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Cadera y rodilla</h2><p>Movilidad sin impacto ni carga externa.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Deslizamiento de talón sentado</div>
+<p class="exercise-desc">Desliza un pie hacia delante y regresa lentamente, alternando lados.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=deslizamiento+de+talon+sentado+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8–10 por lado</div>
+<div class="pill"><span>Rango</span>Cómodo</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Abducción de cadera sentada</div>
+<p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro sin inclinar el tronco.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=abduccion+de+cadera+sentada+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8–10 por lado</div>
+<div class="pill"><span>Carga</span>Sin banda</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Extensión de rodilla sentada</div>
+<p class="exercise-desc">Extiende una rodilla, mantén 1 segundo y vuelve lentamente.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10 por lado</div>
+<div class="pill"><span>Carga</span>Sin peso</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Tobillo y pie</h2><p>Movilidad suave y control sin irritar el Aquiles.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión dorsal sentada</div>
+<p class="exercise-desc">Sube la punta del pie manteniendo el talón apoyado.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=L39qQS6hTu8" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10</div>
+<div class="pill"><span>Dolor pie</span>0–3/10</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión plantar sentada sin resistencia</div>
+<p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro, sin peso adicional.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=L39qQS6hTu8" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10</div>
+<div class="pill"><span>Carga</span>Sin resistencia</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Arco activo del pie</div>
+<p class="exercise-desc">Activa suavemente el arco manteniendo los tres puntos de apoyo del pie.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/Ye--xJj2OnU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>6–8</div>
+<div class="pill"><span>Tiempo</span>3–5 seg</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo respondieron el pie y las demás zonas lesionadas durante la sesión.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Base&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
+</div>
+</div>
+<!-- COMPLETA -->
+<div class="routine-container" id="rutina-completa">
+<div class="routine-intro">
+<div class="routine-version-label">🕘 Rutina B Recuperación Completa · 25–30 min</div>
+<h2>Rutina B · Movilidad funcional completa</h2>
+<p>Versión ampliada para días con más tiempo, manteniendo el trabajo suave y sin carga externa.</p>
+<div class="quick-stats">
+<div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
+<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
+<div class="stat"><small>Material</small><strong>Silla</strong></div>
+<div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div>
+</div>
+</div>
+<div class="warning">
+<strong>Importante:</strong> esta es una sesión de recuperación, no de entrenamiento de fuerza.
       No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
     </div>
-
-    <section class="section">
-      <div class="section-head"><h2>Preparación</h2><p>Movilidad inicial y respiración.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas.</div>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Marcha sentada</div>
-            <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra con control.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>12 por lado</div>
-            <div class="pill"><span>Ritmo</span>Suave</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Cadera y rodilla</h2><p>Movilidad de miembros inferiores sin impacto.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Deslizamiento de talón sentado</div>
-            <p class="exercise-desc">Desliza un pie hacia delante y regresa lentamente.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Abducción de cadera sentada</div>
-            <p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro con control.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Carga</span>Sin banda</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Extensión de rodilla sentada</div>
-            <p class="exercise-desc">Extiende la rodilla, mantén 1–2 segundos y vuelve lentamente.</p>
-            <button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10–12 por lado</div>
-            <div class="pill"><span>Carga</span>Sin peso</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Control del apoyo</h2><p>Trabajo suave sin exigir el brazo ni el pie.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Transferencia de peso sentada</div>
-            <p class="exercise-desc">Con ambos pies apoyados, desplaza suavemente el peso del tronco de un lado al otro sin usar los brazos.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Tiempo</span>20–30 seg</div>
-            <div class="pill"><span>Rango</span>Pequeño</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Tobillo y pie</h2><p>Movilidad suave para conservar función.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión dorsal sentada</div>
-            <p class="exercise-desc">Sube la punta del pie manteniendo el talón apoyado.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>12</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión plantar sentada sin resistencia</div>
-            <p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro.</p>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>12</div>
-            <div class="pill"><span>Carga</span>Sin resistencia</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-        </article>
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Arco activo del pie</div>
-            <p class="exercise-desc">Activa suavemente el arco plantar manteniendo los tres puntos de apoyo.</p>
-            <button class="video-btn open-video" data-video="https://www.youtube.com/shorts/Ye--xJj2OnU" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10</div>
-            <div class="pill"><span>Tiempo</span>5 seg</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <div class="note">
-      <strong>Regla de recuperación:</strong> esta sesión debería dejarte igual o mejor.
+<section class="section">
+<div class="section-head"><h2>Preparación</h2><p>Movilidad inicial y respiración.</p></div>
+<div class="section-body">
+<div class="simple-card"><strong>Respiración + postura sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Marcha sentada</div>
+<p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra con control.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xxf93bq9-vA" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>12 por lado</div>
+<div class="pill"><span>Ritmo</span>Suave</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Cadera y rodilla</h2><p>Movilidad de miembros inferiores sin impacto.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Deslizamiento de talón sentado</div>
+<p class="exercise-desc">Desliza un pie hacia delante y regresa lentamente.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=deslizamiento+de+talon+sentado+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10 por lado</div>
+<div class="pill"><span>Rango</span>Cómodo</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Abducción de cadera sentada</div>
+<p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro con control.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=abduccion+de+cadera+sentada+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10 por lado</div>
+<div class="pill"><span>Carga</span>Sin banda</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Extensión de rodilla sentada</div>
+<p class="exercise-desc">Extiende la rodilla, mantén 1–2 segundos y vuelve lentamente.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>10–12 por lado</div>
+<div class="pill"><span>Carga</span>Sin peso</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Control del apoyo</h2><p>Trabajo suave sin exigir el brazo ni el pie.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Transferencia de peso sentada</div>
+<p class="exercise-desc">Con ambos pies apoyados, desplaza suavemente el peso del tronco de un lado al otro sin usar los brazos.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/results?search_query=transferencia+de+peso+sentada+ejercicio" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Tiempo</span>20–30 seg</div>
+<div class="pill"><span>Rango</span>Pequeño</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>Tobillo y pie</h2><p>Movilidad suave para conservar función.</p></div>
+<div class="section-body">
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión dorsal sentada</div>
+<p class="exercise-desc">Sube la punta del pie manteniendo el talón apoyado.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=L39qQS6hTu8" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>12</div>
+<div class="pill"><span>Dolor pie</span>0–3/10</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Flexión plantar sentada sin resistencia</div>
+<p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=L39qQS6hTu8" type="button">▶ Ver video</button></div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>12</div>
+<div class="pill"><span>Carga</span>Sin resistencia</div>
+<div class="pill"><span>RPE</span>1–2</div>
+</div>
+</article>
+<article class="exercise-card">
+<div>
+<div class="exercise-name">Arco activo del pie</div>
+<p class="exercise-desc">Activa suavemente el arco plantar manteniendo los tres puntos de apoyo.</p>
+<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/Ye--xJj2OnU" type="button">▶ Ver video</button>
+</div>
+<div class="exercise-meta">
+<div class="pill"><span>Series</span>2</div>
+<div class="pill"><span>Reps</span>8–10</div>
+<div class="pill"><span>Tiempo</span>5 seg</div>
+<div class="pill"><span>RPE</span>2</div>
+</div>
+</article>
+</div>
+</section>
+<div class="note">
+<strong>Regla de recuperación:</strong> esta sesión debería dejarte igual o mejor.
       Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.
     </div>
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.</div></div>
-    </section>
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas durante la sesión.</p>
-      <a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Completa&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
-    </div>
-  </div>
-
+<section class="section">
+<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
+<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=_3H8IcezFFU" type="button">▶ Ver video</button></div></div>
+</section>
+<div class="finish-session-wrap">
+<p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas durante la sesión.</p>
+<a class="finish-session-btn" href="../../registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Completa&amp;sesion_objetivo=Movilidad%20funcional">✅ Finalicé mi sesión</a>
+</div>
+</div>
 </main>
 </div>
-
 <div aria-hidden="true" class="video-modal" id="videoModal">
-  <div class="video-box">
-    <div class="video-box-head">
-      <strong id="videoTitle">Video de ejercicio</strong>
-      <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
-    </div>
-    <div class="video-frame-wrap">
-      <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
-    </div>
-  </div>
+<div class="video-box">
+<div class="video-box-head">
+<strong id="videoTitle">Video de ejercicio</strong>
+<button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
 </div>
-
+<div class="video-frame-wrap">
+<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+</div>
+</div>
+</div>
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Dixie Acosta";
@@ -1479,13 +1429,19 @@
         e.stopPropagation();
 
         const card = button.closest('.exercise-card');
-        const nameEl = card ? card.querySelector('.exercise-name') : null;
+        const simpleCard = button.closest('.simple-card');
+        const nameEl = card ? card.querySelector('.exercise-name') : (simpleCard ? simpleCard.querySelector('strong') : null);
         const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
         const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
         const embedUrl = toEmbedUrl(rawUrl);
 
-        if (embedUrl) showVideo(embedUrl, title);
-        else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+        if (embedUrl) {
+          showVideo(embedUrl, title);
+        } else if (rawUrl && rawUrl.includes('youtube.com/results?search_query=')) {
+          window.open(rawUrl, '_blank', 'noopener,noreferrer');
+        } else {
+          alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+        }
       });
     });
 
