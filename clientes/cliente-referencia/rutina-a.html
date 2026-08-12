@@ -1,12 +1,13 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Encuesta Rutina A Recuperación | Dixie Acosta</title>
+<title>Encuesta Rutina A Recuperación | Cliente de referencia</title>
 <style>
     *{box-sizing:border-box;margin:0;padding:0}
 
@@ -780,6 +781,15 @@
       }
     }
 
+
+    .upload-progress-wrap{display:none;margin-top:14px}
+    .upload-progress-wrap.active{display:block}
+    .upload-progress-track{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}
+    .upload-progress-bar{width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff5a1f,#ff8a3d);transition:width .18s ease}
+    .upload-progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;color:rgba(255,255,255,.72);font-size:.84rem}
+    .upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}
+    .execution-send.uploading{cursor:wait;opacity:.9}
+
 </style>
 </head>
 
@@ -790,16 +800,16 @@
     <div class="brand-badge">M</div>
     <div class="brand-text">
       <h1>MoveSmart</h1>
-      <p>Dixie Acosta · Rutina A recuperación adaptativa</p>
+      <p>Cliente de referencia · Rutina A recuperación adaptativa</p>
     </div>
   </div>
-  <a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/plan-dixie-acosta.html">← Volver al plan</a>
+  <a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html">← Volver al plan</a>
 </header>
 
 <section class="hero">
   <div aria-hidden="true" class="hero-image"></div>
   <div class="hero-copy">
-    <div class="hello">¡Hola Dixie!</div>
+    <div class="hello">¡Hola!</div>
     <h2>Hoy el objetivo no es exigirte: es mantenerte en movimiento mientras te recuperas.</h2>
     <p>
       Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina A de recuperación según tu tiempo,
@@ -1026,7 +1036,7 @@
 
     <div class="finish-session-wrap">
       <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y cómo se sintió el brazo durante la sesión.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Recuperacion%20Express\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Express\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
     </div>
   </div>
 
@@ -1280,7 +1290,7 @@
 
     <div class="finish-session-wrap">
       <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si apareció alguna molestia nueva o cambio importante en tus zonas lesionadas.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Recuperacion%20Base\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Base\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
     </div>
   </div>
 
@@ -1563,7 +1573,7 @@
 
     <div class="finish-session-wrap">
       <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si hubo cualquier cambio importante en tus zonas lesionadas.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Recuperacion%20Completa\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Completa\&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
     </div>
   </div>
 
@@ -1597,20 +1607,135 @@
       </label>
       <video class="execution-preview" id="executionPreview" controls playsinline></video>
       <div class="selected-video-info" id="selectedVideoInfo"></div>
+      <div class="upload-progress-wrap" id="uploadProgressWrap">
+        <div class="upload-progress-track">
+          <div class="upload-progress-bar" id="uploadProgressBar"></div>
+        </div>
+        <div class="upload-progress-row">
+          <span id="uploadProgressText">Preparando subida…</span>
+          <span class="upload-progress-percent" id="uploadProgressPercent">0%</span>
+        </div>
+      </div>
       <label class="execution-comment-label" for="executionComment">Comentario opcional</label>
       <textarea class="execution-comment" id="executionComment" placeholder="Ej.: siento tirantez, no sé si estoy haciendo bien el movimiento..."></textarea>
       <div class="execution-actions">
         <button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
-        <button class="execution-send" id="executionSend" type="button" disabled>Guardar video para enviar</button>
+        <button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button>
       </div>
     </div>
   </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
+
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
-    const CLIENTE = "Dixie Acosta";
+    const CLIENTE = "Cliente de referencia";
     const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
+
+
+    const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
+    const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
+    const VIDEO_BUCKET = "videos-clientes";
+    const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: false
+        }
+      }
+    );
+
+    let supabaseSessionPromise = null;
+
+    async function obtenerSesionSupabase() {
+      if (supabaseSessionPromise) return supabaseSessionPromise;
+
+      supabaseSessionPromise = (async () => {
+        const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+        if (sessionError) throw sessionError;
+        if (sessionData && sessionData.session) return sessionData.session;
+
+        const { data, error } = await supabaseClient.auth.signInAnonymously();
+        if (error) throw error;
+        if (!data || !data.session) throw new Error("No se pudo crear la sesión segura para subir el video.");
+        return data.session;
+      })().catch(error => {
+        supabaseSessionPromise = null;
+        throw error;
+      });
+
+      return supabaseSessionPromise;
+    }
+
+    function slugVideo(texto) {
+      return String(texto || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 80) || "video";
+    }
+
+    function extensionVideo(file) {
+      const original = String(file.name || "");
+      if (original.includes(".")) {
+        const ext = original.split(".").pop().toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (ext) return ext;
+      }
+      const map = {
+        "video/mp4": "mp4",
+        "video/quicktime": "mov",
+        "video/webm": "webm",
+        "video/x-m4v": "m4v"
+      };
+      return map[file.type] || "mp4";
+    }
+
+    function obtenerRutinaVideo(button) {
+      const container = button ? button.closest(".routine-container") : null;
+      if (!container) return "Rutina A Recuperación";
+      if (container.id === "rutina-express") return "Rutina A Recuperación Express";
+      if (container.id === "rutina-base") return "Rutina A Recuperación Base";
+      if (container.id === "rutina-completa") return "Rutina A Recuperación Completa";
+      return "Rutina A Recuperación";
+    }
+
+    function construirRutaVideo(rutina, ejercicio, file) {
+      const ahora = new Date();
+
+      const fecha = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Santiago",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).format(ahora);
+
+      const hora = new Intl.DateTimeFormat("es-CL", {
+        timeZone: "America/Santiago",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(ahora).replace(/:/g, "-");
+
+      return [
+        "cliente-de-referencia",
+        slugVideo(rutina),
+        fecha,
+        fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
+      ].join("/");
+    }
 
     const respuestas = { tiempo:null, energia:null, personalizada:null };
     const progressFill = document.getElementById('progressFill');
@@ -1828,7 +1953,7 @@
     });
 
 
-    // Videos del cliente: prueba local, lista para conectar a Firebase.
+    // Videos del cliente: subida directa y reanudable a Supabase Storage.
     const executionModal = document.getElementById('executionModal');
     const executionClose = document.getElementById('executionClose');
     const executionCancel = document.getElementById('executionCancel');
@@ -1838,6 +1963,10 @@
     const executionExerciseName = document.getElementById('executionExerciseName');
     const executionComment = document.getElementById('executionComment');
     const executionSend = document.getElementById('executionSend');
+    const uploadProgressWrap = document.getElementById('uploadProgressWrap');
+    const uploadProgressBar = document.getElementById('uploadProgressBar');
+    const uploadProgressText = document.getElementById('uploadProgressText');
+    const uploadProgressPercent = document.getElementById('uploadProgressPercent');
     let activeUploadButton = null;
     let activeExerciseName = '';
     let activeVideoUrl = '';
@@ -1849,6 +1978,12 @@
       executionFile.value = '';
       executionComment.value = '';
       executionSend.disabled = true;
+      executionSend.classList.remove('uploading');
+      executionSend.textContent = 'Enviar a MoveSmart';
+      uploadProgressWrap.classList.remove('active');
+      uploadProgressBar.style.width = '0%';
+      uploadProgressPercent.textContent = '0%';
+      uploadProgressText.textContent = 'Preparando subida…';
       selectedVideoInfo.textContent = '';
       selectedVideoInfo.classList.remove('active');
       if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
@@ -1879,13 +2014,13 @@
     executionFile.addEventListener('change',()=>{
       const file = executionFile.files && executionFile.files[0];
       if(!file){ executionSend.disabled=true; return; }
-      const maxSize = 120*1024*1024;
+      const maxSize = VIDEO_MAX_BYTES;
       if(!file.type.startsWith('video/')){
         alert('Selecciona un archivo de video.');
         executionFile.value=''; executionSend.disabled=true; return;
       }
       if(file.size>maxSize){
-        alert('Usa un video de menos de 120 MB. Un video corto es suficiente.');
+        alert('Este proyecto gratuito permite archivos de hasta 50 MB. Selecciona un video menor a ese tamaño.');
         executionFile.value=''; executionSend.disabled=true; return;
       }
       if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
@@ -1897,24 +2032,139 @@
       executionSend.disabled=false;
     });
 
-    executionSend.addEventListener('click',()=>{
-      const file=executionFile.files && executionFile.files[0];
+    executionSend.addEventListener('click', async ()=>{
+      const file = executionFile.files && executionFile.files[0];
       if(!file || !activeUploadButton) return;
-      const box=activeUploadButton.closest('.review-request');
-      const status=box ? box.querySelector('.upload-status') : null;
-      activeUploadButton.classList.add('done');
-      activeUploadButton.textContent='✅ Video listo';
-      if(status) status.textContent='Video seleccionado en este dispositivo. Cuando conectemos Firebase, desde aquí se enviará a MoveSmart.';
-      try{
-        localStorage.setItem('movesmart_dixie_video_ready_'+(box?.dataset.exercise || activeExerciseName),JSON.stringify({
-          client:'Dixie Acosta',
-          routine:'Rutina A Recuperación',
-          exercise:activeExerciseName,
-          comment:executionComment.value.trim(),
-          selectedAt:new Date().toISOString()
-        }));
-      }catch(e){}
-      closeExecutionModal();
+
+      const reviewBox = activeUploadButton.closest('.review-request');
+      const status = reviewBox ? reviewBox.querySelector('.upload-status') : null;
+      const rutina = obtenerRutinaVideo(activeUploadButton);
+      const objectName = construirRutaVideo(rutina, activeExerciseName, file);
+
+      try {
+        executionSend.disabled = true;
+        executionSend.classList.add('uploading');
+        executionSend.textContent = 'Conectando…';
+
+        uploadProgressWrap.classList.add('active');
+        uploadProgressBar.style.width = '0%';
+        uploadProgressPercent.textContent = '0%';
+        uploadProgressText.textContent = 'Creando conexión segura…';
+
+        if(status) status.textContent = 'Preparando el envío seguro del video…';
+
+        const session = await obtenerSesionSupabase();
+
+        if(!session || !session.access_token){
+          throw new Error('No se pudo obtener una sesión válida.');
+        }
+
+        executionSend.textContent = 'Enviando…';
+        uploadProgressText.textContent = 'Subiendo video…';
+
+        await new Promise((resolve, reject) => {
+          const upload = new tus.Upload(file, {
+            endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
+            retryDelays: [0, 3000, 5000, 10000, 20000],
+            headers: {
+              authorization: `Bearer ${session.access_token}`
+            },
+            uploadDataDuringCreation: true,
+            removeFingerprintOnSuccess: true,
+            metadata: {
+              bucketName: VIDEO_BUCKET,
+              objectName: objectName,
+              contentType: file.type || 'video/mp4',
+              cacheControl: '3600',
+              metadata: JSON.stringify({
+                cliente: 'Cliente de referencia',
+                rutina: rutina,
+                ejercicio: activeExerciseName,
+                comentario: executionComment.value.trim(),
+                enviado_desde: 'MoveSmart'
+              })
+            },
+            chunkSize: 6 * 1024 * 1024,
+
+            onError(error) {
+              reject(error);
+            },
+
+            onProgress(bytesUploaded, bytesTotal) {
+              const percent = bytesTotal > 0 ? Math.min(100, (bytesUploaded / bytesTotal) * 100) : 0;
+              const rounded = Math.round(percent);
+
+              uploadProgressBar.style.width = rounded + '%';
+              uploadProgressPercent.textContent = rounded + '%';
+
+              const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
+              const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
+
+              uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
+
+              if(status){
+                status.textContent = `Enviando video… ${rounded}%. Si la conexión se corta, MoveSmart intentará continuar la subida.`;
+              }
+            },
+
+            onSuccess() {
+              resolve();
+            }
+          });
+
+          upload.findPreviousUploads()
+            .then(previousUploads => {
+              if(previousUploads.length){
+                upload.resumeFromPreviousUpload(previousUploads[0]);
+                uploadProgressText.textContent = 'Reanudando una subida anterior…';
+              }
+              upload.start();
+            })
+            .catch(reject);
+        });
+
+        uploadProgressBar.style.width = '100%';
+        uploadProgressPercent.textContent = '100%';
+        uploadProgressText.textContent = 'Video guardado correctamente';
+
+        activeUploadButton.classList.add('done');
+        activeUploadButton.textContent = '✅ Video enviado';
+        executionSend.textContent = '✅ Enviado';
+
+        if(status){
+          status.textContent = '✅ Video enviado a MoveSmart. Quedó guardado de forma privada para revisión.';
+        }
+
+        try{
+          localStorage.setItem(
+            'movesmart_cliente_referencia_rutina_a_supabase_' + (reviewBox?.dataset.exercise || activeExerciseName),
+            JSON.stringify({
+              client: 'Cliente de referencia',
+              routine: rutina,
+              exercise: activeExerciseName,
+              path: objectName,
+              sentAt: new Date().toISOString(),
+              status: 'enviado'
+            })
+          );
+        }catch(e){}
+
+        setTimeout(closeExecutionModal, 900);
+
+      } catch(error) {
+        console.error('Error de subida Supabase/TUS:', error);
+
+        executionSend.disabled = false;
+        executionSend.classList.remove('uploading');
+        executionSend.textContent = 'Reintentar envío';
+        uploadProgressText.textContent = 'No se pudo completar la subida';
+
+        if(status){
+          status.textContent = '❌ No se pudo completar el envío. Puedes tocar “Reintentar envío”; si existe una subida parcial, intentará continuar.';
+        }
+
+        alert('No se pudo completar el envío del video. Puedes reintentarlo sin volver a grabar.');
+      }
     });
 
     if(executionClose) executionClose.addEventListener('click',closeExecutionModal);
@@ -1924,12 +2174,12 @@
 
     document.querySelectorAll('.review-request').forEach(box=>{
       try{
-        const saved=localStorage.getItem('movesmart_dixie_video_ready_'+box.dataset.exercise);
+        const saved=localStorage.getItem('movesmart_cliente_referencia_rutina_a_supabase_'+box.dataset.exercise);
         if(saved){
           const btn=box.querySelector('.upload-execution-btn');
           const status=box.querySelector('.upload-status');
-          if(btn){ btn.classList.add('done'); btn.textContent='✅ Video listo'; }
-          if(status) status.textContent='Ya seleccionaste un video para este ejercicio en este dispositivo.';
+          if(btn){ btn.classList.add('done'); btn.textContent='✅ Video enviado'; }
+          if(status) status.textContent='✅ Ya enviaste un video de este ejercicio desde este dispositivo.';
         }
       }catch(e){}
     });
