@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -532,20 +533,8 @@
       </div>
     </section>
 
-    <section class="wrap archive-grid">
-
-      <article class="article-card">
-        <a class="thumb" href="/movesmart-web/blog/articulo_principal/un_pdf_no_sabe.html">
-          <img src="/movesmart-web/imagenes/pdf-no-sabe.webp" alt="Un PDF no sabe cómo llegas del trabajo" loading="eager" decoding="async" width="420" height="260">
-        </a>
-        <div class="card-body">
-          <div class="date">▣ Publicado · MoveSmart</div>
-          <h2>Un PDF no sabe cómo llegas del trabajo</h2>
-          <p class="excerpt">Una rutina puede verse correcta en papel, pero fallar en la vida real si no considera cansancio, dolor, sueño, estrés o energía disponible.</p>
-          <a class="read-more" href="/movesmart-web/blog/articulo_principal/un_pdf_no_sabe.html">Leer más <span>↗</span></a>
-        </div>
-      </article>
-    </section>
+    <!-- Las tarjetas se generan automáticamente desde la lista de artículos del script -->
+    <section class="wrap archive-grid" id="lista-articulos"></section>
 
     <div class="wrap bottom-actions">
       <a class="btn ghost" href="/movesmart-web/blog/portada.html">← Volver al blog</a>
@@ -559,5 +548,60 @@
       <p>Entrenamiento personalizado · Rehabilitación · Adherencia</p>
     </div>
   </footer>
+
+  <script>
+    /*
+      ARCHIVO DE ARTÍCULOS
+      --------------------
+      Para agregar una nueva entrada antigua, copia uno de estos bloques,
+      pégalo AL PRINCIPIO de la lista y cambia sus 5 datos.
+      El orden de esta lista es el orden visual: más reciente → más antiguo.
+    */
+    const articulos = [
+      {
+        titulo: "Título del nuevo artículo",
+        descripcion: "Escribe aquí una descripción breve del artículo que estás archivando.",
+        imagen: "/movesmart-web/imagenes/NUEVA-IMAGEN.webp",
+        url: "/movesmart-web/blog/entradas_antiguas/NUEVO-ARTICULO.html",
+        fecha: "Publicado"
+      },
+      {
+        titulo: "Un PDF no sabe cómo llegas del trabajo",
+        descripcion: "Una rutina puede verse correcta en papel, pero fallar en la vida real si no considera cansancio, dolor, sueño, estrés o energía disponible.",
+        imagen: "/movesmart-web/imagenes/pdf-no-sabe.webp",
+        url: "/movesmart-web/blog/articulo_principal/un_pdf_no_sabe.html",
+        fecha: "Publicado"
+      }
+    ];
+
+    const contenedor = document.getElementById("lista-articulos");
+
+    articulos.forEach((articulo, index) => {
+      const tarjeta = document.createElement("article");
+      tarjeta.className = "article-card";
+
+      tarjeta.innerHTML = `
+        <a class="thumb" href="${articulo.url}">
+          <img
+            src="${articulo.imagen}"
+            alt="${articulo.titulo}"
+            loading="${index === 0 ? 'eager' : 'lazy'}"
+            decoding="async"
+            width="420"
+            height="260">
+        </a>
+
+        <div class="card-body">
+          <div class="date">▣ ${articulo.fecha} · MoveSmart</div>
+          <h2>${articulo.titulo}</h2>
+          <p class="excerpt">${articulo.descripcion}</p>
+          <a class="read-more" href="${articulo.url}">Leer más <span>↗</span></a>
+        </div>
+      `;
+
+      contenedor.appendChild(tarjeta);
+    });
+  </script>
+
 </body>
 </html>
