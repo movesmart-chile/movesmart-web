@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -403,12 +404,28 @@
   </div>
 
   <script>
+    const SCRIPT_CENTRAL_URL =
+      "https://script.google.com/macros/s/AKfycbyyk33sXnUcNYSu3pkGUTMjgjEhUpxioXc7cT4_eJhtlw8xJbTWHrxAHFwVuAXYf6IfOw/exec";
+
+    const RUTA_COMPROMISO_INICIAL =
+      "clientes/compromisos/compromiso-inicial.html";
+
+    const RUTA_COMPROMISO_MITAD =
+      "clientes/compromisos/compromiso-mitad.html";
+
+    const RUTA_REEVALUACION =
+      "/movesmart-web/clientes/reevaluaciones/reevaluacion-mensual.html";
+
     const clients = {
       "cliente referencia": {
         password: "cliente123",
         file: "clientes/cliente-referencia/diagnostico-funcional/diagnostico-funcional-cliente-referencia.html",
-        displayName: "cliente referencia"
-         },
+        displayName: "Cliente Referencia",
+        usarFlujoCentral: true,
+        nombreCentral: "Cliente Referencia",
+        clienteId: "cliente-referencia",
+        mesEvaluacion: 1
+      },
       "fabian laferte": {
         password: "fabian123",
         file: "clientes/fabian-laferte/diagnostico-funcional/diagnostico-funcional-fabian-laferte.html",
@@ -429,7 +446,7 @@
         file: "clientes/camila-valenzuela/diagnostico-funcional-camila-valenzuela.html",
         displayName: "Juan Ugalde"
       },
-        "sergio mino": {
+      "sergio mino": {
         password: "sergio",
         file: "clientes/sergio-mino/diagnostico-funcional-sergio-mino-tobillo.html",
         displayName: "sergio mino"
@@ -468,10 +485,10 @@
         password: "julisa123",
         file: "clientes/julisa-sanhueza/plan-julisa-sanhueza.html",
         displayName: "Julisa Sanhueza"
-         },
-        };
-    
- function normalizeText(value) {
+      }
+    };
+
+    function normalizeText(value) {
       return value
         .toLowerCase()
         .normalize("NFD")
@@ -483,7 +500,7 @@
     const form = document.getElementById("loginForm");
     const message = document.getElementById("message");
 
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", async function(event) {
       event.preventDefault();
 
       const rawName = document.getElementById("clientName").value;
@@ -503,10 +520,70 @@
         return;
       }
 
-      message.textContent = `Acceso correcto. Abriendo el plan de ${client.displayName}...`;
-      message.className = "message ok";
+      if (!client.usarFlujoCentral) {
+        message.textContent = `Acceso correcto. Abriendo el plan de ${client.displayName}...`;
+        message.className = "message ok";
+        window.location.href = client.file;
+        return;
+      }
 
-      window.location.href = client.file;
+      try {
+        message.textContent = "Acceso correcto. Preparando tu programa...";
+        message.className = "message ok";
+
+        const url = new URL(SCRIPT_CENTRAL_URL);
+        url.searchParams.set("cliente", client.nombreCentral);
+
+        const respuesta = await fetch(url.toString());
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo consultar el estado del programa.");
+        }
+
+        const datos = await respuesta.json();
+
+        if (!datos.ok) {
+          throw new Error(datos.mensaje || "No se pudo consultar el programa.");
+        }
+
+        if (datos.mostrar === "plan") {
+          window.location.href = client.file;
+          return;
+        }
+
+        const cliente = encodeURIComponent(client.nombreCentral);
+        const destino = encodeURIComponent(client.file);
+
+        if (datos.mostrar === "inicial") {
+          window.location.href = `${RUTA_COMPROMISO_INICIAL}?cliente=${cliente}&destino=${destino}`;
+          return;
+        }
+
+        if (datos.mostrar === "mitad") {
+          window.location.href = `${RUTA_COMPROMISO_MITAD}?cliente=${cliente}&destino=${destino}`;
+          return;
+        }
+
+        if (datos.mostrar === "reevaluacion") {
+          const clienteId = encodeURIComponent(client.clienteId);
+          const mes = encodeURIComponent(client.mesEvaluacion);
+          window.location.href = `${RUTA_REEVALUACION}?cliente_id=${clienteId}&mes=${mes}`;
+          return;
+        }
+
+        if (datos.mostrar === "espera") {
+          message.textContent = "Tu ciclo actual ya está completo. Estamos preparando tu próximo programa.";
+          message.className = "message ok";
+          return;
+        }
+
+        throw new Error("El sistema recibió un estado desconocido.");
+
+      } catch (error) {
+        console.error(error);
+        message.textContent = "No pudimos preparar tu programa en este momento. Inténtalo nuevamente.";
+        message.className = "message error";
+      }
     });
   </script>
 </body>
