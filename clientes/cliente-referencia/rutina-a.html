@@ -825,6 +825,18 @@ line-height:1.5;
   }
 }
 
+
+/* La encuesta debe seguir siendo tocable en móvil incluso si falla un servicio externo */
+.survey-card:not(.is-processing),
+.survey-card:not(.is-processing) .choices,
+.survey-card:not(.is-processing) .choice{
+  pointer-events:auto !important;
+}
+.choice{
+  -webkit-appearance:none;
+  appearance:none;
+}
+
 </style>
 </head>
 
@@ -878,17 +890,17 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 </div>
 <div class="choices">
-<button class="choice" data-value="express" type="button">
+<button type="button" class="choice" data-value="express" type="button">
 <span class="emoji">⏱️</span>
 <strong>10 – 15 min</strong>
 <span>Poco tiempo</span>
 </button>
-<button class="choice" data-value="base" type="button">
+<button type="button" class="choice" data-value="base" type="button">
 <span class="emoji">🕒</span>
 <strong>20 – 25 min</strong>
 <span>Tiempo moderado</span>
 </button>
-<button class="choice" data-value="completa" type="button">
+<button type="button" class="choice" data-value="completa" type="button">
 <span class="emoji">🕘</span>
 <strong>25 – 30 min</strong>
 <span>Más tiempo</span>
@@ -905,17 +917,17 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 </div>
 <div class="choices">
-<button class="choice" data-value="baja" type="button">
+<button type="button" class="choice" data-value="baja" type="button">
 <span class="emoji">🪫</span>
 <strong>Baja</strong>
 <span>Necesito moverme muy suave</span>
 </button>
-<button class="choice" data-value="media" type="button">
+<button type="button" class="choice" data-value="media" type="button">
 <span class="emoji">⚡</span>
 <strong>Media</strong>
 <span>Me siento normal</span>
 </button>
-<button class="choice" data-value="alta" type="button">
+<button type="button" class="choice" data-value="alta" type="button">
 <span class="emoji">🔋</span>
 <strong>Alta</strong>
 <span>Me siento con buena energía</span>
@@ -932,17 +944,17 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 </div>
 <div class="choices">
-<button class="choice" data-value="leve" type="button">
+<button type="button" class="choice" data-value="leve" type="button">
 <span class="emoji">🟢</span>
 <strong>Leves</strong>
 <span>Sin molestias importantes o entre 0–3/10</span>
 </button>
-<button class="choice" data-value="moderado" type="button">
+<button type="button" class="choice" data-value="moderado" type="button">
 <span class="emoji">🟡</span>
 <strong>Moderadas</strong>
 <span>Hay molestias o rigidez, pero puedo moverme con cuidado</span>
 </button>
-<button class="choice" data-value="alto" type="button">
+<button type="button" class="choice" data-value="alto" type="button">
 <span class="emoji">🔴</span>
 <strong>Altas o diferentes</strong>
 <span>Más dolor, inflamación, debilidad o alguna molestia nueva</span>
@@ -1678,21 +1690,29 @@ const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
 const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
 
-const supabaseClient = supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY,
-{
-auth: {
-persistSession: true,
-autoRefreshToken: true,
-detectSessionInUrl: false
+const supabaseClient =
+  (window.supabase && typeof window.supabase.createClient === 'function')
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: false
+          }
+        }
+      )
+    : null;
+
+if(!supabaseClient){
+  console.warn('Supabase no cargó. La encuesta seguirá funcionando; solo se desactivarán temporalmente las funciones de video.');
 }
-}
-);
 
 let supabaseSessionPromise = null;
 
 async function obtenerSesionSupabase() {
+if(!supabaseClient) throw new Error("Supabase no está disponible en este dispositivo.");
 if (supabaseSessionPromise) return supabaseSessionPromise;
 
 supabaseSessionPromise = (async () => {
@@ -1822,6 +1842,7 @@ function restaurarCajaParaNuevoDia(box){
 }
 
 async function registrarVideoEnviadoEnSupabase({ rutina, ejercicio, rutaVideo }){
+  if(!supabaseClient) return { ok:false, unavailable:true };
   const payload = {
     cliente: CLIENTE,
     rutina,
@@ -1844,6 +1865,10 @@ async function registrarVideoEnviadoEnSupabase({ rutina, ejercicio, rutaVideo })
 }
 
 async function sincronizarVideosEnviadosHoy(){
+  if(!supabaseClient){
+    console.warn("Sincronización de videos omitida: Supabase no disponible.");
+    return;
+  }
   try{
     await obtenerSesionSupabase();
 
@@ -1911,6 +1936,54 @@ const smartLoading = document.getElementById('smartLoading');
 const smartLoadingTitle = document.getElementById('smartLoadingTitle');
 const smartLoadingText = document.getElementById('smartLoadingText');
 
+const surveyRoot = document.querySelector('.survey-card');
+
+function aplicarSeleccionEncuesta(btn){
+  if(!btn || !btn.classList.contains('choice')) return;
+
+  const questionEl = btn.closest('.question');
+  const choicesEl = btn.closest('.choices');
+  if(!questionEl || !choicesEl) return;
+
+  const question = questionEl.dataset.question;
+  if(!question) return;
+
+  respuestas[question] = btn.dataset.value || '';
+
+  choicesEl.querySelectorAll('.choice').forEach(other => {
+    other.classList.remove('selected');
+    other.setAttribute('aria-pressed', 'false');
+  });
+
+  btn.classList.add('selected');
+  btn.setAttribute('aria-pressed', 'true');
+
+  if(resultCard) resultCard.classList.remove('active');
+  document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+
+  const answered = Object.values(respuestas).filter(Boolean).length;
+  if(progressFill) progressFill.style.width = `${(answered / 3) * 100}%`;
+  if(progressText) progressText.textContent = `Pregunta ${answered} de 3`;
+}
+
+if(surveyRoot){
+  // Delegación: funciona aunque el navegador móvil trate distinto los botones.
+  surveyRoot.addEventListener('click', function(e){
+    const btn = e.target.closest('.choice');
+    if(!btn || !surveyRoot.contains(btn)) return;
+    e.preventDefault();
+    aplicarSeleccionEncuesta(btn);
+  });
+
+  surveyRoot.addEventListener('touchend', function(e){
+    const btn = e.target.closest('.choice');
+    if(!btn || !surveyRoot.contains(btn)) return;
+    e.preventDefault();
+    aplicarSeleccionEncuesta(btn);
+  }, {passive:false});
+}
+
+
 function updateProgress(){
 const answered = Object.values(respuestas).filter(Boolean).length;
 progressFill.style.width = `${(answered / 3) * 100}%`;
@@ -1960,58 +2033,7 @@ console.log("Tampoco se pudo usar sendBeacon:", e);
 });
 }
 
-function seleccionarOpcion(btn){
-  const questionEl = btn.closest('.question');
-  const choicesEl = btn.closest('.choices');
-  if(!questionEl || !choicesEl) return;
 
-  const question = questionEl.dataset.question;
-  respuestas[question] = btn.dataset.value;
-
-  choicesEl.querySelectorAll('.choice').forEach(other => {
-    other.classList.remove('selected');
-    other.setAttribute('aria-pressed', 'false');
-  });
-
-  btn.classList.add('selected');
-  btn.setAttribute('aria-pressed', 'true');
-
-  resultCard.classList.remove('active');
-  document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-  updateProgress();
-}
-
-document.querySelectorAll('.choice').forEach(btn => {
-  btn.setAttribute('aria-pressed', 'false');
-
-  // Pointer Events funcionan tanto con dedo como con mouse.
-  // En navegadores antiguos dejamos click como respaldo.
-  if(window.PointerEvent){
-    btn.addEventListener('pointerup', (e) => {
-      if(e.pointerType === 'touch' || e.pointerType === 'pen'){
-        e.preventDefault();
-      }
-      seleccionarOpcion(btn);
-    });
-  } else {
-    btn.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      seleccionarOpcion(btn);
-    }, {passive:false});
-
-    btn.addEventListener('click', () => {
-      seleccionarOpcion(btn);
-    });
-  }
-
-  // Accesibilidad por teclado.
-  btn.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault();
-      seleccionarOpcion(btn);
-    }
-  });
-});
 
 document.getElementById('createRoutine').addEventListener('click', () => {
 const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
