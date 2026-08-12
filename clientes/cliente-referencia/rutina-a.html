@@ -790,6 +790,21 @@
     .upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}
     .execution-send.uploading{cursor:wait;opacity:.9}
 
+
+    .optimization-box{
+      display:none;
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(47,99,255,.09);
+      border:1px solid rgba(111,142,255,.18);
+      color:rgba(255,255,255,.78);
+      font-size:.86rem;
+      line-height:1.5;
+    }
+    .optimization-box.active{display:block}
+    .optimization-box strong{color:#fff}
+
 </style>
 </head>
 
@@ -1607,6 +1622,7 @@
       </label>
       <video class="execution-preview" id="executionPreview" controls playsinline></video>
       <div class="selected-video-info" id="selectedVideoInfo"></div>
+      <div class="optimization-box" id="optimizationBox"></div>
       <div class="upload-progress-wrap" id="uploadProgressWrap">
         <div class="upload-progress-track">
           <div class="upload-progress-bar" id="uploadProgressBar"></div>
@@ -1960,6 +1976,7 @@
     const executionFile = document.getElementById('executionFile');
     const executionPreview = document.getElementById('executionPreview');
     const selectedVideoInfo = document.getElementById('selectedVideoInfo');
+    const optimizationBox = document.getElementById('optimizationBox');
     const executionExerciseName = document.getElementById('executionExerciseName');
     const executionComment = document.getElementById('executionComment');
     const executionSend = document.getElementById('executionSend');
@@ -1970,6 +1987,7 @@
     let activeUploadButton = null;
     let activeExerciseName = '';
     let activeVideoUrl = '';
+    let optimizedUploadFile = null;
 
     function openExecutionModal(button){
       activeUploadButton = button;
@@ -1986,6 +2004,9 @@
       uploadProgressText.textContent = 'Preparando subida…';
       selectedVideoInfo.textContent = '';
       selectedVideoInfo.classList.remove('active');
+      optimizationBox.textContent = '';
+      optimizationBox.classList.remove('active');
+      optimizedUploadFile = null;
       if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
       executionPreview.pause();
       executionPreview.removeAttribute('src');
@@ -2007,33 +2028,205 @@
       executionPreview.classList.remove('active');
     }
 
+
+    function formatoMB(bytes){
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function esperarEvento(elemento, evento){
+      return new Promise((resolve, reject) => {
+        const ok = () => { cleanup(); resolve(); };
+        const bad = () => { cleanup(); reject(new Error('No se pudo procesar el video.')); };
+        const cleanup = () => {
+          elemento.removeEventListener(evento, ok);
+          elemento.removeEventListener('error', bad);
+        };
+        elemento.addEventListener(evento, ok, {once:true});
+        elemento.addEventListener('error', bad, {once:true});
+      });
+    }
+
+    async function optimizarVideoParaEnvio(file){
+      if(file.size <= 3.5 * 1024 * 1024){
+        return {file, optimized:false, reason:'already-small'};
+      }
+
+      if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
+        return {file, optimized:false, reason:'unsupported'};
+      }
+
+      const mimeCandidates = ['video/webm;codecs=vp8', 'video/webm'];
+      const mimeType = mimeCandidates.find(type =>
+        MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)
+      );
+
+      if(!mimeType){
+        return {file, optimized:false, reason:'unsupported'};
+      }
+
+      const url = URL.createObjectURL(file);
+      const video = document.createElement('video');
+      video.src = url;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+
+      try{
+        await esperarEvento(video, 'loadedmetadata');
+
+        const duration = Number(video.duration || 0);
+        if(!Number.isFinite(duration) || duration <= 0 || duration > 90){
+          return {file, optimized:false, reason:'duration'};
+        }
+
+        const originalW = video.videoWidth || 720;
+        const originalH = video.videoHeight || 1280;
+        const maxSide = 720;
+        const scale = Math.min(1, maxSide / Math.max(originalW, originalH));
+        const width = Math.max(2, Math.round((originalW * scale) / 2) * 2);
+        const height = Math.max(2, Math.round((originalH * scale) / 2) * 2);
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d', {alpha:false});
+
+        const stream = canvas.captureStream(24);
+        const chunks = [];
+        const recorder = new MediaRecorder(stream, {
+          mimeType,
+          videoBitsPerSecond: 900000
+        });
+
+        const recorded = new Promise((resolve, reject) => {
+          recorder.ondataavailable = e => {
+            if(e.data && e.data.size) chunks.push(e.data);
+          };
+          recorder.onerror = e => reject(e.error || new Error('Error al optimizar el video.'));
+          recorder.onstop = () => resolve();
+        });
+
+        let rafId = 0;
+        const draw = () => {
+          if(video.paused || video.ended) return;
+          ctx.drawImage(video, 0, 0, width, height);
+          rafId = requestAnimationFrame(draw);
+        };
+
+        video.currentTime = 0;
+        await video.play();
+        recorder.start(1000);
+        draw();
+
+        await esperarEvento(video, 'ended');
+        cancelAnimationFrame(rafId);
+
+        if(recorder.state !== 'inactive') recorder.stop();
+        await recorded;
+
+        const blob = new Blob(chunks, {type:mimeType});
+        if(!blob.size || blob.size >= file.size * 0.92){
+          return {file, optimized:false, reason:'no-benefit'};
+        }
+
+        const baseName = String(file.name || 'video').replace(/\.[^.]+$/, '');
+        const optimized = new File(
+          [blob],
+          baseName + '-optimizado.webm',
+          {type:'video/webm', lastModified:Date.now()}
+        );
+
+        return {
+          file: optimized,
+          optimized:true,
+          originalSize:file.size,
+          optimizedSize:optimized.size,
+          width,
+          height
+        };
+      }catch(error){
+        console.warn('Optimización omitida:', error);
+        return {file, optimized:false, reason:'error'};
+      }finally{
+        try{ video.pause(); }catch(e){}
+        URL.revokeObjectURL(url);
+      }
+    }
+
     document.querySelectorAll('.upload-execution-btn').forEach(btn=>{
       btn.addEventListener('click',()=>openExecutionModal(btn));
     });
 
-    executionFile.addEventListener('change',()=>{
-      const file = executionFile.files && executionFile.files[0];
-      if(!file){ executionSend.disabled=true; return; }
-      const maxSize = VIDEO_MAX_BYTES;
-      if(!file.type.startsWith('video/')){
+    executionFile.addEventListener('change', async ()=>{
+      const originalFile = executionFile.files && executionFile.files[0];
+      optimizedUploadFile = null;
+
+      if(!originalFile){
+        executionSend.disabled = true;
+        return;
+      }
+
+      if(!originalFile.type.startsWith('video/')){
         alert('Selecciona un archivo de video.');
-        executionFile.value=''; executionSend.disabled=true; return;
+        executionFile.value='';
+        executionSend.disabled=true;
+        return;
       }
-      if(file.size>maxSize){
+
+      if(originalFile.size > VIDEO_MAX_BYTES){
         alert('Este proyecto gratuito permite archivos de hasta 50 MB. Selecciona un video menor a ese tamaño.');
-        executionFile.value=''; executionSend.disabled=true; return;
+        executionFile.value='';
+        executionSend.disabled=true;
+        return;
       }
+
       if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
-      activeVideoUrl=URL.createObjectURL(file);
-      executionPreview.src=activeVideoUrl;
+      activeVideoUrl = URL.createObjectURL(originalFile);
+      executionPreview.src = activeVideoUrl;
       executionPreview.classList.add('active');
-      selectedVideoInfo.textContent=`✅ ${file.name} · ${(file.size/(1024*1024)).toFixed(1)} MB`;
+
+      selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
       selectedVideoInfo.classList.add('active');
-      executionSend.disabled=false;
+
+      executionSend.disabled = true;
+      executionSend.textContent = 'Optimizando…';
+      optimizationBox.classList.add('active');
+      optimizationBox.innerHTML =
+        '<strong>⚡ Preparando una versión más liviana…</strong><br>' +
+        'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+
+      const result = await optimizarVideoParaEnvio(originalFile);
+      optimizedUploadFile = result.file;
+
+      if(result.optimized){
+        const ahorro = Math.max(
+          0,
+          Math.round((1 - result.optimizedSize / result.originalSize) * 100)
+        );
+
+        optimizationBox.innerHTML =
+          `<strong>✅ Video optimizado</strong><br>` +
+          `${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
+          `${ahorro}% menos datos para subir.`;
+      }else{
+        const reasonText = {
+          'already-small':'El video ya es liviano, así que se enviará tal cual.',
+          'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
+          'duration':'Para evitar una espera larga, se enviará el original.',
+          'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
+          'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
+        }[result.reason] || 'Se enviará el archivo original.';
+
+        optimizationBox.innerHTML =
+          `<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
+      }
+
+      executionSend.textContent = 'Enviar a MoveSmart';
+      executionSend.disabled = false;
     });
 
     executionSend.addEventListener('click', async ()=>{
-      const file = executionFile.files && executionFile.files[0];
+      const file = optimizedUploadFile || (executionFile.files && executionFile.files[0]);
       if(!file || !activeUploadButton) return;
 
       const reviewBox = activeUploadButton.closest('.review-request');
@@ -2081,7 +2274,9 @@
                 rutina: rutina,
                 ejercicio: activeExerciseName,
                 comentario: executionComment.value.trim(),
-                enviado_desde: 'MoveSmart'
+                enviado_desde: 'MoveSmart',
+                optimizado_en_navegador: !!optimizedUploadFile,
+                tamano_subida_bytes: file.size
               })
             },
             chunkSize: 6 * 1024 * 1024,
