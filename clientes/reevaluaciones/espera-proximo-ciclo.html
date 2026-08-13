@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Próximo ciclo | MoveSmart</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0b0811;--card:rgba(24,16,32,.88);--border:rgba(255,255,255,.11);
+      --text:#f8f4fb;--muted:rgba(255,255,255,.74);--accent:#ff5a1f;
+      --accent-2:#ff8b4f;--ok:#b9f3c9;--shadow:0 24px 70px rgba(0,0,0,.42);
+      --wrap:min(860px,calc(100% - 28px));
+    }
+    body{
+      min-height:100vh;color:var(--text);font-family:"Segoe UI",Inter,system-ui,sans-serif;
+      background:linear-gradient(180deg,rgba(5,7,14,.58),rgba(5,7,14,.84)),
+      url("/movesmart-web/imagenes/fondo-index-realista.webp") center/cover no-repeat fixed,var(--bg);
+    }
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;
+      background:radial-gradient(circle at 14% 12%,rgba(76,58,146,.24),transparent 30%),
+      radial-gradient(circle at 86% 18%,rgba(255,90,31,.22),transparent 24%);
+    }
+    .page{position:relative;z-index:1;width:var(--wrap);margin:0 auto;padding:22px 0 46px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+    .logo{width:170px;max-width:46vw;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.34))}
+    .back{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:14px;color:#fff;text-decoration:none;font-weight:850;background:rgba(255,255,255,.07);border:1px solid var(--border)}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025)),var(--card);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:30px}
+    .hero{padding:clamp(30px,6vw,52px);text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;color:var(--ok);font-size:.86rem;font-weight:900;text-transform:uppercase;letter-spacing:.035em;background:rgba(55,198,116,.10);border:1px solid rgba(55,198,116,.24)}
+    h1{margin:18px 0 16px;font-size:clamp(2.2rem,7vw,4rem);line-height:.98;letter-spacing:-.045em}
+    h1 span{color:var(--accent-2)}
+    .lead{max-width:690px;margin:0 auto;color:var(--muted);font-size:clamp(1rem,2.4vw,1.18rem);line-height:1.75}
+    .info{margin-top:28px;padding:22px;border-radius:22px;text-align:left;background:rgba(23,36,79,.58);border-left:4px solid var(--accent)}
+    .info strong{display:block;margin-bottom:8px;color:#fff;font-size:1.02rem}
+    .info p{color:#f0e8f5;line-height:1.7}
+    .steps{display:grid;gap:14px;margin-top:18px;text-align:left}
+    .step{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.075)}
+    .icon{flex:0 0 auto;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,90,31,.13);border:1px solid rgba(255,90,31,.24);font-size:1.05rem}
+    .step strong{display:block;margin-bottom:5px}
+    .step p{color:var(--muted);line-height:1.55;font-size:.95rem}
+    .note{margin-top:24px;color:var(--muted);font-size:.92rem;line-height:1.6}
+    @media(max-width:640px){.page{padding-top:16px}.topbar{margin-bottom:18px}.hero{padding:26px 20px}.step{padding:16px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <img class="logo" src="/movesmart-web/imagenes/logo.webp" alt="MoveSmart" />
+      <a class="back" href="/movesmart-web/acceso-clientes.html">← Volver</a>
+    </header>
+
+    <section class="card hero">
+      <div class="badge">✅ Reevaluación recibida</div>
+      <h1 id="title">Tu próximo ciclo está <span>en preparación</span></h1>
+      <p class="lead">
+        Ya recibimos tus respuestas. Ahora revisaremos lo que ocurrió durante este ciclo para definir los ajustes del siguiente paso de tu programa.
+      </p>
+
+      <div class="info">
+        <strong>¿Qué pasa ahora?</strong>
+        <p>No necesitas completar nada más por el momento. Tus respuestas quedan registradas y serán revisadas antes de activar tu siguiente ciclo.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="icon">1</div>
+          <div>
+            <strong>Revisamos tu ciclo</strong>
+            <p>Miramos tus avances, dificultades, molestias y lo que te gustaría trabajar a continuación.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="icon">2</div>
+          <div>
+            <strong>Ajustamos tu programa</strong>
+            <p>El siguiente ciclo se prepara usando la información que entregaste en tu reevaluación.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="icon">3</div>
+          <div>
+            <strong>Activamos la siguiente etapa</strong>
+            <p>Cuando el nuevo ciclo esté listo, podrás volver a ingresar normalmente a tu programa.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">MoveSmart · Más contexto. Menos recetas.</p>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nombre = (params.get("nombre") || params.get("cliente") || "").trim();
+
+    if (nombre) {
+      document.getElementById("title").innerHTML =
+        escapeHtml(nombre) + ', tu próximo ciclo está <span>en preparación</span>';
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
