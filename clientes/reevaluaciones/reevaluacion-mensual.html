@@ -879,7 +879,7 @@
       container.innerHTML =
         items
           .map(
-            ([value, label]) => `
+            ([value, label]) => \`
               <label class="choice">
                 <input
                   type="radio"
@@ -889,7 +889,7 @@
                 />
                 <span>${label}</span>
               </label>
-            `
+            \`
           )
           .join("");
     }
@@ -1000,7 +1000,7 @@
         activities
           .slice(0, 3)
           .map(
-            (activity, index) => `
+            (activity, index) => \`
               <div class="field">
                 <span class="field-title">
                   Comparado con el inicio del mes,
@@ -1039,13 +1039,13 @@
                   </label>
                 </div>
               </div>
-            `
+            \`
           )
           .join("");
 
       container.insertAdjacentHTML(
         "beforeend",
-        `
+        \`
           <div class="field">
             <span class="field-title">
               ¿Qué tan segura o seguro te sientes al moverte? *
@@ -1053,7 +1053,7 @@
 
             <div class="choices five" id="confidenceScale"></div>
           </div>
-        `
+        \`
       );
 
       makeRadioOptions(
@@ -1118,12 +1118,12 @@
         data.configuracion;
 
       document.title =
-        `Reevaluación mes ${mesPrograma} | ${config.nombre} · MoveSmart`;
+        \`Reevaluación mes ${mesPrograma} | ${config.nombre} · MoveSmart\`;
 
       document.getElementById(
         "heroTitle"
       ).innerHTML =
-        `${escapeHtml(config.nombre)}, completaste tu <span>mes ${mesPrograma}</span>`;
+        \`${escapeHtml(config.nombre)}, completaste tu <span>mes ${mesPrograma}</span>\`;
 
       document.getElementById(
         "objectiveText"
@@ -1135,12 +1135,12 @@
       document.getElementById(
         "zone1Label"
       ).textContent =
-        `Molestia en ${config.zona_1} durante la última semana *`;
+        \`Molestia en ${config.zona_1} durante la última semana *\`;
 
       document.getElementById(
         "zone2Label"
       ).textContent =
-        `Molestia en ${config.zona_2} durante la última semana *`;
+        \`Molestia en ${config.zona_2} durante la última semana *\`;
 
       document.getElementById(
         "continuityMessage"
@@ -1184,13 +1184,13 @@
         );
 
       progressBar.style.width =
-        `${percent}%`;
+        \`${percent}%\`;
 
       progressLabel.textContent =
-        `Bloque ${currentStep} de ${totalSteps}`;
+        \`Bloque ${currentStep} de ${totalSteps}\`;
 
       progressPercent.textContent =
-        `${percent}%`;
+        \`${percent}%\`;
     }
 
     function goToStep(stepNumber) {
@@ -1208,7 +1208,7 @@
 
       document
         .querySelector(
-          `.step[data-step="${stepNumber}"]`
+          \`.step[data-step="${stepNumber}"]\`
         )
         .classList.add(
           "active"
@@ -1225,7 +1225,7 @@
     function validateCurrentStep() {
       const step =
         document.querySelector(
-          `.step[data-step="${currentStep}"]`
+          \`.step[data-step="${currentStep}"]\`
         );
 
       const required =
@@ -1258,7 +1258,7 @@
 
           if (
             !step.querySelector(
-              `input[name="${field.name}"]:checked`
+              \`input[name="${field.name}"]:checked\`
             )
           ) {
             alert(
@@ -1520,7 +1520,7 @@
 
       partes.push(
         aperturaPorMes[mes] ||
-        `En este ciclo número ${mes} pudiste seguir observando cómo responde tu cuerpo y qué necesitas para avanzar.`
+        \`En este ciclo número ${mes} pudiste seguir observando cómo responde tu cuerpo y qué necesitas para avanzar.\`
       );
 
       if (
@@ -1529,19 +1529,19 @@
       ) {
         partes.push(
           mejoras > 0
-            ? `Tus respuestas muestran una evolución positiva y ${mejoras} de tus actividades cotidianas hoy se sienten más fáciles.`
+            ? \`Tus respuestas muestran una evolución positiva y ${mejoras} de tus actividades cotidianas hoy se sienten más fáciles.\`
             : "Tus respuestas muestran una evolución positiva en cómo te has sentido durante estas semanas."
         );
       } else if (cambio === "Igual") {
         partes.push(
           mejoras > 0
-            ? `Aunque tu percepción general se mantiene similar, reconociste mejoras en ${mejoras} actividades de tu vida diaria.`
+            ? \`Aunque tu percepción general se mantiene similar, reconociste mejoras en ${mejoras} actividades de tu vida diaria.\`
             : "Aunque todavía no percibas un cambio general importante, este ciclo nos entregó información útil para ajustar mejor el siguiente paso."
         );
       } else {
         partes.push(
           empeoramientos > 0
-            ? `Tus respuestas indican que ${empeoramientos} actividades necesitan ser revisadas antes de aumentar la exigencia.`
+            ? \`Tus respuestas indican que ${empeoramientos} actividades necesitan ser revisadas antes de aumentar la exigencia.\`
             : "Tus respuestas muestran que algunas molestias necesitan ser revisadas antes de avanzar."
         );
       }
@@ -1586,7 +1586,7 @@
 
       if (proximoObjetivo) {
         partes.push(
-          `Tu siguiente foco será ${proximoObjetivo}.`
+          \`Tu siguiente foco será ${proximoObjetivo}.\`
         );
       }
 
@@ -1647,7 +1647,7 @@
         "Sí, quiero continuar"
       ) {
         resultTitle.textContent =
-          `¡Terminaste este ciclo, ${config.nombre}! 🚀`;
+          \`¡Terminaste este ciclo, ${config.nombre}! 🚀\`;
 
         resultText.textContent =
           "Tus respuestas nos permiten reconocer lo que avanzó y preparar una nueva etapa con mayor claridad.";
@@ -1696,34 +1696,21 @@
           buildPayload();
 
         try {
-          const response =
-            await fetch(
-              SAVE_SCRIPT_URL,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type":
-                    "text/plain;charset=utf-8"
-                },
-                body:
-                  JSON.stringify(
-                    payload
-                  )
-              }
-            );
-
-          const data =
-            await response.json();
-
-          if (
-            !response.ok ||
-            data.ok !== true
-          ) {
-            throw new Error(
-              data.message ||
-              "No se pudo guardar la reevaluación."
-            );
-          }
+          await fetch(
+            SAVE_SCRIPT_URL,
+            {
+              method: "POST",
+              mode: "no-cors",
+              headers: {
+                "Content-Type":
+                  "text/plain;charset=utf-8"
+              },
+              body:
+                JSON.stringify(
+                  payload
+                )
+            }
+          );
 
           showResult(
             payload.continuidad
@@ -1758,10 +1745,10 @@
       } catch (error) {
         console.error(error);
 
-        loadingCard.innerHTML = `
+        loadingCard.innerHTML = \`
           <h1>No pudimos preparar tu reevaluación</h1>
           <p>${escapeHtml(error.message)}</p>
-        `;
+        \`;
       }
     }
 
