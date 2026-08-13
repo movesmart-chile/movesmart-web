@@ -1696,21 +1696,92 @@
           buildPayload();
 
         try {
-          await fetch(
-            SAVE_SCRIPT_URL,
-            {
-              method: "POST",
-              mode: "no-cors",
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
-              body:
-                JSON.stringify(
-                  payload
-                )
-            }
+          /*
+            Envío tradicional de formulario hacia Apps Script.
+            El Apps Script recibe el JSON en e.parameter.payload.
+            Se usa un iframe oculto para no sacar al cliente de la página.
+          */
+          let iframe =
+            document.getElementById(
+              "reevaluationPostFrame"
+            );
+
+          if (!iframe) {
+            iframe =
+              document.createElement(
+                "iframe"
+              );
+
+            iframe.id =
+              "reevaluationPostFrame";
+
+            iframe.name =
+              "reevaluationPostFrame";
+
+            iframe.style.display =
+              "none";
+
+            document.body.appendChild(
+              iframe
+            );
+          }
+
+          const postForm =
+            document.createElement(
+              "form"
+            );
+
+          postForm.method =
+            "POST";
+
+          postForm.action =
+            SAVE_SCRIPT_URL;
+
+          postForm.target =
+            "reevaluationPostFrame";
+
+          postForm.style.display =
+            "none";
+
+          const payloadInput =
+            document.createElement(
+              "input"
+            );
+
+          payloadInput.type =
+            "hidden";
+
+          payloadInput.name =
+            "payload";
+
+          payloadInput.value =
+            JSON.stringify(
+              payload
+            );
+
+          postForm.appendChild(
+            payloadInput
           );
+
+          document.body.appendChild(
+            postForm
+          );
+
+          postForm.submit();
+
+          /*
+            Damos un pequeño margen para que el navegador
+            alcance a enviar el POST antes de mostrar el resultado.
+          */
+          await new Promise(
+            resolve =>
+              setTimeout(
+                resolve,
+                1200
+              )
+          );
+
+          postForm.remove();
 
           showResult(
             payload.continuidad
