@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acceso Clientes | MoveSmart</title>
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://script.googleusercontent.com">
 
   <!-- Vista previa al compartir en WhatsApp / redes sociales -->
   <meta name="description" content="Tu propuesta personalizada ya está lista. Accede a tu programa MoveSmart.">
@@ -503,6 +506,49 @@
 
     const form = document.getElementById("loginForm");
     const message = document.getElementById("message");
+    const clientNameInput = document.getElementById("clientName");
+    const consultasEstado = new Map();
+
+    function consultarEstadoCentral(client) {
+      if (!client || !client.usarFlujoCentral) return null;
+
+      const clave = client.nombreCentral;
+      if (consultasEstado.has(clave)) return consultasEstado.get(clave);
+
+      const url = new URL(SCRIPT_CENTRAL_URL);
+      url.searchParams.set("cliente", client.nombreCentral);
+
+      const consulta = fetch(url.toString(), {
+        method: "GET",
+        cache: "no-store"
+      }).then(async function(respuesta) {
+        if (!respuesta.ok) {
+          throw new Error("No se pudo consultar el estado del programa.");
+        }
+        const datos = await respuesta.json();
+        if (!datos.ok) {
+          throw new Error(datos.mensaje || "No se pudo consultar el programa.");
+        }
+        return datos;
+      }).catch(function(error) {
+        consultasEstado.delete(clave);
+        throw error;
+      });
+
+      consultasEstado.set(clave, consulta);
+      return consulta;
+    }
+
+    function intentarPrecarga() {
+      const nombre = normalizeText(clientNameInput.value);
+      const client = clients[nombre];
+      if (client && client.usarFlujoCentral) consultarEstadoCentral(client);
+    }
+
+    clientNameInput.addEventListener("input", intentarPrecarga);
+    clientNameInput.addEventListener("change", intentarPrecarga);
+    clientNameInput.addEventListener("blur", intentarPrecarga);
+    window.addEventListener("DOMContentLoaded", intentarPrecarga);
 
     form.addEventListener("submit", async function(event) {
       event.preventDefault();
@@ -538,20 +584,7 @@
         message.textContent = "Acceso correcto. Preparando tu programa...";
         message.className = "message ok";
 
-        const url = new URL(SCRIPT_CENTRAL_URL);
-        url.searchParams.set("cliente", client.nombreCentral);
-
-        const respuesta = await fetch(url.toString());
-
-        if (!respuesta.ok) {
-          throw new Error("No se pudo consultar el estado del programa.");
-        }
-
-        const datos = await respuesta.json();
-
-        if (!datos.ok) {
-          throw new Error(datos.mensaje || "No se pudo consultar el programa.");
-        }
+        const datos = await consultarEstadoCentral(client);
 
         if (datos.mostrar === "plan") {
           window.location.href = client.file;
