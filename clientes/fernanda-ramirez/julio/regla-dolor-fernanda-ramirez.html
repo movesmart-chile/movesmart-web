@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regla del Dolor y Seguridad | Fernanda Ramírez · MoveSmart</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    a{color:inherit;text-decoration:none}
+
+    :root{
+      --bg1:#090d18;
+      --bg2:#11192a;
+      --card:rgba(24,16,32,.58);
+      --card-soft:rgba(255,255,255,.05);
+      --border:rgba(255,255,255,.08);
+      --text:#f3edf7;
+      --text-soft:#cbc0d3;
+      --accent:#f36b2a;
+      --blue:#204aa8;
+      --green:#1dbf73;
+      --amber:#f6a623;
+      --danger:#ff6b6b;
+      --shadow:0 14px 34px rgba(0,0,0,.28);
+      --radius:28px;
+      --wrap:min(1100px, calc(100% - 28px));
+    }
+
+    body{
+      min-height:100vh;
+      font-family:'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
+        url('../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      width:var(--wrap);
+      margin:auto;
+      padding:24px 0 42px;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:20px;
+    }
+
+    .back-btn{
+      border:none;
+      background:rgba(255,255,255,.09);
+      border:1px solid var(--border);
+      color:#fff;
+      padding:11px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .brand{
+      font-size:clamp(2rem, 5vw, 3rem);
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.04em;
+    }
+
+    .brand span{ color:var(--accent); }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:36px;
+      padding:34px 38px;
+      margin-bottom:22px;
+      min-height:360px;
+      display:flex;
+      align-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035)),
+        radial-gradient(circle at 78% 70%, rgba(243,107,42,.12), transparent 20%),
+        radial-gradient(circle at 18% 24%, rgba(109,83,150,.13), transparent 25%);
+    }
+
+    .hero-content{
+      max-width:640px;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-visual{
+      position:absolute;
+      right:22px;
+      top:50%;
+      transform:translateY(-50%);
+      width:46%;
+      max-width:560px;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      opacity:.96;
+      filter:drop-shadow(0 0 28px rgba(45,114,255,.22)) drop-shadow(0 0 24px rgba(255,106,33,.16));
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,90,31,.14);
+      color:#ffd9cb;
+      border:1px solid rgba(255,90,31,.24);
+      font-size:.92rem;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size:clamp(2rem, 4vw, 3.4rem);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      margin-bottom:12px;
+      text-wrap:balance;
+    }
+
+    .hero p{
+      max-width:620px;
+      color:var(--text-soft);
+      line-height:1.72;
+      font-size:1.05rem;
+    }
+
+    .score-card{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+    }
+
+    .panel h2{
+      font-size:1.18rem;
+      margin-bottom:10px;
+    }
+
+    .panel p{
+      color:var(--text-soft);
+      line-height:1.7;
+    }
+
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(11,1fr);
+      gap:8px;
+      margin-top:16px;
+    }
+
+    .scale div{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:10px 6px;
+      text-align:center;
+      font-weight:800;
+    }
+
+    .scale-green{background:rgba(29,191,115,.18) !important;border-color:rgba(29,191,115,.40) !important}
+    .scale-yellow{background:rgba(246,166,35,.18) !important;border-color:rgba(246,166,35,.40) !important}
+    .scale-red{background:rgba(255,107,107,.18) !important;border-color:rgba(255,107,107,.40) !important}
+
+    .rules{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .rule-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:26px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .rule-icon{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:1.35rem;
+      margin-bottom:14px;
+      font-weight:900;
+    }
+
+    .rule-card h3{
+      font-size:1.2rem;
+      margin-bottom:9px;
+    }
+
+    .rule-card p{
+      color:var(--text-soft);
+      line-height:1.72;
+    }
+
+    .orange .rule-icon{ background:rgba(255,90,31,.18); color:#ffd4c8; }
+    .blue .rule-icon{ background:rgba(47,99,255,.18); color:#dbe5ff; }
+    .green .rule-icon{ background:rgba(29,191,115,.18); color:#d9ffea; }
+    .red .rule-icon{ background:rgba(255,107,107,.18); color:#ffdede; }
+
+    .action-box{
+      margin-top:22px;
+      background:linear-gradient(180deg, rgba(23,36,78,.80), rgba(14,23,52,.78));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .action-box h2{
+      margin-bottom:14px;
+      font-size:1.35rem;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .step{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .step .num{
+      display:inline-grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:var(--accent);
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .step strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.02rem;
+    }
+
+    .step p{
+      color:var(--text-soft);
+      line-height:1.65;
+      font-size:.97rem;
+    }
+
+    .note{
+      margin-top:20px;
+      background:rgba(29,191,115,.12);
+      border:1px solid rgba(29,191,115,.28);
+      color:#ddffea;
+      border-radius:22px;
+      padding:16px 18px;
+      line-height:1.72;
+    }
+
+    .footer{
+      margin-top:22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      color:rgba(255,255,255,.72);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 920px){
+      .score-card,
+      .rules,
+      .steps{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:28px 22px 24px;
+      }
+
+      .hero-content{
+        max-width:100%;
+      }
+
+      .hero-visual{
+        position:relative;
+        right:auto;
+        top:auto;
+        transform:none;
+        width:100%;
+        max-width:380px;
+        margin:24px auto 0;
+      }
+    }
+
+    @media (max-width: 680px){
+      .topbar,
+      .footer{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero{
+        padding:24px 20px;
+      }
+
+      .panel,
+      .rule-card,
+      .action-box{
+        padding:18px;
+      }
+
+      .scale{
+        grid-template-columns:repeat(6,1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a href="../plan-fernanda-ramirez.html" class="back-btn">← Volver al plan</a>
+      <div class="brand">Move<span>Smart</span></div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">⚠️ Guía simple de seguridad</div>
+      <h1>Regla del Dolor y Seguridad</h1>
+      <p>
+        Como estás comenzando a entrenar, esta guía te ayudará a distinguir entre el esfuerzo muscular esperable y una molestia que requiere ajustar o detener un ejercicio. El objetivo es avanzar con confianza, sin ignorar señales importantes del cuerpo.
+      </p>
+
+      <div class="score-card">
+        <div class="panel">
+          <h2>Escala de dolor</h2>
+          <p>
+            Usa una escala de 0 a 10 para identificar cualquier dolor durante la sesión. Entre <strong>0 y 2/10</strong> puedes continuar si la sensación es leve y estable. Entre <strong>3 y 4/10</strong> pausa y ajusta. Con <strong>5/10 o más</strong>, o si el dolor es punzante, detén ese ejercicio.
+          </p>
+          <div class="scale">
+            <div class="scale-green">0</div>
+            <div class="scale-green">1</div>
+            <div class="scale-green">2</div>
+            <div class="scale-yellow">3</div>
+            <div class="scale-yellow">4</div>
+            <div class="scale-red">5</div>
+            <div class="scale-red">6</div>
+            <div class="scale-red">7</div>
+            <div class="scale-red">8</div>
+            <div class="scale-red">9</div>
+            <div class="scale-red">10</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Objetivo de esta regla</h2>
+          <p>
+            Entrenar de manera segura y mantener la continuidad. No se trata de aguantar dolor para que el ejercicio “funcione”, sino de reconocer qué sensaciones son normales y adaptar la carga cuando sea necesario.
+          </p>
+        </div>
+      </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <img src="../../../imagenes/escala_molestia.webp" alt="">
+      </div>
+    </section>
+
+    <section class="rules">
+      <article class="rule-card green">
+        <div class="rule-icon">1</div>
+        <h3>0–2/10: continúa observando</h3>
+        <p>
+          Una molestia leve puede ser aceptable si se mantiene estable, no modifica tu técnica y desaparece al terminar. Continúa con control y sin aumentar el peso durante esa serie.
+        </p>
+      </article>
+
+      <article class="rule-card orange">
+        <div class="rule-icon">2</div>
+        <h3>3–4/10: pausa y ajusta</h3>
+        <p>
+          Reduce el peso, el rango, las repeticiones o la velocidad. Si la molestia no disminuye claramente después del ajuste, omite ese ejercicio durante la sesión.
+        </p>
+      </article>
+
+      <article class="rule-card red">
+        <div class="rule-icon">3</div>
+        <h3>5/10 o más: detén el ejercicio</h3>
+        <p>
+          Detente si el dolor es moderado o intenso, punzante, aumenta progresivamente o modifica tu movimiento. No intentes completar la serie soportándolo.
+        </p>
+      </article>
+
+      <article class="rule-card blue">
+        <div class="rule-icon">4</div>
+        <h3>Observa las siguientes 24–48 horas</h3>
+        <p>
+          Es normal sentir cansancio o rigidez muscular leve al comenzar. Si aparece dolor localizado en una articulación, limita actividades cotidianas o empeora claramente, reduce la carga de la próxima sesión y comunícalo.
+        </p>
+      </article>
+    </section>
+
+    <section class="action-box">
+      <h2>Qué hacer si aparece dolor durante la rutina</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <strong>Detente un momento</strong>
+          <p>Observa dónde aparece, cómo se siente y qué intensidad tiene en la escala de 0 a 10 antes de continuar.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <strong>Ajusta el ejercicio</strong>
+          <p>Reduce rango, velocidad, carga, repeticiones o tiempo bajo tensión para que el movimiento sea tolerable.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <strong>Evita empeorar síntomas</strong>
+          <p>Si el dolor no disminuye, es punzante o afecta tu forma de moverte, omite el ejercicio y regístralo al finalizar la sesión.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Recuerda:</strong> ardor muscular, esfuerzo y cansancio durante una serie no son lo mismo que dolor articular o punzante. El entrenamiento debe sentirse desafiante, pero controlado. Detén la sesión y busca orientación si aparece dolor de pecho, mareo, falta de aire desproporcionada, debilidad repentina o un síntoma nuevo que te preocupe.
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Camila Álvarez Cortés · Terapeuta en Actividad Física y Salud</div>
+      <div>MoveSmart</div>
+    </div>
+  </div>
+</body>
+</html>
