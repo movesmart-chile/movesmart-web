@@ -1734,8 +1734,8 @@ btn.setAttribute('aria-pressed', 'true');
 if(resultCard) resultCard.classList.remove('active');
 document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
 const answered = Object.values(respuestas).filter(Boolean).length;
-if(progressFill) progressFill.style.width = \`${(answered / 3) * 100}%\`;
-if(progressText) progressText.textContent = \`Pregunta ${answered} de 3\`;
+if(progressFill) progressFill.style.width = `${(answered / 3) * 100}%`;
+if(progressText) progressText.textContent = `Pregunta ${answered} de 3`;
 }
 if(surveyRoot){
 // Delegación: funciona aunque el navegador móvil trate distinto los botones.
@@ -1754,8 +1754,8 @@ aplicarSeleccionEncuesta(btn);
 }
 function updateProgress(){
 const answered = Object.values(respuestas).filter(Boolean).length;
-progressFill.style.width = \`${(answered / 3) * 100}%\`;
-progressText.textContent = \`Pregunta ${answered} de 3\`;
+progressFill.style.width = `${(answered / 3) * 100}%`;
+progressText.textContent = `Pregunta ${answered} de 3`;
 }
 function modoSegunEnergia(){
 if(respuestas.personalizada === 'alto') return 'Detener';
@@ -1831,7 +1831,7 @@ smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y 
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 setTimeout(() => {
 smartLoadingTitle.textContent = 'Adaptando tu Rutina A de recuperación...';
-smartLoadingText.textContent = \`Preparando versión ${estructura} con modo ${modo}.\`;
+smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
 }, 180);
 setTimeout(() => {
 smartLoadingTitle.textContent = '✨ Rutina lista';
@@ -1843,7 +1843,7 @@ surveyCard.classList.remove('is-processing');
 resultCard.style.background = 'rgba(29,191,115,.12)';
 resultCard.style.borderColor = 'rgba(29,191,115,.28)';
 resultCard.style.color = '#ddffea';
-resultCard.innerHTML = \`<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>\`;
+resultCard.innerHTML = `<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
 resultCard.classList.add('active');
 const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
 const routineContainer = document.getElementById(idRutina);
@@ -2137,7 +2137,7 @@ if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
 activeVideoUrl = URL.createObjectURL(originalFile);
 executionPreview.src = activeVideoUrl;
 executionPreview.classList.add('active');
-selectedVideoInfo.textContent = \`✅ ${originalFile.name} · ${formatoMB(originalFile.size)}\`;
+selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
 executionSend.textContent = 'Optimizando…';
@@ -2153,9 +2153,9 @@ const ahorro = Math.max(
 Math.round((1 - result.optimizedSize / result.originalSize) * 100)
 );
 optimizationBox.innerHTML =
-\`<strong>✅ Video optimizado</strong><br>\` +
-\`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · \` +
-\`${ahorro}% menos datos para subir.\`;
+`<strong>✅ Video optimizado</strong><br>` +
+`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
+`${ahorro}% menos datos para subir.`;
 }else{
 const reasonText = {
 'already-small':'El video ya es liviano, así que se enviará tal cual.',
@@ -2165,7 +2165,7 @@ const reasonText = {
 'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
 }[result.reason] || 'Se enviará el archivo original.';
 optimizationBox.innerHTML =
-\`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}\`;
+`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
 }
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
@@ -2206,10 +2206,10 @@ throw new Error("No se cargó el módulo de subida reanudable TUS.");
 }
 await new Promise((resolve, reject) => {
 const upload = new tus.Upload(file, {
-endpoint: \`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable\`,
+endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
 retryDelays: [0, 3000, 5000, 10000, 20000],
 headers: {
-authorization: \`Bearer ${session.access_token}\`
+authorization: `Bearer ${session.access_token}`
 },
 uploadDataDuringCreation: true,
 removeFingerprintOnSuccess: true,
@@ -2241,7 +2241,7 @@ uploadProgressBar.style.width = rounded + '%';
 uploadProgressPercent.textContent = rounded + '%';
 const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
 const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
-uploadProgressText.textContent = \`${mbUploaded} MB de ${mbTotal} MB\`;
+uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
 },
 onSuccess(){
 resolve();
