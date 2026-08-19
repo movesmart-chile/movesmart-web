@@ -1460,7 +1460,7 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 </div>
 <div class="video-frame-wrap">
 <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
-<video id="videoPlayer" controls playsinline preload="none" style="display:none" title="Video de ejercicio"></video>
+<video id="videoPlayer" controls playsinline preload="none" autoplay loop muted style="display:none" title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
@@ -1900,8 +1900,17 @@ function showVideo(url, title, directVideo) {
     videoFrame.src = '';
     videoFrame.style.display = 'none';
     videoPlayer.style.display = 'block';
+    videoPlayer.loop = true;
+    videoPlayer.muted = true;
+    videoPlayer.autoplay = true;
     videoPlayer.src = url;
     videoPlayer.load();
+    const playPromise = videoPlayer.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(function () {
+        // Si el navegador bloquea el autoplay, los controles siguen disponibles.
+      });
+    }
   } else {
     videoPlayer.pause();
     videoPlayer.removeAttribute('src');
