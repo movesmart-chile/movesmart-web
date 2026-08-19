@@ -1,6 +1,5 @@
 
-
-<!DOCTYPE html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+<!DOCTYPE html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -8,7 +7,6 @@
 <title>Encuesta Rutina A Recuperación | Cliente de referencia</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
 --text:#ffffff;
 --muted:rgba(255,255,255,.78);
@@ -22,7 +20,6 @@
 --shadow:0 14px 34px rgba(0,0,0,.32);
 --wrap:min(1120px, calc(100% - 32px));
 }
-
 body{
 min-height:100vh;
 font-family:'Segoe UI',system-ui,sans-serif;
@@ -32,7 +29,6 @@ linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
 url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
 overflow-x:hidden;
 }
-
 body::before{
 content:"";
 position:fixed;
@@ -43,7 +39,6 @@ linear-gradient(90deg, rgba(4,6,14,.20), transparent 45%, rgba(255,90,31,.06)),
 radial-gradient(circle at 50% 110%, rgba(255,255,255,.05), transparent 36%);
 z-index:0;
 }
-
 .wrap{
 width:var(--wrap);
 margin:auto;
@@ -51,7 +46,6 @@ padding:30px 0 50px;
 position:relative;
 z-index:1;
 }
-
 .topbar{
 display:flex;
 align-items:center;
@@ -59,13 +53,11 @@ justify-content:space-between;
 gap:16px;
 margin-bottom:24px;
 }
-
 .brand{
 display:flex;
 align-items:center;
 gap:12px;
 }
-
 .brand-badge{
 width:46px;
 height:46px;
@@ -76,20 +68,17 @@ background:linear-gradient(135deg, var(--accent), var(--accent-2));
 font-weight:900;
 box-shadow:0 16px 34px rgba(255,90,31,.22);
 }
-
 .brand-text h1{
 font-size:1.28rem;
 line-height:1.05;
 font-weight:900;
 letter-spacing:-.02em;
 }
-
 .brand-text p{
 color:var(--muted);
 font-size:.92rem;
 margin-top:4px;
 }
-
 .back-btn{
 text-decoration:none;
 color:#fff;
@@ -99,7 +88,6 @@ padding:12px 18px;
 border-radius:16px;
 font-weight:800;
 }
-
 .hero{
 min-height:360px;
 border-radius:34px;
@@ -113,7 +101,6 @@ box-shadow:var(--shadow);
 background:#090d18;
 margin-bottom:24px;
 }
-
 .hero::before{
 content:"";
 position:absolute;
@@ -124,7 +111,6 @@ linear-gradient(180deg, rgba(5,7,15,.12), rgba(5,7,15,.56));
 z-index:1;
 pointer-events:none;
 }
-
 .hero-copy{
 position:relative;
 z-index:2;
@@ -133,14 +119,12 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 }
-
 .hello{
 color:var(--accent-2);
 font-weight:900;
 font-size:1.1rem;
 margin-bottom:14px;
 }
-
 .hero h2{
 font-size:clamp(2rem, 4vw, 3.6rem);
 line-height:1.04;
@@ -148,14 +132,12 @@ letter-spacing:-.04em;
 max-width:700px;
 margin-bottom:16px;
 }
-
 .hero p{
 color:rgba(255,255,255,.82);
 font-size:1.05rem;
 line-height:1.7;
 max-width:560px;
 }
-
 .hero-image{
 position:absolute;
 inset:0;
@@ -163,7 +145,6 @@ background:url('../../../imagenes/contendor.webp') center right / cover no-repea
 z-index:0;
 transform:scale(1.01);
 }
-
 .survey-card{
 background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
 border:1px solid rgba(255,255,255,.12);
@@ -173,7 +154,6 @@ box-shadow:var(--shadow);
 backdrop-filter:blur(6px);
 -webkit-backdrop-filter:blur(6px);
 }
-
 .survey-head{
 display:flex;
 justify-content:space-between;
@@ -181,13 +161,11 @@ align-items:center;
 gap:18px;
 margin-bottom:24px;
 }
-
 .survey-title{
 display:flex;
 align-items:center;
 gap:14px;
 }
-
 .survey-icon{
 width:48px;
 height:48px;
@@ -198,16 +176,13 @@ display:grid;
 place-items:center;
 font-size:1.35rem;
 }
-
 .survey-title h3{
 font-size:1.55rem;
 margin-bottom:4px;
 }
-
 .survey-title p{
 color:var(--muted);
 }
-
 .progress-wrap{
 display:grid;
 grid-template-columns:1fr auto;
@@ -215,14 +190,12 @@ align-items:center;
 gap:22px;
 margin:8px 0 22px;
 }
-
 .progress-bar{
 height:7px;
 border-radius:999px;
 background:rgba(255,255,255,.08);
 overflow:hidden;
 }
-
 .progress-fill{
 height:100%;
 width:0%;
@@ -230,27 +203,22 @@ border-radius:999px;
 background:linear-gradient(90deg, var(--accent), var(--accent-2));
 transition:.25s ease;
 }
-
 .progress-text{
 color:rgba(255,255,255,.72);
 font-size:.98rem;
 white-space:nowrap;
 }
-
 .question{
 padding:26px 0;
 border-top:1px solid rgba(255,255,255,.09);
 }
-
 .question:first-of-type{border-top:none}
-
 .q-title{
 display:flex;
 align-items:flex-start;
 gap:16px;
 margin-bottom:18px;
 }
-
 .q-icon{
 width:54px;
 height:54px;
@@ -263,24 +231,20 @@ color:var(--accent-2);
 font-size:1.45rem;
 flex:0 0 auto;
 }
-
 .q-title h4{
 color:var(--accent-2);
 font-size:1.24rem;
 margin-bottom:6px;
 }
-
 .q-title p{
 color:var(--muted);
 line-height:1.5;
 }
-
 .choices{
 display:grid;
 grid-template-columns:repeat(3, minmax(0,1fr));
 gap:18px;
 }
-
 .choice{
 min-height:132px;
 padding:20px 16px;
@@ -298,33 +262,27 @@ text-align:center;
 font-family:inherit;
 transition:.18s ease;
 }
-
 .choice:hover{
 transform:translateY(-2px);
 border-color:rgba(255,90,31,.45);
 }
-
 .choice.selected{
 background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));
 border-color:var(--accent);
 box-shadow:0 0 0 1px rgba(255,90,31,.44), 0 16px 28px rgba(255,90,31,.10);
 }
-
 .choice .emoji{
 font-size:1.7rem;
 line-height:1;
 }
-
 .choice strong{
 font-size:1.22rem;
 display:block;
 }
-
 .choice span{
 color:rgba(255,255,255,.74);
 font-size:.94rem;
 }
-
 .submit-btn{
 margin-top:16px;
 width:100%;
@@ -339,14 +297,12 @@ cursor:pointer;
 box-shadow:0 16px 34px rgba(255,90,31,.25);
 font-family:inherit;
 }
-
 .microcopy{
 color:rgba(255,255,255,.68);
 text-align:center;
 margin-top:16px;
 font-size:.95rem;
 }
-
 .result-card{
 display:none;
 margin-top:18px;
@@ -357,34 +313,28 @@ border:1px solid rgba(29,191,115,.28);
 color:#ddffea;
 line-height:1.65;
 }
-
 .result-card.active{display:block}
-
 .quick-stats{
 display:grid;
 grid-template-columns:repeat(4,minmax(0,1fr));
 gap:14px;
 margin:22px 0 28px;
 }
-
 .stat{
 background:rgba(255,255,255,.07);
 border:1px solid rgba(255,255,255,.10);
 border-radius:20px;
 padding:16px;
 }
-
 .stat small{
 display:block;
 color:var(--text-soft, rgba(255,255,255,.82));
 margin-bottom:6px;
 }
-
 .stat strong{
 font-size:1rem;
 line-height:1.4;
 }
-
 .mode-card{
 margin:20px 0 8px;
 padding:20px;
@@ -395,9 +345,7 @@ color:#ffe0d4;
 line-height:1.7;
 box-shadow:0 18px 38px rgba(0,0,0,.20);
 }
-
 .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
-
 .routine-version-label{
 display:inline-flex;
 align-items:center;
@@ -411,7 +359,6 @@ border:1px solid rgba(255,90,31,.25);
 font-size:.9rem;
 font-weight:800;
 }
-
 .smart-loading{
 display:none;
 margin-top:22px;
@@ -423,9 +370,7 @@ box-shadow:var(--shadow);
 text-align:center;
 animation:fadeUp .35s ease both;
 }
-
 .smart-loading.active{display:block}
-
 .smart-orb{
 width:68px;
 height:68px;
@@ -437,36 +382,29 @@ linear-gradient(135deg, var(--accent), var(--accent-2));
 box-shadow:0 0 34px rgba(255,90,31,.45);
 animation:pulseOrb 1.15s ease-in-out infinite;
 }
-
 .smart-loading h3{
 font-size:1.35rem;
 margin-bottom:8px;
 }
-
 .smart-loading p{
 color:rgba(255,255,255,.76);
 line-height:1.6;
 }
-
 .survey-card.is-processing{
 opacity:.75;
 pointer-events:none;
 transition:.25s ease;
 }
-
 @keyframes pulseOrb{
 0%,100%{transform:scale(.92);opacity:.72}
 50%{transform:scale(1.06);opacity:1}
 }
-
 .routine-container{
 display:none;
 margin-top:24px;
 animation:fadeUp .35s ease both;
 }
-
 .routine-container.active{display:block}
-
 .routine-intro{
 margin:22px 0;
 padding:26px;
@@ -475,20 +413,17 @@ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035)
 border:1px solid rgba(255,255,255,.12);
 box-shadow:var(--shadow);
 }
-
 .routine-intro h2{
 font-size:clamp(1.7rem,3vw,2.6rem);
 line-height:1.05;
 margin-bottom:10px;
 letter-spacing:-.03em;
 }
-
 .routine-intro p{
 color:var(--muted);
 line-height:1.7;
 max-width:760px;
 }
-
 .section{
 margin-top:22px;
 background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
@@ -497,29 +432,24 @@ border-radius:30px;
 overflow:hidden;
 box-shadow:var(--shadow);
 }
-
 .section-head{
 background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
 padding:20px 24px;
 border-bottom:1px solid rgba(255,255,255,.10);
 }
-
 .section-head h2{
 font-size:1.45rem;
 margin-bottom:5px;
 }
-
 .section-head p{
 color:rgba(255,255,255,.78);
 line-height:1.55;
 }
-
 .section-body{
 padding:20px;
 display:grid;
 gap:16px;
 }
-
 .exercise-card{
 background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
 border:1px solid rgba(255,255,255,.12);
@@ -531,31 +461,26 @@ gap:20px;
 align-items:center;
 transition:.18s ease;
 }
-
 .exercise-card:hover{
 transform:translateY(-2px);
 border-color:rgba(255,90,31,.38);
 }
-
 .exercise-name{
 font-size:1.18rem;
 font-weight:900;
 margin-bottom:8px;
 color:#fff;
 }
-
 .exercise-desc{
 color:rgba(255,255,255,.76);
 line-height:1.65;
 font-size:.97rem;
 }
-
 .exercise-meta{
 display:grid;
 grid-template-columns:repeat(2,minmax(0,1fr));
 gap:10px;
 }
-
 .pill{
 background:rgba(255,255,255,.08);
 border:1px solid rgba(255,255,255,.12);
@@ -564,14 +489,12 @@ padding:11px 12px;
 font-size:.95rem;
 color:#fff;
 }
-
 .pill span{
 display:block;
 color:rgba(255,255,255,.62);
 font-size:.82rem;
 margin-bottom:4px;
 }
-
 .video-btn{
 display:inline-flex;
 align-items:center;
@@ -589,7 +512,6 @@ cursor:pointer;
 font-family:inherit;
 font-size:1rem;
 }
-
 .simple-card,.note,.finish-session-text{
 background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
 border:1px solid rgba(255,255,255,.12);
@@ -598,14 +520,12 @@ padding:18px;
 line-height:1.7;
 color:rgba(255,255,255,.84);
 }
-
 .note{
 margin-top:22px;
 background:rgba(29,191,115,.12);
 border-color:rgba(29,191,115,.28);
 color:#ddffea;
 }
-
 .warning{
 margin-top:22px;
 background:rgba(255,166,35,.12);
@@ -615,7 +535,6 @@ border-radius:22px;
 padding:18px;
 line-height:1.7;
 }
-
 .finish-session-wrap{
 margin-top:22px;
 display:flex;
@@ -623,12 +542,10 @@ flex-direction:column;
 align-items:center;
 gap:18px;
 }
-
 .finish-session-text{
 width:100%;
 text-align:center;
 }
-
 .finish-session-btn{
 display:inline-flex;
 align-items:center;
@@ -645,7 +562,6 @@ box-shadow:0 14px 30px rgba(255,90,31,.28);
 border:none;
 min-width:320px;
 }
-
 .video-modal{
 position:fixed;
 inset:0;
@@ -656,9 +572,7 @@ justify-content:center;
 padding:20px;
 z-index:9999;
 }
-
 .video-modal.active{ display:flex; }
-
 .video-box{
 width:min(900px, 100%);
 background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
@@ -667,7 +581,6 @@ border-radius:24px;
 overflow:hidden;
 box-shadow:0 18px 40px rgba(0,0,0,.35);
 }
-
 .video-box-head{
 display:flex;
 align-items:center;
@@ -677,7 +590,6 @@ padding:16px 18px;
 background:rgba(255,255,255,.05);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
-
 .close-video{
 border:none;
 background:rgba(255,255,255,.10);
@@ -688,27 +600,24 @@ cursor:pointer;
 font-weight:800;
 font-family:inherit;
 }
-
 .video-frame-wrap{
 position:relative;
 width:100%;
 padding-top:56.25%;
 background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
 }
-
-.video-frame-wrap iframe{
+.video-frame-wrap iframe,
+.video-frame-wrap video{
 position:absolute;
 inset:0;
 width:100%;
 height:100%;
 border:0;
 }
-
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(14px)}
 to{opacity:1;transform:translateY(0)}
 }
-
 @media (max-width:900px){
 .hero{grid-template-columns:1fr;min-height:360px}
 .hero-copy{padding:34px 26px}
@@ -718,7 +627,6 @@ to{opacity:1;transform:translateY(0)}
 .exercise-card{grid-template-columns:1fr}
 .exercise-meta{grid-template-columns:repeat(2,1fr)}
 }
-
 @media (max-width:640px){
 .quick-stats{grid-template-columns:1fr !important;gap:12px !important}
 .stat{min-height:auto !important;padding:14px 16px !important;border-radius:18px !important}
@@ -731,7 +639,6 @@ body::before{position:absolute}
 .choice:hover,.exercise-card:hover{transform:none}
 .smart-orb{animation:none}
 }
-
 .video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
 .video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}
 .video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}
@@ -766,20 +673,15 @@ body::before{position:absolute}
 .execution-send{background:linear-gradient(180deg,#ff7a1f,#ff4f13);color:#fff}
 .execution-send:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:640px){.video-help-note{padding:15px;border-radius:18px}.video-help-icon{width:40px;height:40px;flex-basis:40px}.execution-actions{flex-direction:column-reverse}}
-
-
 .exercise-card > .review-request{
 grid-column:1 / -1;
 margin-top:0;
 }
-
 @media (max-width:640px){
 .exercise-card > .review-request{
 margin-top:4px;
 }
 }
-
-
 .upload-progress-wrap{display:none;margin-top:14px}
 .upload-progress-wrap.active{display:block}
 .upload-progress-track{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}
@@ -787,8 +689,6 @@ margin-top:4px;
 .upload-progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;color:rgba(255,255,255,.72);font-size:.84rem}
 .upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}
 .execution-send.uploading{cursor:wait;opacity:.9}
-
-
 .optimization-box{
 display:none;
 margin-top:12px;
@@ -802,8 +702,6 @@ line-height:1.5;
 }
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
-
-
 /* --- MoveSmart: mejora de selección táctil en móvil --- */
 .choice{
 touch-action:manipulation;
@@ -825,8 +723,6 @@ min-height:76px;
 transform:none;
 }
 }
-
-
 /* La encuesta debe seguir siendo tocable en móvil incluso si falla un servicio externo */
 .survey-card:not(.is-processing),
 .survey-card:not(.is-processing) .choices,
@@ -837,10 +733,8 @@ pointer-events:auto !important;
 -webkit-appearance:none;
 appearance:none;
 }
-
 </style>
 </head>
-
 <body>
 <div class="wrap">
 <header class="topbar">
@@ -851,9 +745,8 @@ appearance:none;
 <p>Cliente de referencia · Rutina A recuperación adaptativa</p>
 </div>
 </div>
-<a class="back-btn" href="[\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html)](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html]\(https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\))">← Volver al plan</a>
+<a class="back-btn" href="[[\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html)](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html]\(https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\))](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/[/[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html/](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html)](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia//[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html]/(https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html/)))">← Volver al plan</a>
 </header>
-
 <section class="hero">
 <div aria-hidden="true" class="hero-image"></div>
 <div class="hero-copy">
@@ -865,7 +758,6 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </p>
 </div>
 </section>
-
 <main class="survey-card">
 <div class="survey-head">
 <div class="survey-title">
@@ -876,12 +768,10 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 </div>
 </div>
-
 <div class="progress-wrap">
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
 </div>
-
 <section class="question" data-question="tiempo">
 <div class="q-title">
 <div class="q-icon">⏱️</div>
@@ -908,7 +798,6 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </button>
 </div>
 </section>
-
 <section class="question" data-question="energia">
 <div class="q-title">
 <div class="q-icon">⚡</div>
@@ -935,7 +824,6 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </button>
 </div>
 </section>
-
 <section class="question" data-question="personalizada">
 <div class="q-title">
 <div class="q-icon">🩹</div>
@@ -962,25 +850,20 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </button>
 </div>
 </section>
-
 <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
 <p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
-
 <div class="result-card" id="resultCard"></div>
-
 <div aria-live="polite" class="smart-loading" id="smartLoading">
 <div class="smart-orb"></div>
 <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
 <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
 </div>
-
 <!-- EXPRESS -->
 <div class="routine-container" id="rutina-express">
 <div class="routine-intro">
 <div class="routine-version-label">⚡ Rutina A Recuperación Express · 10–15 min</div>
 <h2>Rutina A · Movilidad esencial</h2>
 <p>Versión corta para mantener movilidad y control del pie sin cargar el brazo.</p>
-
 <div class="quick-stats">
 <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
 <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
@@ -988,13 +871,10 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <div class="stat"><small>Objetivo</small><strong>Movilidad + pie</strong></div>
 </div>
 </div>
-
 <div class="warning">
 <strong>Importante:</strong> esta sesión no incluye pesas, bandas ni trabajo de fuerza del brazo.
 Si el médico indicó reposo completo, no realices la rutina.
 </div>
-
-
 <div class="video-help-note">
 <div class="video-help-icon">📹</div>
 <div>
@@ -1002,11 +882,10 @@ Si el médico indicó reposo completo, no realices la rutina.
 <p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
 </div>
 </div>
-
 <section class="section">
 <div class="section-head"><h2>Entrada suave</h2><p>Comienza con movimientos cómodos y sin fatiga.</p></div>
 <div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/_xWQgARcW2c" type="button">▶ Ver video</button>
+<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1017,7 +896,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 </div></div>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Tobillo y pie</h2><p>Movimiento suave, sin estiramiento profundo del Aquiles.</p></div>
 <div class="section-body">
@@ -1033,7 +911,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>RPE</span>1–2</div>
 <div class="pill"><span>Dolor pie</span>0–3/10</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1043,7 +920,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Arco activo del pie</div>
@@ -1056,7 +932,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Tiempo</span>3–5 seg</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="arco-activo-del-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1068,7 +943,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
@@ -1081,20 +955,17 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div></div></div>
 </section>
-
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y cómo se sintió el brazo durante la sesión.</p>
-<a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Express&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Express&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Express\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
 </div>
 </div>
-
 <!-- BASE -->
 <div class="routine-container" id="rutina-base">
 <div class="routine-intro">
 <div class="routine-version-label">🕒 Rutina A Recuperación Base · 20–25 min</div>
 <h2>Rutina A · Movilidad, cadera y pie</h2>
 <p>Versión principal para conservar movimiento y disminuir rigidez mientras se mantiene la restricción de carga del brazo.</p>
-
 <div class="quick-stats">
 <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
 <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
@@ -1102,12 +973,9 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="stat"><small>Objetivo</small><strong>Movilidad + control</strong></div>
 </div>
 </div>
-
 <div class="warning">
 <strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones o apoyo de peso sobre el brazo afectado.
 </div>
-
-
 <div class="video-help-note">
 <div class="video-help-icon">📹</div>
 <div>
@@ -1115,11 +983,10 @@ Si el médico indicó reposo completo, no realices la rutina.
 <p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
 </div>
 </div>
-
 <section class="section">
 <div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
 <div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/_xWQgARcW2c" type="button">▶ Ver video</button>
+<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1140,7 +1007,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Rango</span>Cómodo</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="rotacion-toracica-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1152,7 +1018,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad de miembros inferiores sin impacto.</p></div>
 <div class="section-body">
@@ -1168,7 +1033,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Ritmo</span>Suave</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="marcha-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1178,7 +1042,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
@@ -1191,7 +1054,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Carga</span>Sin peso</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1203,7 +1065,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Tobillo y pie</h2><p>Conserva movimiento y control sin irritar el Aquiles.</p></div>
 <div class="section-body">
@@ -1219,7 +1080,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Dolor pie</span>0–3/10</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1229,7 +1089,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Flexión dorsal sentada</div>
@@ -1242,7 +1101,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Rango</span>Cómodo</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-dorsal-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1252,7 +1110,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Flexión plantar sentada sin resistencia</div>
@@ -1265,7 +1122,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Carga</span>Sin resistencia</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-plantar-sentada-sin-resistencia">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1275,7 +1131,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Círculos de tobillo</div>
@@ -1288,7 +1143,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Rango</span>Suave</div>
 <div class="pill"><span>RPE</span>1</div>
 </div>
-
 <div class="review-request" data-exercise="circulos-de-tobillo">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1310,7 +1164,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="pill"><span>Tiempo</span>3–5 seg</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="arco-activo-del-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1322,7 +1175,6 @@ Si el médico indicó reposo completo, no realices la rutina.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
@@ -1335,20 +1187,17 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="upload-status" aria-live="polite"></div>
 </div></div></div>
 </section>
-
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si apareció alguna molestia nueva o cambio importante en tus zonas lesionadas.</p>
-<a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Base&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Base&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Base\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
 </div>
 </div>
-
 <!-- COMPLETA -->
 <div class="routine-container" id="rutina-completa">
 <div class="routine-intro">
 <div class="routine-version-label">🕘 Rutina A Recuperación Completa · 25–30 min</div>
 <h2>Rutina A · Movilidad completa sin carga</h2>
 <p>Versión ampliada para días con más tiempo, manteniendo siempre el objetivo de recuperación y sin cargar el brazo.</p>
-
 <div class="quick-stats">
 <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
 <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
@@ -1356,13 +1205,10 @@ Si el médico indicó reposo completo, no realices la rutina.
 <div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div>
 </div>
 </div>
-
 <div class="warning">
 <strong>Importante:</strong> esta es una sesión de recuperación, no de entrenamiento de fuerza.
 No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 </div>
-
-
 <div class="video-help-note">
 <div class="video-help-icon">📹</div>
 <div>
@@ -1370,11 +1216,10 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
 </div>
 </div>
-
 <section class="section">
 <div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
 <div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/_xWQgARcW2c" type="button">▶ Ver video</button>
+<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1395,7 +1240,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Rango</span>Cómodo</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="rotacion-toracica-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1407,7 +1251,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad sin impacto ni carga externa.</p></div>
 <div class="section-body">
@@ -1423,7 +1266,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Ritmo</span>Suave</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="marcha-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1433,7 +1275,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
@@ -1446,7 +1287,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Carga</span>Sin peso</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1456,7 +1296,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Abducción de cadera de pie</div>
@@ -1469,7 +1308,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Rango</span>Cómodo</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="abduccion-de-cadera-de-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1481,7 +1319,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 </article>
 </div>
 </section>
-
 <section class="section">
 <div class="section-head"><h2>Tobillo y pie</h2><p>Trabajo suave para conservar movilidad y control.</p></div>
 <div class="section-body">
@@ -1497,7 +1334,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Dolor pie</span>0–3/10</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1507,7 +1343,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Flexión dorsal sentada</div>
@@ -1520,7 +1355,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Rango</span>Cómodo</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-dorsal-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1530,7 +1364,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Flexión plantar sentada sin resistencia</div>
@@ -1543,7 +1376,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Carga</span>Sin resistencia</div>
 <div class="pill"><span>RPE</span>1–2</div>
 </div>
-
 <div class="review-request" data-exercise="flexion-plantar-sentada-sin-resistencia">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1553,7 +1385,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Círculos de tobillo</div>
@@ -1566,7 +1397,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Rango</span>Suave</div>
 <div class="pill"><span>RPE</span>1</div>
 </div>
-
 <div class="review-request" data-exercise="circulos-de-tobillo">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1588,7 +1418,6 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 <div class="pill"><span>Tiempo</span>5 seg</div>
 <div class="pill"><span>RPE</span>2</div>
 </div>
-
 <div class="review-request" data-exercise="arco-activo-del-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1600,12 +1429,10 @@ No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
 </article>
 </div>
 </section>
-
 <div class="note">
 <strong>Regla de recuperación:</strong> esta rutina debería dejarte igual o mejor, no más cansada ni dolorida.
 Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende la sesión.
 </div>
-
 <section class="section">
 <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
@@ -1618,16 +1445,13 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 <div class="upload-status" aria-live="polite"></div>
 </div></div></div>
 </section>
-
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si hubo cualquier cambio importante en tus zonas lesionadas.</p>
-<a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Completa&sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Completa&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Completa\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
 </div>
 </div>
-
 </main>
 </div>
-
 <div aria-hidden="true" class="video-modal" id="videoModal">
 <div class="video-box">
 <div class="video-box-head">
@@ -1636,11 +1460,10 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 </div>
 <div class="video-frame-wrap">
 <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
+<video id="videoPlayer" controls playsinline preload="none" style="display:none" title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
-
-
 <div class="execution-modal" id="executionModal" aria-hidden="true">
 <div class="execution-dialog">
 <div class="execution-head">
@@ -1674,23 +1497,17 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 </div>
 </div>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
-
+<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
+<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const CLIENTE = "Cliente de referencia";
 const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
-
-
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
 const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
-
 const supabaseClient =
 (window.supabase && typeof window.supabase.createClient === 'function')
 ? window.supabase.createClient(
@@ -1705,22 +1522,17 @@ detectSessionInUrl: false
 }
 )
 : null;
-
 if(!supabaseClient){
 console.warn('Supabase no cargó. La encuesta seguirá funcionando; solo se desactivarán temporalmente las funciones de video.');
 }
-
 let supabaseSessionPromise = null;
-
 async function obtenerSesionSupabase() {
 if(!supabaseClient) throw new Error("Supabase no está disponible en este dispositivo.");
 if (supabaseSessionPromise) return supabaseSessionPromise;
-
 supabaseSessionPromise = (async () => {
 const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
 if (sessionError) throw sessionError;
 if (sessionData && sessionData.session) return sessionData.session;
-
 const { data, error } = await supabaseClient.auth.signInAnonymously();
 if (error) throw error;
 if (!data || !data.session) throw new Error("No se pudo crear la sesión segura para subir el video.");
@@ -1729,10 +1541,8 @@ return data.session;
 supabaseSessionPromise = null;
 throw error;
 });
-
 return supabaseSessionPromise;
 }
-
 function slugVideo(texto) {
 return String(texto || "")
 .normalize("NFD")
@@ -1743,7 +1553,6 @@ return String(texto || "")
 .replace(/^-+|-+$/g, "")
 .slice(0, 80) || "video";
 }
-
 function extensionVideo(file) {
 const original = String(file.name || "");
 if (original.includes(".")) {
@@ -1758,7 +1567,6 @@ const map = {
 };
 return map[file.type] || "mp4";
 }
-
 function obtenerRutinaVideo(button) {
 const container = button ? button.closest(".routine-container") : null;
 if (!container) return "Rutina A Recuperación";
@@ -1767,17 +1575,14 @@ if (container.id === "rutina-base") return "Rutina A Recuperación Base";
 if (container.id === "rutina-completa") return "Rutina A Recuperación Completa";
 return "Rutina A Recuperación";
 }
-
 function construirRutaVideo(rutina, ejercicio, file) {
 const ahora = new Date();
-
 const fecha = new Intl.DateTimeFormat("en-CA", {
 timeZone: "America/Santiago",
 year: "numeric",
 month: "2-digit",
 day: "2-digit"
 }).format(ahora);
-
 const hora = new Intl.DateTimeFormat("es-CL", {
 timeZone: "America/Santiago",
 hour: "2-digit",
@@ -1785,7 +1590,6 @@ minute: "2-digit",
 second: "2-digit",
 hour12: false
 }).format(ahora).replace(/:/g, "-");
-
 return [
 "cliente-de-referencia",
 slugVideo(rutina),
@@ -1793,10 +1597,7 @@ fecha,
 fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
 ].join("/");
 }
-
-
 const VIDEOS_TABLE = "videos_enviados";
-
 function fechaSesionSantiago(){
 return new Intl.DateTimeFormat("en-CA", {
 timeZone: "America/Santiago",
@@ -1805,7 +1606,6 @@ month: "2-digit",
 day: "2-digit"
 }).format(new Date());
 }
-
 function claveEjercicio(rutina, ejercicio){
 return [
 String(CLIENTE || "").trim().toLowerCase(),
@@ -1814,12 +1614,10 @@ String(ejercicio || "").trim().toLowerCase(),
 fechaSesionSantiago()
 ].join("|");
 }
-
 function marcarCajaComoEnviada(box, textoEstado){
 if(!box) return;
 const btn = box.querySelector(".upload-execution-btn");
 const status = box.querySelector(".upload-status");
-
 if(btn){
 btn.classList.add("done");
 btn.textContent = "✅ Video enviado";
@@ -1829,19 +1627,16 @@ status.textContent = textoEstado ||
 "✅ Video enviado hoy. Está sincronizado entre tus dispositivos.";
 }
 }
-
 function restaurarCajaParaNuevoDia(box){
 if(!box) return;
 const btn = box.querySelector(".upload-execution-btn");
 const status = box.querySelector(".upload-status");
-
 if(btn){
 btn.classList.remove("done");
 btn.textContent = "📹 Enviar mi ejecución";
 }
 if(status) status.textContent = "";
 }
-
 async function registrarVideoEnviadoEnSupabase({ rutina, ejercicio, rutaVideo }){
 if(!supabaseClient) return { ok:false, unavailable:true };
 const payload = {
@@ -1852,19 +1647,15 @@ fecha_sesion: fechaSesionSantiago(),
 ruta_video: rutaVideo,
 estado: "por_revisar"
 };
-
 const { error } = await supabaseClient
 .from(VIDEOS_TABLE)
 .insert(payload);
-
 if(error){
 if(error.code === "23505") return { ok:true, duplicate:true };
 throw error;
 }
-
 return { ok:true, duplicate:false };
 }
-
 async function sincronizarVideosEnviadosHoy(){
 if(!supabaseClient){
 console.warn("Sincronización de videos omitida: Supabase no disponible.");
@@ -1872,28 +1663,22 @@ return;
 }
 try{
 await obtenerSesionSupabase();
-
 const fechaSesion = fechaSesionSantiago();
 const { data, error } = await supabaseClient
 .from(VIDEOS_TABLE)
 .select("cliente,rutina,ejercicio,fecha_sesion,estado")
 .eq("cliente", CLIENTE)
 .eq("fecha_sesion", fechaSesion);
-
 if(error) throw error;
-
 const enviados = new Set(
 (data || []).map(row => claveEjercicio(row.rutina, row.ejercicio))
 );
-
 document.querySelectorAll(".review-request").forEach(box => {
 const btn = box.querySelector(".upload-execution-btn");
 if(!btn) return;
-
 const rutina = obtenerRutinaVideo(btn);
 const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
 const key = claveEjercicio(rutina, ejercicio);
-
 if(enviados.has(key)){
 marcarCajaComoEnviada(
 box,
@@ -1903,20 +1688,16 @@ box,
 restaurarCajaParaNuevoDia(box);
 }
 });
-
 }catch(error){
 console.warn("No se pudo sincronizar el estado de videos:", error);
-
 // Fallback local if the table is temporarily unavailable.
 document.querySelectorAll(".review-request").forEach(box => {
 try{
 const btn = box.querySelector(".upload-execution-btn");
 if(!btn) return;
-
 const rutina = obtenerRutinaVideo(btn);
 const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
 const localKey = "movesmart_video_hoy_" + claveEjercicio(rutina, ejercicio);
-
 if(localStorage.getItem(localKey)){
 marcarCajaComoEnviada(
 box,
@@ -1927,7 +1708,6 @@ box,
 });
 }
 }
-
 const respuestas = { tiempo:null, energia:null, personalizada:null };
 const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
@@ -1936,37 +1716,27 @@ const surveyCard = document.querySelector('.survey-card');
 const smartLoading = document.getElementById('smartLoading');
 const smartLoadingTitle = document.getElementById('smartLoadingTitle');
 const smartLoadingText = document.getElementById('smartLoadingText');
-
 const surveyRoot = document.querySelector('.survey-card');
-
 function aplicarSeleccionEncuesta(btn){
 if(!btn || !btn.classList.contains('choice')) return;
-
 const questionEl = btn.closest('.question');
 const choicesEl = btn.closest('.choices');
 if(!questionEl || !choicesEl) return;
-
 const question = questionEl.dataset.question;
 if(!question) return;
-
 respuestas[question] = btn.dataset.value || '';
-
 choicesEl.querySelectorAll('.choice').forEach(other => {
 other.classList.remove('selected');
 other.setAttribute('aria-pressed', 'false');
 });
-
 btn.classList.add('selected');
 btn.setAttribute('aria-pressed', 'true');
-
 if(resultCard) resultCard.classList.remove('active');
 document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-
 const answered = Object.values(respuestas).filter(Boolean).length;
-if(progressFill) progressFill.style.width = `${(answered / 3) * 100}%`;
-if(progressText) progressText.textContent = `Pregunta ${answered} de 3`;
+if(progressFill) progressFill.style.width = \`${(answered / 3) * 100}%\`;
+if(progressText) progressText.textContent = \`Pregunta ${answered} de 3\`;
 }
-
 if(surveyRoot){
 // Delegación: funciona aunque el navegador móvil trate distinto los botones.
 surveyRoot.addEventListener('click', function(e){
@@ -1975,7 +1745,6 @@ if(!btn || !surveyRoot.contains(btn)) return;
 e.preventDefault();
 aplicarSeleccionEncuesta(btn);
 });
-
 surveyRoot.addEventListener('touchend', function(e){
 const btn = e.target.closest('.choice');
 if(!btn || !surveyRoot.contains(btn)) return;
@@ -1983,26 +1752,21 @@ e.preventDefault();
 aplicarSeleccionEncuesta(btn);
 }, {passive:false});
 }
-
-
 function updateProgress(){
 const answered = Object.values(respuestas).filter(Boolean).length;
-progressFill.style.width = `${(answered / 3) * 100}%`;
-progressText.textContent = `Pregunta ${answered} de 3`;
+progressFill.style.width = \`${(answered / 3) * 100}%\`;
+progressText.textContent = \`Pregunta ${answered} de 3\`;
 }
-
 function modoSegunEnergia(){
 if(respuestas.personalizada === 'alto') return 'Detener';
 if(respuestas.energia === 'baja' || respuestas.personalizada === 'moderado') return 'Recovery';
 return 'Normal';
 }
-
 function nombreEstructura(){
 if(respuestas.tiempo === 'express') return 'Express';
 if(respuestas.tiempo === 'base') return 'Base';
 return 'Completa';
 }
-
 function guardarRespuestaEnSheets(estructura, modo){
 const payload = {
 cliente: CLIENTE,
@@ -2014,7 +1778,6 @@ respuestaPersonalizada: respuestas.personalizada,
 estructura: estructura,
 modo: modo
 };
-
 fetch(SCRIPT_URL, {
 method: "POST",
 mode: "no-cors",
@@ -2033,12 +1796,8 @@ console.log("Tampoco se pudo usar sendBeacon:", e);
 }
 });
 }
-
-
-
 document.getElementById('createRoutine').addEventListener('click', () => {
 const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
-
 if(faltan.length){
 resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado de tus molestias o zonas lesionadas para crear la recomendación.';
 resultCard.style.background = 'rgba(255,90,31,.12)';
@@ -2047,15 +1806,11 @@ resultCard.style.color = '#ffe0d4';
 resultCard.classList.add('active');
 return;
 }
-
 const estructura = nombreEstructura();
 const modo = modoSegunEnergia();
-
 guardarRespuestaEnSheets(estructura, modo);
-
 resultCard.classList.remove('active');
 document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-
 if(modo === 'Detener'){
 resultCard.style.background = 'rgba(255,107,107,.12)';
 resultCard.style.borderColor = 'rgba(255,107,107,.28)';
@@ -2065,55 +1820,45 @@ resultCard.classList.add('active');
 resultCard.scrollIntoView({ behavior:'auto', block:'center' });
 return;
 }
-
 const modoTexto = {
 Recovery: 'Hoy prioriza movimientos suaves, rango cómodo y menor volumen. No busques fatiga.',
 Normal: 'Realiza la versión planificada manteniendo movimientos lentos, cómodos y sin carga del brazo.'
 };
-
 smartLoading.classList.add('active');
 surveyCard.classList.add('is-processing');
 smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
 smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de tus molestias o zonas lesionadas.';
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
-
 setTimeout(() => {
 smartLoadingTitle.textContent = 'Adaptando tu Rutina A de recuperación...';
-smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
+smartLoadingText.textContent = \`Preparando versión ${estructura} con modo ${modo}.\`;
 }, 180);
-
 setTimeout(() => {
 smartLoadingTitle.textContent = '✨ Rutina lista';
 smartLoadingText.textContent = 'Tu sesión personalizada ya está preparada.';
 }, 380);
-
 setTimeout(() => {
 smartLoading.classList.remove('active');
 surveyCard.classList.remove('is-processing');
-
 resultCard.style.background = 'rgba(29,191,115,.12)';
 resultCard.style.borderColor = 'rgba(29,191,115,.28)';
 resultCard.style.color = '#ddffea';
-resultCard.innerHTML = `<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+resultCard.innerHTML = \`<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>\`;
 resultCard.classList.add('active');
-
 const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
 const routineContainer = document.getElementById(idRutina);
 routineContainer.classList.add('active');
 routineContainer.scrollIntoView({ behavior:'auto', block:'start' });
 }, 650);
 });
-
 function toEmbedUrl(url) {
 if (!url) return null;
 const cleanUrl = String(url).trim();
 if (!cleanUrl) return null;
-
 try {
 const parsed = new URL(cleanUrl);
 const host = parsed.hostname.replace('www.', '');
 let videoId = '';
-
 if (cleanUrl.includes('youtube.com/embed/')) {
 videoId = parsed.pathname.split('/embed/')[1]?.split('/')[0] || '';
 } else if (host === 'youtu.be') {
@@ -2125,63 +1870,87 @@ videoId = parsed.pathname.split('/shorts/')[1].split('/')[0];
 videoId = parsed.searchParams.get('v') || '';
 }
 }
-
 if (!videoId) return null;
-
 return 'https://www.youtube.com/embed/' + videoId +
 '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&rel=0&playsinline=1';
 } catch (err) {
 return null;
 }
 }
-
 const videoModal = document.getElementById('videoModal');
 const videoFrame = document.getElementById('videoFrame');
+const videoPlayer = document.getElementById('videoPlayer');
 const closeVideo = document.getElementById('closeVideo');
 const videoTitle = document.getElementById('videoTitle');
 
-function showVideo(url, title) {
-videoTitle.textContent = title || 'Video de ejercicio';
-videoFrame.src = url;
-videoModal.classList.add('active');
-document.body.style.overflow = 'hidden';
+function isDirectVideoUrl(url) {
+  if (!url) return false;
+  try {
+    const parsed = new URL(String(url).trim());
+    return /\.(mp4|webm|ogg)$/i.test(parsed.pathname);
+  } catch (err) {
+    return false;
+  }
+}
+
+function showVideo(url, title, directVideo) {
+  videoTitle.textContent = title || 'Video de ejercicio';
+
+  if (directVideo) {
+    videoFrame.src = '';
+    videoFrame.style.display = 'none';
+    videoPlayer.style.display = 'block';
+    videoPlayer.src = url;
+    videoPlayer.load();
+  } else {
+    videoPlayer.pause();
+    videoPlayer.removeAttribute('src');
+    videoPlayer.load();
+    videoPlayer.style.display = 'none';
+    videoFrame.style.display = 'block';
+    videoFrame.src = url;
+  }
+
+  videoModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function hideVideo() {
-videoModal.classList.remove('active');
-videoFrame.src = '';
-document.body.style.overflow = '';
+  videoModal.classList.remove('active');
+  videoFrame.src = '';
+  videoFrame.style.display = 'block';
+  videoPlayer.pause();
+  videoPlayer.removeAttribute('src');
+  videoPlayer.load();
+  videoPlayer.style.display = 'none';
+  document.body.style.overflow = '';
 }
-
 document.querySelectorAll('.video-btn').forEach(function (button) {
 button.addEventListener('click', function (e) {
 e.preventDefault();
 e.stopPropagation();
-
 const card = button.closest('.exercise-card');
 const nameEl = card ? card.querySelector('.exercise-name') : null;
 const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
 const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
-const embedUrl = toEmbedUrl(rawUrl);
-
-if (embedUrl) showVideo(embedUrl, title);
-else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+if (isDirectVideoUrl(rawUrl)) {
+  showVideo(rawUrl, title, true);
+} else {
+  const embedUrl = toEmbedUrl(rawUrl);
+  if (embedUrl) showVideo(embedUrl, title, false);
+  else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+}
 });
 });
-
 if (closeVideo) closeVideo.addEventListener('click', hideVideo);
-
 if (videoModal) {
 videoModal.addEventListener('click', function (e) {
 if (e.target === videoModal) hideVideo();
 });
 }
-
 document.addEventListener('keydown', function (e) {
 if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) hideVideo();
 });
-
-
 // Videos del cliente: subida directa y reanudable a Supabase Storage.
 const executionModal = document.getElementById('executionModal');
 const executionClose = document.getElementById('executionClose');
@@ -2201,7 +1970,6 @@ let activeUploadButton = null;
 let activeExerciseName = '';
 let activeVideoUrl = '';
 let optimizedUploadFile = null;
-
 function openExecutionModal(button){
 activeUploadButton = button;
 activeExerciseName = button.dataset.exerciseName || 'Ejercicio';
@@ -2229,7 +1997,6 @@ executionModal.classList.add('active');
 executionModal.setAttribute('aria-hidden','false');
 document.body.style.overflow='hidden';
 }
-
 function closeExecutionModal(){
 executionModal.classList.remove('active');
 executionModal.setAttribute('aria-hidden','true');
@@ -2240,12 +2007,9 @@ executionPreview.removeAttribute('src');
 executionPreview.load();
 executionPreview.classList.remove('active');
 }
-
-
 function formatoMB(bytes){
 return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 }
-
 function esperarEvento(elemento, evento){
 return new Promise((resolve, reject) => {
 const ok = () => { cleanup(); resolve(); };
@@ -2258,59 +2022,48 @@ elemento.addEventListener(evento, ok, {once:true});
 elemento.addEventListener('error', bad, {once:true});
 });
 }
-
 async function optimizarVideoParaEnvio(file){
 if(file.size <= 3.5 * 1024 * 1024){
 return {file, optimized:false, reason:'already-small'};
 }
-
 if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
 return {file, optimized:false, reason:'unsupported'};
 }
-
 const mimeCandidates = ['video/webm;codecs=vp8', 'video/webm'];
 const mimeType = mimeCandidates.find(type =>
 MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)
 );
-
 if(!mimeType){
 return {file, optimized:false, reason:'unsupported'};
 }
-
 const url = URL.createObjectURL(file);
 const video = document.createElement('video');
 video.src = url;
 video.muted = true;
 video.playsInline = true;
 video.preload = 'metadata';
-
 try{
 await esperarEvento(video, 'loadedmetadata');
-
 const duration = Number(video.duration || 0);
 if(!Number.isFinite(duration) || duration <= 0 || duration > 90){
 return {file, optimized:false, reason:'duration'};
 }
-
 const originalW = video.videoWidth || 720;
 const originalH = video.videoHeight || 1280;
 const maxSide = 720;
 const scale = Math.min(1, maxSide / Math.max(originalW, originalH));
 const width = Math.max(2, Math.round((originalW * scale) / 2) * 2);
 const height = Math.max(2, Math.round((originalH * scale) / 2) * 2);
-
 const canvas = document.createElement('canvas');
 canvas.width = width;
 canvas.height = height;
 const ctx = canvas.getContext('2d', {alpha:false});
-
 const stream = canvas.captureStream(24);
 const chunks = [];
 const recorder = new MediaRecorder(stream, {
 mimeType,
 videoBitsPerSecond: 900000
 });
-
 const recorded = new Promise((resolve, reject) => {
 recorder.ondataavailable = e => {
 if(e.data && e.data.size) chunks.push(e.data);
@@ -2318,37 +2071,30 @@ if(e.data && e.data.size) chunks.push(e.data);
 recorder.onerror = e => reject(e.error || new Error('Error al optimizar el video.'));
 recorder.onstop = () => resolve();
 });
-
 let rafId = 0;
 const draw = () => {
 if(video.paused || video.ended) return;
 ctx.drawImage(video, 0, 0, width, height);
 rafId = requestAnimationFrame(draw);
 };
-
 video.currentTime = 0;
 await video.play();
 recorder.start(1000);
 draw();
-
 await esperarEvento(video, 'ended');
 cancelAnimationFrame(rafId);
-
 if(recorder.state !== 'inactive') recorder.stop();
 await recorded;
-
 const blob = new Blob(chunks, {type:mimeType});
 if(!blob.size || blob.size >= file.size * 0.92){
 return {file, optimized:false, reason:'no-benefit'};
 }
-
 const baseName = String(file.name || 'video').replace(/\.[^.]+$/, '');
 const optimized = new File(
 [blob],
 baseName + '-optimizado.webm',
 {type:'video/webm', lastModified:Date.now()}
 );
-
 return {
 file: optimized,
 optimized:true,
@@ -2365,62 +2111,51 @@ try{ video.pause(); }catch(e){}
 URL.revokeObjectURL(url);
 }
 }
-
 document.querySelectorAll('.upload-execution-btn').forEach(btn=>{
 btn.addEventListener('click',()=>openExecutionModal(btn));
 });
-
 executionFile.addEventListener('change', async ()=>{
 const originalFile = executionFile.files && executionFile.files[0];
 optimizedUploadFile = null;
-
 if(!originalFile){
 executionSend.disabled = true;
 return;
 }
-
 if(!originalFile.type.startsWith('video/')){
 alert('Selecciona un archivo de video.');
 executionFile.value='';
 executionSend.disabled=true;
 return;
 }
-
 if(originalFile.size > VIDEO_MAX_BYTES){
 alert('Este proyecto gratuito permite archivos de hasta 50 MB. Selecciona un video menor a ese tamaño.');
 executionFile.value='';
 executionSend.disabled=true;
 return;
 }
-
 if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
 activeVideoUrl = URL.createObjectURL(originalFile);
 executionPreview.src = activeVideoUrl;
 executionPreview.classList.add('active');
-
-selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
+selectedVideoInfo.textContent = \`✅ ${originalFile.name} · ${formatoMB(originalFile.size)}\`;
 selectedVideoInfo.classList.add('active');
-
 executionSend.disabled = true;
 executionSend.textContent = 'Optimizando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
 '<strong>⚡ Preparando una versión más liviana…</strong><br>' +
 'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
-
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-
 if(result.optimized){
 const ahorro = Math.max(
 0,
 Math.round((1 - result.optimizedSize / result.originalSize) * 100)
 );
-
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
+\`<strong>✅ Video optimizado</strong><br>\` +
+\`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · \` +
+\`${ahorro}% menos datos para subir.\`;
 }else{
 const reasonText = {
 'already-small':'El video ya es liviano, así que se enviará tal cual.',
@@ -2429,276 +2164,225 @@ const reasonText = {
 'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
 'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
 }[result.reason] || 'Se enviará el archivo original.';
-
 optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
+\`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}\`;
 }
-
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
-
-
 async function subirVideoStoragePrimero(file, objectName, session, rutina, ejercicio, comentario){
-  if(!supabaseClient){
-    throw new Error("No se cargó Supabase en el navegador.");
-  }
-
-  if(!session || !session.access_token){
-    throw new Error("No se pudo obtener una sesión válida para subir el video.");
-  }
-
-  // Para archivos pequeños usamos la subida estándar: es más simple y evita
-  // overhead innecesario de TUS.
-  const LIMITE_STANDARD = 6 * 1024 * 1024;
-
-  if(file.size <= LIMITE_STANDARD){
-    uploadProgressText.textContent = 'Subiendo video…';
-    uploadProgressBar.style.width = '35%';
-    uploadProgressPercent.textContent = '35%';
-
-    const { error } = await supabaseClient.storage
-      .from(VIDEO_BUCKET)
-      .upload(objectName, file, {
-        cacheControl: '3600',
-        upsert: false,
-        contentType: file.type || 'video/mp4'
-      });
-
-    if(error){
-      const e = new Error("Storage: " + (error.message || "falló la subida directa."));
-      e.code = error.statusCode || error.status || error.code || "storage_upload";
-      throw e;
-    }
-
-    uploadProgressBar.style.width = '100%';
-    uploadProgressPercent.textContent = '100%';
-    return { metodo: 'standard' };
-  }
-
-  // Archivos grandes: subida reanudable TUS.
-  if(!window.tus || typeof window.tus.Upload !== 'function'){
-    throw new Error("No se cargó el módulo de subida reanudable TUS.");
-  }
-
-  await new Promise((resolve, reject) => {
-    const upload = new tus.Upload(file, {
-      endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
-      retryDelays: [0, 3000, 5000, 10000, 20000],
-      headers: {
-        authorization: `Bearer ${session.access_token}`
-      },
-      uploadDataDuringCreation: true,
-      removeFingerprintOnSuccess: true,
-      metadata: {
-        bucketName: VIDEO_BUCKET,
-        objectName: objectName,
-        contentType: file.type || 'video/mp4',
-        cacheControl: '3600',
-        metadata: JSON.stringify({
-          cliente: CLIENTE,
-          rutina,
-          ejercicio,
-          comentario,
-          enviado_desde: 'MoveSmart',
-          optimizado_en_navegador: !!optimizedUploadFile,
-          tamano_subida_bytes: file.size
-        })
-      },
-      chunkSize: 6 * 1024 * 1024,
-
-      onError(error){
-        reject(new Error("TUS: " + (error?.message || "falló la subida reanudable.")));
-      },
-
-      onProgress(bytesUploaded, bytesTotal){
-        const percent = bytesTotal > 0
-          ? Math.min(100, (bytesUploaded / bytesTotal) * 100)
-          : 0;
-        const rounded = Math.round(percent);
-
-        uploadProgressBar.style.width = rounded + '%';
-        uploadProgressPercent.textContent = rounded + '%';
-
-        const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
-        const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
-        uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
-      },
-
-      onSuccess(){
-        resolve();
-      }
-    });
-
-    upload.findPreviousUploads()
-      .then(previousUploads => {
-        if(previousUploads.length){
-          upload.resumeFromPreviousUpload(previousUploads[0]);
-          uploadProgressText.textContent = 'Reanudando una subida anterior…';
-        }
-        upload.start();
-      })
-      .catch(reject);
-  });
-
-  return { metodo: 'tus' };
+if(!supabaseClient){
+throw new Error("No se cargó Supabase en el navegador.");
 }
-
-function mensajeErrorVideo(error){
-  const msg = String(error?.message || error || 'Error desconocido');
-
-  if(/row-level security|RLS|policy/i.test(msg)){
-    return 'Supabase bloqueó la subida por permisos del bucket. Hay que revisar la policy INSERT de Storage.';
-  }
-  if(/session|auth|JWT|token|anonymous/i.test(msg)){
-    return 'No se pudo crear o mantener la sesión segura de Supabase.';
-  }
-  if(/Failed to fetch|NetworkError|Load failed|network/i.test(msg)){
-    return 'Hubo un problema de red al conectar con Supabase.';
-  }
-  if(/TUS/i.test(msg)){
-    return 'Falló la subida reanudable del video.';
-  }
-  if(/Storage/i.test(msg)){
-    return msg;
-  }
-  return msg;
+if(!session || !session.access_token){
+throw new Error("No se pudo obtener una sesión válida para subir el video.");
 }
-
-
-executionSend.addEventListener('click', async ()=>{
-  const file = optimizedUploadFile || (executionFile.files && executionFile.files[0]);
-  if(!file || !activeUploadButton) return;
-
-  const reviewBox = activeUploadButton.closest('.review-request');
-  const status = reviewBox ? reviewBox.querySelector('.upload-status') : null;
-  const rutina = obtenerRutinaVideo(activeUploadButton);
-  const objectName = construirRutaVideo(rutina, activeExerciseName, file);
-
-  try{
-    executionSend.disabled = true;
-    executionSend.classList.add('uploading');
-    executionSend.textContent = 'Conectando…';
-
-    uploadProgressWrap.classList.add('active');
-    uploadProgressBar.style.width = '0%';
-    uploadProgressPercent.textContent = '0%';
-    uploadProgressText.textContent = 'Creando conexión segura…';
-
-    if(status){
-      status.textContent = 'Preparando el envío seguro del video…';
-    }
-
-    // 1) Autenticación
-    const session = await obtenerSesionSupabase();
-
-    // 2) STORAGE PRIMERO. Si esto termina, el archivo ya está guardado.
-    executionSend.textContent = 'Enviando…';
-    const resultadoSubida = await subirVideoStoragePrimero(
-      file,
-      objectName,
-      session,
-      rutina,
-      activeExerciseName,
-      executionComment.value.trim()
-    );
-
-    uploadProgressBar.style.width = '100%';
-    uploadProgressPercent.textContent = '100%';
-    uploadProgressText.textContent = 'Video guardado en MoveSmart';
-
-    activeUploadButton.classList.add('done');
-    activeUploadButton.textContent = '✅ Video enviado';
-    executionSend.textContent = '✅ Enviado';
-
-    if(status){
-      status.textContent = '✅ Video enviado correctamente a MoveSmart.';
-    }
-
-    // Fallback local inmediato: ya sabemos que Storage funcionó.
-    try{
-      const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
-      localStorage.setItem(localKey, JSON.stringify({
-        client: CLIENTE,
-        routine: rutina,
-        exercise: activeExerciseName,
-        path: objectName,
-        fechaSesion: fechaSesionSantiago(),
-        sentAt: new Date().toISOString(),
-        status: 'enviado',
-        metodo: resultadoSubida.metodo
-      }));
-    }catch(e){}
-
-    // 3) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
-    uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
-
-    try{
-      await registrarVideoEnviadoEnSupabase({
-        rutina,
-        ejercicio: activeExerciseName,
-        rutaVideo: objectName
-      });
-
-      uploadProgressText.textContent = 'Video guardado y sincronizado';
-
-      if(status){
-        status.textContent =
-          '✅ Video enviado y sincronizado para hoy entre tus dispositivos.';
-      }
-
-      try{
-        await sincronizarVideosEnviadosHoy();
-      }catch(syncRefreshError){
-        console.warn('El video se guardó, pero no se pudo refrescar el estado:', syncRefreshError);
-      }
-
-    }catch(syncError){
-      console.warn('Video guardado; falló solo la sincronización:', syncError);
-
-      uploadProgressText.textContent =
-        'Video guardado. Sincronización pendiente.';
-
-      if(status){
-        status.textContent =
-          '✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
-      }
-    }
-
-    setTimeout(closeExecutionModal, 1200);
-
-  }catch(error){
-    console.error('Error REAL de subida de video:', error);
-
-    executionSend.disabled = false;
-    executionSend.classList.remove('uploading');
-    executionSend.textContent = 'Reintentar envío';
-
-    const detalle = mensajeErrorVideo(error);
-    uploadProgressText.textContent = 'Error: ' + detalle;
-
-    if(status){
-      status.textContent = '❌ ' + detalle + ' Puedes tocar “Reintentar envío”.';
-    }
-
-    alert(
-      'No se pudo guardar el video.\n\n' +
-      'Detalle: ' + detalle
-    );
-  }
+// Para archivos pequeños usamos la subida estándar: es más simple y evita
+// overhead innecesario de TUS.
+const LIMITE_STANDARD = 6 * 1024 * 1024;
+if(file.size <= LIMITE_STANDARD){
+uploadProgressText.textContent = 'Subiendo video…';
+uploadProgressBar.style.width = '35%';
+uploadProgressPercent.textContent = '35%';
+const { error } = await supabaseClient.storage
+.from(VIDEO_BUCKET)
+.upload(objectName, file, {
+cacheControl: '3600',
+upsert: false,
+contentType: file.type || 'video/mp4'
 });
-
+if(error){
+const e = new Error("Storage: " + (error.message || "falló la subida directa."));
+e.code = error.statusCode || error.status || error.code || "storage_upload";
+throw e;
+}
+uploadProgressBar.style.width = '100%';
+uploadProgressPercent.textContent = '100%';
+return { metodo: 'standard' };
+}
+// Archivos grandes: subida reanudable TUS.
+if(!window.tus || typeof window.tus.Upload !== 'function'){
+throw new Error("No se cargó el módulo de subida reanudable TUS.");
+}
+await new Promise((resolve, reject) => {
+const upload = new tus.Upload(file, {
+endpoint: \`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable\`,
+retryDelays: [0, 3000, 5000, 10000, 20000],
+headers: {
+authorization: \`Bearer ${session.access_token}\`
+},
+uploadDataDuringCreation: true,
+removeFingerprintOnSuccess: true,
+metadata: {
+bucketName: VIDEO_BUCKET,
+objectName: objectName,
+contentType: file.type || 'video/mp4',
+cacheControl: '3600',
+metadata: JSON.stringify({
+cliente: CLIENTE,
+rutina,
+ejercicio,
+comentario,
+enviado_desde: 'MoveSmart',
+optimizado_en_navegador: !!optimizedUploadFile,
+tamano_subida_bytes: file.size
+})
+},
+chunkSize: 6 * 1024 * 1024,
+onError(error){
+reject(new Error("TUS: " + (error?.message || "falló la subida reanudable.")));
+},
+onProgress(bytesUploaded, bytesTotal){
+const percent = bytesTotal > 0
+? Math.min(100, (bytesUploaded / bytesTotal) * 100)
+: 0;
+const rounded = Math.round(percent);
+uploadProgressBar.style.width = rounded + '%';
+uploadProgressPercent.textContent = rounded + '%';
+const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
+const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
+uploadProgressText.textContent = \`${mbUploaded} MB de ${mbTotal} MB\`;
+},
+onSuccess(){
+resolve();
+}
+});
+upload.findPreviousUploads()
+.then(previousUploads => {
+if(previousUploads.length){
+upload.resumeFromPreviousUpload(previousUploads[0]);
+uploadProgressText.textContent = 'Reanudando una subida anterior…';
+}
+upload.start();
+})
+.catch(reject);
+});
+return { metodo: 'tus' };
+}
+function mensajeErrorVideo(error){
+const msg = String(error?.message || error || 'Error desconocido');
+if(/row-level security|RLS|policy/i.test(msg)){
+return 'Supabase bloqueó la subida por permisos del bucket. Hay que revisar la policy INSERT de Storage.';
+}
+if(/session|auth|JWT|token|anonymous/i.test(msg)){
+return 'No se pudo crear o mantener la sesión segura de Supabase.';
+}
+if(/Failed to fetch|NetworkError|Load failed|network/i.test(msg)){
+return 'Hubo un problema de red al conectar con Supabase.';
+}
+if(/TUS/i.test(msg)){
+return 'Falló la subida reanudable del video.';
+}
+if(/Storage/i.test(msg)){
+return msg;
+}
+return msg;
+}
+executionSend.addEventListener('click', async ()=>{
+const file = optimizedUploadFile || (executionFile.files && executionFile.files[0]);
+if(!file || !activeUploadButton) return;
+const reviewBox = activeUploadButton.closest('.review-request');
+const status = reviewBox ? reviewBox.querySelector('.upload-status') : null;
+const rutina = obtenerRutinaVideo(activeUploadButton);
+const objectName = construirRutaVideo(rutina, activeExerciseName, file);
+try{
+executionSend.disabled = true;
+executionSend.classList.add('uploading');
+executionSend.textContent = 'Conectando…';
+uploadProgressWrap.classList.add('active');
+uploadProgressBar.style.width = '0%';
+uploadProgressPercent.textContent = '0%';
+uploadProgressText.textContent = 'Creando conexión segura…';
+if(status){
+status.textContent = 'Preparando el envío seguro del video…';
+}
+// 1) Autenticación
+const session = await obtenerSesionSupabase();
+// 2) STORAGE PRIMERO. Si esto termina, el archivo ya está guardado.
+executionSend.textContent = 'Enviando…';
+const resultadoSubida = await subirVideoStoragePrimero(
+file,
+objectName,
+session,
+rutina,
+activeExerciseName,
+executionComment.value.trim()
+);
+uploadProgressBar.style.width = '100%';
+uploadProgressPercent.textContent = '100%';
+uploadProgressText.textContent = 'Video guardado en MoveSmart';
+activeUploadButton.classList.add('done');
+activeUploadButton.textContent = '✅ Video enviado';
+executionSend.textContent = '✅ Enviado';
+if(status){
+status.textContent = '✅ Video enviado correctamente a MoveSmart.';
+}
+// Fallback local inmediato: ya sabemos que Storage funcionó.
+try{
+const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
+localStorage.setItem(localKey, JSON.stringify({
+client: CLIENTE,
+routine: rutina,
+exercise: activeExerciseName,
+path: objectName,
+fechaSesion: fechaSesionSantiago(),
+sentAt: new Date().toISOString(),
+status: 'enviado',
+metodo: resultadoSubida.metodo
+}));
+}catch(e){}
+// 3) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
+uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
+try{
+await registrarVideoEnviadoEnSupabase({
+rutina,
+ejercicio: activeExerciseName,
+rutaVideo: objectName
+});
+uploadProgressText.textContent = 'Video guardado y sincronizado';
+if(status){
+status.textContent =
+'✅ Video enviado y sincronizado para hoy entre tus dispositivos.';
+}
+try{
+await sincronizarVideosEnviadosHoy();
+}catch(syncRefreshError){
+console.warn('El video se guardó, pero no se pudo refrescar el estado:', syncRefreshError);
+}
+}catch(syncError){
+console.warn('Video guardado; falló solo la sincronización:', syncError);
+uploadProgressText.textContent =
+'Video guardado. Sincronización pendiente.';
+if(status){
+status.textContent =
+'✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
+}
+}
+setTimeout(closeExecutionModal, 1200);
+}catch(error){
+console.error('Error REAL de subida de video:', error);
+executionSend.disabled = false;
+executionSend.classList.remove('uploading');
+executionSend.textContent = 'Reintentar envío';
+const detalle = mensajeErrorVideo(error);
+uploadProgressText.textContent = 'Error: ' + detalle;
+if(status){
+status.textContent = '❌ ' + detalle + ' Puedes tocar “Reintentar envío”.';
+}
+alert(
+'No se pudo guardar el video.\n\n' +
+'Detalle: ' + detalle
+);
+}
+});
 if(executionClose) executionClose.addEventListener('click',closeExecutionModal);
 if(executionCancel) executionCancel.addEventListener('click',closeExecutionModal);
 if(executionModal) executionModal.addEventListener('click',e=>{ if(e.target===executionModal) closeExecutionModal(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape' && executionModal.classList.contains('active')) closeExecutionModal(); });
-
 sincronizarVideosEnviadosHoy();
-
 window.addEventListener('focus', () => {
 sincronizarVideosEnviadosHoy();
 });
-
 updateProgress();
 </script>
 </body>
