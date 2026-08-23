@@ -1324,6 +1324,8 @@ if(error){
 if(error.code === "23505") return { ok:true, duplicate:true };
 throw error;
 }
+return { ok:true, duplicate:false };
+}
 
 async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
   const payload = {
@@ -1344,8 +1346,6 @@ async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo 
     },
     body: JSON.stringify(payload)
   });
-}
-return { ok:true, duplicate:false };
 }
 async function sincronizarVideosEnviadosHoy(){
 if(!supabaseClient){
