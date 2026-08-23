@@ -1170,6 +1170,7 @@ appearance:none;
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
 const CLIENTE = "Fernanda Ramirez";
 const PREGUNTA_PERSONALIZADA = "Estado general del cuerpo antes de entrenar";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
@@ -1322,6 +1323,27 @@ const { error } = await supabaseClient
 if(error){
 if(error.code === "23505") return { ok:true, duplicate:true };
 throw error;
+}
+
+async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
+  const payload = {
+    cliente: CLIENTE,
+    rutina,
+    ejercicio,
+    comentario: comentario || "",
+    rutaVideo,
+    estado: "Enviado"
+  };
+
+  await fetch(VIDEO_COMMENTS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    keepalive: true,
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  });
 }
 return { ok:true, duplicate:false };
 }
@@ -2004,7 +2026,18 @@ status: 'enviado',
 metodo: resultadoSubida.metodo
 }));
 }catch(e){}
-// 3) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
+// 3) REGISTRO EN SHEETS. Si falla, el video continúa considerándose enviado.
+try{
+await registrarVideoEnSheet({
+rutina,
+ejercicio: activeExerciseName,
+comentario: executionComment.value.trim(),
+rutaVideo: objectName
+});
+}catch(sheetError){
+console.warn('El video se guardó, pero no se pudo registrar en Sheets:', sheetError);
+}
+// 4) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
 uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
 try{
 await registrarVideoEnviadoEnSupabase({
