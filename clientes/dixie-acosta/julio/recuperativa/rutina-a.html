@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -729,6 +730,70 @@
       .choice:hover,.exercise-card:hover{transform:none}
       .smart-orb{animation:none}
     }
+
+.video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
+.video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}
+.video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}
+.video-help-note p{margin:0;color:rgba(255,255,255,.72);line-height:1.55;font-size:.93rem}
+.review-request{margin-top:12px;padding:14px;border-radius:17px;background:rgba(47,99,255,.08);border:1px solid rgba(111,142,255,.18)}
+.review-request-copy{margin-bottom:11px}
+.review-badge{display:block;color:#fff;font-weight:850;margin-bottom:4px;font-size:.94rem}
+.review-request small{color:rgba(255,255,255,.65);line-height:1.45;display:block}
+.upload-execution-btn{width:100%;border:none;border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fff;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:850}
+.upload-execution-btn.done{background:rgba(53,208,98,.12);border-color:rgba(53,208,98,.28);color:#dfffe8}
+.upload-status{margin-top:8px;color:rgba(255,255,255,.66);font-size:.82rem;line-height:1.4}
+.execution-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(4,6,14,.82)}
+.execution-modal.active{display:flex}
+.execution-dialog{width:min(620px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,rgba(18,20,34,.98),rgba(10,12,22,.98));border:1px solid rgba(255,255,255,.12);border-radius:26px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.execution-head{padding:18px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.execution-head strong{display:block;font-size:1.12rem;margin-bottom:4px}
+.execution-head p{color:rgba(255,255,255,.66);line-height:1.4;font-size:.9rem}
+.execution-close{border:none;background:rgba(255,255,255,.09);color:#fff;border-radius:12px;padding:9px 12px;cursor:pointer;font-weight:800}
+.execution-body{padding:20px}
+.execution-tip{padding:14px;border-radius:16px;background:rgba(255,90,31,.10);border:1px solid rgba(255,90,31,.18);color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:16px;font-size:.92rem}
+.execution-file-label{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:72px;padding:16px;border-radius:18px;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-weight:850}
+.execution-file-label input{display:none}
+.execution-preview{display:none;width:100%;max-height:340px;object-fit:contain;margin-top:14px;border-radius:16px;background:#000}
+.execution-preview.active{display:block}
+.selected-video-info{display:none;margin-top:10px;color:#dfffe8;font-size:.88rem}
+.selected-video-info.active{display:block}
+.execution-comment-label{display:block;margin-top:16px;font-size:.9rem;font-weight:800;color:#fff}
+.execution-comment{margin-top:8px;width:100%;min-height:90px;resize:vertical;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;padding:12px 14px;font:inherit;outline:none}
+.execution-actions{display:flex;gap:10px;margin-top:18px}
+.execution-cancel,.execution-send{flex:1;border:none;border-radius:15px;padding:13px 14px;font:inherit;font-weight:850;cursor:pointer}
+.execution-cancel{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
+.execution-send{background:linear-gradient(180deg,#ff7a1f,#ff4f13);color:#fff}
+.execution-send:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:640px){.video-help-note{padding:15px;border-radius:18px}.video-help-icon{width:40px;height:40px;flex-basis:40px}.execution-actions{flex-direction:column-reverse}}
+.exercise-card > .review-request{
+grid-column:1 / -1;
+margin-top:0;
+}
+@media (max-width:640px){
+.exercise-card > .review-request{
+margin-top:4px;
+}
+}
+.upload-progress-wrap{display:none;margin-top:14px}
+.upload-progress-wrap.active{display:block}
+.upload-progress-track{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}
+.upload-progress-bar{width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff5a1f,#ff8a3d);transition:width .18s ease}
+.upload-progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;color:rgba(255,255,255,.72);font-size:.84rem}
+.upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}
+.execution-send.uploading{cursor:wait;opacity:.9}
+.optimization-box{
+display:none;
+margin-top:12px;
+padding:12px 14px;
+border-radius:16px;
+background:rgba(47,99,255,.09);
+border:1px solid rgba(111,142,255,.18);
+color:rgba(255,255,255,.78);
+font-size:.86rem;
+line-height:1.5;
+}
+.optimization-box.active{display:block}
+.optimization-box strong{color:#fff}
 </style>
 </head>
 
@@ -907,6 +972,15 @@
             <div class="pill"><span>RPE</span>1–2</div>
             <div class="pill"><span>Dolor pie</span>0–3/10</div>
           </div>
+<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -921,6 +995,15 @@
             <div class="pill"><span>Tiempo</span>3–5 seg</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="arco-activo-del-pie">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -971,6 +1054,15 @@
             <div class="pill"><span>Rango</span>Cómodo</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="rotaciann-toraecica-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -990,6 +1082,15 @@
             <div class="pill"><span>Ritmo</span>Suave</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="marcha-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1004,6 +1105,15 @@
             <div class="pill"><span>Carga</span>Sin peso</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="extensiann-de-rodilla-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -1023,6 +1133,15 @@
             <div class="pill"><span>Dolor pie</span>0–3/10</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1037,6 +1156,15 @@
             <div class="pill"><span>Rango</span>Cómodo</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-dorsal-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1051,6 +1179,15 @@
             <div class="pill"><span>Carga</span>Sin resistencia</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-plantar-sentada-sin-resistencia">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar sentada sin resistencia">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1065,6 +1202,15 @@
             <div class="pill"><span>Rango</span>Suave</div>
             <div class="pill"><span>RPE</span>1</div>
           </div>
+<div class="review-request" data-exercise="caurculos-de-tobillo">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 <article class="exercise-card">
           <div>
@@ -1078,6 +1224,15 @@
             <div class="pill"><span>Tiempo</span>3–5 seg</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="arco-activo-del-pie">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -1129,6 +1284,15 @@
             <div class="pill"><span>Rango</span>Cómodo</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="rotaciann-toraecica-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -1148,6 +1312,15 @@
             <div class="pill"><span>Ritmo</span>Suave</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="marcha-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1162,6 +1335,15 @@
             <div class="pill"><span>Carga</span>Sin peso</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="extensiann-de-rodilla-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1176,6 +1358,15 @@
             <div class="pill"><span>Rango</span>Cómodo</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="abducciann-de-cadera-de-pie">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera de pie">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -1195,6 +1386,15 @@
             <div class="pill"><span>Dolor pie</span>0–3/10</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1209,6 +1409,15 @@
             <div class="pill"><span>Rango</span>Cómodo</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-dorsal-sentada">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1223,6 +1432,15 @@
             <div class="pill"><span>Carga</span>Sin resistencia</div>
             <div class="pill"><span>RPE</span>1–2</div>
           </div>
+<div class="review-request" data-exercise="flexiann-plantar-sentada-sin-resistencia">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar sentada sin resistencia">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 
         <article class="exercise-card">
@@ -1237,6 +1455,15 @@
             <div class="pill"><span>Rango</span>Suave</div>
             <div class="pill"><span>RPE</span>1</div>
           </div>
+<div class="review-request" data-exercise="caurculos-de-tobillo">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
 <article class="exercise-card">
           <div>
@@ -1250,6 +1477,15 @@
             <div class="pill"><span>Tiempo</span>5 seg</div>
             <div class="pill"><span>RPE</span>2</div>
           </div>
+<div class="review-request" data-exercise="arco-activo-del-pie">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+
         </article>
       </div>
     </section>
@@ -1285,12 +1521,273 @@
   </div>
 </div>
 
-<script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
-    const CLIENTE = "Dixie Acosta";
-    const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
 
-    const respuestas = { tiempo:null, energia:null, personalizada:null };
+<div class="execution-modal" id="executionModal" aria-hidden="true">
+<div class="execution-dialog">
+<div class="execution-head">
+<div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div>
+<button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
+</div>
+<div class="execution-body">
+<div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea bien el movimiento. Un video corto de 3–5 repeticiones o una serie es suficiente.</div>
+<label class="execution-file-label">
+<span>🎥 Grabar ahora o elegir desde el celular</span>
+<input id="executionFile" type="file" accept="video/*" capture="environment"/>
+</label>
+<video class="execution-preview" id="executionPreview" controls playsinline></video>
+<div class="selected-video-info" id="selectedVideoInfo"></div>
+<div class="optimization-box" id="optimizationBox"></div>
+<div class="upload-progress-wrap" id="uploadProgressWrap">
+<div class="upload-progress-track">
+<div class="upload-progress-bar" id="uploadProgressBar"></div>
+</div>
+<div class="upload-progress-row">
+<span id="uploadProgressText">Preparando subida…</span>
+<span class="upload-progress-percent" id="uploadProgressPercent">0%</span>
+</div>
+</div>
+<label class="execution-comment-label" for="executionComment">Comentario opcional</label>
+<textarea class="execution-comment" id="executionComment" placeholder="Ej.: siento tirantez, no sé si estoy haciendo bien el movimiento..."></textarea>
+<div class="execution-actions">
+<button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
+<button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
+const CLIENTE = "Dixie Acosta";
+const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
+const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
+const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
+const VIDEO_BUCKET = "videos-clientes";
+const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
+const supabaseClient =
+(window.supabase && typeof window.supabase.createClient === 'function')
+? window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY,
+{
+auth: {
+persistSession: true,
+autoRefreshToken: true,
+detectSessionInUrl: false
+}
+}
+)
+: null;
+if(!supabaseClient){
+console.warn('Supabase no cargó. La encuesta seguirá funcionando; solo se desactivarán temporalmente las funciones de video.');
+}
+let supabaseSessionPromise = null;
+async function obtenerSesionSupabase() {
+if(!supabaseClient) throw new Error("Supabase no está disponible en este dispositivo.");
+if (supabaseSessionPromise) return supabaseSessionPromise;
+supabaseSessionPromise = (async () => {
+const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+if (sessionError) throw sessionError;
+if (sessionData && sessionData.session) return sessionData.session;
+const { data, error } = await supabaseClient.auth.signInAnonymously();
+if (error) throw error;
+if (!data || !data.session) throw new Error("No se pudo crear la sesión segura para subir el video.");
+return data.session;
+})().catch(error => {
+supabaseSessionPromise = null;
+throw error;
+});
+return supabaseSessionPromise;
+}
+function slugVideo(texto) {
+return String(texto || "")
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g, "")
+.toLowerCase()
+.trim()
+.replace(/[^a-z0-9]+/g, "-")
+.replace(/^-+|-+$/g, "")
+.slice(0, 80) || "video";
+}
+function extensionVideo(file) {
+const original = String(file.name || "");
+if (original.includes(".")) {
+const ext = original.split(".").pop().toLowerCase().replace(/[^a-z0-9]/g, "");
+if (ext) return ext;
+}
+const map = {
+"video/mp4": "mp4",
+"video/quicktime": "mov",
+"video/webm": "webm",
+"video/x-m4v": "m4v"
+};
+return map[file.type] || "mp4";
+}
+function obtenerRutinaVideo(button) {
+const container = button ? button.closest(".routine-container") : null;
+if (!container) return "Rutina A Recuperación";
+if (container.id === "rutina-express") return "Rutina A Recuperación Express";
+if (container.id === "rutina-base") return "Rutina A Recuperación Base";
+if (container.id === "rutina-completa") return "Rutina A Recuperación Completa";
+return "Rutina A Recuperación";
+}
+function construirRutaVideo(rutina, ejercicio, file) {
+const ahora = new Date();
+const fecha = new Intl.DateTimeFormat("en-CA", {
+timeZone: "America/Santiago",
+year: "numeric",
+month: "2-digit",
+day: "2-digit"
+}).format(ahora);
+const hora = new Intl.DateTimeFormat("es-CL", {
+timeZone: "America/Santiago",
+hour: "2-digit",
+minute: "2-digit",
+second: "2-digit",
+hour12: false
+}).format(ahora).replace(/:/g, "-");
+return [
+"dixie-acosta",
+slugVideo(rutina),
+fecha,
+fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
+].join("/");
+}
+const VIDEOS_TABLE = "videos_enviados";
+function fechaSesionSantiago(){
+return new Intl.DateTimeFormat("en-CA", {
+timeZone: "America/Santiago",
+year: "numeric",
+month: "2-digit",
+day: "2-digit"
+}).format(new Date());
+}
+function claveEjercicio(rutina, ejercicio){
+return [
+String(CLIENTE || "").trim().toLowerCase(),
+String(rutina || "").trim().toLowerCase(),
+String(ejercicio || "").trim().toLowerCase(),
+fechaSesionSantiago()
+].join("|");
+}
+function marcarCajaComoEnviada(box, textoEstado){
+if(!box) return;
+const btn = box.querySelector(".upload-execution-btn");
+const status = box.querySelector(".upload-status");
+if(btn){
+btn.classList.add("done");
+btn.textContent = "✅ Video enviado";
+}
+if(status){
+status.textContent = textoEstado ||
+"✅ Video enviado hoy. Está sincronizado entre tus dispositivos.";
+}
+}
+function restaurarCajaParaNuevoDia(box){
+if(!box) return;
+const btn = box.querySelector(".upload-execution-btn");
+const status = box.querySelector(".upload-status");
+if(btn){
+btn.classList.remove("done");
+btn.textContent = "📹 Enviar mi ejecución";
+}
+if(status) status.textContent = "";
+}
+async function registrarVideoEnviadoEnSupabase({ rutina, ejercicio, rutaVideo }){
+if(!supabaseClient) return { ok:false, unavailable:true };
+const payload = {
+cliente: CLIENTE,
+rutina,
+ejercicio,
+fecha_sesion: fechaSesionSantiago(),
+ruta_video: rutaVideo,
+estado: "por_revisar"
+};
+const { error } = await supabaseClient
+.from(VIDEOS_TABLE)
+.insert(payload);
+if(error){
+if(error.code === "23505") return { ok:true, duplicate:true };
+throw error;
+}
+return { ok:true, duplicate:false };
+}
+async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
+const payload = {
+cliente: CLIENTE,
+rutina,
+ejercicio,
+comentario: comentario || "",
+rutaVideo,
+estado: "Enviado"
+};
+await fetch(VIDEO_COMMENTS_URL, {
+method: "POST",
+mode: "no-cors",
+keepalive: true,
+headers: {
+"Content-Type": "text/plain;charset=utf-8"
+},
+body: JSON.stringify(payload)
+});
+}
+async function sincronizarVideosEnviadosHoy(){
+if(!supabaseClient){
+console.warn("Sincronización de videos omitida: Supabase no disponible.");
+return;
+}
+try{
+await obtenerSesionSupabase();
+const fechaSesion = fechaSesionSantiago();
+const { data, error } = await supabaseClient
+.from(VIDEOS_TABLE)
+.select("cliente,rutina,ejercicio,fecha_sesion,estado")
+.eq("cliente", CLIENTE)
+.eq("fecha_sesion", fechaSesion);
+if(error) throw error;
+const enviados = new Set(
+(data || []).map(row => claveEjercicio(row.rutina, row.ejercicio))
+);
+document.querySelectorAll(".review-request").forEach(box => {
+const btn = box.querySelector(".upload-execution-btn");
+if(!btn) return;
+const rutina = obtenerRutinaVideo(btn);
+const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
+const key = claveEjercicio(rutina, ejercicio);
+if(enviados.has(key)){
+marcarCajaComoEnviada(
+box,
+"✅ Ya enviaste un video de este ejercicio hoy. Sincronizado entre tus dispositivos."
+);
+}else{
+restaurarCajaParaNuevoDia(box);
+}
+});
+}catch(error){
+console.warn("No se pudo sincronizar el estado de videos:", error);
+// Fallback local if the table is temporarily unavailable.
+document.querySelectorAll(".review-request").forEach(box => {
+try{
+const btn = box.querySelector(".upload-execution-btn");
+if(!btn) return;
+const rutina = obtenerRutinaVideo(btn);
+const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
+const localKey = "movesmart_video_hoy_" + claveEjercicio(rutina, ejercicio);
+if(localStorage.getItem(localKey)){
+marcarCajaComoEnviada(
+box,
+"✅ Video enviado hoy en este dispositivo. La sincronización online no estuvo disponible."
+);
+}
+}catch(e){}
+});
+}
+}
+
+const respuestas = { tiempo:null, energia:null, personalizada:null };
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const resultCard = document.getElementById('resultCard');
@@ -1504,8 +2001,451 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) hideVideo();
     });
+// Videos del cliente: subida directa y reanudable a Supabase Storage.
+const executionModal = document.getElementById('executionModal');
+const executionClose = document.getElementById('executionClose');
+const executionCancel = document.getElementById('executionCancel');
+const executionFile = document.getElementById('executionFile');
+const executionPreview = document.getElementById('executionPreview');
+const selectedVideoInfo = document.getElementById('selectedVideoInfo');
+const optimizationBox = document.getElementById('optimizationBox');
+const executionExerciseName = document.getElementById('executionExerciseName');
+const executionComment = document.getElementById('executionComment');
+const executionSend = document.getElementById('executionSend');
+const uploadProgressWrap = document.getElementById('uploadProgressWrap');
+const uploadProgressBar = document.getElementById('uploadProgressBar');
+const uploadProgressText = document.getElementById('uploadProgressText');
+const uploadProgressPercent = document.getElementById('uploadProgressPercent');
+let activeUploadButton = null;
+let activeExerciseName = '';
+let activeVideoUrl = '';
+let optimizedUploadFile = null;
+function openExecutionModal(button){
+activeUploadButton = button;
+activeExerciseName = button.dataset.exerciseName || 'Ejercicio';
+executionExerciseName.textContent = activeExerciseName;
+executionFile.value = '';
+executionComment.value = '';
+executionSend.disabled = true;
+executionSend.classList.remove('uploading');
+executionSend.textContent = 'Enviar a MoveSmart';
+uploadProgressWrap.classList.remove('active');
+uploadProgressBar.style.width = '0%';
+uploadProgressPercent.textContent = '0%';
+uploadProgressText.textContent = 'Preparando subida…';
+selectedVideoInfo.textContent = '';
+selectedVideoInfo.classList.remove('active');
+optimizationBox.textContent = '';
+optimizationBox.classList.remove('active');
+optimizedUploadFile = null;
+if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
+executionPreview.pause();
+executionPreview.removeAttribute('src');
+executionPreview.load();
+executionPreview.classList.remove('active');
+executionModal.classList.add('active');
+executionModal.setAttribute('aria-hidden','false');
+document.body.style.overflow='hidden';
+}
+function closeExecutionModal(){
+executionModal.classList.remove('active');
+executionModal.setAttribute('aria-hidden','true');
+document.body.style.overflow='';
+if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
+executionPreview.pause();
+executionPreview.removeAttribute('src');
+executionPreview.load();
+executionPreview.classList.remove('active');
+}
+function formatoMB(bytes){
+return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+function esperarEvento(elemento, evento){
+return new Promise((resolve, reject) => {
+const ok = () => { cleanup(); resolve(); };
+const bad = () => { cleanup(); reject(new Error('No se pudo procesar el video.')); };
+const cleanup = () => {
+elemento.removeEventListener(evento, ok);
+elemento.removeEventListener('error', bad);
+};
+elemento.addEventListener(evento, ok, {once:true});
+elemento.addEventListener('error', bad, {once:true});
+});
+}
+async function optimizarVideoParaEnvio(file){
+if(file.size <= 3.5 * 1024 * 1024){
+return {file, optimized:false, reason:'already-small'};
+}
+if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
+return {file, optimized:false, reason:'unsupported'};
+}
+const mimeCandidates = ['video/webm;codecs=vp8', 'video/webm'];
+const mimeType = mimeCandidates.find(type =>
+MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)
+);
+if(!mimeType){
+return {file, optimized:false, reason:'unsupported'};
+}
+const url = URL.createObjectURL(file);
+const video = document.createElement('video');
+video.src = url;
+video.muted = true;
+video.playsInline = true;
+video.preload = 'metadata';
+try{
+await esperarEvento(video, 'loadedmetadata');
+const duration = Number(video.duration || 0);
+if(!Number.isFinite(duration) || duration <= 0 || duration > 90){
+return {file, optimized:false, reason:'duration'};
+}
+const originalW = video.videoWidth || 720;
+const originalH = video.videoHeight || 1280;
+const maxSide = 720;
+const scale = Math.min(1, maxSide / Math.max(originalW, originalH));
+const width = Math.max(2, Math.round((originalW * scale) / 2) * 2);
+const height = Math.max(2, Math.round((originalH * scale) / 2) * 2);
+const canvas = document.createElement('canvas');
+canvas.width = width;
+canvas.height = height;
+const ctx = canvas.getContext('2d', {alpha:false});
+const stream = canvas.captureStream(24);
+const chunks = [];
+const recorder = new MediaRecorder(stream, {
+mimeType,
+videoBitsPerSecond: 900000
+});
+const recorded = new Promise((resolve, reject) => {
+recorder.ondataavailable = e => {
+if(e.data && e.data.size) chunks.push(e.data);
+};
+recorder.onerror = e => reject(e.error || new Error('Error al optimizar el video.'));
+recorder.onstop = () => resolve();
+});
+let rafId = 0;
+const draw = () => {
+if(video.paused || video.ended) return;
+ctx.drawImage(video, 0, 0, width, height);
+rafId = requestAnimationFrame(draw);
+};
+video.currentTime = 0;
+await video.play();
+recorder.start(1000);
+draw();
+await esperarEvento(video, 'ended');
+cancelAnimationFrame(rafId);
+if(recorder.state !== 'inactive') recorder.stop();
+await recorded;
+const blob = new Blob(chunks, {type:mimeType});
+if(!blob.size || blob.size >= file.size * 0.92){
+return {file, optimized:false, reason:'no-benefit'};
+}
+const baseName = String(file.name || 'video').replace(/\.[^.]+$/, '');
+const optimized = new File(
+[blob],
+baseName + '-optimizado.webm',
+{type:'video/webm', lastModified:Date.now()}
+);
+return {
+file: optimized,
+optimized:true,
+originalSize:file.size,
+optimizedSize:optimized.size,
+width,
+height
+};
+}catch(error){
+console.warn('Optimización omitida:', error);
+return {file, optimized:false, reason:'error'};
+}finally{
+try{ video.pause(); }catch(e){}
+URL.revokeObjectURL(url);
+}
+}
+document.querySelectorAll('.upload-execution-btn').forEach(btn=>{
+btn.addEventListener('click',()=>openExecutionModal(btn));
+});
+executionFile.addEventListener('change', async ()=>{
+const originalFile = executionFile.files && executionFile.files[0];
+optimizedUploadFile = null;
+if(!originalFile){
+executionSend.disabled = true;
+return;
+}
+if(!originalFile.type.startsWith('video/')){
+alert('Selecciona un archivo de video.');
+executionFile.value='';
+executionSend.disabled=true;
+return;
+}
+if(originalFile.size > VIDEO_MAX_BYTES){
+alert('Este proyecto gratuito permite archivos de hasta 50 MB. Selecciona un video menor a ese tamaño.');
+executionFile.value='';
+executionSend.disabled=true;
+return;
+}
+if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
+activeVideoUrl = URL.createObjectURL(originalFile);
+executionPreview.src = activeVideoUrl;
+executionPreview.classList.add('active');
+selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
+selectedVideoInfo.classList.add('active');
+executionSend.disabled = true;
+executionSend.textContent = 'Optimizando…';
+optimizationBox.classList.add('active');
+optimizationBox.innerHTML =
+'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
+'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+const result = await optimizarVideoParaEnvio(originalFile);
+optimizedUploadFile = result.file;
+if(result.optimized){
+const ahorro = Math.max(
+0,
+Math.round((1 - result.optimizedSize / result.originalSize) * 100)
+);
+optimizationBox.innerHTML =
+`<strong>✅ Video optimizado</strong><br>` +
+`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
+`${ahorro}% menos datos para subir.`;
+}else{
+const reasonText = {
+'already-small':'El video ya es liviano, así que se enviará tal cual.',
+'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
+'duration':'Para evitar una espera larga, se enviará el original.',
+'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
+'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
+}[result.reason] || 'Se enviará el archivo original.';
+optimizationBox.innerHTML =
+`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
+}
+executionSend.textContent = 'Enviar a MoveSmart';
+executionSend.disabled = false;
+});
+async function subirVideoStoragePrimero(file, objectName, session, rutina, ejercicio, comentario){
+if(!supabaseClient){
+throw new Error("No se cargó Supabase en el navegador.");
+}
+if(!session || !session.access_token){
+throw new Error("No se pudo obtener una sesión válida para subir el video.");
+}
+// Para archivos pequeños usamos la subida estándar: es más simple y evita
+// overhead innecesario de TUS.
+const LIMITE_STANDARD = 6 * 1024 * 1024;
+if(file.size <= LIMITE_STANDARD){
+uploadProgressText.textContent = 'Subiendo video…';
+uploadProgressBar.style.width = '35%';
+uploadProgressPercent.textContent = '35%';
+const { error } = await supabaseClient.storage
+.from(VIDEO_BUCKET)
+.upload(objectName, file, {
+cacheControl: '3600',
+upsert: false,
+contentType: file.type || 'video/mp4'
+});
+if(error){
+const e = new Error("Storage: " + (error.message || "falló la subida directa."));
+e.code = error.statusCode || error.status || error.code || "storage_upload";
+throw e;
+}
+uploadProgressBar.style.width = '100%';
+uploadProgressPercent.textContent = '100%';
+return { metodo: 'standard' };
+}
+// Archivos grandes: subida reanudable TUS.
+if(!window.tus || typeof window.tus.Upload !== 'function'){
+throw new Error("No se cargó el módulo de subida reanudable TUS.");
+}
+await new Promise((resolve, reject) => {
+const upload = new tus.Upload(file, {
+endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
+retryDelays: [0, 3000, 5000, 10000, 20000],
+headers: {
+authorization: `Bearer ${session.access_token}`
+},
+uploadDataDuringCreation: true,
+removeFingerprintOnSuccess: true,
+metadata: {
+bucketName: VIDEO_BUCKET,
+objectName: objectName,
+contentType: file.type || 'video/mp4',
+cacheControl: '3600',
+metadata: JSON.stringify({
+cliente: CLIENTE,
+rutina,
+ejercicio,
+comentario,
+enviado_desde: 'MoveSmart',
+optimizado_en_navegador: !!optimizedUploadFile,
+tamano_subida_bytes: file.size
+})
+},
+chunkSize: 6 * 1024 * 1024,
+onError(error){
+reject(new Error("TUS: " + (error?.message || "falló la subida reanudable.")));
+},
+onProgress(bytesUploaded, bytesTotal){
+const percent = bytesTotal > 0
+? Math.min(100, (bytesUploaded / bytesTotal) * 100)
+: 0;
+const rounded = Math.round(percent);
+uploadProgressBar.style.width = rounded + '%';
+uploadProgressPercent.textContent = rounded + '%';
+const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
+const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
+uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
+},
+onSuccess(){
+resolve();
+}
+});
+upload.findPreviousUploads()
+.then(previousUploads => {
+if(previousUploads.length){
+upload.resumeFromPreviousUpload(previousUploads[0]);
+uploadProgressText.textContent = 'Reanudando una subida anterior…';
+}
+upload.start();
+})
+.catch(reject);
+});
+return { metodo: 'tus' };
+}
+function mensajeErrorVideo(error){
+const msg = String(error?.message || error || 'Error desconocido');
+if(/row-level security|RLS|policy/i.test(msg)){
+return 'Supabase bloqueó la subida por permisos del bucket. Hay que revisar la policy INSERT de Storage.';
+}
+if(/session|auth|JWT|token|anonymous/i.test(msg)){
+return 'No se pudo crear o mantener la sesión segura de Supabase.';
+}
+if(/Failed to fetch|NetworkError|Load failed|network/i.test(msg)){
+return 'Hubo un problema de red al conectar con Supabase.';
+}
+if(/TUS/i.test(msg)){
+return 'Falló la subida reanudable del video.';
+}
+if(/Storage/i.test(msg)){
+return msg;
+}
+return msg;
+}
+executionSend.addEventListener('click', async ()=>{
+const file = optimizedUploadFile || (executionFile.files && executionFile.files[0]);
+if(!file || !activeUploadButton) return;
+const reviewBox = activeUploadButton.closest('.review-request');
+const status = reviewBox ? reviewBox.querySelector('.upload-status') : null;
+const rutina = obtenerRutinaVideo(activeUploadButton);
+const objectName = construirRutaVideo(rutina, activeExerciseName, file);
+try{
+executionSend.disabled = true;
+executionSend.classList.add('uploading');
+executionSend.textContent = 'Conectando…';
+uploadProgressWrap.classList.add('active');
+uploadProgressBar.style.width = '0%';
+uploadProgressPercent.textContent = '0%';
+uploadProgressText.textContent = 'Creando conexión segura…';
+if(status){
+status.textContent = 'Preparando el envío seguro del video…';
+}
+// 1) Autenticación
+const session = await obtenerSesionSupabase();
+// 2) STORAGE PRIMERO. Si esto termina, el archivo ya está guardado.
+executionSend.textContent = 'Enviando…';
+const resultadoSubida = await subirVideoStoragePrimero(
+file,
+objectName,
+session,
+rutina,
+activeExerciseName,
+executionComment.value.trim()
+);
+uploadProgressBar.style.width = '100%';
+uploadProgressPercent.textContent = '100%';
+uploadProgressText.textContent = 'Video guardado en MoveSmart';
+activeUploadButton.classList.add('done');
+activeUploadButton.textContent = '✅ Video enviado';
+executionSend.textContent = '✅ Enviado';
+if(status){
+status.textContent = '✅ Video enviado correctamente a MoveSmart.';
+}
+// Fallback local inmediato: ya sabemos que Storage funcionó.
+try{
+const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
+localStorage.setItem(localKey, JSON.stringify({
+client: CLIENTE,
+routine: rutina,
+exercise: activeExerciseName,
+path: objectName,
+fechaSesion: fechaSesionSantiago(),
+sentAt: new Date().toISOString(),
+status: 'enviado',
+metodo: resultadoSubida.metodo
+}));
+}catch(e){}
+// 3) REGISTRO EN SHEETS. Si falla, el video continúa considerándose enviado.
+try{
+await registrarVideoEnSheet({
+rutina,
+ejercicio: activeExerciseName,
+comentario: executionComment.value.trim(),
+rutaVideo: objectName
+});
+}catch(sheetError){
+console.warn('El video se guardó, pero no se pudo registrar en Sheets:', sheetError);
+}
+// 4) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
+uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
+try{
+await registrarVideoEnviadoEnSupabase({
+rutina,
+ejercicio: activeExerciseName,
+rutaVideo: objectName
+});
+uploadProgressText.textContent = 'Video guardado y sincronizado';
+if(status){
+status.textContent =
+'✅ Video enviado y sincronizado para hoy entre tus dispositivos.';
+}
+try{
+await sincronizarVideosEnviadosHoy();
+}catch(syncRefreshError){
+console.warn('El video se guardó, pero no se pudo refrescar el estado:', syncRefreshError);
+}
+}catch(syncError){
+console.warn('Video guardado; falló solo la sincronización:', syncError);
+uploadProgressText.textContent =
+'Video guardado. Sincronización pendiente.';
+if(status){
+status.textContent =
+'✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
+}
+}
+setTimeout(closeExecutionModal, 1200);
+}catch(error){
+console.error('Error REAL de subida de video:', error);
+executionSend.disabled = false;
+executionSend.classList.remove('uploading');
+executionSend.textContent = 'Reintentar envío';
+const detalle = mensajeErrorVideo(error);
+uploadProgressText.textContent = 'Error: ' + detalle;
+if(status){
+status.textContent = '❌ ' + detalle + ' Puedes tocar “Reintentar envío”.';
+}
+alert(
+'No se pudo guardar el video.\n\n' +
+'Detalle: ' + detalle
+);
+}
+});
+if(executionClose) executionClose.addEventListener('click',closeExecutionModal);
+if(executionCancel) executionCancel.addEventListener('click',closeExecutionModal);
+if(executionModal) executionModal.addEventListener('click',e=>{ if(e.target===executionModal) closeExecutionModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && executionModal.classList.contains('active')) closeExecutionModal(); });
+sincronizarVideosEnviadosHoy();
+window.addEventListener('focus', () => {
+sincronizarVideosEnviadosHoy();
+});
 
-    updateProgress();
+updateProgress();
 </script>
 </body>
 </html>
