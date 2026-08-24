@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -699,12 +700,19 @@ padding-top:56.25%;
 background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
 }
 
-.video-frame-wrap iframe{
+.video-frame-wrap iframe,
+.video-frame-wrap video{
 position:absolute;
 inset:0;
 width:100%;
 height:100%;
 border:0;
+}
+
+.video-frame-wrap video{
+display:none;
+object-fit:contain;
+background:#000;
 }
 
 @keyframes fadeUp{
@@ -924,7 +932,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
 </div>
 <!-- EXPRESS -->
-<div class="routine-container" id="rutina-express"><div class="routine-intro"><div class="routine-version-label">⚡ Rutina B Recuperación Express · 10–15 min</div><h2>Rutina B · Movilidad global y coordinación</h2><p>Versión breve enfocada en cuello, columna, pelvis y coordinación. Complementa la Rutina A sin repetir su bloque específico de pie.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>10–15 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Reduce rigidez y organiza la postura.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/_xWQgARcW2c" type="button">▶ Ver video</button>
+<div class="routine-container" id="rutina-express"><div class="routine-intro"><div class="routine-version-label">⚡ Rutina B Recuperación Express · 10–15 min</div><h2>Rutina B · Movilidad global y coordinación</h2><p>Versión breve enfocada en cuello, columna, pelvis y coordinación. Complementa la Rutina A sin repetir su bloque específico de pie.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>10–15 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Reduce rigidez y organiza la postura.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -942,7 +950,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Movilidad cervical suave">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movimiento suave del tronco sin carga externa.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Con las manos descansando sobre los muslos, gira el tronco suavemente hacia cada lado.</p><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=NhgNGmyWy14" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movimiento suave del tronco sin carga externa.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Con las manos descansando sobre los muslos, gira el tronco suavemente hacia cada lado.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
 <div class="review-request" data-exercise="rotaciann-toraecica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -960,7 +968,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Coordinación de piernas</h2><p>Mantén fluidez y control sin buscar fatiga.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra manteniendo un ritmo tranquilo y sin impulsarte con los brazos.</p><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/3GCvppTWGF8" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Coordinación de piernas</h2><p>Mantén fluidez y control sin buscar fatiga.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra manteniendo un ritmo tranquilo y sin impulsarte con los brazos.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
 <div class="review-request" data-exercise="marcha-sentada-alternada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -969,9 +977,9 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada alternada">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos de respiración tranquila.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Express&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2 minutos de respiración tranquila.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Express&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
 <!-- BASE -->
-<div class="routine-container" id="rutina-base"><div class="routine-intro"><div class="routine-version-label">🕒 Rutina B Recuperación Base · 20–25 min</div><h2>Rutina B · Movilidad funcional y coordinación</h2><p>Versión principal para mantener movilidad de columna, pelvis, cadera y coordinación, sin repetir el trabajo específico del Aquiles de la Rutina A.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>20–25 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad + coordinación</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/_xWQgARcW2c" type="button">▶ Ver video</button>
+<div class="routine-container" id="rutina-base"><div class="routine-intro"><div class="routine-version-label">🕒 Rutina B Recuperación Base · 20–25 min</div><h2>Rutina B · Movilidad funcional y coordinación</h2><p>Versión principal para mantener movilidad de columna, pelvis, cadera y coordinación, sin repetir el trabajo específico del Aquiles de la Rutina A.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>20–25 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad + coordinación</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -989,7 +997,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Movilidad cervical suave">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movilidad del tronco sin apoyo de peso sobre el brazo.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Gira el tronco lentamente a cada lado con las manos descansando sobre los muslos.</p><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=NhgNGmyWy14" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6–8 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movilidad del tronco sin apoyo de peso sobre el brazo.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Gira el tronco lentamente a cada lado con las manos descansando sobre los muslos.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6–8 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
 <div class="review-request" data-exercise="rotaciann-toraecica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1025,7 +1033,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Rotación externa de cadera sentada">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra sin impulsarte con los brazos.</p><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/3GCvppTWGF8" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
+</article><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra sin impulsarte con los brazos.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
 <div class="review-request" data-exercise="marcha-sentada-alternada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1043,9 +1051,9 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Elevación de talones sentado">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Cierre</h2><p>Baja el ritmo antes de terminar.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos de respiración tranquila.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Base&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Cierre</h2><p>Baja el ritmo antes de terminar.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos de respiración tranquila.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Base&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
 <!-- COMPLETA -->
-<div class="routine-container" id="rutina-completa"><div class="routine-intro"><div class="routine-version-label">🕘 Rutina B Recuperación Completa · 25–30 min</div><h2>Rutina B · Movilidad global, control y coordinación</h2><p>Versión ampliada orientada a columna, pelvis, cadera y coordinación. Se diferencia de la Rutina A al no centrarse en el trabajo específico del pie.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–30 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad global + control</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
+<div class="routine-container" id="rutina-completa"><div class="routine-intro"><div class="routine-version-label">🕘 Rutina B Recuperación Completa · 25–30 min</div><h2>Rutina B · Movilidad global, control y coordinación</h2><p>Versión ampliada orientada a columna, pelvis, cadera y coordinación. Se diferencia de la Rutina A al no centrarse en el trabajo específico del pie.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–30 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div><div class="stat"><small>Material</small><strong>Silla</strong></div><div class="stat"><small>Objetivo</small><strong>Movilidad global + control</strong></div></div></div><div class="warning"><strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones y cualquier movimiento que aumente las molestias. Si el médico indicó reposo completo, no realices la sesión.</div><section class="section"><div class="section-head"><h2>Preparación</h2><p>Entrada suave para disminuir rigidez.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
 <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1063,7 +1071,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Movilidad cervical suave">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movilidad del tronco sin carga externa.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Gira el tronco lentamente hacia ambos lados con las manos descansando sobre los muslos.</p><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=NhgNGmyWy14" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Columna y pelvis</h2><p>Movilidad del tronco sin carga externa.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Rotación torácica sentada</div><p class="exercise-desc">Gira el tronco lentamente hacia ambos lados con las manos descansando sobre los muslos.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Ritmo</span>Lento</div><div class="pill"><span>RPE</span>1–2</div></div>
 <div class="review-request" data-exercise="rotaciann-toraecica-sentada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1099,7 +1107,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Rotación externa de cadera sentada">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra manteniendo el tronco estable.</p><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/3GCvppTWGF8" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
+</article><article class="exercise-card"><div><div class="exercise-name">Marcha sentada alternada</div><p class="exercise-desc">Eleva una rodilla y luego la otra manteniendo el tronco estable.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12 por lado</div><div class="pill"><span>Ritmo</span>Suave</div><div class="pill"><span>RPE</span>2</div></div>
 <div class="review-request" data-exercise="marcha-sentada-alternada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1126,7 +1134,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
   <button class="upload-execution-btn" type="button" data-exercise-name="Alfabeto de tobillo sentado">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos para cerrar la sesión.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Completa&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
+</article><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos para cerrar la sesión.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&rutina=Rutina%20B%20Recuperacion%20Completa&sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
 </main>
 </div>
 <div aria-hidden="true" class="video-modal" id="videoModal">
@@ -1137,6 +1145,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 <div class="video-frame-wrap">
 <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+<video autoplay controls loop muted playsinline id="videoPlayer" preload="metadata"></video>
 </div>
 </div>
 </div>
@@ -1578,19 +1587,43 @@ return null;
 
 const videoModal = document.getElementById('videoModal');
 const videoFrame = document.getElementById('videoFrame');
+const videoPlayer = document.getElementById('videoPlayer');
 const closeVideo = document.getElementById('closeVideo');
 const videoTitle = document.getElementById('videoTitle');
 
-function showVideo(url, title) {
+function showYoutubeVideo(url, title) {
 videoTitle.textContent = title || 'Video de ejercicio';
+videoPlayer.pause();
+videoPlayer.removeAttribute('src');
+videoPlayer.load();
+videoPlayer.style.display = 'none';
+videoFrame.style.display = 'block';
 videoFrame.src = url;
 videoModal.classList.add('active');
 document.body.style.overflow = 'hidden';
 }
 
+function showDirectVideo(url, title) {
+videoTitle.textContent = title || 'Video de ejercicio';
+videoFrame.src = '';
+videoFrame.style.display = 'none';
+videoPlayer.style.display = 'block';
+videoPlayer.src = url;
+videoModal.classList.add('active');
+document.body.style.overflow = 'hidden';
+const playPromise = videoPlayer.play();
+if (playPromise && typeof playPromise.catch === 'function') {
+playPromise.catch(function () {});
+}
+}
+
 function hideVideo() {
 videoModal.classList.remove('active');
 videoFrame.src = '';
+videoPlayer.pause();
+videoPlayer.removeAttribute('src');
+videoPlayer.load();
+videoPlayer.style.display = 'none';
 document.body.style.overflow = '';
 }
 
@@ -1604,12 +1637,17 @@ const simpleCard = button.closest('.simple-card');
 const nameEl = card ? card.querySelector('.exercise-name') : (simpleCard ? simpleCard.querySelector('strong') : null);
 const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
 const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
-const embedUrl = toEmbedUrl(rawUrl);
+const cleanUrl = String(rawUrl || '').trim();
+const isDirectVideo = /^https:\/\/[^\s]+\.(mp4|webm|ogg)(\?[^\s]*)?$/i.test(cleanUrl);
 
+if (isDirectVideo) {
+showDirectVideo(cleanUrl, title);
+return;
+}
+
+const embedUrl = toEmbedUrl(cleanUrl);
 if (embedUrl) {
-showVideo(embedUrl, title);
-} else if (rawUrl && rawUrl.includes('youtube.com/results?search_query=')) {
-window.open(rawUrl, '_blank', 'noopener,noreferrer');
+showYoutubeVideo(embedUrl, title);
 } else {
 alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
 }
@@ -1816,33 +1854,16 @@ executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
-executionSend.textContent = 'Optimizando…';
+executionSend.textContent = 'Preparando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
-'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
-'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+'<strong>⚡ Preparando tu video…</strong><br>' +
+'Esto puede tardar unos segundos.';
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-if(result.optimized){
-const ahorro = Math.max(
-0,
-Math.round((1 - result.optimizedSize / result.originalSize) * 100)
-);
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
-}else{
-const reasonText = {
-'already-small':'El video ya es liviano, así que se enviará tal cual.',
-'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
-'duration':'Para evitar una espera larga, se enviará el original.',
-'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
-'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
-}[result.reason] || 'Se enviará el archivo original.';
-optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
-}
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
@@ -1993,6 +2014,9 @@ executionSend.textContent = '✅ Enviado';
 if(status){
 status.textContent = '✅ Video enviado correctamente a MoveSmart.';
 }
+// Cierra rápidamente después de confirmar el envío. Los registros y la
+// sincronización posteriores continúan en segundo plano.
+setTimeout(closeExecutionModal, 500);
 // Fallback local inmediato: ya sabemos que Storage funcionó.
 try{
 const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
@@ -2045,7 +2069,6 @@ status.textContent =
 '✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
 }
 }
-setTimeout(closeExecutionModal, 1200);
 }catch(error){
 console.error('Error REAL de subida de video:', error);
 executionSend.disabled = false;
