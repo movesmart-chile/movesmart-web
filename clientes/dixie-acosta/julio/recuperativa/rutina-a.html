@@ -2259,33 +2259,16 @@ executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
-executionSend.textContent = 'Optimizando…';
+executionSend.textContent = 'Preparando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
-'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
-'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+'<strong>⚡ Preparando tu video…</strong><br>' +
+'Esto puede tardar unos segundos.';
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-if(result.optimized){
-const ahorro = Math.max(
-0,
-Math.round((1 - result.optimizedSize / result.originalSize) * 100)
-);
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
-}else{
-const reasonText = {
-'already-small':'El video ya es liviano, así que se enviará tal cual.',
-'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
-'duration':'Para evitar una espera larga, se enviará el original.',
-'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
-'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
-}[result.reason] || 'Se enviará el archivo original.';
-optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
-}
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
