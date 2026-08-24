@@ -2419,6 +2419,9 @@ executionSend.textContent = '✅ Enviado';
 if(status){
 status.textContent = '✅ Video enviado correctamente a MoveSmart.';
 }
+// Cierra rápidamente después de confirmar el envío. Los registros y la
+// sincronización posteriores continúan en segundo plano.
+setTimeout(closeExecutionModal, 500);
 // Fallback local inmediato: ya sabemos que Storage funcionó.
 try{
 const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
@@ -2471,7 +2474,6 @@ status.textContent =
 '✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
 }
 }
-setTimeout(closeExecutionModal, 1200);
 }catch(error){
 console.error('Error REAL de subida de video:', error);
 executionSend.disabled = false;
