@@ -696,12 +696,19 @@
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
 
-    .video-frame-wrap iframe{
+    .video-frame-wrap iframe,
+    .video-frame-wrap video{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       border:0;
+    }
+
+    .video-frame-wrap video{
+      display:none;
+      object-fit:contain;
+      background:#000;
     }
 
     @keyframes fadeUp{
@@ -1020,7 +1027,7 @@ line-height:1.5;
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div>
+      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
     </section>
 
     <div class="finish-session-wrap">
@@ -1259,7 +1266,7 @@ line-height:1.5;
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div>
+      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
     </section>
 
     <div class="finish-session-wrap">
@@ -1527,7 +1534,7 @@ line-height:1.5;
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button></div></div>
+      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
     </section>
 
     <div class="finish-session-wrap">
@@ -1547,6 +1554,7 @@ line-height:1.5;
     </div>
     <div class="video-frame-wrap">
       <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
+      <video autoplay controls loop muted playsinline id="videoPlayer" preload="metadata"></video>
     </div>
   </div>
 </div>
@@ -1988,19 +1996,43 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
 
     const videoModal = document.getElementById('videoModal');
     const videoFrame = document.getElementById('videoFrame');
+    const videoPlayer = document.getElementById('videoPlayer');
     const closeVideo = document.getElementById('closeVideo');
     const videoTitle = document.getElementById('videoTitle');
 
-    function showVideo(url, title) {
+    function showYoutubeVideo(url, title) {
       videoTitle.textContent = title || 'Video de ejercicio';
+      videoPlayer.pause();
+      videoPlayer.removeAttribute('src');
+      videoPlayer.load();
+      videoPlayer.style.display = 'none';
+      videoFrame.style.display = 'block';
       videoFrame.src = url;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
+    function showDirectVideo(url, title) {
+      videoTitle.textContent = title || 'Video de ejercicio';
+      videoFrame.src = '';
+      videoFrame.style.display = 'none';
+      videoPlayer.style.display = 'block';
+      videoPlayer.src = url;
+      videoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      const playPromise = videoPlayer.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function () {});
+      }
+    }
+
     function hideVideo() {
       videoModal.classList.remove('active');
       videoFrame.src = '';
+      videoPlayer.pause();
+      videoPlayer.removeAttribute('src');
+      videoPlayer.load();
+      videoPlayer.style.display = 'none';
       document.body.style.overflow = '';
     }
 
@@ -2013,9 +2045,16 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         const nameEl = card ? card.querySelector('.exercise-name') : null;
         const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
         const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
-        const embedUrl = toEmbedUrl(rawUrl);
+        const cleanUrl = String(rawUrl || '').trim();
+        const isDirectVideo = /^https:\/\/[^\s]+\.(mp4|webm|ogg)(\?[^\s]*)?$/i.test(cleanUrl);
 
-        if (embedUrl) showVideo(embedUrl, title);
+        if (isDirectVideo) {
+          showDirectVideo(cleanUrl, title);
+          return;
+        }
+
+        const embedUrl = toEmbedUrl(cleanUrl);
+        if (embedUrl) showYoutubeVideo(embedUrl, title);
         else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
       });
     });
