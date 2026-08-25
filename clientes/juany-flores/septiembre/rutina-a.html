@@ -649,7 +649,11 @@
       width:100%;
       height:100%;
       border:0;
+      object-fit:contain;
+      pointer-events:none;
+      background:#000;
     }
+    .video-frame-wrap video::-webkit-media-controls{display:none!important}
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(14px)}
       to{opacity:1;transform:translateY(0)}
@@ -1428,7 +1432,7 @@ line-height:1.5;
 <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
 </div>
 <div class="video-frame-wrap">
-<video autoplay controls id="videoFrame" loop muted playsinline title="Video de ejercicio"></video>
+<video autoplay disablepictureinpicture id="videoFrame" loop muted playsinline preload="auto" title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
@@ -1811,6 +1815,7 @@ box,
       videoFrame.src = url;
       videoFrame.muted = true;
       videoFrame.loop = true;
+      videoFrame.controls = false;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
       videoFrame.play().catch(function () {});
