@@ -7,7 +7,6 @@
 <title>Rutina A Mes 2 | Juany Flores</title>
 <style>
     *{box-sizing:border-box;margin:0;padding:0}
-
     :root{
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
@@ -21,7 +20,6 @@
       --shadow:0 14px 34px rgba(0,0,0,.32);
       --wrap:min(1120px, calc(100% - 32px));
     }
-
     body{
       min-height:100vh;
       font-family:'Segoe UI',system-ui,sans-serif;
@@ -32,7 +30,6 @@
         linear-gradient(180deg, #070b16 0%, #0b0e1a 45%, #080a13 100%);
       overflow-x:hidden;
     }
-
     body::before{
       content:"";
       position:fixed;
@@ -43,7 +40,6 @@
         radial-gradient(circle at 50% 110%, rgba(255,255,255,.05), transparent 36%);
       z-index:0;
     }
-
     .wrap{
       width:var(--wrap);
       margin:auto;
@@ -51,7 +47,6 @@
       position:relative;
       z-index:1;
     }
-
     .topbar{
       display:flex;
       align-items:center;
@@ -59,13 +54,11 @@
       gap:16px;
       margin-bottom:24px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
     }
-
     .brand-badge{
       width:46px;
       height:46px;
@@ -76,20 +69,17 @@
       font-weight:900;
       box-shadow:0 16px 34px rgba(255,90,31,.22);
     }
-
     .brand-text h1{
       font-size:1.28rem;
       line-height:1.05;
       font-weight:900;
       letter-spacing:-.02em;
     }
-
     .brand-text p{
       color:var(--muted);
       font-size:.92rem;
       margin-top:4px;
     }
-
     .back-btn{
       text-decoration:none;
       color:#fff;
@@ -99,7 +89,6 @@
       border-radius:16px;
       font-weight:800;
     }
-
     .hero{
       min-height:360px;
       border-radius:34px;
@@ -113,7 +102,6 @@
       background:#090d18;
       margin-bottom:24px;
     }
-
     .hero::before{
       content:"";
       position:absolute;
@@ -124,7 +112,6 @@
       z-index:1;
       pointer-events:none;
     }
-
     .hero-copy{
       position:relative;
       z-index:2;
@@ -133,14 +120,12 @@
       flex-direction:column;
       justify-content:center;
     }
-
     .hello{
       color:var(--accent-2);
       font-weight:900;
       font-size:1.1rem;
       margin-bottom:14px;
     }
-
     .hero h2{
       font-size:clamp(2rem, 4vw, 3.6rem);
       line-height:1.04;
@@ -148,14 +133,12 @@
       max-width:700px;
       margin-bottom:16px;
     }
-
     .hero p{
       color:rgba(255,255,255,.82);
       font-size:1.05rem;
       line-height:1.7;
       max-width:560px;
     }
-
     .hero-image{
       position:absolute;
       inset:0;
@@ -163,7 +146,6 @@
       z-index:0;
       transform:scale(1.01);
     }
-
     .survey-card{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.12);
@@ -173,7 +155,6 @@
       backdrop-filter:blur(6px);
       -webkit-backdrop-filter:blur(6px);
     }
-
     .survey-head{
       display:flex;
       justify-content:space-between;
@@ -181,13 +162,11 @@
       gap:18px;
       margin-bottom:24px;
     }
-
     .survey-title{
       display:flex;
       align-items:center;
       gap:14px;
     }
-
     .survey-icon{
       width:48px;
       height:48px;
@@ -198,16 +177,13 @@
       place-items:center;
       font-size:1.35rem;
     }
-
     .survey-title h3{
       font-size:1.55rem;
       margin-bottom:4px;
     }
-
     .survey-title p{
       color:var(--muted);
     }
-
     .progress-wrap{
       display:grid;
       grid-template-columns:1fr auto;
@@ -215,14 +191,12 @@
       gap:22px;
       margin:8px 0 22px;
     }
-
     .progress-bar{
       height:7px;
       border-radius:999px;
       background:rgba(255,255,255,.08);
       overflow:hidden;
     }
-
     .progress-fill{
       height:100%;
       width:33%;
@@ -230,27 +204,22 @@
       background:linear-gradient(90deg, var(--accent), var(--accent-2));
       transition:.25s ease;
     }
-
     .progress-text{
       color:rgba(255,255,255,.72);
       font-size:.98rem;
       white-space:nowrap;
     }
-
     .question{
       padding:26px 0;
       border-top:1px solid rgba(255,255,255,.09);
     }
-
     .question:first-of-type{border-top:none}
-
     .q-title{
       display:flex;
       align-items:flex-start;
       gap:16px;
       margin-bottom:18px;
     }
-
     .q-icon{
       width:54px;
       height:54px;
@@ -263,24 +232,20 @@
       font-size:1.45rem;
       flex:0 0 auto;
     }
-
     .q-title h4{
       color:var(--accent-2);
       font-size:1.24rem;
       margin-bottom:6px;
     }
-
     .q-title p{
       color:var(--muted);
       line-height:1.5;
     }
-
     .choices{
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:18px;
     }
-
     .choice{
       min-height:132px;
       padding:20px 16px;
@@ -298,33 +263,27 @@
       font-family:inherit;
       transition:.18s ease;
     }
-
     .choice:hover{
       transform:translateY(-2px);
       border-color:rgba(255,90,31,.45);
     }
-
     .choice.selected{
       background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));
       border-color:var(--accent);
       box-shadow:0 0 0 1px rgba(255,90,31,.44), 0 16px 28px rgba(255,90,31,.10);
     }
-
     .choice .emoji{
       font-size:1.7rem;
       line-height:1;
     }
-
     .choice strong{
       font-size:1.22rem;
       display:block;
     }
-
     .choice span{
       color:rgba(255,255,255,.74);
       font-size:.94rem;
     }
-
     .submit-btn{
       margin-top:16px;
       width:100%;
@@ -339,14 +298,12 @@
       box-shadow:0 16px 34px rgba(255,90,31,.25);
       font-family:inherit;
     }
-
     .microcopy{
       color:rgba(255,255,255,.68);
       text-align:center;
       margin-top:16px;
       font-size:.95rem;
     }
-
     .result-card{
       display:none;
       margin-top:18px;
@@ -357,36 +314,28 @@
       color:#ddffea;
       line-height:1.65;
     }
-
     .result-card.active{display:block}
-
-
-
     .quick-stats{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:14px;
       margin:22px 0 28px;
     }
-
     .stat{
       background:rgba(255,255,255,.07);
       border:1px solid rgba(255,255,255,.10);
       border-radius:20px;
       padding:16px;
     }
-
     .stat small{
       display:block;
       color:var(--text-soft, rgba(255,255,255,.82));
       margin-bottom:6px;
     }
-
     .stat strong{
       font-size:1rem;
       line-height:1.4;
     }
-
     .mode-card{
       margin:20px 0 8px;
       padding:20px;
@@ -397,9 +346,7 @@
       line-height:1.7;
       box-shadow:0 18px 38px rgba(0,0,0,.20);
     }
-
     .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
-
     .routine-version-label{
       display:inline-flex;
       align-items:center;
@@ -413,9 +360,6 @@
       font-size:.9rem;
       font-weight:800;
     }
-
-
-
     .smart-loading{
       display:none;
       margin-top:22px;
@@ -427,9 +371,7 @@
       text-align:center;
       animation:fadeUp .35s ease both;
     }
-
     .smart-loading.active{display:block}
-
     .smart-orb{
       width:68px;
       height:68px;
@@ -441,28 +383,23 @@
       box-shadow:0 0 34px rgba(255,90,31,.45);
       animation:pulseOrb 1.15s ease-in-out infinite;
     }
-
     .smart-loading h3{
       font-size:1.35rem;
       margin-bottom:8px;
     }
-
     .smart-loading p{
       color:rgba(255,255,255,.76);
       line-height:1.6;
     }
-
     .survey-card.is-processing{
       opacity:.75;
       pointer-events:none;
       transition:.25s ease;
     }
-
     @keyframes pulseOrb{
       0%,100%{transform:scale(.92);opacity:.72}
       50%{transform:scale(1.06);opacity:1}
     }
-
     @media (max-width:900px){
       .hero{grid-template-columns:1fr;min-height:360px}
       .hero-copy{padding:34px 26px}
@@ -470,51 +407,40 @@
       .survey-head,.progress-wrap{grid-template-columns:1fr;align-items:start}
       .progress-text{white-space:normal}
     }
-
     @media (max-width:640px){
-
   .quick-stats{
     grid-template-columns:repeat(2,1fr);
     gap:12px;
   }
-
   .stat{
     padding:14px;
     border-radius:18px;
   }
-
   .stat strong{
     font-size:1.15rem;
     line-height:1.4;
     word-break:break-word;
   }
-
   .exercise-meta{
     grid-template-columns:1fr;
   }
-
   .finish-session-btn{
     width:100%;
     min-width:unset;
   }
 }
-
-
     /* Fondo MoveSmart */
     body{
       background:
         linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
         url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
     }
-
     .routine-container{
       display:none;
       margin-top:24px;
       animation:fadeUp .35s ease both;
     }
-
     .routine-container.active{display:block}
-
     .routine-intro{
       margin:22px 0;
       padding:26px;
@@ -523,7 +449,6 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
     }
-
     .routine-intro .eyebrow{
       display:inline-block;
       background:rgba(255,90,31,.15);
@@ -534,20 +459,17 @@
       font-size:.9rem;
       margin-bottom:14px;
     }
-
     .routine-intro h2{
       font-size:clamp(1.7rem,3vw,2.6rem);
       line-height:1.05;
       margin-bottom:10px;
       letter-spacing:-.03em;
     }
-
     .routine-intro p{
       color:var(--muted);
       line-height:1.7;
       max-width:760px;
     }
-
     .section{
       margin-top:22px;
       background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
@@ -556,29 +478,24 @@
       overflow:hidden;
       box-shadow:var(--shadow);
     }
-
     .section-head{
       background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
       padding:20px 24px;
       border-bottom:1px solid rgba(255,255,255,.10);
     }
-
     .section-head h2{
       font-size:1.45rem;
       margin-bottom:5px;
     }
-
     .section-head p{
       color:rgba(255,255,255,.78);
       line-height:1.55;
     }
-
     .section-body{
       padding:20px;
       display:grid;
       gap:16px;
     }
-
     .exercise-card{
       background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.12);
@@ -590,31 +507,26 @@
       align-items:center;
       transition:.18s ease;
     }
-
     .exercise-card:hover{
       transform:translateY(-2px);
       border-color:rgba(255,90,31,.38);
     }
-
     .exercise-name{
       font-size:1.18rem;
       font-weight:900;
       margin-bottom:8px;
       color:#fff;
     }
-
     .exercise-desc{
       color:rgba(255,255,255,.76);
       line-height:1.65;
       font-size:.97rem;
     }
-
     .exercise-meta{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:10px;
     }
-
     .pill{
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.12);
@@ -623,14 +535,12 @@
       font-size:.95rem;
       color:#fff;
     }
-
     .pill span{
       display:block;
       color:rgba(255,255,255,.62);
       font-size:.82rem;
       margin-bottom:4px;
     }
-
     .video-btn{
       display:inline-flex;
       align-items:center;
@@ -648,7 +558,6 @@
       font-family:inherit;
       font-size:1rem;
     }
-
     .simple-card,.note,.finish-session-text{
       background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.12);
@@ -657,14 +566,12 @@
       line-height:1.7;
       color:rgba(255,255,255,.84);
     }
-
     .note{
       margin-top:22px;
       background:rgba(29,191,115,.12);
       border-color:rgba(29,191,115,.28);
       color:#ddffea;
     }
-
     .finish-session-wrap{
       margin-top:22px;
       display:flex;
@@ -672,12 +579,10 @@
       align-items:center;
       gap:18px;
     }
-
     .finish-session-text{
       width:100%;
       text-align:center;
     }
-
     .finish-session-btn{
       display:inline-flex;
       align-items:center;
@@ -694,7 +599,6 @@
       border:none;
       min-width:320px;
     }
-
     .video-modal{
       position:fixed;
       inset:0;
@@ -705,9 +609,7 @@
       padding:20px;
       z-index:9999;
     }
-
     .video-modal.active{ display:flex; }
-
     .video-box{
       width:min(900px, 100%);
       background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
@@ -716,7 +618,6 @@
       overflow:hidden;
       box-shadow:0 18px 40px rgba(0,0,0,.35);
     }
-
     .video-box-head{
       display:flex;
       align-items:center;
@@ -726,7 +627,6 @@
       background:rgba(255,255,255,.05);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-
     .close-video{
       border:none;
       background:rgba(255,255,255,.10);
@@ -737,14 +637,12 @@
       font-weight:800;
       font-family:inherit;
     }
-
     .video-frame-wrap{
       position:relative;
       width:100%;
       padding-top:56.25%;
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
-
     .video-frame-wrap iframe{
       position:absolute;
       inset:0;
@@ -752,39 +650,31 @@
       height:100%;
       border:0;
     }
-
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(14px)}
       to{opacity:1;transform:translateY(0)}
     }
-
-
-
     .quick-stats{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
       gap:14px;
       margin:22px 0 28px;
     }
-
     .stat{
       background:rgba(255,255,255,.07);
       border:1px solid rgba(255,255,255,.10);
       border-radius:20px;
       padding:16px;
     }
-
     .stat small{
       display:block;
       color:var(--text-soft, rgba(255,255,255,.82));
       margin-bottom:6px;
     }
-
     .stat strong{
       font-size:1rem;
       line-height:1.4;
     }
-
     .mode-card{
       margin:20px 0 8px;
       padding:20px;
@@ -795,9 +685,7 @@
       line-height:1.7;
       box-shadow:0 18px 38px rgba(0,0,0,.20);
     }
-
     .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
-
     .routine-version-label{
       display:inline-flex;
       align-items:center;
@@ -811,19 +699,14 @@
       font-size:.9rem;
       font-weight:800;
     }
-
     @media (max-width:900px){
       .exercise-card{grid-template-columns:1fr}
       .exercise-meta{grid-template-columns:repeat(2,1fr)}
     }
-
     @media (max-width:640px){
       .exercise-meta{grid-template-columns:1fr}
       .finish-session-btn{width:100%;min-width:unset}
     }
-
-
-
     /* Corrección: la rutina completa no debe heredar el hero oscuro de la encuesta */
     .routine-container .hero{
       min-height:auto;
@@ -836,11 +719,9 @@
       margin:22px 0;
       overflow:visible;
     }
-
     .routine-container .hero::before{
       display:none;
     }
-
     .routine-container .hero h1,
     .routine-container .hero .subtitle,
     .routine-container .hero .eyebrow,
@@ -848,13 +729,9 @@
       position:relative;
       z-index:2;
     }
-
     .routine-container .hero .quick-stats{
       margin-bottom:0;
     }
-
-
-
     /* Ajuste final móvil: evita tarjetas estadísticas aplastadas en iPhone */
     @media (max-width:640px){
       .routine-container .quick-stats,
@@ -862,14 +739,12 @@
         grid-template-columns:1fr !important;
         gap:12px !important;
       }
-
       .routine-container .stat,
       .stat{
         min-height:auto !important;
         padding:14px 16px !important;
         border-radius:18px !important;
       }
-
       .routine-container .stat strong,
       .stat strong{
         font-size:1rem !important;
@@ -877,70 +752,57 @@
         word-break:normal !important;
         overflow-wrap:anywhere !important;
       }
-
       .routine-container .hero{
         padding:22px !important;
         border-radius:26px !important;
       }
-
       .routine-container .hero h1{
         font-size:clamp(1.7rem, 8vw, 2.2rem) !important;
         line-height:1.08 !important;
       }
-
       .routine-container .hero .subtitle{
         font-size:1rem !important;
         line-height:1.6 !important;
       }
-
       .section{
         border-radius:24px !important;
       }
-
       .section-head,
       .section-body{
         padding:16px !important;
       }
-
       .exercise-card{
         grid-template-columns:1fr !important;
         padding:16px !important;
         border-radius:20px !important;
       }
-
       .exercise-meta{
         display:flex !important;
         flex-wrap:wrap !important;
         gap:8px !important;
       }
-
       .pill{
         flex:1 1 130px !important;
         padding:9px 10px !important;
         border-radius:14px !important;
       }
-
       .finish-session-btn{
         width:100% !important;
         min-width:unset !important;
       }
     }
-
     /* Optimización rendimiento móvil */
     @media (max-width:640px){
       body::before{
         position:absolute;
       }
-
       .choice:hover,
       .exercise-card:hover{
         transform:none;
       }
-
       .smart-orb{
         animation:none;
       }
-
       .survey-card,
       .routine-intro,
       .section,
@@ -948,7 +810,6 @@
         box-shadow:0 10px 24px rgba(0,0,0,.25);
       }
     }
-
   .video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
 .video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}
 .video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}
@@ -1012,7 +873,6 @@ line-height:1.5;
 }
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
-
 </style>
 </head>
 <body>
@@ -1025,7 +885,7 @@ line-height:1.5;
 <p>Juany Flores · Rutina A · Mes 2</p>
 </div>
 </div>
-<a class="back-btn" href="[/movesmart-web/clientes/juany-flores/plan-juany-flores.html](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/plan-juany-flores.html)">← Volver al plan</a>
+<a class="back-btn" href="[[/movesmart-web/clientes/juany-flores/plan-juany-flores.html](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/plan-juany-flores.html)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/[/movesmart-web/clientes/juany-flores/plan-juany-flores.html](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/plan-juany-flores.html))">← Volver al plan</a>
 </header>
 <section class="hero">
 <div aria-hidden="true" class="hero-image"></div>
@@ -1142,7 +1002,6 @@ line-height:1.5;
 <h2>Rutina A · Fuerza base</h2>
 <p>Versión corta para mantener continuidad con los ejercicios esenciales.</p>
 </div>
-
 <div class="video-help-note">
   <div class="video-help-icon">📹</div>
   <div>
@@ -1154,7 +1013,6 @@ line-height:1.5;
 <div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>4 minutos a ritmo cómodo.</div></div>
 </section>
-
 <div class="note" style="background:rgba(255,209,102,.10);border-color:rgba(255,209,102,.30);color:#fff1c6;">
 <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -1165,7 +1023,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Sentarse y levantarse de una silla alta</div>
 <p class="exercise-desc">Apoya bien los pies, inclina ligeramente el tronco y levántate desde una altura cómoda. Baja con control. Si las rodillas están sensibles, usa una silla más alta.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1174,7 +1032,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3–4</div>
 </div>
-
 <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla-alta">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1188,7 +1045,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Puente de glúteo con pausa</div>
 <p class="exercise-desc">Eleva la cadera dentro de un rango cómodo, mantén 2 segundos arriba y baja lentamente. No busques subir más si aparece molestia.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1197,7 +1054,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3</div>
 </div>
-
 <div class="review-request" data-exercise="puente-de-gluteo-con-pausa">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1211,7 +1067,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Isométrico de aductores con almohada</div>
 <p class="exercise-desc">Sentada o acostada, coloca una almohada o cojín entre las rodillas. Aprieta suavemente durante 5 segundos y luego relaja sin contener la respiración.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/f32gABHgWRc" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_acostada_isometrica.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1220,7 +1076,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Almohada o cojín</div>
 <div class="pill"><span>RPE</span>2–3</div>
 </div>
-
 <div class="review-request" data-exercise="isometrico-de-aductores-con-almohada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1239,7 +1094,7 @@ line-height:1.5;
 </section>
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
-<a class="finish-session-btn" href="[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Express&sesion_objetivo=Fuerza%20base)">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Express&sesion_objetivo=Fuerza%20base)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Express\&sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Express\&sesion_objetivo=Fuerza%20base))">✅ Finalicé mi sesión</a>
 </div>
 </div>
 <div class="routine-container" id="rutina-base">
@@ -1248,7 +1103,6 @@ line-height:1.5;
 <h2>Rutina A · Fuerza base</h2>
 <p>Versión principal del segundo mes. Consolida fuerza funcional y estabilidad sin aumentar la dificultad de forma brusca.</p>
 </div>
-
 <div class="video-help-note">
   <div class="video-help-icon">📹</div>
   <div>
@@ -1260,7 +1114,6 @@ line-height:1.5;
 <div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>5 minutos a ritmo cómodo.</div></div>
 </section>
-
 <div class="note" style="background:rgba(255,209,102,.10);border-color:rgba(255,209,102,.30);color:#fff1c6;">
 <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -1271,7 +1124,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Sentarse y levantarse de una silla alta</div>
 <p class="exercise-desc">Apoya bien los pies, inclina ligeramente el tronco y levántate desde una altura cómoda. Baja con control. La prioridad es que el movimiento se sienta seguro y estable.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1280,7 +1133,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3–4</div>
 </div>
-
 <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla-alta">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1294,7 +1146,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Puente de glúteo con pausa</div>
 <p class="exercise-desc">Eleva la cadera dentro de un rango cómodo, mantén 2 segundos arriba y baja lentamente. Evita arquear la espalda.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1303,7 +1155,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3–4</div>
 </div>
-
 <div class="review-request" data-exercise="puente-de-gluteo-con-pausa">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1317,7 +1168,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Isométrico de aductores con almohada</div>
 <p class="exercise-desc">Coloca una almohada o cojín entre las rodillas y aprieta de forma suave durante 5 segundos. Relaja completamente antes de repetir.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/f32gABHgWRc" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_acostada_isometrica.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1326,7 +1177,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Almohada o cojín</div>
 <div class="pill"><span>RPE</span>2–3</div>
 </div>
-
 <div class="review-request" data-exercise="isometrico-de-aductores-con-almohada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1340,7 +1190,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Elevación de talones de pie</div>
 <p class="exercise-desc">Sube lentamente sobre la punta de los pies, mantén 1 segundo arriba y baja con control. Usa una pared o silla como apoyo si lo necesitas.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xDrezw4UkoE" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1349,7 +1199,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3–4</div>
 </div>
-
 <div class="review-request" data-exercise="elevacion-de-talones-de-pie">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1361,23 +1210,23 @@ line-height:1.5;
 </article>
 <article class="exercise-card">
 <div>
-<div class="exercise-name">Inclinación lateral de tronco sentada</div>
-<p class="exercise-desc">Siéntate con ambos pies apoyados y el tronco erguido. Inclina lentamente el tronco hacia un lado, deslizando la mano hacia el suelo, y vuelve al centro con control. Alterna ambos lados sin girar el cuerpo ni despegar los pies.</p>
+<div class="exercise-name">Inclinación lateral de tronco de pie</div>
+<p class="exercise-desc">Ponte de pie con los pies separados al ancho de las caderas y las rodillas levemente flexionadas. Inclina lentamente el tronco hacia un lado, deslizando la mano por el costado del muslo, y vuelve al centro con control. Alterna ambos lados sin girar el cuerpo ni inclinarte hacia delante.</p>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/inclinacion_lateral_de_pie.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
 <div class="pill"><span>Reps</span>8 por lado</div>
 <div class="pill"><span>Descanso</span>30 seg</div>
-<div class="pill"><span>Posición</span>Sentada</div>
+<div class="pill"><span>Posición</span>De pie</div>
 <div class="pill"><span>RPE</span>2–3</div>
 </div>
-
-<div class="review-request" data-exercise="inclinacion-lateral-de-tronco-sentada">
+<div class="review-request" data-exercise="inclinacion-lateral-de-tronco-de-pie">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
     <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
   </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco de pie">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
@@ -1390,7 +1239,7 @@ line-height:1.5;
 </section>
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
-<a class="finish-session-btn" href="[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Base&sesion_objetivo=Fuerza%20base)">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Base&sesion_objetivo=Fuerza%20base)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Base\&sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Base\&sesion_objetivo=Fuerza%20base))">✅ Finalicé mi sesión</a>
 </div>
 </div>
 <div class="routine-container" id="rutina-completa">
@@ -1399,7 +1248,6 @@ line-height:1.5;
 <h2>Rutina A · Fuerza base completa</h2>
 <p>Versión con más tiempo de práctica. Añade control de carga y confianza, manteniendo una intensidad moderada.</p>
 </div>
-
 <div class="video-help-note">
   <div class="video-help-icon">📹</div>
   <div>
@@ -1411,7 +1259,6 @@ line-height:1.5;
 <div class="section-head"><h2>Calentamiento</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
 <div class="section-body"><div class="simple-card"><strong>Bicicleta estática</strong><br/>7–8 minutos a ritmo cómodo.</div></div>
 </section>
-
 <div class="note" style="background:rgba(255,209,102,.10);border-color:rgba(255,209,102,.30);color:#fff1c6;">
 <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -1422,7 +1269,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Sentarse y levantarse de una silla alta</div>
 <p class="exercise-desc">Realiza el movimiento con control y usa una altura cómoda. Si puedes completar todas las repeticiones sin aumentar las molestias, mantén la misma altura durante toda la sesión.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=untx40bsbC0" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>3</div>
@@ -1431,7 +1278,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>4</div>
 </div>
-
 <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla-alta">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1445,7 +1291,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Puente de glúteo con pausa</div>
 <p class="exercise-desc">Eleva la cadera dentro de un rango cómodo, mantén 2–3 segundos arriba y baja lentamente.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=FfXq0AUz_Xw" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1454,7 +1300,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>3–4</div>
 </div>
-
 <div class="review-request" data-exercise="puente-de-gluteo-con-pausa">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1468,7 +1313,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Isométrico de aductores con almohada</div>
 <p class="exercise-desc">Aprieta suavemente la almohada entre las rodillas durante 5 segundos y luego relaja. Mantén una respiración normal.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/f32gABHgWRc" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_acostada_isometrica.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1477,7 +1322,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Almohada o cojín</div>
 <div class="pill"><span>RPE</span>3</div>
 </div>
-
 <div class="review-request" data-exercise="isometrico-de-aductores-con-almohada">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1491,7 +1335,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Elevación de talones de pie</div>
 <p class="exercise-desc">Sube lentamente, mantén 1–2 segundos arriba y baja con control. Mantén apoyo cercano para sentirte segura.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=xDrezw4UkoE" type="button">▶ Ver video</button>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
@@ -1500,7 +1344,6 @@ line-height:1.5;
 <div class="pill"><span>Carga</span>Peso corporal</div>
 <div class="pill"><span>RPE</span>4</div>
 </div>
-
 <div class="review-request" data-exercise="elevacion-de-talones-de-pie">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1512,23 +1355,23 @@ line-height:1.5;
 </article>
 <article class="exercise-card">
 <div>
-<div class="exercise-name">Inclinación lateral de tronco sentada</div>
-<p class="exercise-desc">Siéntate con ambos pies apoyados y el tronco erguido. Inclina suavemente el tronco hacia un lado, deslizando la mano hacia el suelo, y vuelve al centro. Alterna ambos lados usando un recorrido cómodo y controlado.</p>
+<div class="exercise-name">Inclinación lateral de tronco de pie</div>
+<p class="exercise-desc">Ponte de pie con los pies separados al ancho de las caderas y las rodillas levemente flexionadas. Inclina suavemente el tronco hacia un lado, deslizando la mano por el costado del muslo, y vuelve al centro. Alterna ambos lados con un recorrido cómodo, sin girar el cuerpo ni inclinarte hacia delante.</p>
+<button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/inclinacion_lateral_de_pie.mp4" type="button">▶ Ver video</button>
 </div>
 <div class="exercise-meta">
 <div class="pill"><span>Series</span>2</div>
 <div class="pill"><span>Reps</span>6 por lado</div>
 <div class="pill"><span>Descanso</span>30 seg</div>
-<div class="pill"><span>Posición</span>Sentada</div>
+<div class="pill"><span>Posición</span>De pie</div>
 <div class="pill"><span>RPE</span>2–3</div>
 </div>
-
-<div class="review-request" data-exercise="inclinacion-lateral-de-tronco-sentada">
+<div class="review-request" data-exercise="inclinacion-lateral-de-tronco-de-pie">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
     <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
   </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco de pie">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
@@ -1541,14 +1384,10 @@ line-height:1.5;
 </section>
 <div class="finish-session-wrap">
 <p class="finish-session-text">Cuando termines, registra cómo te fue.</p>
-<a class="finish-session-btn" href="[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Completa&sesion_objetivo=Fuerza%20base)">✅ Finalicé mi sesión</a>
+<a class="finish-session-btn" href="[[../../registro-sesion.html?cliente=Juany%20Flores&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20A%20Completa&sesion_objetivo=Fuerza%20base)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Completa\&sesion_objetivo=Fuerza%20base](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20A%20Completa\&sesion_objetivo=Fuerza%20base))">✅ Finalicé mi sesión</a>
 </div>
 </div>
 </main></div>
-
-
-
-
 <div class="execution-modal" id="executionModal" aria-hidden="true">
 <div class="execution-dialog">
 <div class="execution-head">
@@ -1582,7 +1421,6 @@ line-height:1.5;
 </div>
 </div>
 </div>
-
 <div aria-hidden="true" class="video-modal" id="videoModal">
 <div class="video-box">
 <div class="video-box-head">
@@ -1594,8 +1432,8 @@ line-height:1.5;
 </div>
 </div>
 </div>
-<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
-<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
+<script src="[[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2))"></script>
+<script src="[[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js))"></script>
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
@@ -1825,7 +1663,6 @@ box,
 });
 }
 }
-
     const respuestas = { tiempo:null, energia:null, personalizada:null };
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
@@ -1834,25 +1671,21 @@ box,
     const smartLoading = document.getElementById('smartLoading');
     const smartLoadingTitle = document.getElementById('smartLoadingTitle');
     const smartLoadingText = document.getElementById('smartLoadingText');
-
     function updateProgress(){
       const answered = Object.values(respuestas).filter(Boolean).length;
       progressFill.style.width = `${(answered / 3) * 100}%`;
       progressText.textContent = `Pregunta ${answered} de 3`;
     }
-
     function modoSegunEnergia(){
       if(respuestas.energia === 'baja' || respuestas.personalizada === 'alto') return 'Recovery';
       if(respuestas.energia === 'alta' && respuestas.personalizada === 'leve') return 'Plus';
       return 'Normal';
     }
-
     function nombreEstructura(){
       if(respuestas.tiempo === 'express') return 'Express';
       if(respuestas.tiempo === 'base') return 'Base';
       return 'Completa';
     }
-
     function guardarRespuestaEnSheets(estructura, modo){
       const payload = {
         cliente: CLIENTE,
@@ -1864,7 +1697,6 @@ box,
         estructura: estructura,
         modo: modo
       };
-
       // Envío principal al Apps Script.
       // text/plain evita problemas de CORS/preflight y Apps Script puede leerlo con e.postData.contents.
       fetch(SCRIPT_URL, {
@@ -1877,7 +1709,6 @@ box,
         body: JSON.stringify(payload)
       }).catch(function(error){
         console.log("No se pudo guardar en Sheets:", error);
-
         // Respaldo por si el navegador bloquea fetch.
         try{
           const blob = new Blob([JSON.stringify(payload)], {type:"text/plain;charset=utf-8"});
@@ -1887,7 +1718,6 @@ box,
         }
       });
     }
-
     document.querySelectorAll('.choice').forEach(btn => {
       btn.addEventListener('click', () => {
         const question = btn.closest('.question').dataset.question;
@@ -1899,7 +1729,6 @@ box,
         updateProgress();
       });
     });
-
     document.getElementById('createRoutine').addEventListener('click', () => {
       const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
       if(faltan.length){
@@ -1910,57 +1739,47 @@ box,
         resultCard.classList.add('active');
         return;
       }
-
       const estructura = nombreEstructura();
       const modo = modoSegunEnergia();
-
       guardarRespuestaEnSheets(estructura, modo);
-
       const modoTexto = {
         Recovery: 'Hoy prioriza control, técnica y menor esfuerzo. Reduce rango o una serie si la cadera o las rodillas se sienten más sensibles.',
         Normal: 'Sigue la rutina tal como está planificada hoy. Mantén control y buena técnica.',
         Plus: 'Hoy tienes buena energía. Si la cadera y las rodillas responden bien, puedes agregar una serie extra o disminuir ligeramente los descansos.'
       };
-
       resultCard.classList.remove('active');
       document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-
       smartLoading.classList.add('active');
       surveyCard.classList.add('is-processing');
       smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
       smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de caderas y rodillas.';
       smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
-
       setTimeout(() => {
         smartLoadingTitle.textContent = 'Adaptando tu Rutina A...';
         smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
       }, 180);
-
       setTimeout(() => {
         smartLoadingTitle.textContent = '✨ Rutina lista';
         smartLoadingText.textContent = 'Tu sesión personalizada ya está preparada.';
       }, 380);
-
       setTimeout(() => {
         smartLoading.classList.remove('active');
         surveyCard.classList.remove('is-processing');
-
         resultCard.style.background = 'rgba(29,191,115,.12)';
         resultCard.style.borderColor = 'rgba(29,191,115,.28)';
         resultCard.style.color = '#ddffea';
         resultCard.innerHTML = `<strong>✨ Rutina A Mes 2 ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
         resultCard.classList.add('active');
-
         const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
         const routineContainer = document.getElementById(idRutina);
         routineContainer.classList.add('active');
         routineContainer.scrollIntoView({ behavior:'auto', block:'start' });
       }, 650);
     });
-
     function toEmbedUrl(url) {
       if (!url) return null;
       const cleanUrl = String(url).trim();
+      if (/\.mp4(?:[?#].*)?$/i.test(cleanUrl)) return cleanUrl;
       if (!cleanUrl) return null;
       try {
         const parsed = new URL(cleanUrl);
@@ -1983,25 +1802,21 @@ box,
         return null;
       }
     }
-
     const videoModal = document.getElementById('videoModal');
     const videoFrame = document.getElementById('videoFrame');
     const closeVideo = document.getElementById('closeVideo');
     const videoTitle = document.getElementById('videoTitle');
-
     function showVideo(url, title) {
       videoTitle.textContent = title || 'Video de ejercicio';
       videoFrame.src = url;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-
     function hideVideo() {
       videoModal.classList.remove('active');
       videoFrame.src = '';
       document.body.style.overflow = '';
     }
-
     document.querySelectorAll('.video-btn').forEach(function (button) {
       button.addEventListener('click', function (e) {
         e.preventDefault();
@@ -2015,7 +1830,6 @@ box,
         else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
       });
     });
-
     if (closeVideo) closeVideo.addEventListener('click', hideVideo);
     if (videoModal) {
       videoModal.addEventListener('click', function (e) {
@@ -2025,8 +1839,6 @@ box,
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) hideVideo();
     });
-
-
 // Videos del cliente: subida directa y reanudable a Supabase Storage.
 const executionModal = document.getElementById('executionModal');
 const executionClose = document.getElementById('executionClose');
@@ -2470,8 +2282,8 @@ sincronizarVideosEnviadosHoy();
 window.addEventListener('focus', () => {
 sincronizarVideosEnviadosHoy();
 });
-
     updateProgress();
   </script>
 </body>
 </html>
+
