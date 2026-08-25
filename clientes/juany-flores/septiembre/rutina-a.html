@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -652,7 +653,10 @@
       object-fit:contain;
       pointer-events:none;
       background:#000;
+      opacity:1;
+      transition:opacity .18s ease;
     }
+    .video-frame-wrap video.loop-fade-out{opacity:0}
     .video-frame-wrap video::-webkit-media-controls{display:none!important}
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(14px)}
@@ -1432,7 +1436,7 @@ line-height:1.5;
 <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
 </div>
 <div class="video-frame-wrap">
-<video autoplay disablepictureinpicture id="videoFrame" loop muted playsinline preload="auto" title="Video de ejercicio"></video>
+<video autoplay disablepictureinpicture id="videoFrame" muted playsinline preload="auto" title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
@@ -1810,11 +1814,32 @@ box,
     const videoFrame = document.getElementById('videoFrame');
     const closeVideo = document.getElementById('closeVideo');
     const videoTitle = document.getElementById('videoTitle');
+    let videoLoopTimeout = null;
+
+    function restartVideoWithFade() {
+      videoFrame.classList.add('loop-fade-out');
+      clearTimeout(videoLoopTimeout);
+      videoLoopTimeout = setTimeout(function () {
+        if (!videoModal.classList.contains('active')) return;
+        videoFrame.currentTime = 0;
+        videoFrame.play().catch(function () {});
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            videoFrame.classList.remove('loop-fade-out');
+          });
+        });
+      }, 400);
+    }
+
+    videoFrame.addEventListener('ended', restartVideoWithFade);
+
     function showVideo(url, title) {
       videoTitle.textContent = title || 'Video de ejercicio';
+      clearTimeout(videoLoopTimeout);
+      videoFrame.classList.remove('loop-fade-out');
       videoFrame.src = url;
       videoFrame.muted = true;
-      videoFrame.loop = true;
+      videoFrame.loop = false;
       videoFrame.controls = false;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1822,6 +1847,8 @@ box,
     }
     function hideVideo() {
       videoModal.classList.remove('active');
+      clearTimeout(videoLoopTimeout);
+      videoFrame.classList.remove('loop-fade-out');
       videoFrame.pause();
       videoFrame.removeAttribute('src');
       videoFrame.load();
