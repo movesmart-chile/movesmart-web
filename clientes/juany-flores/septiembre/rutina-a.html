@@ -643,7 +643,7 @@
       padding-top:56.25%;
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
-    .video-frame-wrap iframe{
+    .video-frame-wrap video{
       position:absolute;
       inset:0;
       width:100%;
@@ -1428,12 +1428,12 @@ line-height:1.5;
 <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
 </div>
 <div class="video-frame-wrap">
-<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+<video autoplay controls id="videoFrame" loop muted playsinline title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
-<script src="[[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2))"></script>
-<script src="[[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/septiembre/[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js))"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
@@ -1809,12 +1809,17 @@ box,
     function showVideo(url, title) {
       videoTitle.textContent = title || 'Video de ejercicio';
       videoFrame.src = url;
+      videoFrame.muted = true;
+      videoFrame.loop = true;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
+      videoFrame.play().catch(function () {});
     }
     function hideVideo() {
       videoModal.classList.remove('active');
-      videoFrame.src = '';
+      videoFrame.pause();
+      videoFrame.removeAttribute('src');
+      videoFrame.load();
       document.body.style.overflow = '';
     }
     document.querySelectorAll('.video-btn').forEach(function (button) {
@@ -2028,33 +2033,16 @@ executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
-executionSend.textContent = 'Optimizando…';
+executionSend.textContent = 'Preparando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
-'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
-'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+'<strong>⚡ Preparando tu video…</strong><br>' +
+'Esto puede tardar unos segundos.';
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-if(result.optimized){
-const ahorro = Math.max(
-0,
-Math.round((1 - result.optimizedSize / result.originalSize) * 100)
-);
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
-}else{
-const reasonText = {
-'already-small':'El video ya es liviano, así que se enviará tal cual.',
-'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
-'duration':'Para evitar una espera larga, se enviará el original.',
-'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
-'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
-}[result.reason] || 'Se enviará el archivo original.';
-optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
-}
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
@@ -2257,7 +2245,7 @@ status.textContent =
 '✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
 }
 }
-setTimeout(closeExecutionModal, 1200);
+setTimeout(closeExecutionModal, 500);
 }catch(error){
 console.error('Error REAL de subida de video:', error);
 executionSend.disabled = false;
@@ -2286,4 +2274,3 @@ sincronizarVideosEnviadosHoy();
   </script>
 </body>
 </html>
-
