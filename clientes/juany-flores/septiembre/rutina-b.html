@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -326,13 +327,23 @@
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
 
-    .video-frame-wrap iframe{
+    .video-frame-wrap iframe,
+    .video-frame-wrap video{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       border:0;
+      object-fit:contain;
+      background:#000;
     }
+    .video-frame-wrap video{
+      pointer-events:none;
+      opacity:1;
+      transition:opacity .18s ease;
+    }
+    .video-frame-wrap video.loop-fade-out{opacity:0}
+    .video-frame-wrap video::-webkit-media-controls{display:none!important}
 
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
@@ -663,7 +674,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
 <p class="exercise-desc">Sentada, extiende una rodilla hasta un rango cómodo, mantén un segundo y vuelve lentamente. No agregues peso.</p>
-<button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=yBxchebYYnU">▶ Ver video</button>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Descanso</span>30–45 seg</div><div class="pill"><span>Carga</span>Sin peso</div><div class="pill"><span>RPE</span>2–3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
@@ -689,7 +700,7 @@ line-height:1.5;
   <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Express&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Express&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Express&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
 
 
@@ -739,7 +750,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
 <p class="exercise-desc">Extiende una rodilla, mantén 1–2 segundos y vuelve con control. El movimiento debe sentirse cómodo.</p>
-<button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=yBxchebYYnU">▶ Ver video</button>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–10 por lado</div><div class="pill"><span>Descanso</span>30–45 seg</div><div class="pill"><span>Carga</span>Sin peso</div><div class="pill"><span>RPE</span>2–3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
@@ -755,7 +766,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Isométrico de aductores con almohada</div>
 <p class="exercise-desc">Coloca una almohada o cojín entre las rodillas y aprieta suavemente durante 5 segundos. Relaja completamente antes de repetir.</p>
-<button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/f32gABHgWRc">▶ Ver video</button>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_acostada_isometrica.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 de 5 seg</div><div class="pill"><span>Descanso</span>30–45 seg</div><div class="pill"><span>RPE</span>2–3</div></div>
 <div class="review-request" data-exercise="isometrico-de-aductores-con-almohada">
@@ -797,7 +808,7 @@ line-height:1.5;
   <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Base&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Base&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Base&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
 
 
@@ -847,7 +858,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
 <p class="exercise-desc">Extiende la rodilla, mantén 1–2 segundos y vuelve lentamente. Mantén el tronco cómodo y estable.</p>
-<button class="video-btn open-video" type="button" data-video="https://www.youtube.com/watch?v=yBxchebYYnU">▶ Ver video</button>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Descanso</span>30–45 seg</div><div class="pill"><span>Carga</span>Sin peso</div><div class="pill"><span>RPE</span>3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
@@ -863,7 +874,7 @@ line-height:1.5;
 <div>
 <div class="exercise-name">Isométrico de aductores con almohada</div>
 <p class="exercise-desc">Aprieta suavemente la almohada entre las rodillas durante 5 segundos y luego relaja. Respira con normalidad.</p>
-<button class="video-btn open-video" type="button" data-video="https://www.youtube.com/shorts/f32gABHgWRc">▶ Ver video</button>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_acostada_isometrica.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 de 5 seg</div><div class="pill"><span>Descanso</span>45 seg</div><div class="pill"><span>RPE</span>3</div></div>
 <div class="review-request" data-exercise="isometrico-de-aductores-con-almohada">
@@ -905,7 +916,7 @@ line-height:1.5;
   <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Completa&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Completa&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Completa&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
       <div class="upsell-card"><strong>Nota MoveSmart:</strong> la Rutina B complementa la A. No busca cansarte más, sino mejorar cómo te mueves.</div>
 
@@ -954,26 +965,13 @@ line-height:1.5;
 <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
 </div>
 <div class="video-frame-wrap">
-<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
+<video autoplay disablepictureinpicture id="videoFrame" muted playsinline preload="auto" title="Video de ejercicio"></video>
+<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="youtubeFrame" src="" title="Video de ejercicio" style="display:none"></iframe>
 </div>
 </div>
 </div>
-
-<div class="video-modal" id="videoModal" aria-hidden="true">
-    <div class="video-box">
-      <div class="video-box-head">
-        <strong>Video del ejercicio</strong>
-        <button class="close-video" type="button" id="closeVideo">Cerrar ✕</button>
-      </div>
-      <div class="video-frame-wrap">
-        <iframe id="videoFrame" src="" title="Video del ejercicio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-
-<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
-<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
@@ -1177,7 +1175,7 @@ const key = claveEjercicio(rutina, ejercicio);
 if(enviados.has(key)){
 marcarCajaComoEnviada(
 box,
-"✅ Ya enviaste un video de este ejercicio hoy. Sincronizado entre tus dispositivos."
+"✅ Ya enviaste un video de este ejercicio hoy."
 );
 }else{
 restaurarCajaParaNuevoDia(box);
@@ -1360,7 +1358,10 @@ box,
 
     const videoModal = document.getElementById("videoModal");
     const videoFrame = document.getElementById("videoFrame");
+    const youtubeFrame = document.getElementById("youtubeFrame");
     const closeVideo = document.getElementById("closeVideo");
+    const videoTitle = document.getElementById("videoTitle");
+    let videoLoopTimeout = null;
 
     function youtubeEmbedUrl(url){
       if(!url) return "";
@@ -1390,25 +1391,71 @@ box,
       }
     }
 
+    function reiniciarVideoConFundido(){
+      videoFrame.classList.add("loop-fade-out");
+      clearTimeout(videoLoopTimeout);
+      videoLoopTimeout = setTimeout(() => {
+        if(!videoModal.classList.contains("active")) return;
+        videoFrame.currentTime = 0;
+        videoFrame.play().catch(() => {});
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          videoFrame.classList.remove("loop-fade-out");
+        }));
+      }, 400);
+    }
+
+    videoFrame.addEventListener("ended", reiniciarVideoConFundido);
+
     document.querySelectorAll(".open-video").forEach(button => {
       button.addEventListener("click", () => {
-        const videoUrl = button.dataset.video || "";
-
-        if(!videoUrl.trim()){
+        const videoUrl = (button.dataset.video || "").trim();
+        if(!videoUrl){
           alert("Video pendiente por agregar.");
           return;
         }
-
-        videoFrame.src = youtubeEmbedUrl(videoUrl);
+        const card = button.closest(".exercise-card");
+        const exerciseName = card && card.querySelector(".exercise-name");
+        videoTitle.textContent = exerciseName ? exerciseName.textContent.trim() : "Video de ejercicio";
+        clearTimeout(videoLoopTimeout);
+        videoFrame.classList.remove("loop-fade-out");
+        if(/\.mp4(?:[?#].*)?$/i.test(videoUrl)){
+          youtubeFrame.style.display = "none";
+          youtubeFrame.src = "";
+          videoFrame.style.display = "block";
+          videoFrame.src = videoUrl;
+          videoFrame.muted = true;
+          videoFrame.loop = false;
+          videoFrame.controls = false;
+          videoFrame.play().catch(() => {});
+        }else{
+          const embedUrl = youtubeEmbedUrl(videoUrl);
+          if(!embedUrl){
+            alert("A este ejercicio todavía no se le ha agregado un enlace de video válido.");
+            return;
+          }
+          videoFrame.pause();
+          videoFrame.removeAttribute("src");
+          videoFrame.load();
+          videoFrame.style.display = "none";
+          youtubeFrame.style.display = "block";
+          youtubeFrame.src = embedUrl;
+        }
         videoModal.classList.add("active");
         videoModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
       });
     });
 
     function cerrarVideo(){
       videoModal.classList.remove("active");
       videoModal.setAttribute("aria-hidden", "true");
-      videoFrame.src = "";
+      clearTimeout(videoLoopTimeout);
+      videoFrame.classList.remove("loop-fade-out");
+      videoFrame.pause();
+      videoFrame.removeAttribute("src");
+      videoFrame.load();
+      youtubeFrame.src = "";
+      document.body.style.overflow = "";
     }
 
     closeVideo.addEventListener("click", cerrarVideo);
@@ -1617,33 +1664,16 @@ executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
-executionSend.textContent = 'Optimizando…';
+executionSend.textContent = 'Preparando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
-'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
-'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+'<strong>⚡ Preparando tu video…</strong><br>' +
+'Esto puede tardar unos segundos.';
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-if(result.optimized){
-const ahorro = Math.max(
-0,
-Math.round((1 - result.optimizedSize / result.originalSize) * 100)
-);
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
-}else{
-const reasonText = {
-'already-small':'El video ya es liviano, así que se enviará tal cual.',
-'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
-'duration':'Para evitar una espera larga, se enviará el original.',
-'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
-'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
-}[result.reason] || 'Se enviará el archivo original.';
-optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
-}
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
