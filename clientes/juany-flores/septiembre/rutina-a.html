@@ -853,7 +853,7 @@
 .execution-file-label{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:72px;padding:16px;border-radius:18px;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-weight:850}
 .execution-file-label input{display:none}
 .execution-preview{display:none;width:100%;max-height:340px;object-fit:contain;margin-top:14px;border-radius:16px;background:#000}
-.execution-preview\.active{display:block}
+.execution-preview.active{display:block}
 .selected-video-info{display:none;margin-top:10px;color:#dfffe8;font-size:.88rem}
 .selected-video-info.active{display:block}
 .execution-comment-label{display:block;margin-top:16px;font-size:.9rem;font-weight:800;color:#fff}
@@ -1452,8 +1452,8 @@ line-height:1.5;
 </div>
 </div>
 </div>
-<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
-<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
@@ -1465,8 +1465,8 @@ const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
 const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
 const supabaseClient =
-(window\.supabase && typeof window\.supabase.createClient === 'function')
-? window\.supabase.createClient(
+(window.supabase && typeof window.supabase.createClient === 'function')
+? window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY,
 {
@@ -1646,7 +1646,7 @@ const { data, error } = await supabaseClient
 .eq("fecha_sesion", fechaSesion);
 if(error) throw error;
 const enviados = new Set(
-(data || []).map(row => claveEjercicio(row\.rutina, row\.ejercicio))
+(data || []).map(row => claveEjercicio(row.rutina, row.ejercicio))
 );
 document.querySelectorAll(".review-request").forEach(box => {
 const btn = box.querySelector(".upload-execution-btn");
@@ -1799,7 +1799,7 @@ box,
     function toEmbedUrl(url) {
       if (!url) return null;
       const cleanUrl = String(url).trim();
-      if (/\\.mp4(?:[?#].*)?$/i.test(cleanUrl)) return cleanUrl;
+      if (/\.mp4(?:[?#].*)?$/i.test(cleanUrl)) return cleanUrl;
       if (!cleanUrl) return null;
       try {
         const parsed = new URL(cleanUrl);
@@ -1817,7 +1817,7 @@ box,
           }
         }
         if (!videoId) return null;
-        return 'https://www\.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&rel=0&playsinline=1';
+        return 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&rel=0&playsinline=1';
       } catch (err) {
         return null;
       }
@@ -1827,7 +1827,6 @@ box,
     const closeVideo = document.getElementById('closeVideo');
     const videoTitle = document.getElementById('videoTitle');
     let videoLoopTimeout = null;
-<br>
     function restartVideoWithFade() {
       videoFrame.classList.add('loop-fade-out');
       clearTimeout(videoLoopTimeout);
@@ -1842,9 +1841,7 @@ box,
         });
       }, 400);
     }
-<br>
     videoFrame.addEventListener('ended', restartVideoWithFade);
-<br>
     function showVideo(url, title) {
       videoTitle.textContent = title || 'Video de ejercicio';
       clearTimeout(videoLoopTimeout);
@@ -1926,10 +1923,10 @@ optimizationBox.textContent = '';
 optimizationBox.classList.remove('active');
 optimizedUploadFile = null;
 if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
-executionPreview\.pause();
-executionPreview\.removeAttribute('src');
-executionPreview\.load();
-executionPreview\.classList.remove('active');
+executionPreview.pause();
+executionPreview.removeAttribute('src');
+executionPreview.load();
+executionPreview.classList.remove('active');
 executionModal.classList.add('active');
 executionModal.setAttribute('aria-hidden','false');
 document.body.style.overflow='hidden';
@@ -1939,10 +1936,10 @@ executionModal.classList.remove('active');
 executionModal.setAttribute('aria-hidden','true');
 document.body.style.overflow='';
 if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
-executionPreview\.pause();
-executionPreview\.removeAttribute('src');
-executionPreview\.load();
-executionPreview\.classList.remove('active');
+executionPreview.pause();
+executionPreview.removeAttribute('src');
+executionPreview.load();
+executionPreview.classList.remove('active');
 }
 function formatoMB(bytes){
 return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
@@ -1963,7 +1960,7 @@ async function optimizarVideoParaEnvio(file){
 if(file.size <= 3.5 * 1024 * 1024){
 return {file, optimized:false, reason:'already-small'};
 }
-if(!window\.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
+if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
 return {file, optimized:false, reason:'unsupported'};
 }
 const mimeCandidates = ['video/webm;codecs=vp8', 'video/webm'];
@@ -2026,7 +2023,7 @@ const blob = new Blob(chunks, {type:mimeType});
 if(!blob.size || blob.size >= file.size * 0.92){
 return {file, optimized:false, reason:'no-benefit'};
 }
-const baseName = String(file.name || 'video').replace(/\\.[^.]+$/, '');
+const baseName = String(file.name || 'video').replace(/\.[^.]+$/, '');
 const optimized = new File(
 [blob],
 baseName + '-optimizado.webm',
@@ -2072,8 +2069,8 @@ return;
 }
 if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
 activeVideoUrl = URL.createObjectURL(originalFile);
-executionPreview\.src = activeVideoUrl;
-executionPreview\.classList.add('active');
+executionPreview.src = activeVideoUrl;
+executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
@@ -2121,7 +2118,7 @@ uploadProgressPercent.textContent = '100%';
 return { metodo: 'standard' };
 }
 // Archivos grandes: subida reanudable TUS.
-if(!window\.tus || typeof window\.tus.Upload !== 'function'){
+if(!window.tus || typeof window.tus.Upload !== 'function'){
 throw new Error("No se cargó el módulo de subida reanudable TUS.");
 }
 await new Promise((resolve, reject) => {
@@ -2311,7 +2308,7 @@ if(executionCancel) executionCancel.addEventListener('click',closeExecutionModal
 if(executionModal) executionModal.addEventListener('click',e=>{ if(e.target===executionModal) closeExecutionModal(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape' && executionModal.classList.contains('active')) closeExecutionModal(); });
 sincronizarVideosEnviadosHoy();
-window\.addEventListener('focus', () => {
+window.addEventListener('focus', () => {
 sincronizarVideosEnviadosHoy();
 });
     updateProgress();
