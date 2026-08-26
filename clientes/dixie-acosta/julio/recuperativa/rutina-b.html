@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -619,7 +620,12 @@ border:0;
 display:none;
 object-fit:contain;
 background:#000;
+pointer-events:none;
+opacity:1;
+transition:opacity .18s ease;
 }
+.video-frame-wrap video.loop-fade-out{opacity:0}
+.video-frame-wrap video::-webkit-media-controls{display:none!important}
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(14px)}
 to{opacity:1;transform:translateY(0)}
@@ -879,7 +885,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Fortalece el muslo con un movimiento suave y controlado.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_de_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Fortalece el muslo con un movimiento suave y controlado.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -935,7 +941,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Movimiento controlado para fortalecer el muslo sin exigir el tendón.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_de_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Movimiento controlado para fortalecer el muslo sin exigir el tendón.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -944,13 +950,13 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
-</article><article class="exercise-card"><div><div class="exercise-name">Elevación de talones sentado</div><p class="exercise-desc">Sentada con ambos pies apoyados, mantén las puntas en el suelo y eleva los talones lentamente. Baja de forma controlada y repite sin impulsarte.</p><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=wRRYk709cYk" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Ritmo</span>Controlado</div><div class="pill"><span>RPE</span>1–2</div></div>
-<div class="review-request" data-exercise="elevaciann-de-talones-sentado">
+</article><article class="exercise-card"><div><div class="exercise-name">Flexión plantar isométrica de pie</div><p class="exercise-desc">De pie frente a una pared o silla, eleva ambos talones y mantén la posición durante 20 segundos. Conserva el apoyo para sentirte segura, distribuye el peso entre ambos pies y evita rebotar.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones_isometricos.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Tiempo</span>20 segundos</div><div class="pill"><span>Descanso</span>40 segundos</div><div class="pill"><span>RPE</span>1–2</div></div>
+<div class="review-request" data-exercise="flexion-plantar-isometrica-de-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
 <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
 </div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Elevación de talones sentado">📹 Enviar mi ejecución</button>
+<button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar isométrica de pie">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article></div></section><section class="section"><div class="section-head"><h2>Cierre</h2><p>Baja el ritmo antes de terminar.</p></div><div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos de respiración tranquila.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div></section><div class="note"><strong>Regla de recuperación:</strong> la sesión debería dejarte igual o mejor. Si aparece aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende.</div><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo respondieron tus zonas lesionadas y cómo te sentiste durante la sesión.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Recuperacion%20Base&amp;sesion_objetivo=Movilidad%20global">✅ Finalicé mi sesión</a></div></div>
@@ -1000,7 +1006,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <button class="upload-execution-btn" type="button" data-exercise-name="Inclinación lateral de tronco sentada">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Fortalece el muslo con control y sin repetir el bloque específico de Aquiles de la Rutina A.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_de_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
+</article></div></section><section class="section"><div class="section-head"><h2>Fuerza de piernas</h2><p>Fortalece el muslo con control y sin repetir el bloque específico de Aquiles de la Rutina A.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Extensión de rodilla sentada</div><p class="exercise-desc">Sentada con la espalda apoyada y ambos pies en el suelo, extiende lentamente una rodilla hasta dejar la pierna casi recta. Mantén 2 segundos arriba y baja con control. Alterna las piernas. Debe sentirse en el muslo, no en el tendón.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8 por lado</div><div class="pill"><span>Pausa</span>2 s arriba</div><div class="pill"><span>RPE</span>3</div></div>
 <div class="review-request" data-exercise="extension-de-rodilla-sentada">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
@@ -1009,13 +1015,13 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
-</article><article class="exercise-card"><div><div class="exercise-name">Elevación de talones sentado</div><p class="exercise-desc">Sentada con ambos pies apoyados, mantén las puntas en el suelo y eleva los talones lentamente. Baja de forma controlada y repite sin impulsarte.</p><button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=wRRYk709cYk" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12 por lado</div><div class="pill"><span>Ritmo</span>Controlado</div><div class="pill"><span>RPE</span>1–2</div></div>
-<div class="review-request" data-exercise="elevaciann-de-talones-sentado">
+</article><article class="exercise-card"><div><div class="exercise-name">Flexión plantar isométrica de pie</div><p class="exercise-desc">De pie frente a una pared o silla, eleva ambos talones y mantén la posición durante 20 segundos. Conserva el apoyo para sentirte segura, distribuye el peso entre ambos pies y evita rebotar.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones_isometricos.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Tiempo</span>20 segundos</div><div class="pill"><span>Descanso</span>40 segundos</div><div class="pill"><span>RPE</span>1–2</div></div>
+<div class="review-request" data-exercise="flexion-plantar-isometrica-de-pie">
 <div class="review-request-copy">
 <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
 <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
 </div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Elevación de talones sentado">📹 Enviar mi ejecución</button>
+<button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar isométrica de pie">📹 Enviar mi ejecución</button>
 <div class="upload-status" aria-live="polite"></div>
 </div>
 </article></div></section><section class="section"><div class="section-head"><h2>Coordinación final</h2><p>Termina con una tarea sencilla de control.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Alfabeto de tobillo sentado</div><p class="exercise-desc">Con el pie ligeramente despegado del suelo, dibuja letras pequeñas con la punta del pie sin forzar el rango.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abededario_pie.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>1</div><div class="pill"><span>Tiempo</span>30–45 seg por lado</div><div class="pill"><span>Rango</span>Pequeño</div><div class="pill"><span>RPE</span>1–2</div></div>
@@ -1038,7 +1044,7 @@ energía y cómo están hoy tus molestias o zonas lesionadas.
 </div>
 <div class="video-frame-wrap">
 <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
-<video autoplay controls loop muted playsinline id="videoPlayer" preload="metadata"></video>
+<video autoplay disablepictureinpicture muted playsinline id="videoPlayer" preload="auto"></video>
 </div>
 </div>
 </div>
@@ -1455,6 +1461,24 @@ const videoFrame = document.getElementById('videoFrame');
 const videoPlayer = document.getElementById('videoPlayer');
 const closeVideo = document.getElementById('closeVideo');
 const videoTitle = document.getElementById('videoTitle');
+let videoLoopTimeout = null;
+
+function restartVideoWithFade() {
+videoPlayer.classList.add('loop-fade-out');
+clearTimeout(videoLoopTimeout);
+videoLoopTimeout = setTimeout(function () {
+if (!videoModal.classList.contains('active')) return;
+videoPlayer.currentTime = 0;
+videoPlayer.play().catch(function () {});
+requestAnimationFrame(function () {
+requestAnimationFrame(function () {
+videoPlayer.classList.remove('loop-fade-out');
+});
+});
+}, 400);
+}
+
+videoPlayer.addEventListener('ended', restartVideoWithFade);
 function showYoutubeVideo(url, title) {
 videoTitle.textContent = title || 'Video de ejercicio';
 videoPlayer.pause();
@@ -1468,10 +1492,15 @@ document.body.style.overflow = 'hidden';
 }
 function showDirectVideo(url, title) {
 videoTitle.textContent = title || 'Video de ejercicio';
+clearTimeout(videoLoopTimeout);
+videoPlayer.classList.remove('loop-fade-out');
 videoFrame.src = '';
 videoFrame.style.display = 'none';
 videoPlayer.style.display = 'block';
 videoPlayer.src = url;
+videoPlayer.muted = true;
+videoPlayer.loop = false;
+videoPlayer.controls = false;
 videoModal.classList.add('active');
 document.body.style.overflow = 'hidden';
 const playPromise = videoPlayer.play();
@@ -1481,6 +1510,8 @@ playPromise.catch(function () {});
 }
 function hideVideo() {
 videoModal.classList.remove('active');
+clearTimeout(videoLoopTimeout);
+videoPlayer.classList.remove('loop-fade-out');
 videoFrame.src = '';
 videoPlayer.pause();
 videoPlayer.removeAttribute('src');
