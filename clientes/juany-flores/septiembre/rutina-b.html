@@ -1,16 +1,13 @@
 
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rutina B Mes 2 | Juany Flores</title>
-
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-
     :root{
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
@@ -23,7 +20,6 @@
       --shadow:0 14px 34px rgba(0,0,0,.32);
       --wrap:min(1120px, calc(100% - 32px));
     }
-
     body{
       min-height:100vh;
       font-family:'Segoe UI',system-ui,sans-serif;
@@ -33,7 +29,6 @@
         url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
-
     body::before{
       content:"";
       position:fixed;
@@ -45,9 +40,7 @@
         linear-gradient(90deg, rgba(4,6,14,.20), transparent 45%, rgba(255,90,31,.06));
       z-index:0;
     }
-
     .wrap{width:var(--wrap);margin:auto;padding:30px 0 50px;position:relative;z-index:1}
-
     .topbar{
       display:flex;
       align-items:center;
@@ -55,9 +48,7 @@
       gap:16px;
       margin-bottom:24px;
     }
-
     .brand{display:flex;align-items:center;gap:12px}
-
     .brand-badge{
       width:46px;
       height:46px;
@@ -68,10 +59,8 @@
       font-weight:900;
       box-shadow:0 16px 34px rgba(255,90,31,.22);
     }
-
     .brand-text h1{font-size:1.28rem;line-height:1.05;font-weight:900}
     .brand-text p{color:var(--muted);font-size:.92rem;margin-top:4px}
-
     .back-btn{
       text-decoration:none;
       color:#fff;
@@ -81,7 +70,6 @@
       border-radius:16px;
       font-weight:800;
     }
-
     .hero{
       min-height:360px;
       border-radius:34px;
@@ -95,7 +83,6 @@
       background:#090d18;
       margin-bottom:24px;
     }
-
     .hero::before{
       content:"";
       position:absolute;
@@ -105,7 +92,6 @@
         linear-gradient(180deg, rgba(5,7,15,.12), rgba(5,7,15,.56));
       z-index:1;
     }
-
     .hero-copy{
       position:relative;
       z-index:2;
@@ -114,9 +100,7 @@
       flex-direction:column;
       justify-content:center;
     }
-
     .hello{color:var(--accent-2);font-weight:900;font-size:1.1rem;margin-bottom:14px}
-
     .hero h2{
       font-size:clamp(2rem, 4vw, 3.6rem);
       line-height:1.04;
@@ -124,9 +108,7 @@
       max-width:720px;
       margin-bottom:16px;
     }
-
     .hero p{color:rgba(255,255,255,.82);font-size:1.05rem;line-height:1.7;max-width:600px}
-
     .hero-image{
       position:absolute;
       inset:0;
@@ -134,7 +116,6 @@
       z-index:0;
       transform:scale(1.01);
     }
-
     .survey-card{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.12);
@@ -143,25 +124,21 @@
       box-shadow:var(--shadow);
       backdrop-filter:blur(6px);
     }
-
     .survey-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:24px}
     .survey-title{display:flex;align-items:center;gap:14px}
     .survey-icon{width:48px;height:48px;border-radius:16px;background:rgba(255,90,31,.14);border:1px solid rgba(255,90,31,.24);display:grid;place-items:center;font-size:1.35rem}
     .survey-title h3{font-size:1.55rem;margin-bottom:4px}
     .survey-title p{color:var(--muted)}
-
     .progress-wrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:22px;margin:8px 0 22px}
     .progress-bar{height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
     .progress-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg, var(--accent), var(--accent-2));transition:.25s ease}
     .progress-text{color:rgba(255,255,255,.72);font-size:.98rem;white-space:nowrap}
-
     .question{padding:26px 0;border-top:1px solid rgba(255,255,255,.09)}
     .question:first-of-type{border-top:none}
     .q-title{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px}
     .q-icon{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,90,31,.11);border:1px solid rgba(255,90,31,.24);color:var(--accent-2);font-size:1.45rem;flex:0 0 auto}
     .q-title h4{color:var(--accent-2);font-size:1.24rem;margin-bottom:6px}
     .q-title p{color:var(--muted);line-height:1.5}
-
     .choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     .choice{
       min-height:132px;
@@ -180,13 +157,11 @@
       font-family:inherit;
       transition:.18s ease;
     }
-
     .choice:hover{transform:translateY(-2px);border-color:rgba(255,90,31,.45)}
     .choice.selected{background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));border-color:var(--accent)}
     .choice .emoji{font-size:1.7rem}
     .choice strong{font-size:1.22rem}
     .choice span{color:rgba(255,255,255,.74);font-size:.94rem}
-
     .submit-btn{
       margin-top:16px;
       width:100%;
@@ -201,14 +176,11 @@
       box-shadow:0 16px 34px rgba(255,90,31,.25);
       font-family:inherit;
     }
-
     .microcopy{color:rgba(255,255,255,.68);text-align:center;margin-top:16px;font-size:.95rem}
     .result-card{display:none;margin-top:18px;padding:18px;border-radius:22px;background:rgba(29,191,115,.12);border:1px solid rgba(29,191,115,.28);color:#ddffea;line-height:1.65}
     .result-card.active{display:block}
-
     .routine-container{display:none;margin-top:24px;animation:fadeUp .35s ease both}
     .routine-container.active{display:block}
-
     .routine-intro{
       margin:22px 0;
       padding:26px;
@@ -217,7 +189,6 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
     }
-
     .routine-version-label{
       display:inline-flex;
       margin-bottom:12px;
@@ -229,28 +200,23 @@
       font-size:.9rem;
       font-weight:800;
     }
-
     .routine-intro h2{font-size:clamp(1.7rem,3vw,2.6rem);line-height:1.05;margin-bottom:10px}
     .routine-intro p{color:var(--muted);line-height:1.7;max-width:820px}
-
     .quick-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0 28px}
     .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:16px}
     .stat small{display:block;color:rgba(255,255,255,.72);margin-bottom:6px}
     .stat strong{font-size:1rem;line-height:1.4}
-
     .section{margin-top:22px;background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.12);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
     .section-head{background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.10)}
     .section-head h2{font-size:1.45rem;margin-bottom:5px}
     .section-head p{color:rgba(255,255,255,.78);line-height:1.55}
     .section-body{padding:20px;display:grid;gap:16px}
-
     .exercise-card{background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:20px;display:grid;grid-template-columns:1.3fr .9fr;gap:20px;align-items:center}
     .exercise-name{font-size:1.18rem;font-weight:900;margin-bottom:8px;color:#fff}
     .exercise-desc{color:rgba(255,255,255,.76);line-height:1.65;font-size:.97rem}
     .exercise-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     .pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:11px 12px;font-size:.95rem;color:#fff}
     .pill span{display:block;color:rgba(255,255,255,.62);font-size:.82rem;margin-bottom:4px}
-
     .simple-card,.note,.finish-session-text,.upsell-card{background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:18px;line-height:1.7;color:rgba(255,255,255,.84)}
     .note{margin-top:22px;background:rgba(29,191,115,.12);border-color:rgba(29,191,115,.28);color:#ddffea}
     .pain-note{background:rgba(255,209,102,.10);border-color:rgba(255,209,102,.30);color:#fff1c6}
@@ -258,8 +224,6 @@
     .finish-session-wrap{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:18px}
     .finish-session-text{width:100%;text-align:center}
     .finish-session-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:linear-gradient(180deg,#ff8a1f,#ff5a1f);color:#fff;font-weight:900;font-size:1.05rem;padding:18px 28px;border-radius:20px;box-shadow:0 14px 30px rgba(255,90,31,.28);min-width:320px}
-
-
     .video-btn{
       display:inline-flex;
       align-items:center;
@@ -277,7 +241,6 @@
       font-family:inherit;
       font-size:1rem;
     }
-
     .video-modal{
       position:fixed;
       inset:0;
@@ -288,9 +251,7 @@
       padding:20px;
       z-index:9999;
     }
-
     .video-modal.active{ display:flex; }
-
     .video-box{
       width:min(900px, 100%);
       background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
@@ -299,7 +260,6 @@
       overflow:hidden;
       box-shadow:0 18px 40px rgba(0,0,0,.35);
     }
-
     .video-box-head{
       display:flex;
       align-items:center;
@@ -309,7 +269,6 @@
       background:rgba(255,255,255,.05);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-
     .close-video{
       border:none;
       background:rgba(255,255,255,.10);
@@ -320,14 +279,12 @@
       font-weight:800;
       font-family:inherit;
     }
-
     .video-frame-wrap{
       position:relative;
       width:100%;
       padding-top:56.25%;
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
-
     .video-frame-wrap iframe,
     .video-frame-wrap video{
       position:absolute;
@@ -345,16 +302,13 @@
     }
     .video-frame-wrap video.loop-fade-out{opacity:0}
     .video-frame-wrap video::-webkit-media-controls{display:none!important}
-
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
     @media(max-width:900px){
       .hero{grid-template-columns:1fr}
       .hero-copy{padding:34px 26px}
       .choices,.exercise-card{grid-template-columns:1fr}
       .quick-stats{grid-template-columns:repeat(2,1fr)}
     }
-
     @media(max-width:640px){
       .topbar{flex-direction:column;align-items:flex-start}
       .quick-stats{grid-template-columns:1fr!important}
@@ -362,7 +316,6 @@
       .pill{flex:1 1 130px}
       .finish-session-btn{width:100%;min-width:unset}
     }
-
     .smart-loading{
       display:none;
       margin-top:22px;
@@ -374,9 +327,7 @@
       text-align:center;
       animation:fadeUp .35s ease both;
     }
-
     .smart-loading.active{display:block}
-
     .smart-orb{
       width:68px;
       height:68px;
@@ -388,28 +339,23 @@
       box-shadow:0 0 34px rgba(255,90,31,.45);
       animation:pulseOrb 1.15s ease-in-out infinite;
     }
-
     .smart-loading h3{
       font-size:1.35rem;
       margin-bottom:8px;
     }
-
     .smart-loading p{
       color:rgba(255,255,255,.76);
       line-height:1.6;
     }
-
     .survey-card.is-processing{
       opacity:.75;
       pointer-events:none;
       transition:.25s ease;
     }
-
     @keyframes pulseOrb{
       0%,100%{transform:scale(.92);opacity:.72}
       50%{transform:scale(1.06);opacity:1}
     }
-
   .video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
 .video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}
 .video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}
@@ -473,11 +419,8 @@ line-height:1.5;
 }
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
-
-
 </style>
 </head>
-
 <body>
   <div class="wrap">
     <header class="topbar">
@@ -488,9 +431,8 @@ line-height:1.5;
           <p>Juany Flores · Rutina B · Mes 2</p>
         </div>
       </div>
-      <a class="back-btn" href="/movesmart-web/clientes/juany-flores/plan-juany-flores.html">← Volver al plan</a>
+      <a class="back-btn" href="[/movesmart-web/clientes/juany-flores/plan-juany-flores.html](https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/plan-juany-flores.html)">← Volver al plan</a>
     </header>
-
     <section class="hero">
       <div class="hero-image" aria-hidden="true"></div>
       <div class="hero-copy">
@@ -501,7 +443,6 @@ line-height:1.5;
         </p>
       </div>
     </section>
-
     <main class="survey-card">
       <div class="survey-head">
         <div class="survey-title">
@@ -512,12 +453,10 @@ line-height:1.5;
           </div>
         </div>
       </div>
-
       <div class="progress-wrap">
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
       </div>
-
       <section class="question" data-question="tiempo">
         <div class="q-title">
           <div class="q-icon">⏱️</div>
@@ -526,20 +465,17 @@ line-height:1.5;
             <p>Elige una versión que puedas completar de verdad.</p>
           </div>
         </div>
-
         <div class="choices">
           <button class="choice" data-value="express" type="button">
             <span class="emoji">⏱️</span>
             <strong>10 – 20 min</strong>
             <span>Poco tiempo</span>
           </button>
-
           <button class="choice" data-value="base" type="button">
             <span class="emoji">🕒</span>
             <strong>20 – 30 min</strong>
             <span>Tiempo ideal</span>
           </button>
-
           <button class="choice" data-value="completa" type="button">
             <span class="emoji">🕘</span>
             <strong>30 – 40 min</strong>
@@ -547,7 +483,6 @@ line-height:1.5;
           </button>
         </div>
       </section>
-
       <section class="question" data-question="energia">
         <div class="q-title">
           <div class="q-icon">⚡</div>
@@ -556,20 +491,17 @@ line-height:1.5;
             <p>Piensa en tu disposición física, no en hacerlo perfecto.</p>
           </div>
         </div>
-
         <div class="choices">
           <button class="choice" data-value="baja" type="button">
             <span class="emoji">🪫</span>
             <strong>Baja</strong>
             <span>Me cuesta empezar</span>
           </button>
-
           <button class="choice" data-value="media" type="button">
             <span class="emoji">⚡</span>
             <strong>Media</strong>
             <span>Me siento normal</span>
           </button>
-
           <button class="choice" data-value="alta" type="button">
             <span class="emoji">🔋</span>
             <strong>Alta</strong>
@@ -577,7 +509,6 @@ line-height:1.5;
           </button>
         </div>
       </section>
-
       <section class="question" data-question="molestia">
         <div class="q-title">
           <div class="q-icon">🦵</div>
@@ -586,20 +517,17 @@ line-height:1.5;
             <p>Leve 0–3/10, moderado 4–5/10, alto 6/10 o más.</p>
           </div>
         </div>
-
         <div class="choices">
           <button class="choice" data-value="leve" type="button">
             <span class="emoji">🟢</span>
             <strong>Leve</strong>
             <span>0–3/10</span>
           </button>
-
           <button class="choice" data-value="moderado" type="button">
             <span class="emoji">🟡</span>
             <strong>Moderado</strong>
             <span>4–5/10</span>
           </button>
-
           <button class="choice" data-value="alto" type="button">
             <span class="emoji">🔴</span>
             <strong>Alto</strong>
@@ -607,18 +535,14 @@ line-height:1.5;
           </button>
         </div>
       </section>
-
       <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
       <p class="microcopy">Hoy buscamos sumar una repetición útil, no ganar por intensidad.</p>
-
       <div class="result-card" id="resultCard"></div>
-
       <div class="smart-loading" id="smartLoading" aria-live="polite">
         <div class="smart-orb"></div>
         <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
         <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y molestia articular.</p>
       </div>
-
       <!-- RUTINA EXPRESS -->
       <div class="routine-container" id="rutina-express">
         <div class="routine-intro">
@@ -649,8 +573,6 @@ line-height:1.5;
             </div>
           </div>
         </section>
-
-
 <div class="note pain-note">
   <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -670,7 +592,6 @@ line-height:1.5;
   <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
@@ -688,23 +609,21 @@ line-height:1.5;
 </div>
 </article></div></section><section class="section"><div class="section-head"><h2>Bloque de estiramientos</h2><p>Realiza cada posición de forma suave y sin rebotes.</p></div><div class="section-body"><article class="exercise-card">
 <div>
-<div class="exercise-name">Estiramiento de pantorrilla en pared</div>
-<p class="exercise-desc">Lleva una pierna hacia atrás, mantén el talón apoyado y avanza suavemente el cuerpo. No fuerces el rango.</p>
-<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramientos_pantorrilla.mp4">▶ Ver video</button>
+<div class="exercise-name">Estiramiento de pantorrilla supino con toalla</div>
+<p class="exercise-desc">Acostada boca arriba, pasa una toalla por la planta del pie y tira suavemente hacia ti, manteniendo la rodilla extendida. No fuerces el rango.</p>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramentos_pantorrila.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>1–2</div><div class="pill"><span>Tiempo</span>20 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>RPE</span>2</div></div>
-<div class="review-request" data-exercise="estiramiento-de-pantorrilla-en-pared">
+<div class="review-request" data-exercise="estiramiento-de-pantorrilla-supino-con-toalla">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
     <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
   </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla supino con toalla">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Express&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Express&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20B%20Express\&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
-
-
       <!-- RUTINA BASE -->
       <div class="routine-container" id="rutina-base">
         <div class="routine-intro"><div class="routine-version-label">🕒 Rutina B Mes 2 Base · 20–30 min</div><h2>Rutina B · Movimiento y estabilidad</h2><p>Versión principal para complementar la Rutina A. Trabaja movilidad, cuádriceps, pantorrilla y equilibrio con apoyo.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>20–30 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 3–4</strong></div><div class="stat"><small>Material</small><strong>Silla y pared</strong></div><div class="stat"><small>Objetivo</small><strong>Estabilidad funcional</strong></div></div></div>
@@ -725,8 +644,6 @@ line-height:1.5;
             </div>
           </div>
         </section>
-
-
 <div class="note pain-note">
   <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -746,7 +663,6 @@ line-height:1.5;
   <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
@@ -796,23 +712,21 @@ line-height:1.5;
 </div>
 </article></div></section><section class="section"><div class="section-head"><h2>Bloque de estiramientos</h2><p>Realiza cada posición de forma suave y sin rebotes.</p></div><div class="section-body"><article class="exercise-card">
 <div>
-<div class="exercise-name">Estiramiento de pantorrilla en pared</div>
-<p class="exercise-desc">Lleva una pierna hacia atrás, mantén el talón apoyado y avanza suavemente el cuerpo. No fuerces el rango.</p>
-<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramientos_pantorrilla.mp4">▶ Ver video</button>
+<div class="exercise-name">Estiramiento de pantorrilla supino con toalla</div>
+<p class="exercise-desc">Acostada boca arriba, pasa una toalla por la planta del pie y tira suavemente hacia ti, manteniendo la rodilla extendida. No fuerces el rango.</p>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramentos_pantorrila.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>1–2</div><div class="pill"><span>Tiempo</span>20 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>RPE</span>2</div></div>
-<div class="review-request" data-exercise="estiramiento-de-pantorrilla-en-pared">
+<div class="review-request" data-exercise="estiramiento-de-pantorrilla-supino-con-toalla">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
     <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
   </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla supino con toalla">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Base&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Base&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20B%20Base\&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
-
-
       <!-- RUTINA COMPLETA -->
       <div class="routine-container" id="rutina-completa">
         <div class="routine-intro"><div class="routine-version-label">🕘 Rutina B Mes 2 Completa · 30–40 min</div><h2>Rutina B · Movimiento y estabilidad completo</h2><p>Versión para días con más tiempo y buena energía. Añade más práctica de fuerza distal, movilidad y equilibrio asistido sin aumentar bruscamente la dificultad.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>30–40 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 3–5</strong></div><div class="stat"><small>Material</small><strong>Silla y pared</strong></div><div class="stat"><small>Objetivo</small><strong>Movimiento funcional</strong></div></div></div>
@@ -833,8 +747,6 @@ line-height:1.5;
             </div>
           </div>
         </section>
-
-
 <div class="note pain-note">
   <strong>Regla del dolor:</strong> si algún ejercicio aumenta el dolor de la cadera en más de 2 puntos, detente, reduce el recorrido o pasa al siguiente ejercicio. La sesión puede sentirse desafiante, pero no debe aumentar claramente el dolor.
 </div>
@@ -854,7 +766,6 @@ line-height:1.5;
   <div class="upload-status" aria-live="polite"></div>
 </div>
 </article>
-
 <article class="exercise-card">
 <div>
 <div class="exercise-name">Extensión de rodilla sentada</div>
@@ -904,27 +815,24 @@ line-height:1.5;
 </div>
 </article></div></section><section class="section"><div class="section-head"><h2>Bloque de estiramientos</h2><p>Realiza cada posición de forma suave y sin rebotes.</p></div><div class="section-body"><article class="exercise-card">
 <div>
-<div class="exercise-name">Estiramiento de pantorrilla en pared</div>
-<p class="exercise-desc">Lleva una pierna hacia atrás, mantén el talón apoyado y avanza suavemente el cuerpo. No fuerces el rango.</p>
-<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramientos_pantorrilla.mp4">▶ Ver video</button>
+<div class="exercise-name">Estiramiento de pantorrilla supino con toalla</div>
+<p class="exercise-desc">Acostada boca arriba, pasa una toalla por la planta del pie y tira suavemente hacia ti, manteniendo la rodilla extendida. No fuerces el rango.</p>
+<button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/estiramientos/tren_inferior/estiramentos_pantorrila.mp4">▶ Ver video</button>
 </div>
 <div class="exercise-meta"><div class="pill"><span>Series</span>1–2</div><div class="pill"><span>Tiempo</span>20 seg por lado</div><div class="pill"><span>Descanso</span>10 seg</div><div class="pill"><span>RPE</span>2</div></div>
-<div class="review-request" data-exercise="estiramiento-de-pantorrilla-en-pared">
+<div class="review-request" data-exercise="estiramiento-de-pantorrilla-supino-con-toalla">
   <div class="review-request-copy">
     <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
     <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
   </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla en pared">📹 Enviar mi ejecución</button>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Estiramiento de pantorrilla supino con toalla">📹 Enviar mi ejecución</button>
   <div class="upload-status" aria-live="polite"></div>
 </div>
-</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Completa&sesion_objetivo=Movimiento%20y%20estabilidad" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
+</article></div></section><div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra cómo te fue.</p><a href="[../../registro-sesion.html?cliente=Juany%20Flores&rutina=Rutina%20B%20Completa&sesion_objetivo=Movimiento%20y%20estabilidad](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juany%20Flores\&rutina=Rutina%20B%20Completa\&sesion_objetivo=Movimiento%20y%20estabilidad)" class="finish-session-btn">✅ Finalicé mi sesión</a></div>
       </div>
       <div class="upsell-card"><strong>Nota MoveSmart:</strong> la Rutina B complementa la A. No busca cansarte más, sino mejorar cómo te mueves.</div>
-
     </main>
   </div>
-
-
   <div class="execution-modal" id="executionModal" aria-hidden="true">
 <div class="execution-dialog">
 <div class="execution-head">
@@ -958,7 +866,6 @@ line-height:1.5;
 </div>
 </div>
 </div>
-
 <div aria-hidden="true" class="video-modal" id="videoModal">
 <div class="video-box">
 <div class="video-box-head">
@@ -971,8 +878,8 @@ line-height:1.5;
 </div>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
+<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
+<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
     const CLIENTE = "Juany Flores";
@@ -1202,11 +1109,7 @@ box,
 });
 }
 }
-
-
-
     const respuestas = { tiempo:null, energia:null, molestia:null };
-
     const progressFill = document.getElementById("progressFill");
     const progressText = document.getElementById("progressText");
     const resultCard = document.getElementById("resultCard");
@@ -1215,25 +1118,21 @@ box,
     const smartLoadingTitle = document.getElementById("smartLoadingTitle");
     const smartLoadingText = document.getElementById("smartLoadingText");
     const createRoutine = document.getElementById("createRoutine");
-
     function updateProgress(){
       const answered = Object.values(respuestas).filter(Boolean).length;
-      progressFill.style.width = `${(answered / 3) * 100}%`;
-      progressText.textContent = `Pregunta ${answered} de 3`;
+      progressFill.style.width = \`${(answered / 3) * 100}%\`;
+      progressText.textContent = \`Pregunta ${answered} de 3\`;
     }
-
     function nombreEstructura(){
       if(respuestas.tiempo === "express") return "Express";
       if(respuestas.tiempo === "base") return "Base";
       return "Completa";
     }
-
     function modoSegunRespuesta(){
       if(respuestas.molestia === "alto" || respuestas.energia === "baja") return "Recovery";
       if(respuestas.molestia === "leve" && respuestas.energia === "alta") return "Plus";
       return "Normal";
     }
-
     function guardarRespuestaEnSheets(estructura, modo){
       const payload = {
         cliente: CLIENTE,
@@ -1245,7 +1144,6 @@ box,
         estructura: estructura,
         modo: modo
       };
-
       fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
@@ -1256,7 +1154,6 @@ box,
         body: JSON.stringify(payload)
       }).catch(function(error){
         console.log("No se pudo guardar en Sheets:", error);
-
         try{
           const blob = new Blob([JSON.stringify(payload)], {type:"text/plain;charset=utf-8"});
           navigator.sendBeacon(SCRIPT_URL, blob);
@@ -1265,16 +1162,13 @@ box,
         }
       });
     }
-
     document.querySelectorAll(".choice").forEach(button => {
       button.addEventListener("click", () => {
         const question = button.closest(".question").dataset.question;
         respuestas[question] = button.dataset.value;
-
         button.closest(".choices").querySelectorAll(".choice").forEach(btn => {
           btn.classList.remove("selected");
         });
-
         button.classList.add("selected");
         resultCard.classList.remove("active");
         document.querySelectorAll(".routine-container").forEach(routine => {
@@ -1283,21 +1177,17 @@ box,
         updateProgress();
       });
     });
-
     function elegirRutinaId(){
       const tiempo = respuestas.tiempo;
       const energia = respuestas.energia;
       const molestia = respuestas.molestia;
-
       if(molestia === "alto") return "rutina-express";
       if(tiempo === "express" || energia === "baja") return "rutina-express";
       if(tiempo === "completa" && energia === "alta" && molestia === "leve") return "rutina-completa";
       return "rutina-base";
     }
-
     function crearRutina(){
       const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
-
       if(faltan.length){
         resultCard.innerHTML = "<strong>Falta completar la encuesta.</strong><br>Responde tiempo, energía y molestia articular para crear la rutina de hoy.";
         resultCard.style.background = "rgba(255,90,31,.12)";
@@ -1306,72 +1196,57 @@ box,
         resultCard.classList.add("active");
         return;
       }
-
       const estructura = nombreEstructura();
       const modo = modoSegunRespuesta();
       const routineId = elegirRutinaId();
-
       guardarRespuestaEnSheets(estructura, modo);
-
       const modoTexto = {
         Recovery: "Hoy prioriza movilidad suave, apoyo y menor volumen. La idea es moverte sin acumular fatiga.",
         Normal: "Hoy puedes seguir la rutina planificada, manteniendo técnica, pausas y control.",
         Plus: "Hoy tienes buena disponibilidad. Puedes realizar la versión completa manteniendo el control."
       };
-
       resultCard.classList.remove("active");
       document.querySelectorAll(".routine-container").forEach(routine => {
         routine.classList.remove("active");
       });
-
       smartLoading.classList.add("active");
       surveyCard.classList.add("is-processing");
       smartLoadingTitle.textContent = "Analizando cómo llegas hoy...";
       smartLoadingText.textContent = "MoveSmart está revisando tu tiempo, energía y molestia articular.";
       smartLoading.scrollIntoView({ behavior:"auto", block:"center" });
-
       setTimeout(() => {
         smartLoadingTitle.textContent = "Adaptando tu Rutina B...";
-        smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
+        smartLoadingText.textContent = \`Preparando versión ${estructura} con modo ${modo}.\`;
       }, 180);
-
       setTimeout(() => {
         smartLoadingTitle.textContent = "✨ Rutina lista";
         smartLoadingText.textContent = "Tu sesión personalizada ya está preparada.";
       }, 380);
-
       setTimeout(() => {
         smartLoading.classList.remove("active");
         surveyCard.classList.remove("is-processing");
-
         resultCard.style.background = "rgba(29,191,115,.12)";
         resultCard.style.borderColor = "rgba(29,191,115,.28)";
         resultCard.style.color = "#ddffea";
-        resultCard.innerHTML = `<strong>✨ Recomendación MoveSmart:</strong><br>Rutina B Mes 2 ${estructura} · Modo ${modo}<br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+        resultCard.innerHTML = \`<strong>✨ Recomendación MoveSmart:</strong><br>Rutina B Mes 2 ${estructura} · Modo ${modo}<br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>\`;
         resultCard.classList.add("active");
-
         const routineContainer = document.getElementById(routineId);
         routineContainer.classList.add("active");
         routineContainer.scrollIntoView({ behavior:"auto", block:"start" });
       }, 650);
     }
-
-
     const videoModal = document.getElementById("videoModal");
     const videoFrame = document.getElementById("videoFrame");
     const youtubeFrame = document.getElementById("youtubeFrame");
     const closeVideo = document.getElementById("closeVideo");
     const videoTitle = document.getElementById("videoTitle");
     let videoLoopTimeout = null;
-
     function youtubeEmbedUrl(url){
       if(!url) return "";
-
       try{
         const parsed = new URL(url.trim());
         const host = parsed.hostname.replace("www.", "");
         let videoId = "";
-
         if(parsed.pathname.includes("/embed/")){
           videoId = parsed.pathname.split("/embed/")[1]?.split("/")[0] || "";
         } else if(host === "youtu.be"){
@@ -1383,15 +1258,12 @@ box,
             videoId = parsed.searchParams.get("v") || "";
           }
         }
-
         if(!videoId) return "";
-
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&playsinline=1`;
+        return \`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&rel=0&playsinline=1\`;
       } catch(error){
         return "";
       }
     }
-
     function reiniciarVideoConFundido(){
       videoFrame.classList.add("loop-fade-out");
       clearTimeout(videoLoopTimeout);
@@ -1404,9 +1276,7 @@ box,
         }));
       }, 400);
     }
-
     videoFrame.addEventListener("ended", reiniciarVideoConFundido);
-
     document.querySelectorAll(".open-video").forEach(button => {
       button.addEventListener("click", () => {
         const videoUrl = (button.dataset.video || "").trim();
@@ -1446,7 +1316,6 @@ box,
         document.body.style.overflow = "hidden";
       });
     });
-
     function cerrarVideo(){
       videoModal.classList.remove("active");
       videoModal.setAttribute("aria-hidden", "true");
@@ -1458,24 +1327,18 @@ box,
       youtubeFrame.src = "";
       document.body.style.overflow = "";
     }
-
     closeVideo.addEventListener("click", cerrarVideo);
-
     videoModal.addEventListener("click", (event) => {
       if(event.target === videoModal){
         cerrarVideo();
       }
     });
-
     document.addEventListener("keydown", (event) => {
       if(event.key === "Escape" && videoModal.classList.contains("active")){
         cerrarVideo();
       }
     });
-
-
     createRoutine.addEventListener("click", crearRutina);
-
 // Videos del cliente: subida directa y reanudable a Supabase Storage.
 const executionModal = document.getElementById('executionModal');
 const executionClose = document.getElementById('executionClose');
@@ -1662,7 +1525,7 @@ if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
 activeVideoUrl = URL.createObjectURL(originalFile);
 executionPreview.src = activeVideoUrl;
 executionPreview.classList.add('active');
-selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
+selectedVideoInfo.textContent = \`✅ ${originalFile.name} · ${formatoMB(originalFile.size)}\`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
 executionSend.textContent = 'Preparando…';
@@ -1673,8 +1536,8 @@ optimizationBox.innerHTML =
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
 optimizationBox.innerHTML =
-`<strong>✅ Video listo para enviar</strong><br>` +
-`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
+\`<strong>✅ Video listo para enviar</strong><br>\` +
+\`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.\`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
@@ -1714,10 +1577,10 @@ throw new Error("No se cargó el módulo de subida reanudable TUS.");
 }
 await new Promise((resolve, reject) => {
 const upload = new tus.Upload(file, {
-endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
+endpoint: \`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable\`,
 retryDelays: [0, 3000, 5000, 10000, 20000],
 headers: {
-authorization: `Bearer ${session.access_token}`
+authorization: \`Bearer ${session.access_token}\`
 },
 uploadDataDuringCreation: true,
 removeFingerprintOnSuccess: true,
@@ -1749,7 +1612,7 @@ uploadProgressBar.style.width = rounded + '%';
 uploadProgressPercent.textContent = rounded + '%';
 const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
 const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
-uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
+uploadProgressText.textContent = \`${mbUploaded} MB de ${mbTotal} MB\`;
 },
 onSuccess(){
 resolve();
@@ -1902,8 +1765,6 @@ sincronizarVideosEnviadosHoy();
 window.addEventListener('focus', () => {
 sincronizarVideosEnviadosHoy();
 });
-
-
     updateProgress();
   </script>
 </body>
