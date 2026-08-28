@@ -1,10 +1,10 @@
 
-<!DOCTYPE html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Encuesta Rutina A Recuperación | Cliente de referencia</title>
+<title>Rutina A | Cliente de referencia · MoveSmart</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -614,6 +614,14 @@ width:100%;
 height:100%;
 border:0;
 }
+.video-frame-wrap video{
+object-fit:contain;
+background:#050508;
+opacity:1;
+transition:opacity .4s ease;
+}
+.video-frame-wrap video.loop-fade-out{opacity:0}
+.video-frame-wrap video::-webkit-media-controls{display:none!important}
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(14px)}
 to{opacity:1;transform:translateY(0)}
@@ -738,718 +746,387 @@ appearance:none;
 <body>
 <div class="wrap">
 <header class="topbar">
-<div class="brand">
-<div class="brand-badge">M</div>
-<div class="brand-text">
-<h1>MoveSmart</h1>
-<p>Cliente de referencia · Rutina A recuperación adaptativa</p>
-</div>
-</div>
-<a class="back-btn" href="[[\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html)](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/\[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html]\(https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html\))](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/[/[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html/](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html)](https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia//[https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html]/(https://movesmart-chile.github.io/movesmart-web/clientes/cliente-de-referencia/julio/plan-cliente-de-referencia.html/)))">← Volver al plan</a>
+  <div class="brand">
+    <div class="brand-badge">M</div>
+    <div class="brand-text"><h1>MoveSmart</h1><p>Cliente de referencia · Rutina A adaptativa</p></div>
+  </div>
+  <a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html">← Volver al plan</a>
 </header>
 <section class="hero">
-<div aria-hidden="true" class="hero-image"></div>
-<div class="hero-copy">
-<div class="hello">¡Hola!</div>
-<h2>Hoy el objetivo no es exigirte: es mantenerte en movimiento mientras te recuperas.</h2>
-<p>
-Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina A de recuperación según tu tiempo,
-energía y cómo están hoy tus molestias o zonas lesionadas.
-</p>
-</div>
+  <div aria-hidden="true" class="hero-image"></div>
+  <div class="hero-copy">
+    <div class="hello">¡Hola, Cliente de referencia!</div>
+    <h2>Hoy no necesitas hacerlo perfecto: solo necesitas comenzar.</h2>
+    <p>Responde estas 3 preguntas y MoveSmart ajustará tu Rutina A según el tiempo disponible, tu energía y cómo se siente tu cuerpo hoy.</p>
+  </div>
 </section>
 <main class="survey-card">
-<div class="survey-head">
-<div class="survey-title">
-<div class="survey-icon">✨</div>
-<div>
-<h3>Encuesta MoveSmart</h3>
-<p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p>
+  <div class="survey-head"><div class="survey-title"><div class="survey-icon">✨</div><div><h3>Encuesta MoveSmart</h3><p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p></div></div></div>
+  <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-text" id="progressText">Pregunta 0 de 3</div></div>
+  <section class="question" data-question="tiempo">
+    <div class="q-title"><div class="q-icon">⏱️</div><div><h4>1. ¿Cuánto tiempo tienes hoy?</h4><p>Elige la opción que realmente puedas completar.</p></div></div>
+    <div class="choices">
+      <button type="button" class="choice" data-value="express"><span class="emoji">⏱️</span><strong>15–20 min</strong><span>Poco tiempo</span></button>
+      <button type="button" class="choice" data-value="base"><span class="emoji">🕒</span><strong>25–35 min</strong><span>Tiempo moderado</span></button>
+      <button type="button" class="choice" data-value="completa"><span class="emoji">🕘</span><strong>35–45 min</strong><span>Sesión completa</span></button>
+    </div>
+  </section>
+  <section class="question" data-question="energia">
+    <div class="q-title"><div class="q-icon">⚡</div><div><h4>2. ¿Cómo está tu energía hoy?</h4><p>Piensa en cómo se siente tu cuerpo físicamente.</p></div></div>
+    <div class="choices">
+      <button type="button" class="choice" data-value="baja"><span class="emoji">🪫</span><strong>Baja</strong><span>Necesito una sesión sencilla</span></button>
+      <button type="button" class="choice" data-value="media"><span class="emoji">⚡</span><strong>Media</strong><span>Me siento normal</span></button>
+      <button type="button" class="choice" data-value="alta"><span class="emoji">🔋</span><strong>Alta</strong><span>Me siento con buena energía</span></button>
+    </div>
+  </section>
+  <section class="question" data-question="personalizada">
+    <div class="q-title"><div class="q-icon">🧭</div><div><h4>3. ¿Cómo se siente tu cuerpo antes de entrenar?</h4><p>Considera cansancio, rigidez, dolor o cualquier malestar nuevo.</p></div></div>
+    <div class="choices">
+      <button type="button" class="choice" data-value="leve"><span class="emoji">🟢</span><strong>Bien</strong><span>Sin molestias importantes</span></button>
+      <button type="button" class="choice" data-value="moderado"><span class="emoji">🟡</span><strong>Algo cansada o rígida</strong><span>Puedo entrenar más suave</span></button>
+      <button type="button" class="choice" data-value="alto"><span class="emoji">🔴</span><strong>Dolor o malestar importante</strong><span>Algo se siente diferente o preocupante</span></button>
+    </div>
+  </section>
+  <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
+  <p class="microcopy">Tu rutina se adapta a ti. Comenzar también es avanzar.</p>
+  <div class="result-card" id="resultCard"></div>
+  <div aria-live="polite" class="smart-loading" id="smartLoading"><div class="smart-orb"></div><h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3><p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado general.</p></div>
+  <div class="routine-container" id="rutina-express">
+    <div class="routine-intro"><div class="routine-version-label">⚡ Rutina A Express · 15–20 min</div><h2>Rutina A · Fuerza esencial</h2><p>La versión mínima para cumplir incluso cuando tengas poco tiempo o te cueste comenzar.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>15–20 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–5/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Cuerpo completo</strong></div></div></div>
+    <div class="note"><strong>Regla principal:</strong> utiliza un peso liviano y termina cada serie sintiendo que podrías realizar 3–4 repeticiones más.</div>
+    <section class="section"><div class="section-head"><h2>Activación</h2><p>Prepara el cuerpo sin fatigarte.</p></div><div class="section-body">
+<div class="simple-card">
+  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
+  3 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
+<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
 </div>
+</div></div></section>
+    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Movimientos básicos, controlados y sin llegar al fallo.</p></div><div class="section-body">
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Prensa de piernas en máquina</div>
+    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
 </div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Press de pecho en máquina</div>
+    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="press-de-pecho-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
 </div>
-<div class="progress-wrap">
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">Pregunta 0 de 3</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Remo sentado en máquina</div>
+    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="remo-sentado-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
 </div>
-<section class="question" data-question="tiempo">
-<div class="q-title">
-<div class="q-icon">⏱️</div>
-<div>
-<h4>1. ¿Cuánto tiempo tienes hoy?</h4>
-<p>Sé realista con el tiempo del que dispones.</p>
-</div>
-</div>
-<div class="choices">
-<button type="button" class="choice" data-value="express" type="button">
-<span class="emoji">⏱️</span>
-<strong>10 – 15 min</strong>
-<span>Poco tiempo</span>
-</button>
-<button type="button" class="choice" data-value="base" type="button">
-<span class="emoji">🕒</span>
-<strong>20 – 25 min</strong>
-<span>Tiempo moderado</span>
-</button>
-<button type="button" class="choice" data-value="completa" type="button">
-<span class="emoji">🕘</span>
-<strong>25 – 30 min</strong>
-<span>Más tiempo</span>
-</button>
-</div>
-</section>
-<section class="question" data-question="energia">
-<div class="q-title">
-<div class="q-icon">⚡</div>
-<div>
-<h4>2. ¿Cómo está tu energía hoy?</h4>
-<p>Piensa en cómo se siente tu cuerpo físicamente.</p>
-</div>
-</div>
-<div class="choices">
-<button type="button" class="choice" data-value="baja" type="button">
-<span class="emoji">🪫</span>
-<strong>Baja</strong>
-<span>Necesito moverme muy suave</span>
-</button>
-<button type="button" class="choice" data-value="media" type="button">
-<span class="emoji">⚡</span>
-<strong>Media</strong>
-<span>Me siento normal</span>
-</button>
-<button type="button" class="choice" data-value="alta" type="button">
-<span class="emoji">🔋</span>
-<strong>Alta</strong>
-<span>Me siento con buena energía</span>
-</button>
-</div>
-</section>
-<section class="question" data-question="personalizada">
-<div class="q-title">
-<div class="q-icon">🩹</div>
-<div>
-<h4>3. ¿Cómo están hoy tus molestias o zonas lesionadas?</h4>
-<p>Piensa en el pie, el tendón de Aquiles y cualquier otra zona que actualmente esté en recuperación.</p>
-</div>
-</div>
-<div class="choices">
-<button type="button" class="choice" data-value="leve" type="button">
-<span class="emoji">🟢</span>
-<strong>Leves</strong>
-<span>Sin molestias importantes o entre 0–3/10</span>
-</button>
-<button type="button" class="choice" data-value="moderado" type="button">
-<span class="emoji">🟡</span>
-<strong>Moderadas</strong>
-<span>Hay molestias o rigidez, pero puedo moverme con cuidado</span>
-</button>
-<button type="button" class="choice" data-value="alto" type="button">
-<span class="emoji">🔴</span>
-<strong>Altas o diferentes</strong>
-<span>Más dolor, inflamación, debilidad o alguna molestia nueva</span>
-</button>
-</div>
-</section>
-<button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
-<p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
-<div class="result-card" id="resultCard"></div>
-<div aria-live="polite" class="smart-loading" id="smartLoading">
-<div class="smart-orb"></div>
-<h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-<p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
-</div>
-<!-- EXPRESS -->
-<div class="routine-container" id="rutina-express">
-<div class="routine-intro">
-<div class="routine-version-label">⚡ Rutina A Recuperación Express · 10–15 min</div>
-<h2>Rutina A · Movilidad esencial</h2>
-<p>Versión corta para mantener movilidad y control del pie sin cargar el brazo.</p>
-<div class="quick-stats">
-<div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
-<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-<div class="stat"><small>Material</small><strong>Silla</strong></div>
-<div class="stat"><small>Objetivo</small><strong>Movilidad + pie</strong></div>
-</div>
-</div>
-<div class="warning">
-<strong>Importante:</strong> esta sesión no incluye pesas, bandas ni trabajo de fuerza del brazo.
-Si el médico indicó reposo completo, no realices la rutina.
-</div>
-<div class="video-help-note">
-<div class="video-help-icon">📹</div>
-<div>
-<strong>¿Quieres que revise alguno de tus ejercicios?</strong>
-<p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
-</div>
-</div>
+</article></div></section>
 <section class="section">
-<div class="section-head"><h2>Entrada suave</h2><p>Comienza con movimientos cómodos y sin fatiga.</p></div>
-<div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div>
-</div>
+  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
+  <div class="section-body">
+    <div class="simple-card">
+      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
+    </div>
+  </div>
 </section>
+    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cómo se sintió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
+  </div>
+  <div class="routine-container" id="rutina-base">
+    <div class="routine-intro"><div class="routine-version-label">🕒 Rutina A Base · 25–35 min</div><h2>Rutina A · Fuerza general</h2><p>Tu versión principal para aprender los movimientos y construir una base de fuerza de manera progresiva.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–35 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–6/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Fuerza + hábito</strong></div></div></div>
+    <div class="note"><strong>Primera etapa:</strong> prioriza aprender a ajustar las máquinas y controlar el movimiento. El peso debe sentirse manejable en todas las repeticiones.</div>
+    <section class="section"><div class="section-head"><h2>Calentamiento</h2><p>Aumenta gradualmente la temperatura corporal.</p></div><div class="section-body">
+<div class="simple-card">
+  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
+  5 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
+<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</div></div></section>
+    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Descansa lo necesario para repetir cada ejercicio con buena técnica.</p></div><div class="section-body">
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Prensa de piernas en máquina</div>
+    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Curl femoral sentado en máquina</div>
+    <p class="exercise-desc">Ajusta el respaldo y el rodillo. Flexiona las rodillas de manera controlada y vuelve lentamente sin soltar el peso de golpe.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>10–12</div>
+    <div class="pill"><span>Descanso</span>60 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="curl-femoral-sentado-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Press de pecho en máquina</div>
+    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="press-de-pecho-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Remo sentado en máquina</div>
+    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="remo-sentado-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+</div></section>
 <section class="section">
-<div class="section-head"><h2>Tobillo y pie</h2><p>Movimiento suave, sin estiramiento profundo del Aquiles.</p></div>
-<div class="section-body">
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-<p class="exercise-desc">Lleva la punta del pie suavemente hacia arriba y luego hacia abajo dentro de un rango cómodo.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yubU17YnuUs" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8–10</div>
-<div class="pill"><span>RPE</span>1–2</div>
-<div class="pill"><span>Dolor pie</span>0–3/10</div>
-</div>
-<div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Arco activo del pie</div>
-<p class="exercise-desc">Mantén talón, base del dedo gordo y base del dedo pequeño apoyados. Acorta suavemente el pie sin encoger los dedos.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=XtgR6OVIw3A" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>6–8</div>
-<div class="pill"><span>Tiempo</span>3–5 seg</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
+  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
+  <div class="section-body">
+    <div class="simple-card">
+      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
+    </div>
+  </div>
 </section>
+    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cualquier ejercicio que necesite ajuste.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
+  </div>
+  <div class="routine-container" id="rutina-completa">
+    <div class="routine-intro"><div class="routine-version-label">🕘 Rutina A Completa · 35–45 min</div><h2>Rutina A · Fuerza completa</h2><p>La versión ampliada para los días en que tengas más tiempo y buena disposición para entrenar.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>35–45 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–6/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Fuerza global</strong></div></div></div>
+    <div class="note"><strong>Importante:</strong> más tiempo no significa usar más peso. Mantén 3–4 repeticiones en reserva y evita entrenar hasta el fallo durante este primer ciclo.</div>
+    <section class="section"><div class="section-head"><h2>Calentamiento</h2><p>Comienza con un ritmo cómodo.</p></div><div class="section-body">
+<div class="simple-card">
+  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
+  5 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
+<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</div></div></section>
+    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Trabaja piernas, cadera, empuje, tracción y estabilidad.</p></div><div class="section-body">
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Prensa de piernas en máquina</div>
+    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Curl femoral sentado en máquina</div>
+    <p class="exercise-desc">Ajusta el respaldo y el rodillo. Flexiona las rodillas de manera controlada y vuelve lentamente sin soltar el peso de golpe.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>10–12</div>
+    <div class="pill"><span>Descanso</span>60 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="curl-femoral-sentado-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Abducción de cadera en máquina</div>
+    <p class="exercise-desc">Mantén la espalda apoyada. Separa las rodillas hasta un rango cómodo y regresa lentamente evitando que las placas choquen.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_sentado_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>10–12</div>
+    <div class="pill"><span>Descanso</span>60 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–5/10</div>
+  </div>
+<div class="review-request" data-exercise="abduccion-de-cadera-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Press de pecho en máquina</div>
+    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="press-de-pecho-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+<article class="exercise-card">
+  <div>
+    <div class="exercise-name">Remo sentado en máquina</div>
+    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
+    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
+  </div>
+  <div class="exercise-meta">
+    <div class="pill"><span>Series</span>2</div>
+    <div class="pill"><span>Reps</span>8–10</div>
+    <div class="pill"><span>Descanso</span>60–75 s</div>
+    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
+  </div>
+<div class="review-request" data-exercise="remo-sentado-en-maquina">
+  <div class="review-request-copy">
+    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+  </div>
+  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
+  <div class="upload-status" aria-live="polite"></div>
+</div>
+</article>
+</div></section>
+    <div class="warning"><strong>Detén el ejercicio</strong> si aparece dolor agudo, mareo, falta de aire desproporcionada o cualquier malestar nuevo que te preocupe.</div>
 <section class="section">
-<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-lenta">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración lenta">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div></div>
+  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
+  <div class="section-body">
+    <div class="simple-card">
+      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
+    </div>
+  </div>
 </section>
-<div class="finish-session-wrap">
-<p class="finish-session-text">Cuando termines, registra cómo respondió el pie y cómo se sintió el brazo durante la sesión.</p>
-<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Express&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Express\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
-</div>
-</div>
-<!-- BASE -->
-<div class="routine-container" id="rutina-base">
-<div class="routine-intro">
-<div class="routine-version-label">🕒 Rutina A Recuperación Base · 20–25 min</div>
-<h2>Rutina A · Movilidad, cadera y pie</h2>
-<p>Versión principal para conservar movimiento y disminuir rigidez mientras se mantiene la restricción de carga del brazo.</p>
-<div class="quick-stats">
-<div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
-<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-<div class="stat"><small>Material</small><strong>Silla</strong></div>
-<div class="stat"><small>Objetivo</small><strong>Movilidad + control</strong></div>
-</div>
-</div>
-<div class="warning">
-<strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones o apoyo de peso sobre el brazo afectado.
-</div>
-<div class="video-help-note">
-<div class="video-help-icon">📹</div>
-<div>
-<strong>¿Quieres que revise alguno de tus ejercicios?</strong>
-<p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
-</div>
-</div>
-<section class="section">
-<div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
-<div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Rotación torácica sentada</div>
-<p class="exercise-desc">Gira suavemente el tronco hacia cada lado manteniendo los brazos relajados junto al cuerpo.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=NhgNGmvWy14" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>6 por lado</div>
-<div class="pill"><span>Rango</span>Cómodo</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="rotacion-toracica-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad de miembros inferiores sin impacto.</p></div>
-<div class="section-body">
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Marcha sentada</div>
-<p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra sin impulsarte con los brazos.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=iI5Rzx0l4tc" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10 por lado</div>
-<div class="pill"><span>Ritmo</span>Suave</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="marcha-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Extensión de rodilla sentada</div>
-<p class="exercise-desc">Extiende una rodilla, mantén un segundo y regresa lentamente. No agregues peso.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8–10 por lado</div>
-<div class="pill"><span>Carga</span>Sin peso</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="extension-de-rodilla-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>Tobillo y pie</h2><p>Conserva movimiento y control sin irritar el Aquiles.</p></div>
-<div class="section-body">
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-<p class="exercise-desc">Mueve el tobillo dentro de un rango cómodo, sin estirar profundamente el Aquiles.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yubU17YnuUs" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10</div>
-<div class="pill"><span>Dolor pie</span>0–3/10</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión dorsal sentada</div>
-<p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado, dentro de un rango cómodo.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=UI8a4q4OW7g" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10</div>
-<div class="pill"><span>Rango</span>Cómodo</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-dorsal-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión plantar sentada sin resistencia</div>
-<p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro, sin agregar resistencia.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/L_OaQ5M93E4" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10</div>
-<div class="pill"><span>Carga</span>Sin resistencia</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-plantar-sentada-sin-resistencia">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar sentada sin resistencia">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Círculos de tobillo</div>
-<p class="exercise-desc">Realiza círculos pequeños y lentos en ambas direcciones.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=SWcjGJl4dI8" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8 por dirección</div>
-<div class="pill"><span>Rango</span>Suave</div>
-<div class="pill"><span>RPE</span>1</div>
-</div>
-<div class="review-request" data-exercise="circulos-de-tobillo">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Arco activo del pie</div>
-<p class="exercise-desc">Forma suavemente el arco manteniendo los tres puntos de apoyo del pie.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=XtgR6OVIw3A" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8</div>
-<div class="pill"><span>Tiempo</span>3–5 seg</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-lenta">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración lenta">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div></div>
-</section>
-<div class="finish-session-wrap">
-<p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si apareció alguna molestia nueva o cambio importante en tus zonas lesionadas.</p>
-<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Base&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Base\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
-</div>
-</div>
-<!-- COMPLETA -->
-<div class="routine-container" id="rutina-completa">
-<div class="routine-intro">
-<div class="routine-version-label">🕘 Rutina A Recuperación Completa · 25–30 min</div>
-<h2>Rutina A · Movilidad completa sin carga</h2>
-<p>Versión ampliada para días con más tiempo, manteniendo siempre el objetivo de recuperación y sin cargar el brazo.</p>
-<div class="quick-stats">
-<div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
-<div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-<div class="stat"><small>Material</small><strong>Silla</strong></div>
-<div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div>
-</div>
-</div>
-<div class="warning">
-<strong>Importante:</strong> esta es una sesión de recuperación, no de entrenamiento de fuerza.
-No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
-</div>
-<div class="video-help-note">
-<div class="video-help-icon">📹</div>
-<div>
-<strong>¿Quieres que revise alguno de tus ejercicios?</strong>
-<p>Puedes enviarme un video desde cualquier ejercicio de esta rutina. No necesitas grabarlos todos: úsalo cuando quieras que revise tu técnica o tengas una duda sobre un movimiento.</p>
-</div>
-</div>
-<section class="section">
-<div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
-<div class="section-body">
-<div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Rotación torácica sentada</div>
-<p class="exercise-desc">Gira suavemente el tronco hacia cada lado manteniendo ambos brazos relajados.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=NhgNGmvWy14" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8 por lado</div>
-<div class="pill"><span>Rango</span>Cómodo</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="rotacion-toracica-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad sin impacto ni carga externa.</p></div>
-<div class="section-body">
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Marcha sentada</div>
-<p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=iI5Rzx0l4tc" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>12 por lado</div>
-<div class="pill"><span>Ritmo</span>Suave</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="marcha-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Extensión de rodilla sentada</div>
-<p class="exercise-desc">Extiende la rodilla, mantén 1–2 segundos y vuelve lentamente.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yBxchebYYnU" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10 por lado</div>
-<div class="pill"><span>Carga</span>Sin peso</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="extension-de-rodilla-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Abducción de cadera de pie</div>
-<p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro con control.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/pOFXjbNuqOA" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8 por lado</div>
-<div class="pill"><span>Rango</span>Cómodo</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="abduccion-de-cadera-de-pie">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera de pie">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>Tobillo y pie</h2><p>Trabajo suave para conservar movilidad y control.</p></div>
-<div class="section-body">
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-<p class="exercise-desc">Lleva la punta del pie suavemente hacia arriba y hacia abajo sin forzar el Aquiles.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=yubU17YnuUs" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>12</div>
-<div class="pill"><span>Dolor pie</span>0–3/10</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-y-extension-de-tobillo-sentado">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión dorsal sentada</div>
-<p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado, dentro de un rango cómodo.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=UI8a4q4OW7g" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10</div>
-<div class="pill"><span>Rango</span>Cómodo</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-dorsal-sentada">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Flexión plantar sentada sin resistencia</div>
-<p class="exercise-desc">Lleva suavemente la punta del pie hacia abajo y vuelve al centro, sin agregar resistencia.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/shorts/L_OaQ5M93E4" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10</div>
-<div class="pill"><span>Carga</span>Sin resistencia</div>
-<div class="pill"><span>RPE</span>1–2</div>
-</div>
-<div class="review-request" data-exercise="flexion-plantar-sentada-sin-resistencia">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar sentada sin resistencia">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Círculos de tobillo</div>
-<p class="exercise-desc">Realiza círculos lentos en ambas direcciones.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=SWcjGJl4dI8" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>10 por dirección</div>
-<div class="pill"><span>Rango</span>Suave</div>
-<div class="pill"><span>RPE</span>1</div>
-</div>
-<div class="review-request" data-exercise="circulos-de-tobillo">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-<div>
-<div class="exercise-name">Arco activo del pie</div>
-<p class="exercise-desc">Activa suavemente el arco sin levantar los dedos ni perder los tres puntos de apoyo.</p>
-<button class="video-btn open-video" data-video="https://www.youtube.com/watch?v=XtgR6OVIw3A" type="button">▶ Ver video</button>
-</div>
-<div class="exercise-meta">
-<div class="pill"><span>Series</span>2</div>
-<div class="pill"><span>Reps</span>8–10</div>
-<div class="pill"><span>Tiempo</span>5 seg</div>
-<div class="pill"><span>RPE</span>2</div>
-</div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div>
-</section>
-<div class="note">
-<strong>Regla de recuperación:</strong> esta rutina debería dejarte igual o mejor, no más cansada ni dolorida.
-Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende la sesión.
-</div>
-<section class="section">
-<div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-<div class="section-body"><div class="simple-card"><strong>Respiración lenta</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://www.youtube.com/shorts/d9ACdDXPZvU" type="button">▶ Ver video</button>
-<div class="review-request" data-exercise="respiracion-lenta">
-<div class="review-request-copy">
-<span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-<small>Es opcional. Envíame un video corto y podré revisar cómo estás realizando el movimiento.</small>
-</div>
-<button class="upload-execution-btn" type="button" data-exercise-name="Respiración lenta">📹 Enviar mi ejecución</button>
-<div class="upload-status" aria-live="polite"></div>
-</div></div></div>
-</section>
-<div class="finish-session-wrap">
-<p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si hubo cualquier cambio importante en tus zonas lesionadas.</p>
-<a class="finish-session-btn" href="[/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&rutina=Rutina%20A%20Recuperacion%20Completa&sesion_objetivo=Movilidad%20y%20pie](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia\&rutina=Rutina%20A%20Recuperacion%20Completa\&sesion_objetivo=Movilidad%20y%20pie)">✅ Finalicé mi sesión</a>
-</div>
-</div>
+    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cómo respondió tu cuerpo durante la sesión.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
+  </div>
 </main>
 </div>
 <div aria-hidden="true" class="video-modal" id="videoModal">
@@ -1460,7 +1137,7 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 </div>
 <div class="video-frame-wrap">
 <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
-<video id="videoPlayer" controls playsinline preload="none" autoplay loop muted style="display:none" title="Video de ejercicio"></video>
+<video id="videoPlayer" autoplay disablepictureinpicture muted playsinline preload="auto" style="display:none" title="Video de ejercicio"></video>
 </div>
 </div>
 </div>
@@ -1497,12 +1174,13 @@ Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nu
 </div>
 </div>
 </div>
-<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
-<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
 const CLIENTE = "Cliente de referencia";
-const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
+const PREGUNTA_PERSONALIZADA = "Estado general del cuerpo antes de entrenar";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
@@ -1569,11 +1247,11 @@ return map[file.type] || "mp4";
 }
 function obtenerRutinaVideo(button) {
 const container = button ? button.closest(".routine-container") : null;
-if (!container) return "Rutina A Recuperación";
-if (container.id === "rutina-express") return "Rutina A Recuperación Express";
-if (container.id === "rutina-base") return "Rutina A Recuperación Base";
-if (container.id === "rutina-completa") return "Rutina A Recuperación Completa";
-return "Rutina A Recuperación";
+if (!container) return "Rutina A";
+if (container.id === "rutina-express") return "Rutina A Express";
+if (container.id === "rutina-base") return "Rutina A Base";
+if (container.id === "rutina-completa") return "Rutina A Completa";
+return "Rutina A";
 }
 function construirRutaVideo(rutina, ejercicio, file) {
 const ahora = new Date();
@@ -1655,6 +1333,25 @@ if(error.code === "23505") return { ok:true, duplicate:true };
 throw error;
 }
 return { ok:true, duplicate:false };
+}
+async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
+  const payload = {
+    cliente: CLIENTE,
+    rutina,
+    ejercicio,
+    comentario: comentario || "",
+    rutaVideo,
+    estado: "Enviado"
+  };
+  await fetch(VIDEO_COMMENTS_URL, {
+    method: "POST",
+    mode: "no-cors",
+    keepalive: true,
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  });
 }
 async function sincronizarVideosEnviadosHoy(){
 if(!supabaseClient){
@@ -1770,7 +1467,7 @@ return 'Completa';
 function guardarRespuestaEnSheets(estructura, modo){
 const payload = {
 cliente: CLIENTE,
-rutina: "Rutina A Recuperación",
+rutina: "Rutina A",
 tiempo: respuestas.tiempo,
 energia: respuestas.energia,
 preguntaPersonalizada: PREGUNTA_PERSONALIZADA,
@@ -1799,7 +1496,7 @@ console.log("Tampoco se pudo usar sendBeacon:", e);
 document.getElementById('createRoutine').addEventListener('click', () => {
 const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
 if(faltan.length){
-resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado de tus molestias o zonas lesionadas para crear la recomendación.';
+resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado general del cuerpo para crear la recomendación.';
 resultCard.style.background = 'rgba(255,90,31,.12)';
 resultCard.style.borderColor = 'rgba(255,90,31,.28)';
 resultCard.style.color = '#ffe0d4';
@@ -1815,19 +1512,19 @@ if(modo === 'Detener'){
 resultCard.style.background = 'rgba(255,107,107,.12)';
 resultCard.style.borderColor = 'rgba(255,107,107,.28)';
 resultCard.style.color = '#ffe1e1';
-resultCard.innerHTML = '<strong>Hoy no recomendamos iniciar la rutina.</strong><br>Marcaste molestias altas o diferentes a lo habitual. Prioriza la indicación médica y retoma esta sesión solo cuando corresponda según tu evolución.';
+resultCard.innerHTML = '<strong>Hoy no recomendamos iniciar la rutina.</strong><br>Marcaste dolor o malestar importante. No inicies la sesión y busca orientación médica si el síntoma es nuevo, intenso o preocupante.';
 resultCard.classList.add('active');
 resultCard.scrollIntoView({ behavior:'auto', block:'center' });
 return;
 }
 const modoTexto = {
-Recovery: 'Hoy prioriza movimientos suaves, rango cómodo y menor volumen. No busques fatiga.',
-Normal: 'Realiza la versión planificada manteniendo movimientos lentos, cómodos y sin carga del brazo.'
+Recovery: 'Hoy utiliza pesos más livianos, movimientos controlados y descansos más largos.',
+Normal: 'Realiza la versión planificada con un peso manejable y sin llegar al fallo.'
 };
 smartLoading.classList.add('active');
 surveyCard.classList.add('is-processing');
 smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
-smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de tus molestias o zonas lesionadas.';
+smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado general del cuerpo.';
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 setTimeout(() => {
 smartLoadingTitle.textContent = 'Adaptando tu Rutina A de recuperación...';
@@ -1843,7 +1540,7 @@ surveyCard.classList.remove('is-processing');
 resultCard.style.background = 'rgba(29,191,115,.12)';
 resultCard.style.borderColor = 'rgba(29,191,115,.28)';
 resultCard.style.color = '#ddffea';
-resultCard.innerHTML = `<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+resultCard.innerHTML = `<strong>✨ Rutina A ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
 resultCard.classList.add('active');
 const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
 const routineContainer = document.getElementById(idRutina);
@@ -1882,7 +1579,6 @@ const videoFrame = document.getElementById('videoFrame');
 const videoPlayer = document.getElementById('videoPlayer');
 const closeVideo = document.getElementById('closeVideo');
 const videoTitle = document.getElementById('videoTitle');
-
 function isDirectVideoUrl(url) {
   if (!url) return false;
   try {
@@ -1892,23 +1588,39 @@ function isDirectVideoUrl(url) {
     return false;
   }
 }
-
+let videoFadeRestartTimer = null;
+function restartVideoWithFade() {
+  clearTimeout(videoFadeRestartTimer);
+  videoPlayer.classList.add('loop-fade-out');
+  videoFadeRestartTimer = setTimeout(function () {
+    videoPlayer.currentTime = 0;
+    videoPlayer.play().catch(function () {});
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        videoPlayer.classList.remove('loop-fade-out');
+      });
+    });
+  }, 400);
+}
+videoPlayer.addEventListener('ended', restartVideoWithFade);
 function showVideo(url, title, directVideo) {
   videoTitle.textContent = title || 'Video de ejercicio';
-
   if (directVideo) {
+    clearTimeout(videoFadeRestartTimer);
+    videoPlayer.classList.remove('loop-fade-out');
     videoFrame.src = '';
     videoFrame.style.display = 'none';
     videoPlayer.style.display = 'block';
-    videoPlayer.loop = true;
+    videoPlayer.loop = false;
     videoPlayer.muted = true;
     videoPlayer.autoplay = true;
+    videoPlayer.controls = false;
     videoPlayer.src = url;
     videoPlayer.load();
     const playPromise = videoPlayer.play();
     if (playPromise && typeof playPromise.catch === 'function') {
       playPromise.catch(function () {
-        // Si el navegador bloquea el autoplay, los controles siguen disponibles.
+        // El video permanece silenciado para permitir autoplay en móviles.
       });
     }
   } else {
@@ -1919,16 +1631,16 @@ function showVideo(url, title, directVideo) {
     videoFrame.style.display = 'block';
     videoFrame.src = url;
   }
-
   videoModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function hideVideo() {
+  clearTimeout(videoFadeRestartTimer);
   videoModal.classList.remove('active');
   videoFrame.src = '';
   videoFrame.style.display = 'block';
   videoPlayer.pause();
+  videoPlayer.classList.remove('loop-fade-out');
   videoPlayer.removeAttribute('src');
   videoPlayer.load();
   videoPlayer.style.display = 'none';
@@ -2340,7 +2052,18 @@ status: 'enviado',
 metodo: resultadoSubida.metodo
 }));
 }catch(e){}
-// 3) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
+// 3) REGISTRO EN SHEETS. Si falla, el video continúa considerándose enviado.
+try{
+await registrarVideoEnSheet({
+rutina,
+ejercicio: activeExerciseName,
+comentario: executionComment.value.trim(),
+rutaVideo: objectName
+});
+}catch(sheetError){
+console.warn('El video se guardó, pero no se pudo registrar en Sheets:', sheetError);
+}
+// 4) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
 uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
 try{
 await registrarVideoEnviadoEnSupabase({
