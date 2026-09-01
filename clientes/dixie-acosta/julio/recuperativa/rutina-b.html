@@ -1990,5 +1990,106 @@ sincronizarVideosEnviadosHoy();
 });
 updateProgress();
 </script>
+<script>
+(function () {
+  const modal = document.getElementById('videoModal');
+  const player = document.getElementById('videoPlayer');
+  const frame = document.getElementById('videoFrame');
+  const title = document.getElementById('videoTitle');
+  const close = document.getElementById('closeVideo');
+
+  if (!modal || !player || !frame) return;
+
+  function youtubeEmbed(url) {
+    try {
+      const parsed = new URL(url);
+      const host = parsed.hostname.replace(/^www\./, '');
+      let id = '';
+
+      if (host === 'youtu.be') {
+        id = parsed.pathname.split('/').filter(Boolean)[0] || '';
+      } else if (host === 'youtube.com' || host === 'm.youtube.com') {
+        if (parsed.pathname.startsWith('/shorts/')) {
+          id = parsed.pathname.split('/shorts/')[1].split('/')[0];
+        } else if (parsed.pathname === '/watch') {
+          id = parsed.searchParams.get('v') || '';
+        } else if (parsed.pathname.startsWith('/embed/')) {
+          id = parsed.pathname.split('/embed/')[1].split('/')[0];
+        }
+      }
+
+      return id
+        ? 'https://www.youtube.com/embed/' + id +
+          '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&playsinline=1'
+        : '';
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function closeVideoSafe() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    frame.src = '';
+    frame.style.display = 'none';
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    player.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (event) {
+    const button = event.target.closest('.video-btn');
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const url = String(button.dataset.video || button.getAttribute('href') || '').trim();
+    const card = button.closest('.exercise-card, .simple-card');
+    const name = card && card.querySelector('.exercise-name, strong');
+
+    title.textContent = name ? name.textContent.trim() : 'Video del ejercicio';
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) {
+      frame.src = '';
+      frame.style.display = 'none';
+      player.style.display = 'block';
+      player.src = url;
+      player.muted = true;
+      player.controls = true;
+      player.playsInline = true;
+      player.play().catch(function () {});
+      return;
+    }
+
+    const embed = youtubeEmbed(url);
+    if (embed) {
+      player.pause();
+      player.removeAttribute('src');
+      player.load();
+      player.style.display = 'none';
+      frame.style.display = 'block';
+      frame.src = embed;
+      return;
+    }
+
+    closeVideoSafe();
+    alert('Este ejercicio todavía no tiene un video válido.');
+  }, true);
+
+  if (close) close.addEventListener('click', closeVideoSafe, true);
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) closeVideoSafe();
+  }, true);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeVideoSafe();
+  });
+})();
+</script>
 </body>
 </html>
