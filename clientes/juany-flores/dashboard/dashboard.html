@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -623,7 +624,7 @@
           <button class="tab active" data-tab="evolucion">Mi evolución</button>
           <button class="tab" data-tab="registro">Mi registro</button>
           <button class="tab" data-tab="proximo">Mi plan</button>
-          <a class="tab tab-link" href="evaluacion-cierre-mes-1.html">Evaluación</a>
+          <a class="tab tab-link" href="https://movesmart-chile.github.io/movesmart-web/clientes/juany-flores/dashboard/tolerancia_carga.html">Tolerancia a la carga</a>
         </div>
       </div>
 
@@ -1070,14 +1071,14 @@
 
     function render() {
       if (!sesiones.length) {
-        document.getElementById('kpis').innerHTML = `
+        document.getElementById('kpis').innerHTML = \`
           <div class="kpi">
             <small>Estado</small>
             <strong>Sin datos de ${NOMBRE_MES_DASHBOARD} para ${CLIENTE_DASHBOARD}</strong>
           </div>
-        `;
+        \`;
 
-        document.getElementById('history').innerHTML = `
+        document.getElementById('history').innerHTML = \`
           <li class="log">
             <strong>${NOMBRE_MES_DASHBOARD}</strong>
             <div>
@@ -1088,13 +1089,13 @@
             </div>
             <span class="badge b-blue">Mes filtrado</span>
           </li>
-        `;
+        \`;
         return;
       }
 
       const cliente = CLIENTE_DASHBOARD;
-      document.querySelector('.hero h1').innerHTML = `Mi evolución<br><span class="accent">${cliente}</span>`;
-      document.querySelector('.topbar .pill').textContent = `Evolución ${cliente}`;
+      document.querySelector('.hero h1').innerHTML = \`Mi evolución<br><span class="accent">${cliente}</span>\`;
+      document.querySelector('.topbar .pill').textContent = \`Evolución ${cliente}\`;
 
       const months = {};
       sesiones.forEach(session => {
@@ -1111,18 +1112,18 @@
       const dolorActual = dolorNum(sesiones[sesiones.length - 1].dolor);
       const esfuerzoProm = Math.round(avg(sesiones.map(session => esfuerzoNum(session.esfuerzo))) * 10) / 10;
 
-      document.getElementById('kpis').innerHTML = `
+      document.getElementById('kpis').innerHTML = \`
         <div class="kpi"><small>Sesiones registradas</small><strong>${sesiones.length}</strong></div>
         <div class="kpi"><small>Adherencia</small><strong>${adherencia}%</strong></div>
         <div class="kpi"><small>Dolor inicial → actual</small><strong>${dolorInicial} → ${dolorActual}</strong></div>
         <div class="kpi"><small>Esfuerzo promedio</small><strong>${esfuerzoProm}/10</strong></div>
-      `;
+      \`;
 
       document.getElementById('history').innerHTML = sesiones.map(session => {
         const fecha = dayKey(session.fecha);
         const dolorClase = dolorNum(session.dolor) > 0 ? 'b-red' : 'b-green';
 
-        return `
+        return \`
           <li class="log">
             <strong>${fecha}</strong>
             <div>
@@ -1135,7 +1136,7 @@
             </div>
             <span class="badge b-green">${session.semana || ''}</span>
           </li>
-        `;
+        \`;
       }).join('');
 
       const fuenteRutinas = elecciones.length ? elecciones : sesiones;
@@ -1165,9 +1166,9 @@
 
     async function cargarDatos() {
       try {
-        document.getElementById('kpis').innerHTML = `
+        document.getElementById('kpis').innerHTML = \`
           <div class="kpi"><small>Estado</small><strong>Cargando...</strong></div>
-        `;
+        \`;
 
         const response = await fetch(API_URL);
         const json = await response.json();
@@ -1207,10 +1208,10 @@
         render();
       } catch (error) {
         console.error(error);
-        document.getElementById('kpis').innerHTML = `
+        document.getElementById('kpis').innerHTML = \`
           <div class="kpi"><small>Error de conexión</small><strong>Revisar URL</strong></div>
           <div class="kpi"><small>Detalle</small><strong style="font-size:.9rem">${error.message}</strong></div>
-        `;
+        \`;
       }
     }
 
