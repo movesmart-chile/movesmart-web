@@ -1,2734 +1,1171 @@
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Encuesta Rutina A Recuperación | Dixie Acosta</title>
-<style>
-    *{box-sizing:border-box;margin:0;padding:0}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Evolución | MoveSmart</title>
 
-
-    :root{
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.78);
-      --soft:rgba(255,255,255,.06);
-      --soft-2:rgba(255,255,255,.09);
-      --border:rgba(255,255,255,.13);
-      --accent:#ff5a1f;
-      --accent-2:#ff8a3d;
-      --blue:#2f63ff;
-      --green:#35d062;
-      --shadow:0 14px 34px rgba(0,0,0,.32);
-      --wrap:min(1120px, calc(100% - 32px));
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
+    :root {
+      --text: #fff;
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --soft: rgba(255,255,255,.045);
+      --accent: #ff5a1f;
+      --blue: #4f8cff;
+      --green: #65d978;
+      --red: #ff7474;
+      --shadow: 0 14px 34px rgba(0,0,0,.30);
+      --container: min(1180px, calc(100% - 28px));
+    }
 
-    body{
-      min-height:100vh;
-      font-family:'Segoe UI',system-ui,sans-serif;
-      color:var(--text);
+    body {
+      min-height: 100vh;
+      color: var(--text);
       background:
-        linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
-      overflow-x:hidden;
+        linear-gradient(180deg, rgba(8,10,18,.45), rgba(8,10,18,.72)),
+        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center / cover fixed no-repeat;
+      overflow-x: hidden;
     }
 
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(4,6,14,.20), transparent 45%, rgba(255,90,31,.06)),
-        radial-gradient(circle at 50% 110%, rgba(255,255,255,.05), transparent 36%);
-      z-index:0;
+        radial-gradient(circle at 16% 18%, rgba(73,58,146,.18), transparent 30%),
+        radial-gradient(circle at 82% 18%, rgba(243,107,42,.20), transparent 20%),
+        radial-gradient(circle at 70% 36%, rgba(255,90,31,.15), transparent 14%);
     }
 
-
-    .wrap{
-      width:var(--wrap);
-      margin:auto;
-      padding:30px 0 50px;
-      position:relative;
-      z-index:1;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10,8,14,.52);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(12px);
     }
 
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:24px;
+    .nav {
+      width: var(--container);
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-weight: 900;
+      letter-spacing: -.03em;
     }
 
-
-    .brand-badge{
-      width:46px;
-      height:46px;
-      border-radius:15px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      font-weight:900;
-      box-shadow:0 16px 34px rgba(255,90,31,.22);
+    .brand img {
+      height: 50px;
+      width: auto;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.42));
     }
 
-
-    .brand-text h1{
-      font-size:1.28rem;
-      line-height:1.05;
-      font-weight:900;
-      letter-spacing:-.02em;
+    .brand-divider {
+      width: 1px;
+      height: 38px;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 0 18px rgba(255,90,31,.16);
     }
 
-
-    .brand-text p{
-      color:var(--muted);
-      font-size:.92rem;
-      margin-top:4px;
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      line-height: 1;
     }
 
-
-    .back-btn{
-      text-decoration:none;
-      color:#fff;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.13);
-      padding:12px 18px;
-      border-radius:16px;
-      font-weight:800;
+    .brand-title strong {
+      display: block;
+      font-size: clamp(1.65rem, 3.2vw, 2.75rem);
+      font-weight: 950;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -.055em;
+      text-shadow: 0 10px 24px rgba(0,0,0,.45);
     }
 
-
-    .hero{
-      min-height:360px;
-      border-radius:34px;
-      overflow:hidden;
-      position:relative;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      align-items:stretch;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow);
-      background:#090d18;
-      margin-bottom:24px;
+    .brand-title span {
+      display: block;
+      color: var(--accent);
+      font-size: clamp(.72rem, 1.05vw, .98rem);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -.015em;
+      margin-top: 4px;
     }
 
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,90,31,.4);
+      background: rgba(255,90,31,.08);
+      color: #fff;
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
 
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
+    .wrap {
+      width: var(--container);
+      margin: auto;
+      padding: 28px 0 46px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      margin: 12px 0 10px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .hero p,
+    .muted {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .evaluation-top-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(180deg, #ff7a1f, #ff4f13);
+      border: 1px solid rgba(255,138,61,.45);
+      border-radius: 14px;
+      padding: 13px 16px;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(255,90,31,.22);
+    }
+
+    .evaluation-top-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .tab {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .tab-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .kpi {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .kpi small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .kpi strong {
+      font-size: 1.55rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .chart-box {
+      height: 250px;
+    }
+
+    .program-card {
+      margin-top: 14px;
+    }
+
+    .program-header {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .program-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+
+    .program-summary {
+      border-left: 3px solid var(--accent);
+      padding: 16px 18px;
+      background: rgba(255,90,31,.07);
+      border-radius: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.86);
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .routine h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .routine ul,
+    .history,
+    .plan-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .routine li,
+    .log,
+    .plan-list li {
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.045);
+      border-radius: 14px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.45;
+    }
+
+    .log {
+      display: grid;
+      grid-template-columns: 105px 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .b-green {
+      background: rgba(101,217,120,.13);
+      color: var(--green);
+      border: 1px solid rgba(101,217,120,.32);
+    }
+
+    .b-blue {
+      background: rgba(79,140,255,.13);
+      color: var(--blue);
+      border: 1px solid rgba(79,140,255,.32);
+    }
+
+    .b-red {
+      background: rgba(255,116,116,.13);
+      color: var(--red);
+      border: 1px solid rgba(255,116,116,.32);
+    }
+
+    .year-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0 14px;
+    }
+
+    .year-title span {
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .note {
+      margin-top: 14px;
+      border-left: 3px solid var(--accent);
+      padding: 14px 16px;
+      background: rgba(255,90,31,.07);
+      border-radius: 14px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.6;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .plan-hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .plan-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .plan-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,90,31,.15);
+      border: 1px solid rgba(255,90,31,.35);
+      font-size: 1.35rem;
+    }
+
+    .eval-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .eval-item {
+      padding: 14px 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.045);
+      border-radius: 16px;
+      font-weight: 800;
+    }
+
+    .eval-item span {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .plan-summary {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .closing-evaluation {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid rgba(255,90,31,.30);
       background:
-        linear-gradient(90deg, rgba(5,7,15,.96) 0%, rgba(5,7,15,.82) 42%, rgba(5,7,15,.34) 70%, rgba(5,7,15,.16) 100%),
-        linear-gradient(180deg, rgba(5,7,15,.12), rgba(5,7,15,.56));
-      z-index:1;
-      pointer-events:none;
-    }
-
-
-    .hero-copy{
-      position:relative;
-      z-index:2;
-      padding:42px 42px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-
-    .hello{
-      color:var(--accent-2);
-      font-weight:900;
-      font-size:1.1rem;
-      margin-bottom:14px;
-    }
-
-
-    .hero h2{
-      font-size:clamp(2rem, 4vw, 3.6rem);
-      line-height:1.04;
-      letter-spacing:-.04em;
-      max-width:700px;
-      margin-bottom:16px;
-    }
-
-
-    .hero p{
-      color:rgba(255,255,255,.82);
-      font-size:1.05rem;
-      line-height:1.7;
-      max-width:560px;
-    }
-
-
-    .hero-image{
-      position:absolute;
-      inset:0;
-      background:url('../../../imagenes/contendor.webp') center right / cover no-repeat;
-      z-index:0;
-      transform:scale(1.01);
-    }
-
-
-    .survey-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:32px;
-      padding:28px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-    }
-
-
-    .survey-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:18px;
-      margin-bottom:24px;
-    }
-
-
-    .survey-title{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-
-
-    .survey-icon{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      background:rgba(255,90,31,.14);
-      border:1px solid rgba(255,90,31,.24);
-      display:grid;
-      place-items:center;
-      font-size:1.35rem;
-    }
-
-
-    .survey-title h3{
-      font-size:1.55rem;
-      margin-bottom:4px;
-    }
-
-
-    .survey-title p{
-      color:var(--muted);
-    }
-
-
-    .progress-wrap{
-      display:grid;
-      grid-template-columns:1fr auto;
-      align-items:center;
-      gap:22px;
-      margin:8px 0 22px;
-    }
-
-
-    .progress-bar{
-      height:7px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      overflow:hidden;
-    }
-
-
-    .progress-fill{
-      height:100%;
-      width:0%;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
-      transition:.25s ease;
-    }
-
-
-    .progress-text{
-      color:rgba(255,255,255,.72);
-      font-size:.98rem;
-      white-space:nowrap;
-    }
-
-
-    .question{
-      padding:26px 0;
-      border-top:1px solid rgba(255,255,255,.09);
-    }
-
-
-    .question:first-of-type{border-top:none}
-
-
-    .q-title{
-      display:flex;
-      align-items:flex-start;
-      gap:16px;
-      margin-bottom:18px;
-    }
-
-
-    .q-icon{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:rgba(255,90,31,.11);
-      border:1px solid rgba(255,90,31,.24);
-      color:var(--accent-2);
-      font-size:1.45rem;
-      flex:0 0 auto;
-    }
-
-
-    .q-title h4{
-      color:var(--accent-2);
-      font-size:1.24rem;
-      margin-bottom:6px;
-    }
-
-
-    .q-title p{
-      color:var(--muted);
-      line-height:1.5;
-    }
-
-
-    .choices{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
-
-    .choice{
-      min-height:132px;
-      padding:20px 16px;
-      border-radius:20px;
-      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      color:#fff;
-      cursor:pointer;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
-      font-family:inherit;
-      transition:.18s ease;
-    }
-
-
-    .choice:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,90,31,.45);
-    }
-
-
-    .choice.selected{
-      background:linear-gradient(180deg, rgba(255,90,31,.24), rgba(255,90,31,.10));
-      border-color:var(--accent);
-      box-shadow:0 0 0 1px rgba(255,90,31,.44), 0 16px 28px rgba(255,90,31,.10);
-    }
-
-
-    .choice .emoji{
-      font-size:1.7rem;
-      line-height:1;
-    }
-
-
-    .choice strong{
-      font-size:1.22rem;
-      display:block;
-    }
-
-
-    .choice span{
-      color:rgba(255,255,255,.74);
-      font-size:.94rem;
-    }
-
-
-    .submit-btn{
-      margin-top:16px;
-      width:100%;
-      border:none;
-      border-radius:18px;
-      padding:19px 24px;
-      background:linear-gradient(180deg, #ff7a1f, #ff4f13);
-      color:#fff;
-      font-weight:900;
-      font-size:1.18rem;
-      cursor:pointer;
-      box-shadow:0 16px 34px rgba(255,90,31,.25);
-      font-family:inherit;
-    }
-
-
-    .microcopy{
-      color:rgba(255,255,255,.68);
-      text-align:center;
-      margin-top:16px;
-      font-size:.95rem;
-    }
-
-
-    .result-card{
-      display:none;
-      margin-top:18px;
-      padding:18px;
-      border-radius:22px;
-      background:rgba(29,191,115,.12);
-      border:1px solid rgba(29,191,115,.28);
-      color:#ddffea;
-      line-height:1.65;
-    }
-
-
-    .result-card.active{display:block}
-
-
-    .quick-stats{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:14px;
-      margin:22px 0 28px;
-    }
-
-
-    .stat{
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:20px;
-      padding:16px;
-    }
-
-
-    .stat small{
-      display:block;
-      color:var(--text-soft, rgba(255,255,255,.82));
-      margin-bottom:6px;
-    }
-
-
-    .stat strong{
-      font-size:1rem;
-      line-height:1.4;
-    }
-
-
-    .mode-card{
-      margin:20px 0 8px;
-      padding:20px;
-      border-radius:24px;
-      background:rgba(255,90,31,.12);
-      border:1px solid rgba(255,90,31,.26);
-      color:#ffe0d4;
-      line-height:1.7;
-      box-shadow:0 18px 38px rgba(0,0,0,.20);
-    }
-
-
-    .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
-
-
-    .routine-version-label{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:12px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,90,31,.15);
-      color:#ffd6c8;
-      border:1px solid rgba(255,90,31,.25);
-      font-size:.9rem;
-      font-weight:800;
-    }
-
-
-    .smart-loading{
-      display:none;
-      margin-top:22px;
-      padding:28px;
-      border-radius:30px;
-      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.13);
-      box-shadow:var(--shadow);
-      text-align:center;
-      animation:fadeUp .35s ease both;
-    }
-
-
-    .smart-loading.active{display:block}
-
-
-    .smart-orb{
-      width:68px;
-      height:68px;
-      border-radius:50%;
-      margin:0 auto 16px;
-      background:
-        radial-gradient(circle at 30% 30%, #fff, transparent 24%),
-        linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow:0 0 34px rgba(255,90,31,.45);
-      animation:pulseOrb 1.15s ease-in-out infinite;
-    }
-
-
-    .smart-loading h3{
-      font-size:1.35rem;
-      margin-bottom:8px;
-    }
-
-
-    .smart-loading p{
-      color:rgba(255,255,255,.76);
-      line-height:1.6;
-    }
-
-
-    .survey-card.is-processing{
-      opacity:.75;
-      pointer-events:none;
-      transition:.25s ease;
-    }
-
-
-    @keyframes pulseOrb{
-      0%,100%{transform:scale(.92);opacity:.72}
-      50%{transform:scale(1.06);opacity:1}
-    }
-
-
-    .routine-container{
-      display:none;
-      margin-top:24px;
-      animation:fadeUp .35s ease both;
-    }
-
-
-    .routine-container.active{display:block}
-
-
-    .routine-intro{
-      margin:22px 0;
-      padding:26px;
-      border-radius:30px;
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:var(--shadow);
-    }
-
-
-    .routine-intro h2{
-      font-size:clamp(1.7rem,3vw,2.6rem);
-      line-height:1.05;
-      margin-bottom:10px;
-      letter-spacing:-.03em;
-    }
-
-
-    .routine-intro p{
-      color:var(--muted);
-      line-height:1.7;
-      max-width:760px;
-    }
-
-
-    .section{
-      margin-top:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-
-    .section-head{
-      background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
-      padding:20px 24px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-
-
-    .section-head h2{
-      font-size:1.45rem;
-      margin-bottom:5px;
-    }
-
-
-    .section-head p{
-      color:rgba(255,255,255,.78);
-      line-height:1.55;
-    }
-
-
-    .section-body{
-      padding:20px;
-      display:grid;
-      gap:16px;
-    }
-
-
-    .exercise-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      padding:20px;
-      display:grid;
-      grid-template-columns:1.3fr .9fr;
-      gap:20px;
-      align-items:center;
-      transition:.18s ease;
-    }
-
-
-    .exercise-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,90,31,.38);
-    }
-
-
-    .exercise-name{
-      font-size:1.18rem;
-      font-weight:900;
-      margin-bottom:8px;
-      color:#fff;
-    }
-
-
-    .exercise-desc{
-      color:rgba(255,255,255,.76);
-      line-height:1.65;
-      font-size:.97rem;
-    }
-
-
-    .exercise-meta{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-    }
-
-
-    .pill{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:11px 12px;
-      font-size:.95rem;
-      color:#fff;
-    }
-
-
-    .pill span{
-      display:block;
-      color:rgba(255,255,255,.62);
-      font-size:.82rem;
-      margin-bottom:4px;
-    }
-
-
-    .video-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      margin-top:14px;
-      text-decoration:none;
-      background:linear-gradient(180deg, #ff7a1f, #ff4f13);
-      color:#fff;
-      padding:12px 16px;
-      border-radius:14px;
-      font-weight:800;
-      box-shadow:0 12px 28px rgba(255,90,31,.24);
-      border:none;
-      cursor:pointer;
-      font-family:inherit;
-      font-size:1rem;
-    }
-
-
-    .simple-card,.note,.finish-session-text{
-      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:18px;
-      line-height:1.7;
-      color:rgba(255,255,255,.84);
-    }
-
-
-    .note{
-      margin-top:22px;
-      background:rgba(29,191,115,.12);
-      border-color:rgba(29,191,115,.28);
-      color:#ddffea;
-    }
-
-
-    .warning{
-      margin-top:22px;
-      background:rgba(255,166,35,.12);
-      border:1px solid rgba(255,166,35,.28);
-      color:#ffe8b4;
-      border-radius:22px;
-      padding:18px;
-      line-height:1.7;
-    }
-
-
-    .finish-session-wrap{
-      margin-top:22px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-    }
-
-
-    .finish-session-text{
-      width:100%;
-      text-align:center;
-    }
-
-
-    .finish-session-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      text-decoration:none;
-      background:linear-gradient(180deg,#ff8a1f,#ff5a1f);
-      color:#fff;
-      font-weight:900;
-      font-size:1.05rem;
-      padding:18px 28px;
-      border-radius:20px;
-      box-shadow:0 14px 30px rgba(255,90,31,.28);
-      border:none;
-      min-width:320px;
-    }
-
-
-    .video-modal{
-      position:fixed;
-      inset:0;
-      background:rgba(4,6,14,.78);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      z-index:9999;
-    }
-
-
-    .video-modal.active{ display:flex; }
-
-
-    .video-box{
-      width:min(900px, 100%);
-      background:linear-gradient(180deg, rgba(18,16,30,.96), rgba(12,11,22,.94));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow:0 18px 40px rgba(0,0,0,.35);
-    }
-
-
-    .video-box-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px 18px;
-      background:rgba(255,255,255,.05);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-
-    .close-video{
-      border:none;
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      border-radius:12px;
-      padding:10px 14px;
-      cursor:pointer;
-      font-weight:800;
-      font-family:inherit;
-    }
-
-
-    .video-frame-wrap{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
-    }
-
-
-    .video-frame-wrap iframe,
-    .video-frame-wrap video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-
-    .video-frame-wrap video{
-      display:none;
-      object-fit:contain;
-      background:#000;
-      pointer-events:none;
-      opacity:1;
-      transition:opacity .18s ease;
-    }
-    .video-frame-wrap video.loop-fade-out{opacity:0}
-    .video-frame-wrap video::-webkit-media-controls{display:none!important}
-
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(14px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;min-height:360px}
-      .hero-copy{padding:34px 26px}
-      .choices{grid-template-columns:1fr}
-      .survey-head,.progress-wrap{grid-template-columns:1fr;align-items:start}
-      .progress-text{white-space:normal}
-      .exercise-card{grid-template-columns:1fr}
-      .exercise-meta{grid-template-columns:repeat(2,1fr)}
-    }
-
-
-    @media (max-width:640px){
-      .quick-stats{grid-template-columns:1fr !important;gap:12px !important}
-      .stat{min-height:auto !important;padding:14px 16px !important;border-radius:18px !important}
-      .stat strong{font-size:1rem !important;line-height:1.35 !important;word-break:normal !important;overflow-wrap:anywhere !important}
-      .exercise-card{grid-template-columns:1fr !important;padding:16px !important;border-radius:20px !important}
-      .exercise-meta{display:flex !important;flex-wrap:wrap !important;gap:8px !important}
-      .pill{flex:1 1 130px !important;padding:9px 10px !important;border-radius:14px !important}
-      .finish-session-btn{width:100% !important;min-width:unset !important}
-      body::before{position:absolute}
-      .choice:hover,.exercise-card:hover{transform:none}
-      .smart-orb{animation:none}
-    }
-
-
-.video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
-.video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}
-.video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}
-.video-help-note p{margin:0;color:rgba(255,255,255,.72);line-height:1.55;font-size:.93rem}
-.review-request{margin-top:12px;padding:14px;border-radius:17px;background:rgba(47,99,255,.08);border:1px solid rgba(111,142,255,.18)}
-.review-request-copy{margin-bottom:11px}
-.review-badge{display:block;color:#fff;font-weight:850;margin-bottom:4px;font-size:.94rem}
-.review-request small{color:rgba(255,255,255,.65);line-height:1.45;display:block}
-.upload-execution-btn{width:100%;border:none;border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fff;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:850}
-.upload-execution-btn.done{background:rgba(53,208,98,.12);border-color:rgba(53,208,98,.28);color:#dfffe8}
-.upload-status{margin-top:8px;color:rgba(255,255,255,.66);font-size:.82rem;line-height:1.4}
-.execution-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(4,6,14,.82)}
-.execution-modal.active{display:flex}
-.execution-dialog{width:min(620px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,rgba(18,20,34,.98),rgba(10,12,22,.98));border:1px solid rgba(255,255,255,.12);border-radius:26px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.execution-head{padding:18px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
-.execution-head strong{display:block;font-size:1.12rem;margin-bottom:4px}
-.execution-head p{color:rgba(255,255,255,.66);line-height:1.4;font-size:.9rem}
-.execution-close{border:none;background:rgba(255,255,255,.09);color:#fff;border-radius:12px;padding:9px 12px;cursor:pointer;font-weight:800}
-.execution-body{padding:20px}
-.execution-tip{padding:14px;border-radius:16px;background:rgba(255,90,31,.10);border:1px solid rgba(255,90,31,.18);color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:16px;font-size:.92rem}
-.execution-file-label{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:72px;padding:16px;border-radius:18px;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-weight:850}
-.execution-file-label input{display:none}
-.execution-preview{display:none;width:100%;max-height:340px;object-fit:contain;margin-top:14px;border-radius:16px;background:#000}
-.execution-preview.active{display:block}
-.selected-video-info{display:none;margin-top:10px;color:#dfffe8;font-size:.88rem}
-.selected-video-info.active{display:block}
-.execution-comment-label{display:block;margin-top:16px;font-size:.9rem;font-weight:800;color:#fff}
-.execution-comment{margin-top:8px;width:100%;min-height:90px;resize:vertical;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;padding:12px 14px;font:inherit;outline:none}
-.execution-actions{display:flex;gap:10px;margin-top:18px}
-.execution-cancel,.execution-send{flex:1;border:none;border-radius:15px;padding:13px 14px;font:inherit;font-weight:850;cursor:pointer}
-.execution-cancel{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
-.execution-send{background:linear-gradient(180deg,#ff7a1f,#ff4f13);color:#fff}
-.execution-send:disabled{opacity:.45;cursor:not-allowed}
-@media(max-width:640px){.video-help-note{padding:15px;border-radius:18px}.video-help-icon{width:40px;height:40px;flex-basis:40px}.execution-actions{flex-direction:column-reverse}}
-.exercise-card > .review-request{
-grid-column:1 / -1;
-margin-top:0;
-}
-@media (max-width:640px){
-.exercise-card > .review-request{
-margin-top:4px;
-}
-}
-.upload-progress-wrap{display:none;margin-top:14px}
-.upload-progress-wrap.active{display:block}
-.upload-progress-track{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}
-.upload-progress-bar{width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff5a1f,#ff8a3d);transition:width .18s ease}
-.upload-progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;color:rgba(255,255,255,.72);font-size:.84rem}
-.upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}
-.execution-send.uploading{cursor:wait;opacity:.9}
-.optimization-box{
-display:none;
-margin-top:12px;
-padding:12px 14px;
-border-radius:16px;
-background:rgba(47,99,255,.09);
-border:1px solid rgba(111,142,255,.18);
-color:rgba(255,255,255,.78);
-font-size:.86rem;
-line-height:1.5;
-}
-.optimization-box.active{display:block}
-.optimization-box strong{color:#fff}
-</style>
+        radial-gradient(circle at 90% 20%, rgba(255,90,31,.16), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+    }
+
+    .closing-evaluation h2 {
+      margin-bottom: 8px;
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      letter-spacing: -.035em;
+    }
+
+    .closing-evaluation-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,90,31,.14);
+      border: 1px solid rgba(255,90,31,.30);
+      color: #ffd9ca;
+      font-size: .8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .closing-evaluation-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 245px;
+      padding: 17px 22px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(180deg, #ff7a1f, #ff4f13);
+      box-shadow: 0 16px 34px rgba(255,90,31,.25);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .closing-evaluation-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 38px rgba(255,90,31,.32);
+    }
+
+    .plan-summary .big-icon {
+      font-size: 2.4rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid,
+      .routine-grid,
+      .program-header,
+      .plan-hero,
+      .eval-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpis {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .log {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        gap: 12px;
+      }
+
+      .brand img {
+        height: 44px;
+      }
+
+      .brand-divider {
+        height: 38px;
+      }
+
+      .brand-title strong {
+        font-size: clamp(1.5rem, 7vw, 2.4rem);
+      }
+
+      .brand-title span {
+        font-size: .72rem;
+        line-height: 1.15;
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .plan-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-evaluation {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-evaluation-btn {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tab {
+        width: 100%;
+        min-height: 48px;
+        padding: 11px 10px;
+        font-size: .92rem;
+      }
+
+      .chart-box {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
-<div class="wrap">
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-badge">M</div>
-    <div class="brand-text">
-      <h1>MoveSmart</h1>
-      <p>Dixie Acosta · Rutina A recuperación adaptativa</p>
-    </div>
-  </div>
-  <a class="back-btn" href="[[[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html))]([[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)))">← Volver al plan</a>
-</header>
-
-
-<section class="hero">
-  <div aria-hidden="true" class="hero-image"></div>
-  <div class="hero-copy">
-    <div class="hello">¡Hola Dixie!</div>
-    <h2>Hoy el objetivo no es exigirte: es mantenerte en movimiento mientras te recuperas.</h2>
-    <p>
-      Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina A de recuperación según tu tiempo,
-      energía y cómo están hoy tus molestias o zonas lesionadas.
-    </p>
-  </div>
-</section>
-
-
-<main class="survey-card">
-  <div class="survey-head">
-    <div class="survey-title">
-      <div class="survey-icon">✨</div>
-      <div>
-        <h3>Encuesta MoveSmart</h3>
-        <p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p>
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <img src="/movesmart-web/imagenes/logo.webp" alt="MoveSmart" />
+        <div class="brand-divider"></div>
+        <div class="brand-title">
+          <strong>Dashboard</strong>
+          <span>Panel de evolución personalizado</span>
+        </div>
       </div>
+      <div class="pill" id="nombreTopbar">Evolución</div>
     </div>
-  </div>
+  </header>
 
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <div class="pill">Programa personalizado</div>
+        <h1>Mi evolución<br><span class="accent" id="nombreCliente">Cargando…</span></h1>
+        <p>
+          Seguimiento del proceso desde el inicio del programa, incluyendo tus registros, sensaciones, esfuerzo y respuesta después de cada sesión.
+        </p>
 
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
-  </div>
-
-
-  <section class="question" data-question="tiempo">
-    <div class="q-title">
-      <div class="q-icon">⏱️</div>
-      <div>
-        <h4>1. ¿Cuánto tiempo tienes hoy?</h4>
-        <p>Sé realista con el tiempo del que dispones.</p>
+        <div class="tabs">
+          <button class="tab active" data-tab="evolucion">Mi evolución</button>
+          <button class="tab" data-tab="registro">Mi registro</button>
+          <a class="tab tab-link" id="enlacePlan" href="#">Mi plan</a>
+          <a class="tab tab-link" id="enlaceTolerancia" href="#">Tolerancia a la carga</a>
+        </div>
       </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="express" type="button">
-        <span class="emoji">⏱️</span>
-        <strong>10 – 15 min</strong>
-        <span>Poco tiempo</span>
-      </button>
-      <button class="choice" data-value="base" type="button">
-        <span class="emoji">🕒</span>
-        <strong>20 – 25 min</strong>
-        <span>Tiempo moderado</span>
-      </button>
-      <button class="choice" data-value="completa" type="button">
-        <span class="emoji">🕘</span>
-        <strong>25 – 30 min</strong>
-        <span>Más tiempo</span>
-      </button>
-    </div>
-  </section>
 
+      <div class="card kpis" id="kpis"></div>
+    </section>
 
-  <section class="question" data-question="energia">
-    <div class="q-title">
-      <div class="q-icon">⚡</div>
-      <div>
-        <h4>2. ¿Cómo está tu energía hoy?</h4>
-        <p>Piensa en cómo se siente tu cuerpo físicamente.</p>
+    <section id="evolucion" class="section active">
+      <div class="grid">
+        <article class="card">
+          <h2>Resumen mensual</h2>
+          <p class="muted" id="descripcionPeriodo">Cargando el ciclo actual…</p>
+          <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
+        </article>
+
+        <article class="card">
+          <h2>Rutina A vs B</h2>
+          <p class="muted">Este gráfico muestra qué tipo de rutina se está usando con mayor frecuencia.</p>
+          <div class="chart-box"><canvas id="routineChart"></canvas></div>
+        </article>
       </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="baja" type="button">
-        <span class="emoji">🪫</span>
-        <strong>Baja</strong>
-        <span>Necesito moverme muy suave</span>
-      </button>
-      <button class="choice" data-value="media" type="button">
-        <span class="emoji">⚡</span>
-        <strong>Media</strong>
-        <span>Me siento normal</span>
-      </button>
-      <button class="choice" data-value="alta" type="button">
-        <span class="emoji">🔋</span>
-        <strong>Alta</strong>
-        <span>Me siento con buena energía</span>
-      </button>
-    </div>
-  </section>
 
+      <article class="card program-card">
+        <div class="program-header">
+          <div>
+            <h2>Programa actual</h2>
+            <p class="muted">
+              Puedes escoger una versión completa o adaptada según cómo llegas ese día.
+            </p>
+          </div>
 
-  <section class="question" data-question="personalizada">
-    <div class="q-title">
-      <div class="q-icon">🩹</div>
-      <div>
-        <h4>3. ¿Cómo están hoy tus molestias o zonas lesionadas?</h4>
-        <p>Piensa en el pie, el tendón de Aquiles y cualquier otra zona que actualmente esté en recuperación.</p>
-      </div>
-    </div>
-    <div class="choices">
-      <button class="choice" data-value="leve" type="button">
-        <span class="emoji">🟢</span>
-        <strong>Leves</strong>
-        <span>Sin molestias importantes o entre 0–3/10</span>
-      </button>
-      <button class="choice" data-value="moderado" type="button">
-        <span class="emoji">🟡</span>
-        <strong>Moderadas</strong>
-        <span>Hay molestias o rigidez, pero puedo moverme con cuidado</span>
-      </button>
-      <button class="choice" data-value="alto" type="button">
-        <span class="emoji">🔴</span>
-        <strong>Altas o diferentes</strong>
-        <span>Más dolor, inflamación, debilidad o alguna molestia nueva</span>
-      </button>
-    </div>
-  </section>
-
-
-  <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
-  <p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
-
-
-  <div class="result-card" id="resultCard"></div>
-
-
-  <div aria-live="polite" class="smart-loading" id="smartLoading">
-    <div class="smart-orb"></div>
-    <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-    <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
-  </div>
-
-
-  <!-- EXPRESS -->
-  <div class="routine-container" id="rutina-express">
-    <div class="routine-intro">
-      <div class="routine-version-label">⚡ Rutina A Recuperación Express · 10–15 min</div>
-      <h2>Rutina A · Movilidad esencial</h2>
-      <p>Versión corta para mantener movilidad y control del pie sin cargar el brazo.</p>
-
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad + pie</strong></div>
-      </div>
-    </div>
-
-
-    <div class="warning">
-      <strong>Importante:</strong> esta sesión no incluye pesas, bandas ni trabajo de fuerza del brazo.
-      Si el médico indicó reposo completo, no realices la rutina.
-    </div>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Entrada suave</h2><p>Comienza con movimientos cómodos y sin fatiga.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas con el brazo relajado.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-          <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-            <div class="review-request-copy">
-              <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-              <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-            </div>
-            <button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-            <div class="upload-status" aria-live="polite"></div>
+          <div class="program-summary">
+            <strong>Lectura MoveSmart:</strong> el valor no está solo en completar la rutina,
+            sino en aprender a ajustar el proceso según dolor, energía, tiempo y respuesta del cuerpo.
           </div>
         </div>
-</div>
-    </section>
 
-
-    <section class="section">
-      <div class="section-head"><h2>Tobillo y pie</h2><p>Movimiento suave, sin estiramiento profundo del Aquiles.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-            <p class="exercise-desc">Lleva la punta del pie suavemente hacia arriba y luego hacia abajo dentro de un rango cómodo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
+        <div class="routine-grid">
+          <div class="routine">
+            <h3>Rutina A</h3>
+            <ul>
+              <li>Bloque principal definido en tu programa.</li>
+              <li>Opciones ajustables según tiempo y energía.</li>
+              <li>Progresión de acuerdo con tus sensaciones.</li>
+              <li>Registro al finalizar la sesión.</li>
+            </ul>
           </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-          </div>
-<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
 
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Arco activo del pie</div>
-            <p class="exercise-desc">Mantén talón, base del dedo gordo y base del dedo pequeño apoyados. Acorta suavemente el pie sin encoger los dedos.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/short_foot.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>6–8</div>
-            <div class="pill"><span>Tiempo</span>3–5 seg</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
-    </section>
-
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y cómo se sintió el brazo durante la sesión.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Recuperacion%20Express&amp;sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
-    </div>
-  </div>
-
-
-  <!-- BASE -->
-  <div class="routine-container" id="rutina-base">
-    <div class="routine-intro">
-      <div class="routine-version-label">🕒 Rutina A Recuperación Base · 20–25 min</div>
-      <h2>Rutina A · Movilidad, cadera y pie</h2>
-      <p>Versión principal para conservar movimiento y disminuir rigidez mientras se mantiene la restricción de carga del brazo.</p>
-
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad + control</strong></div>
-      </div>
-    </div>
-
-
-    <div class="warning">
-      <strong>Fase temporal de recuperación:</strong> evita pesas, bandas, empujes, tracciones o apoyo de peso sobre el brazo afectado.
-    </div>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-          <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-            <div class="review-request-copy">
-              <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-              <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-            </div>
-            <button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-            <div class="upload-status" aria-live="polite"></div>
+          <div class="routine">
+            <h3>Rutina B</h3>
+            <ul>
+              <li>Bloque complementario definido en tu programa.</li>
+              <li>Alternativa para variar el trabajo semanal.</li>
+              <li>Opciones adaptables a tu tolerancia.</li>
+              <li>Registro al finalizar la sesión.</li>
+            </ul>
           </div>
         </div>
-<article class="exercise-card">
-          <div>
-            <div class="exercise-name">Rotación torácica sentada</div>
-            <p class="exercise-desc">Gira suavemente el tronco hacia cada lado manteniendo los brazos relajados junto al cuerpo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>6 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="rotaciann-toraecica-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
+      </article>
+    </section>
 
+    <section id="registro" class="section">
+      <div class="grid">
+        <article class="card">
+          <h2>Dolor percibido</h2>
+          <p class="muted">Escala interna: No = 0 · Leve = 3 · Moderado = 6 · Alto/Intenso = 8.</p>
+          <div class="chart-box"><canvas id="painChart"></canvas></div>
+        </article>
 
+        <article class="card">
+          <h2>Esfuerzo percibido</h2>
+          <p class="muted">Escala de esfuerzo declarada por el cliente del 1 al 10.</p>
+          <div class="chart-box"><canvas id="effortChart"></canvas></div>
         </article>
       </div>
-    </section>
 
-
-    <section class="section">
-      <div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad de miembros inferiores sin impacto.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Marcha sentada</div>
-            <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra sin impulsarte con los brazos.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Ritmo</span>Suave</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="marcha-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
+      <div class="grid">
+        <article class="card">
+          <h2>Modo usado</h2>
+          <p class="muted">Rutina completa o versión suave según la elección registrada.</p>
+          <div class="chart-box"><canvas id="modeChart"></canvas></div>
         </article>
 
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Extensión de rodilla sentada</div>
-            <p class="exercise-desc">Extiende una rodilla, mantén un segundo y regresa lentamente. No agregues peso.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10 por lado</div>
-            <div class="pill"><span>Carga</span>Sin peso</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="extensiann-de-rodilla-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
+        <article class="card">
+          <h2>Dolor por categoría</h2>
+          <p class="muted">Frecuencia de dolor reportada después de entrenar.</p>
+          <div class="chart-box"><canvas id="painCategoryChart"></canvas></div>
         </article>
       </div>
+
+      <article class="card" style="margin-top:14px">
+        <h2>Historial de check-ins</h2>
+        <ul class="history" id="history"></ul>
+      </article>
     </section>
 
-
-    <section class="section">
-      <div class="section-head"><h2>Tobillo y pie</h2><p>Conserva movimiento y control sin irritar el Aquiles.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-            <p class="exercise-desc">Mueve el tobillo dentro de un rango cómodo, sin estirar profundamente el Aquiles.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión dorsal sentada</div>
-            <p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado, dentro de un rango cómodo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flexion_dorsal.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="flexiann-dorsal-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión plantar isométrica de pie</div>
-            <p class="exercise-desc">De pie y con apoyo si lo necesitas, eleva suavemente los talones y mantén la posición durante 20 segundos, sin rebotes y dentro de un rango cómodo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones_isometricos.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Tiempo</span>20 segundos</div>
-            <div class="pill"><span>Carga</span>Sin resistencia</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-            <div class="pill"><span>Descanso</span>40 segundos</div>
-          </div>
-<div class="review-request" data-exercise="flexion-plantar-isometrica-de-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar isométrica de pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Círculos de tobillo</div>
-            <p class="exercise-desc">Realiza círculos pequeños y lentos en ambas direcciones.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/circunduccion_tobillos.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por dirección</div>
-            <div class="pill"><span>Rango</span>Suave</div>
-            <div class="pill"><span>RPE</span>1</div>
-          </div>
-<div class="review-request" data-exercise="caurculos-de-tobillo">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-<article class="exercise-card">
-          <div>
-            <div class="exercise-name">Arco activo del pie</div>
-            <p class="exercise-desc">Forma suavemente el arco manteniendo los tres puntos de apoyo del pie.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/short_foot.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8</div>
-            <div class="pill"><span>Tiempo</span>3–5 seg</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
-    </section>
-
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si apareció alguna molestia nueva o cambio importante en tus zonas lesionadas.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Recuperacion%20Base&amp;sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
-    </div>
-  </div>
-
-
-  <!-- COMPLETA -->
-  <div class="routine-container" id="rutina-completa">
-    <div class="routine-intro">
-      <div class="routine-version-label">🕘 Rutina A Recuperación Completa · 25–30 min</div>
-      <h2>Rutina A · Movilidad completa sin carga</h2>
-      <p>Versión ampliada para días con más tiempo, manteniendo siempre el objetivo de recuperación y sin cargar el brazo.</p>
-
-
-      <div class="quick-stats">
-        <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
-        <div class="stat"><small>Intensidad</small><strong>RPE 1–3/10</strong></div>
-        <div class="stat"><small>Material</small><strong>Silla</strong></div>
-        <div class="stat"><small>Objetivo</small><strong>Movilidad global</strong></div>
-      </div>
-    </div>
-
-
-    <div class="warning">
-      <strong>Importante:</strong> esta es una sesión de recuperación, no de entrenamiento de fuerza.
-      No uses mancuernas, bandas ni apoyo de peso sobre el brazo afectado.
-    </div>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Movilidad general</h2><p>Entrada suave para disminuir rigidez.</p></div>
-      <div class="section-body">
-        <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-          <div class="review-request" data-exercise="respiracion-diafragmatica-sentada">
-            <div class="review-request-copy">
-              <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-              <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-            </div>
-            <button class="upload-execution-btn" type="button" data-exercise-name="Respiración diafragmática sentada">📹 Enviar mi ejecución</button>
-            <div class="upload-status" aria-live="polite"></div>
-          </div>
-        </div>
-<article class="exercise-card">
-          <div>
-            <div class="exercise-name">Rotación torácica sentada</div>
-            <p class="exercise-desc">Gira suavemente el tronco hacia cada lado manteniendo ambos brazos relajados.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="rotaciann-toraecica-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Cadera y piernas</h2><p>Movilidad sin impacto ni carga externa.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Marcha sentada</div>
-            <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>12 por lado</div>
-            <div class="pill"><span>Ritmo</span>Suave</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="marcha-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Marcha sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Extensión de rodilla sentada</div>
-            <p class="exercise-desc">Extiende la rodilla, mantén 1–2 segundos y vuelve lentamente.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/extension_rodilla.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por lado</div>
-            <div class="pill"><span>Carga</span>Sin peso</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="extensiann-de-rodilla-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Extensión de rodilla sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Abducción de cadera de pie</div>
-            <p class="exercise-desc">Separa una rodilla hacia el lado y vuelve al centro con control.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_cadera.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8 por lado</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="abducciann-de-cadera-de-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera de pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Tobillo y pie</h2><p>Trabajo suave para conservar movilidad y control.</p></div>
-      <div class="section-body">
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión y extensión de tobillo sentado</div>
-            <p class="exercise-desc">Lleva la punta del pie suavemente hacia arriba y hacia abajo sin forzar el Aquiles.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>12</div>
-            <div class="pill"><span>Dolor pie</span>0–3/10</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="flexiann-y-extensiann-de-tobillo-sentado">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión y extensión de tobillo sentado">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión dorsal sentada</div>
-            <p class="exercise-desc">Lleva la punta del pie hacia arriba manteniendo el talón apoyado, dentro de un rango cómodo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flexion_dorsal.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10</div>
-            <div class="pill"><span>Rango</span>Cómodo</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-          </div>
-<div class="review-request" data-exercise="flexiann-dorsal-sentada">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión dorsal sentada">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Flexión plantar isométrica de pie</div>
-            <p class="exercise-desc">De pie y con apoyo si lo necesitas, eleva suavemente los talones y mantén la posición durante 20 segundos, sin rebotes y dentro de un rango cómodo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones_isometricos.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Tiempo</span>20 segundos</div>
-            <div class="pill"><span>Carga</span>Sin resistencia</div>
-            <div class="pill"><span>RPE</span>1–2</div>
-            <div class="pill"><span>Descanso</span>40 segundos</div>
-          </div>
-<div class="review-request" data-exercise="flexion-plantar-isometrica-de-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Flexión plantar isométrica de pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-
-
-        <article class="exercise-card">
-          <div>
-            <div class="exercise-name">Círculos de tobillo</div>
-            <p class="exercise-desc">Realiza círculos lentos en ambas direcciones.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/circunduccion_tobillos.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>10 por dirección</div>
-            <div class="pill"><span>Rango</span>Suave</div>
-            <div class="pill"><span>RPE</span>1</div>
-          </div>
-<div class="review-request" data-exercise="caurculos-de-tobillo">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Círculos de tobillo">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-<article class="exercise-card">
-          <div>
-            <div class="exercise-name">Arco activo del pie</div>
-            <p class="exercise-desc">Activa suavemente el arco sin levantar los dedos ni perder los tres puntos de apoyo.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/short_foot.mp4" type="button">▶ Ver video</button>
-          </div>
-          <div class="exercise-meta">
-            <div class="pill"><span>Series</span>2</div>
-            <div class="pill"><span>Reps</span>8–10</div>
-            <div class="pill"><span>Tiempo</span>5 seg</div>
-            <div class="pill"><span>RPE</span>2</div>
-          </div>
-<div class="review-request" data-exercise="arco-activo-del-pie">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Arco activo del pie">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-
-
-        </article>
-      </div>
-    </section>
-
-
-    <div class="note">
-      <strong>Regla de recuperación:</strong> esta rutina debería dejarte igual o mejor, no más cansada ni dolorida.
-      Si aparece un aumento claro del dolor, inflamación, debilidad o una molestia nueva diferente a lo habitual, suspende la sesión.
-    </div>
-
-
-    <section class="section">
-      <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-      <div class="section-body"><div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button></div></div>
-    </section>
-
-
-    <div class="finish-session-wrap">
-      <p class="finish-session-text">Cuando termines, registra cómo respondió el pie y si hubo cualquier cambio importante en tus zonas lesionadas.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Recuperacion%20Completa&amp;sesion_objetivo=Movilidad%20y%20pie">✅ Finalicé mi sesión</a>
-    </div>
-  </div>
-
-
-</main>
-</div>
-
-
-<div aria-hidden="true" class="video-modal" id="videoModal">
-  <div class="video-box">
-    <div class="video-box-head">
-      <strong id="videoTitle">Video de ejercicio</strong>
-      <button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
-    </div>
-    <div class="video-frame-wrap">
-      <iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
-      <video autoplay disablepictureinpicture muted playsinline id="videoPlayer" preload="auto"></video>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="execution-modal" id="executionModal" aria-hidden="true">
-<div class="execution-dialog">
-<div class="execution-head">
-<div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div>
-<button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
-</div>
-<div class="execution-body">
-<div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea bien el movimiento. Un video corto de 3–5 repeticiones o una serie es suficiente.</div>
-<label class="execution-file-label">
-<span>🎥 Grabar ahora o elegir desde el celular</span>
-<input id="executionFile" type="file" accept="video/*" capture="environment"/>
-</label>
-<video class="execution-preview" id="executionPreview" controls playsinline></video>
-<div class="selected-video-info" id="selectedVideoInfo"></div>
-<div class="optimization-box" id="optimizationBox"></div>
-<div class="upload-progress-wrap" id="uploadProgressWrap">
-<div class="upload-progress-track">
-<div class="upload-progress-bar" id="uploadProgressBar"></div>
-</div>
-<div class="upload-progress-row">
-<span id="uploadProgressText">Preparando subida…</span>
-<span class="upload-progress-percent" id="uploadProgressPercent">0%</span>
-</div>
-</div>
-<label class="execution-comment-label" for="executionComment">Comentario opcional</label>
-<textarea class="execution-comment" id="executionComment" placeholder="Ej.: siento tirantez, no sé si estoy haciendo bien el movimiento..."></textarea>
-<div class="execution-actions">
-<button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
-<button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button>
-</div>
-</div>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
-const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
-const CLIENTE = "Dixie Acosta";
-const PREGUNTA_PERSONALIZADA = "Estado de molestias o zonas lesionadas";
-const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
-const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
-const VIDEO_BUCKET = "videos-clientes";
-const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
-const supabaseClient =
-(window.supabase && typeof window.supabase.createClient === 'function')
-? window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY,
-{
-auth: {
-persistSession: true,
-autoRefreshToken: true,
-detectSessionInUrl: false
-}
-}
-)
-: null;
-if(!supabaseClient){
-console.warn('Supabase no cargó. La encuesta seguirá funcionando; solo se desactivarán temporalmente las funciones de video.');
-}
-let supabaseSessionPromise = null;
-async function obtenerSesionSupabase() {
-if(!supabaseClient) throw new Error("Supabase no está disponible en este dispositivo.");
-if (supabaseSessionPromise) return supabaseSessionPromise;
-supabaseSessionPromise = (async () => {
-const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
-if (sessionError) throw sessionError;
-if (sessionData && sessionData.session) return sessionData.session;
-const { data, error } = await supabaseClient.auth.signInAnonymously();
-if (error) throw error;
-if (!data || !data.session) throw new Error("No se pudo crear la sesión segura para subir el video.");
-return data.session;
-})().catch(error => {
-supabaseSessionPromise = null;
-throw error;
-});
-return supabaseSessionPromise;
-}
-function slugVideo(texto) {
-return String(texto || "")
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g, "")
-.toLowerCase()
-.trim()
-.replace(/[^a-z0-9]+/g, "-")
-.replace(/^-+|-+$/g, "")
-.slice(0, 80) || "video";
-}
-function extensionVideo(file) {
-const original = String(file.name || "");
-if (original.includes(".")) {
-const ext = original.split(".").pop().toLowerCase().replace(/[^a-z0-9]/g, "");
-if (ext) return ext;
-}
-const map = {
-"video/mp4": "mp4",
-"video/quicktime": "mov",
-"video/webm": "webm",
-"video/x-m4v": "m4v"
-};
-return map[file.type] || "mp4";
-}
-function obtenerRutinaVideo(button) {
-const container = button ? button.closest(".routine-container") : null;
-if (!container) return "Rutina A Recuperación";
-if (container.id === "rutina-express") return "Rutina A Recuperación Express";
-if (container.id === "rutina-base") return "Rutina A Recuperación Base";
-if (container.id === "rutina-completa") return "Rutina A Recuperación Completa";
-return "Rutina A Recuperación";
-}
-function construirRutaVideo(rutina, ejercicio, file) {
-const ahora = new Date();
-const fecha = new Intl.DateTimeFormat("en-CA", {
-timeZone: "America/Santiago",
-year: "numeric",
-month: "2-digit",
-day: "2-digit"
-}).format(ahora);
-const hora = new Intl.DateTimeFormat("es-CL", {
-timeZone: "America/Santiago",
-hour: "2-digit",
-minute: "2-digit",
-second: "2-digit",
-hour12: false
-}).format(ahora).replace(/:/g, "-");
-return [
-"dixie-acosta",
-slugVideo(rutina),
-fecha,
-fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
-].join("/");
-}
-const VIDEOS_TABLE = "videos_enviados";
-function fechaSesionSantiago(){
-return new Intl.DateTimeFormat("en-CA", {
-timeZone: "America/Santiago",
-year: "numeric",
-month: "2-digit",
-day: "2-digit"
-}).format(new Date());
-}
-function claveEjercicio(rutina, ejercicio){
-return [
-String(CLIENTE || "").trim().toLowerCase(),
-String(rutina || "").trim().toLowerCase(),
-String(ejercicio || "").trim().toLowerCase(),
-fechaSesionSantiago()
-].join("|");
-}
-function marcarCajaComoEnviada(box, textoEstado){
-if(!box) return;
-const btn = box.querySelector(".upload-execution-btn");
-const status = box.querySelector(".upload-status");
-if(btn){
-btn.classList.add("done");
-btn.textContent = "✅ Video enviado";
-}
-if(status){
-status.textContent = textoEstado ||
-"✅ Video enviado hoy. Está sincronizado entre tus dispositivos.";
-}
-}
-function restaurarCajaParaNuevoDia(box){
-if(!box) return;
-const btn = box.querySelector(".upload-execution-btn");
-const status = box.querySelector(".upload-status");
-if(btn){
-btn.classList.remove("done");
-btn.textContent = "📹 Enviar mi ejecución";
-}
-if(status) status.textContent = "";
-}
-async function registrarVideoEnviadoEnSupabase({ rutina, ejercicio, rutaVideo }){
-if(!supabaseClient) return { ok:false, unavailable:true };
-const payload = {
-cliente: CLIENTE,
-rutina,
-ejercicio,
-fecha_sesion: fechaSesionSantiago(),
-ruta_video: rutaVideo,
-estado: "por_revisar"
-};
-const { error } = await supabaseClient
-.from(VIDEOS_TABLE)
-.insert(payload);
-if(error){
-if(error.code === "23505") return { ok:true, duplicate:true };
-throw error;
-}
-return { ok:true, duplicate:false };
-}
-async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
-const payload = {
-cliente: CLIENTE,
-rutina,
-ejercicio,
-comentario: comentario || "",
-rutaVideo,
-estado: "Enviado"
-};
-await fetch(VIDEO_COMMENTS_URL, {
-method: "POST",
-mode: "no-cors",
-keepalive: true,
-headers: {
-"Content-Type": "text/plain;charset=utf-8"
-},
-body: JSON.stringify(payload)
-});
-}
-async function sincronizarVideosEnviadosHoy(){
-if(!supabaseClient){
-console.warn("Sincronización de videos omitida: Supabase no disponible.");
-return;
-}
-try{
-await obtenerSesionSupabase();
-const fechaSesion = fechaSesionSantiago();
-const { data, error } = await supabaseClient
-.from(VIDEOS_TABLE)
-.select("cliente,rutina,ejercicio,fecha_sesion,estado")
-.eq("cliente", CLIENTE)
-.eq("fecha_sesion", fechaSesion);
-if(error) throw error;
-const enviados = new Set(
-(data || []).map(row => claveEjercicio(row.rutina, row.ejercicio))
-);
-document.querySelectorAll(".review-request").forEach(box => {
-const btn = box.querySelector(".upload-execution-btn");
-if(!btn) return;
-const rutina = obtenerRutinaVideo(btn);
-const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
-const key = claveEjercicio(rutina, ejercicio);
-if(enviados.has(key)){
-marcarCajaComoEnviada(
-box,
-"✅ Ya enviaste un video de este ejercicio hoy. Sincronizado entre tus dispositivos."
-);
-}else{
-restaurarCajaParaNuevoDia(box);
-}
-});
-}catch(error){
-console.warn("No se pudo sincronizar el estado de videos:", error);
-// Fallback local if the table is temporarily unavailable.
-document.querySelectorAll(".review-request").forEach(box => {
-try{
-const btn = box.querySelector(".upload-execution-btn");
-if(!btn) return;
-const rutina = obtenerRutinaVideo(btn);
-const ejercicio = btn.dataset.exerciseName || box.dataset.exercise || "Ejercicio";
-const localKey = "movesmart_video_hoy_" + claveEjercicio(rutina, ejercicio);
-if(localStorage.getItem(localKey)){
-marcarCajaComoEnviada(
-box,
-"✅ Video enviado hoy en este dispositivo. La sincronización online no estuvo disponible."
-);
-}
-}catch(e){}
-});
-}
-}
-
-
-const respuestas = { tiempo:null, energia:null, personalizada:null };
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
-    const resultCard = document.getElementById('resultCard');
-    const surveyCard = document.querySelector('.survey-card');
-    const smartLoading = document.getElementById('smartLoading');
-    const smartLoadingTitle = document.getElementById('smartLoadingTitle');
-    const smartLoadingText = document.getElementById('smartLoadingText');
-
-
-    function updateProgress(){
-      const answered = Object.values(respuestas).filter(Boolean).length;
-      progressFill.style.width = `${(answered / 3) * 100}%`;
-      progressText.textContent = `Pregunta ${answered} de 3`;
+  </main>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbz8-zBNCtj8liL7_s622NVGEUHBxtrK8rR6YiqLrD26jzha1ZB5EhY94IhYc0I6bZ3z/exec";
+    const params = new URLSearchParams(window.location.search);
+    const CLIENTE_ID = (params.get('cliente') || '').trim().toLowerCase();
+    const PLAN_PARAM = (params.get('plan') || '').trim();
+
+    let CLIENTE_DASHBOARD = '';
+    let MES_PROGRAMA = 0;
+    let TOTAL_SESIONES = 0;
+    let FECHA_INICIO = null;
+    let FECHA_FIN = null;
+    let NOMBRE_PERIODO = '';
+
+    let sesiones = [];
+    let elecciones = [];
+
+    function parseFecha(fecha) {
+      const text = String(fecha || '').trim();
+
+      if (!text) return new Date('Invalid Date');
+
+      // Formato CSV / Google Sheets: 3/6/2026 6:02:19 o 03/06/2026
+      if (text.includes('/')) {
+        const soloFecha = text.split(' ')[0];
+        const [dia, mes, anio] = soloFecha.split('/').map(Number);
+        return new Date(anio, mes - 1, dia);
+      }
+
+      // Formato Apps Script / HTML: 2026-07-06 o 2026-07-06T...
+      if (text.includes('-')) {
+        return new Date(text.slice(0, 10) + 'T00:00:00');
+      }
+
+      return new Date(text);
     }
 
+    function monthKey(fecha) {
+      const d = parseFecha(fecha);
 
-    function modoSegunEnergia(){
-      if(respuestas.personalizada === 'alto') return 'Detener';
-      if(respuestas.energia === 'baja' || respuestas.personalizada === 'moderado') return 'Recovery';
-      return 'Normal';
-    }
+      if (isNaN(d.getTime())) return 'Sin fecha';
 
-
-    function nombreEstructura(){
-      if(respuestas.tiempo === 'express') return 'Express';
-      if(respuestas.tiempo === 'base') return 'Base';
-      return 'Completa';
-    }
-
-
-    function guardarRespuestaEnSheets(estructura, modo){
-      const payload = {
-        cliente: CLIENTE,
-        rutina: "Rutina A Recuperación",
-        tiempo: respuestas.tiempo,
-        energia: respuestas.energia,
-        preguntaPersonalizada: PREGUNTA_PERSONALIZADA,
-        respuestaPersonalizada: respuestas.personalizada,
-        estructura: estructura,
-        modo: modo
-      };
-
-
-      fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        keepalive: true,
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      }).catch(function(error){
-        console.log("No se pudo guardar en Sheets:", error);
-        try{
-          const blob = new Blob([JSON.stringify(payload)], {type:"text/plain;charset=utf-8"});
-          navigator.sendBeacon(SCRIPT_URL, blob);
-        }catch(e){
-          console.log("Tampoco se pudo usar sendBeacon:", e);
-        }
+      return d.toLocaleDateString('es-CL', {
+        month: 'long',
+        year: 'numeric'
       });
     }
 
+    function sumarMeses(fecha, cantidad) {
+      const resultado = new Date(fecha);
+      const diaOriginal = resultado.getDate();
+      resultado.setDate(1);
+      resultado.setMonth(resultado.getMonth() + cantidad);
+      const ultimoDia = new Date(
+        resultado.getFullYear(),
+        resultado.getMonth() + 1,
+        0
+      ).getDate();
+      resultado.setDate(Math.min(diaOriginal, ultimoDia));
+      return resultado;
+    }
 
-    document.querySelectorAll('.choice').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const question = btn.closest('.question').dataset.question;
-        respuestas[question] = btn.dataset.value;
-        btn.closest('.choices').querySelectorAll('.choice').forEach(other => other.classList.remove('selected'));
-        btn.classList.add('selected');
-        resultCard.classList.remove('active');
-        document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-        updateProgress();
+    function formatearPeriodo(inicio, fin) {
+      const formato = { day: 'numeric', month: 'long', year: 'numeric' };
+      const ultimoDia = new Date(fin);
+      ultimoDia.setDate(ultimoDia.getDate() - 1);
+      return `${inicio.toLocaleDateString('es-CL', formato)} al ${ultimoDia.toLocaleDateString('es-CL', formato)}`;
+    }
+
+    function dentroDelCiclo(fechaValor) {
+      const fecha = parseFecha(fechaValor);
+      return !isNaN(fecha.getTime()) && fecha >= FECHA_INICIO && fecha < FECHA_FIN;
+    }
+
+    function crearRutaPlan(valor) {
+      if (!valor) return '';
+      if (/^https?:\/\//i.test(valor)) return valor;
+      return `/movesmart-web/clientes/${valor.replace(/^\/+/, '')}`;
+    }
+
+    function dayKey(fecha) {
+      const d = parseFecha(fecha);
+
+      if (isNaN(d.getTime())) return 'Sin fecha';
+
+      return d.toLocaleDateString('es-CL');
+    }
+
+    function shortDayKey(fecha) {
+      const d = parseFecha(fecha);
+
+      if (isNaN(d.getTime())) return 'Sin fecha';
+
+      return d.toLocaleDateString('es-CL', {
+        day: '2-digit',
+        month: '2-digit'
       });
-    });
+    }
 
+    function dolorNum(value) {
+      const text = String(value).toLowerCase().trim();
 
-    document.getElementById('createRoutine').addEventListener('click', () => {
-      const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
+      if (text === 'no' || text === '0' || text === '') return 0;
+      if (text.includes('leve')) return 3;
+      if (text.includes('moderado')) return 6;
+      if (text.includes('alto') || text.includes('intenso')) return 8;
 
+      const number = Number(text.replace(',', '.'));
+      return isNaN(number) ? 0 : number;
+    }
 
-      if(faltan.length){
-        resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado de tus molestias o zonas lesionadas para crear la recomendación.';
-        resultCard.style.background = 'rgba(255,90,31,.12)';
-        resultCard.style.borderColor = 'rgba(255,90,31,.28)';
-        resultCard.style.color = '#ffe0d4';
-        resultCard.classList.add('active');
+    function dolorCategoria(value) {
+      const text = String(value).toLowerCase().trim();
+
+      if (text === 'no' || text === '0' || text === '') return 'No';
+      if (text.includes('leve')) return 'Leve';
+      if (text.includes('moderado')) return 'Moderado';
+      if (text.includes('alto') || text.includes('intenso')) return 'Alto';
+
+      return value || 'Sin dato';
+    }
+
+    function esfuerzoNum(value) {
+      const number = Number(String(value || '').replace(',', '.'));
+      return isNaN(number) ? 0 : number;
+    }
+
+    function avg(values) {
+      const numbers = values.map(Number).filter(number => !isNaN(number));
+      return numbers.length ? numbers.reduce((a, b) => a + b, 0) / numbers.length : 0;
+    }
+
+    function counts(rows, key) {
+      return rows.reduce((acc, row) => {
+        let value = row[key];
+
+        if (!value && key === 'rutina') value = row.Rutina || row.rutina;
+        if (!value && key === 'modo') value = row.Modo || row.modo;
+
+        value = String(value || 'Sin dato').trim();
+        acc[value] = (acc[value] || 0) + 1;
+        return acc;
+      }, {});
+    }
+
+    function roundRect(ctx, x, y, width, height, radius, fill) {
+      ctx.beginPath();
+
+      if (ctx.roundRect) {
+        ctx.roundRect(x, y, width, height, radius);
+      } else {
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+      }
+
+      if (fill) ctx.fill();
+    }
+
+    function drawBar(canvas, labels, values, options = {}) {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width = canvas.offsetWidth * 2;
+      const height = canvas.height = canvas.offsetHeight * 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      if (!values.length) {
+        ctx.fillStyle = 'rgba(255,255,255,.7)';
+        ctx.font = '24px Segoe UI';
+        ctx.fillText('Sin datos', 40, 60);
         return;
       }
 
+      const max = Math.max(...values, 1);
+      const padding = 42;
+      const step = (width - padding * 2) / values.length;
+      const barWidth = step * .58;
 
-      const estructura = nombreEstructura();
-      const modo = modoSegunEnergia();
+      labels.forEach((label, index) => {
+        const x = padding + index * step + step * .21;
+        const barHeight = (height - 90) * (values[index] / max);
+        const y = height - 46 - barHeight;
+        const gradient = ctx.createLinearGradient(0, y, 0, height);
 
+        gradient.addColorStop(0, options.color || '#ff5a1f');
+        gradient.addColorStop(1, 'rgba(255,90,31,.25)');
 
-      guardarRespuestaEnSheets(estructura, modo);
+        ctx.fillStyle = gradient;
+        roundRect(ctx, x, y, barWidth, barHeight, 16, true);
 
+        ctx.fillStyle = 'rgba(255,255,255,.74)';
+        ctx.textAlign = 'center';
+        ctx.font = '22px Segoe UI';
+        ctx.fillText(label, x + barWidth / 2, height - 14);
 
-      resultCard.classList.remove('active');
-      document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 25px Segoe UI';
+        ctx.fillText(Math.round(values[index] * 10) / 10, x + barWidth / 2, y - 12);
+      });
+    }
 
+    function drawLine(canvas, labels, values, color = '#4f8cff') {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width = canvas.offsetWidth * 2;
+      const height = canvas.height = canvas.offsetHeight * 2;
 
-      if(modo === 'Detener'){
-        resultCard.style.background = 'rgba(255,107,107,.12)';
-        resultCard.style.borderColor = 'rgba(255,107,107,.28)';
-        resultCard.style.color = '#ffe1e1';
-        resultCard.innerHTML = '<strong>Hoy no recomendamos iniciar la rutina.</strong><br>Marcaste molestias altas o diferentes a lo habitual. Prioriza la indicación médica y retoma esta sesión solo cuando corresponda según tu evolución.';
-        resultCard.classList.add('active');
-        resultCard.scrollIntoView({ behavior:'auto', block:'center' });
+      ctx.clearRect(0, 0, width, height);
+
+      if (!values.length) {
+        ctx.fillStyle = 'rgba(255,255,255,.7)';
+        ctx.font = '24px Segoe UI';
+        ctx.fillText('Sin datos', 40, 60);
         return;
       }
 
+      const max = Math.max(...values, 10);
+      const padding = 46;
 
-      const modoTexto = {
-        Recovery: 'Hoy prioriza movimientos suaves, rango cómodo y menor volumen. No busques fatiga.',
-        Normal: 'Realiza la versión planificada manteniendo movimientos lentos, cómodos y sin carga del brazo.'
-      };
+      ctx.strokeStyle = 'rgba(255,255,255,.12)';
+      ctx.lineWidth = 2;
 
+      for (let i = 0; i < 4; i++) {
+        const y = padding + i * (height - 95) / 3;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.stroke();
+      }
 
-      smartLoading.classList.add('active');
-      surveyCard.classList.add('is-processing');
-      smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
-      smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de tus molestias o zonas lesionadas.';
-      smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
+      const points = values.map((value, index) => [
+        padding + index * (width - padding * 2) / (values.length - 1 || 1),
+        height - 50 - (height - 105) * (value / max)
+      ]);
 
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 6;
+      ctx.beginPath();
 
-      setTimeout(() => {
-        smartLoadingTitle.textContent = 'Adaptando tu Rutina A de recuperación...';
-        smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
-      }, 180);
+      points.forEach((point, index) => {
+        if (index) ctx.lineTo(...point);
+        else ctx.moveTo(...point);
+      });
 
+      ctx.stroke();
 
-      setTimeout(() => {
-        smartLoadingTitle.textContent = '✨ Rutina lista';
-        smartLoadingText.textContent = 'Tu sesión personalizada ya está preparada.';
-      }, 380);
+      points.forEach((point, index) => {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(point[0], point[1], 9, 0, Math.PI * 2);
+        ctx.fill();
 
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 24px Segoe UI';
+        ctx.textAlign = 'center';
+        ctx.fillText(values[index], point[0], point[1] - 18);
 
-      setTimeout(() => {
-        smartLoading.classList.remove('active');
-        surveyCard.classList.remove('is-processing');
+        ctx.fillStyle = 'rgba(255,255,255,.72)';
+        ctx.font = '22px Segoe UI';
+        ctx.fillText(labels[index], point[0], height - 14);
+      });
+    }
 
+    function render() {
+      if (!sesiones.length) {
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi">
+            <small>Estado</small>
+            <strong>Sin datos del mes ${MES_PROGRAMA} para ${CLIENTE_DASHBOARD}</strong>
+          </div>
+        `;
 
-        resultCard.style.background = 'rgba(29,191,115,.12)';
-        resultCard.style.borderColor = 'rgba(29,191,115,.28)';
-        resultCard.style.color = '#ddffea';
-        resultCard.innerHTML = `<strong>✨ Rutina A Recuperación ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
-        resultCard.classList.add('active');
+        document.getElementById('history').innerHTML = `
+          <li class="log">
+            <strong>Mes ${MES_PROGRAMA}</strong>
+            <div>
+              <span class="badge b-red">Sin registros</span>
+              <p class="muted" style="margin-top:8px">
+                Periodo revisado: ${NOMBRE_PERIODO}.
+              </p>
+            </div>
+            <span class="badge b-blue">Mes filtrado</span>
+          </li>
+        `;
+        return;
+      }
 
+      const cliente = CLIENTE_DASHBOARD;
+      document.querySelector('.hero h1').innerHTML = `Mi evolución<br><span class="accent">${cliente}</span>`;
+      document.querySelector('.topbar .pill').textContent = `Evolución ${cliente}`;
 
-        const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
-        const routineContainer = document.getElementById(idRutina);
-        routineContainer.classList.add('active');
-        routineContainer.scrollIntoView({ behavior:'auto', block:'start' });
-      }, 650);
-    });
+      const months = {};
+      sesiones.forEach(session => {
+        const month = monthKey(session.fecha);
+        months[month] = months[month] || [];
+        months[month].push(session);
+      });
 
+      const labels = Object.keys(months);
+      const sesionesMes = labels.map(month => months[month].length);
+      const completadas = sesiones.filter(session => String(session.completada).toLowerCase().includes('completa')).length;
+      const adherencia = Math.round((completadas / sesiones.length) * 100);
+      const dolorInicial = dolorNum(sesiones[0].dolor);
+      const dolorActual = dolorNum(sesiones[sesiones.length - 1].dolor);
+      const esfuerzoProm = Math.round(avg(sesiones.map(session => esfuerzoNum(session.esfuerzo))) * 10) / 10;
 
-    function toEmbedUrl(url) {
-      if (!url) return null;
-      const cleanUrl = String(url).trim();
-      if (!cleanUrl) return null;
+      document.getElementById('kpis').innerHTML = `
+        <div class="kpi"><small>Sesiones del ciclo</small><strong>${sesiones.length} de ${TOTAL_SESIONES}</strong></div>
+        <div class="kpi"><small>Adherencia</small><strong>${adherencia}%</strong></div>
+        <div class="kpi"><small>Dolor inicial → actual</small><strong>${dolorInicial} → ${dolorActual}</strong></div>
+        <div class="kpi"><small>Esfuerzo promedio</small><strong>${esfuerzoProm}/10</strong></div>
+      `;
 
+      document.getElementById('history').innerHTML = sesiones.map(session => {
+        const fecha = dayKey(session.fecha);
+        const dolorClase = dolorNum(session.dolor) > 0 ? 'b-red' : 'b-green';
 
+        return `
+          <li class="log">
+            <strong>${fecha}</strong>
+            <div>
+              <span class="badge b-blue">${session.rutina || 'Sin rutina'}</span>
+              <span class="badge ${dolorClase}">Dolor: ${session.dolor || 'Sin dato'}</span>
+              <p class="muted" style="margin-top:8px">
+                ${session.completada || 'Sin dato'} · Sensación: ${session.sensacion || 'Sin dato'} · Esfuerzo: ${session.esfuerzo || 0}/10
+                ${session.comentario ? '<br>' + session.comentario : ''}
+              </p>
+            </div>
+            <span class="badge b-green">${session.semana || ''}</span>
+          </li>
+        `;
+      }).join('');
+
+      const fuenteRutinas = elecciones.length ? elecciones : sesiones;
+      const rutinaCounts = counts(fuenteRutinas, 'rutina');
+
+      const fuenteModo = elecciones.length ? elecciones : sesiones;
+      const modos = fuenteModo.map(row => ({
+        modo: row.modo || row.Modo || (String(row.rutina || row.Rutina || '').toLowerCase().includes('b') ? 'Versión suave / B' : 'Versión completa / A')
+      }));
+      const modeCounts = counts(modos, 'modo');
+
+      const dolorCat = {};
+      sesiones.forEach(session => {
+        const category = dolorCategoria(session.dolor);
+        dolorCat[category] = (dolorCat[category] || 0) + 1;
+      });
+
+      const fechas = sesiones.map(session => shortDayKey(session.fecha));
+
+      drawBar(document.getElementById('monthlyChart'), labels, sesionesMes);
+      drawBar(document.getElementById('routineChart'), Object.keys(rutinaCounts), Object.values(rutinaCounts), { color: '#4f8cff' });
+      drawLine(document.getElementById('painChart'), fechas, sesiones.map(session => dolorNum(session.dolor)), '#ff7474');
+      drawLine(document.getElementById('effortChart'), fechas, sesiones.map(session => esfuerzoNum(session.esfuerzo)), '#65d978');
+      drawBar(document.getElementById('modeChart'), Object.keys(modeCounts), Object.values(modeCounts), { color: '#65d978' });
+      drawBar(document.getElementById('painCategoryChart'), Object.keys(dolorCat), Object.values(dolorCat), { color: '#ff7474' });
+    }
+
+    async function cargarDatos() {
       try {
-        const parsed = new URL(cleanUrl);
-        const host = parsed.hostname.replace('www.', '');
-        let videoId = '';
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi"><small>Estado</small><strong>Cargando...</strong></div>
+        `;
 
-
-        if (cleanUrl.includes('youtube.com/embed/')) {
-          videoId = parsed.pathname.split('/embed/')[1]?.split('/')[0] || '';
-        } else if (host === 'youtu.be') {
-          videoId = parsed.pathname.replace('/', '').trim();
-        } else if (host === 'youtube.com' || host === 'm.youtube.com') {
-          if (parsed.pathname.startsWith('/shorts/')) {
-            videoId = parsed.pathname.split('/shorts/')[1].split('/')[0];
-          } else if (parsed.pathname === '/watch') {
-            videoId = parsed.searchParams.get('v') || '';
-          }
+        if (!CLIENTE_ID) {
+          throw new Error('Falta el cliente en la dirección del dashboard');
         }
 
+        const response = await fetch(
+          `${API_URL}?cliente=${encodeURIComponent(CLIENTE_ID)}`,
+          { cache: 'no-store' }
+        );
+        const json = await response.json();
 
-        if (!videoId) return null;
+        if (!json.ok) {
+          throw new Error(json.mensaje || json.error || 'Apps Script respondió con error');
+        }
 
+        const todasLasSesiones = json.respuestas_registro || [];
+        const todasLasElecciones = json.respuestas || [];
 
-        return 'https://www.youtube.com/embed/' + videoId +
-          '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&rel=0&playsinline=1';
-      } catch (err) {
-        return null;
-      }
-    }
+        CLIENTE_DASHBOARD = json.cliente;
+        MES_PROGRAMA = Number(json.mes_programa) || 0;
+        TOTAL_SESIONES = Number(json.total_sesiones) || 0;
+        FECHA_INICIO = parseFecha(json.fecha_inicio);
+        FECHA_FIN = parseFecha(json.fecha_reevaluacion);
+        NOMBRE_PERIODO = formatearPeriodo(FECHA_INICIO, FECHA_FIN);
 
+        document.getElementById('nombreCliente').textContent = CLIENTE_DASHBOARD;
+        document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
+        document.getElementById('descripcionPeriodo').textContent =
+          `Mes ${MES_PROGRAMA} del programa · ${NOMBRE_PERIODO}`;
+        document.getElementById('enlaceTolerancia').href =
+          `/movesmart-web/clientes/tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
 
-    const videoModal = document.getElementById('videoModal');
-    const videoFrame = document.getElementById('videoFrame');
-    const videoPlayer = document.getElementById('videoPlayer');
-    const closeVideo = document.getElementById('closeVideo');
-    const videoTitle = document.getElementById('videoTitle');
-    let videoLoopTimeout = null;
+        const enlacePlan = document.getElementById('enlacePlan');
+        const rutaPlan = crearRutaPlan(PLAN_PARAM || json.plan);
+        if (rutaPlan) {
+          enlacePlan.href = rutaPlan;
+        } else {
+          enlacePlan.style.display = 'none';
+        }
 
-
-    function restartVideoWithFade() {
-      videoPlayer.classList.add('loop-fade-out');
-      clearTimeout(videoLoopTimeout);
-      videoLoopTimeout = setTimeout(function () {
-        if (!videoModal.classList.contains('active')) return;
-        videoPlayer.currentTime = 0;
-        videoPlayer.play().catch(function () {});
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            videoPlayer.classList.remove('loop-fade-out');
-          });
+        sesiones = todasLasSesiones.filter(session => {
+          return dentroDelCiclo(session.fecha || session.Fecha);
         });
-      }, 400);
-    }
 
+        elecciones = todasLasElecciones.filter(row => {
+          return dentroDelCiclo(row.fecha || row.Fecha);
+        });
 
-    videoPlayer.addEventListener('ended', restartVideoWithFade);
+        sesiones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
+        elecciones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
 
-
-    function showYoutubeVideo(url, title) {
-      videoTitle.textContent = title || 'Video de ejercicio';
-      videoPlayer.pause();
-      videoPlayer.removeAttribute('src');
-      videoPlayer.load();
-      videoPlayer.style.display = 'none';
-      videoFrame.style.display = 'block';
-      videoFrame.src = url;
-      videoModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-
-    function showDirectVideo(url, title) {
-      videoTitle.textContent = title || 'Video de ejercicio';
-      clearTimeout(videoLoopTimeout);
-      videoPlayer.classList.remove('loop-fade-out');
-      videoFrame.src = '';
-      videoFrame.style.display = 'none';
-      videoPlayer.style.display = 'block';
-      videoPlayer.src = url;
-      videoPlayer.muted = true;
-      videoPlayer.loop = false;
-      videoPlayer.controls = false;
-      videoModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      const playPromise = videoPlayer.play();
-      if (playPromise && typeof playPromise.catch === 'function') {
-        playPromise.catch(function () {});
+        render();
+      } catch (error) {
+        console.error(error);
+        document.getElementById('kpis').innerHTML = `
+          <div class="kpi"><small>Error de conexión</small><strong>Revisar URL</strong></div>
+          <div class="kpi"><small>Detalle</small><strong style="font-size:.9rem">${error.message}</strong></div>
+        `;
       }
     }
 
+    document.querySelectorAll('.tab[data-tab]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
 
-    function hideVideo() {
-      videoModal.classList.remove('active');
-      clearTimeout(videoLoopTimeout);
-      videoPlayer.classList.remove('loop-fade-out');
-      videoFrame.src = '';
-      videoPlayer.pause();
-      videoPlayer.removeAttribute('src');
-      videoPlayer.load();
-      videoPlayer.style.display = 'none';
-      document.body.style.overflow = '';
-    }
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
 
-
-    document.querySelectorAll('.video-btn').forEach(function (button) {
-      button.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-
-        const card = button.closest('.exercise-card');
-        const nameEl = card ? card.querySelector('.exercise-name') : null;
-        const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
-        const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
-        const cleanUrl = String(rawUrl || '').trim();
-        const isDirectVideo = /^https:\/\/[^\s]+\.(mp4|webm|ogg)(\?[^\s]*)?$/i.test(cleanUrl);
-
-
-        if (isDirectVideo) {
-          showDirectVideo(cleanUrl, title);
-          return;
-        }
-
-
-        const embedUrl = toEmbedUrl(cleanUrl);
-        if (embedUrl) showYoutubeVideo(embedUrl, title);
-        else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+        setTimeout(render, 80);
       });
     });
 
-
-    if (closeVideo) closeVideo.addEventListener('click', hideVideo);
-
-
-    if (videoModal) {
-      videoModal.addEventListener('click', function (e) {
-        if (e.target === videoModal) hideVideo();
-      });
-    }
-
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) hideVideo();
-    });
-// Videos del cliente: subida directa y reanudable a Supabase Storage.
-const executionModal = document.getElementById('executionModal');
-const executionClose = document.getElementById('executionClose');
-const executionCancel = document.getElementById('executionCancel');
-const executionFile = document.getElementById('executionFile');
-const executionPreview = document.getElementById('executionPreview');
-const selectedVideoInfo = document.getElementById('selectedVideoInfo');
-const optimizationBox = document.getElementById('optimizationBox');
-const executionExerciseName = document.getElementById('executionExerciseName');
-const executionComment = document.getElementById('executionComment');
-const executionSend = document.getElementById('executionSend');
-const uploadProgressWrap = document.getElementById('uploadProgressWrap');
-const uploadProgressBar = document.getElementById('uploadProgressBar');
-const uploadProgressText = document.getElementById('uploadProgressText');
-const uploadProgressPercent = document.getElementById('uploadProgressPercent');
-let activeUploadButton = null;
-let activeExerciseName = '';
-let activeVideoUrl = '';
-let optimizedUploadFile = null;
-function openExecutionModal(button){
-activeUploadButton = button;
-activeExerciseName = button.dataset.exerciseName || 'Ejercicio';
-executionExerciseName.textContent = activeExerciseName;
-executionFile.value = '';
-executionComment.value = '';
-executionSend.disabled = true;
-executionSend.classList.remove('uploading');
-executionSend.textContent = 'Enviar a MoveSmart';
-uploadProgressWrap.classList.remove('active');
-uploadProgressBar.style.width = '0%';
-uploadProgressPercent.textContent = '0%';
-uploadProgressText.textContent = 'Preparando subida…';
-selectedVideoInfo.textContent = '';
-selectedVideoInfo.classList.remove('active');
-optimizationBox.textContent = '';
-optimizationBox.classList.remove('active');
-optimizedUploadFile = null;
-if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
-executionPreview.pause();
-executionPreview.removeAttribute('src');
-executionPreview.load();
-executionPreview.classList.remove('active');
-executionModal.classList.add('active');
-executionModal.setAttribute('aria-hidden','false');
-document.body.style.overflow='hidden';
-}
-function closeExecutionModal(){
-executionModal.classList.remove('active');
-executionModal.setAttribute('aria-hidden','true');
-document.body.style.overflow='';
-if(activeVideoUrl){ URL.revokeObjectURL(activeVideoUrl); activeVideoUrl=''; }
-executionPreview.pause();
-executionPreview.removeAttribute('src');
-executionPreview.load();
-executionPreview.classList.remove('active');
-}
-function formatoMB(bytes){
-return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-}
-function esperarEvento(elemento, evento){
-return new Promise((resolve, reject) => {
-const ok = () => { cleanup(); resolve(); };
-const bad = () => { cleanup(); reject(new Error('No se pudo procesar el video.')); };
-const cleanup = () => {
-elemento.removeEventListener(evento, ok);
-elemento.removeEventListener('error', bad);
-};
-elemento.addEventListener(evento, ok, {once:true});
-elemento.addEventListener('error', bad, {once:true});
-});
-}
-async function optimizarVideoParaEnvio(file){
-if(file.size <= 3.5 * 1024 * 1024){
-return {file, optimized:false, reason:'already-small'};
-}
-if(!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream){
-return {file, optimized:false, reason:'unsupported'};
-}
-const mimeCandidates = ['video/webm;codecs=vp8', 'video/webm'];
-const mimeType = mimeCandidates.find(type =>
-MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(type)
-);
-if(!mimeType){
-return {file, optimized:false, reason:'unsupported'};
-}
-const url = URL.createObjectURL(file);
-const video = document.createElement('video');
-video.src = url;
-video.muted = true;
-video.playsInline = true;
-video.preload = 'metadata';
-try{
-await esperarEvento(video, 'loadedmetadata');
-const duration = Number(video.duration || 0);
-if(!Number.isFinite(duration) || duration <= 0 || duration > 90){
-return {file, optimized:false, reason:'duration'};
-}
-const originalW = video.videoWidth || 720;
-const originalH = video.videoHeight || 1280;
-const maxSide = 720;
-const scale = Math.min(1, maxSide / Math.max(originalW, originalH));
-const width = Math.max(2, Math.round((originalW * scale) / 2) * 2);
-const height = Math.max(2, Math.round((originalH * scale) / 2) * 2);
-const canvas = document.createElement('canvas');
-canvas.width = width;
-canvas.height = height;
-const ctx = canvas.getContext('2d', {alpha:false});
-const stream = canvas.captureStream(24);
-const chunks = [];
-const recorder = new MediaRecorder(stream, {
-mimeType,
-videoBitsPerSecond: 900000
-});
-const recorded = new Promise((resolve, reject) => {
-recorder.ondataavailable = e => {
-if(e.data && e.data.size) chunks.push(e.data);
-};
-recorder.onerror = e => reject(e.error || new Error('Error al optimizar el video.'));
-recorder.onstop = () => resolve();
-});
-let rafId = 0;
-const draw = () => {
-if(video.paused || video.ended) return;
-ctx.drawImage(video, 0, 0, width, height);
-rafId = requestAnimationFrame(draw);
-};
-video.currentTime = 0;
-await video.play();
-recorder.start(1000);
-draw();
-await esperarEvento(video, 'ended');
-cancelAnimationFrame(rafId);
-if(recorder.state !== 'inactive') recorder.stop();
-await recorded;
-const blob = new Blob(chunks, {type:mimeType});
-if(!blob.size || blob.size >= file.size * 0.92){
-return {file, optimized:false, reason:'no-benefit'};
-}
-const baseName = String(file.name || 'video').replace(/\.[^.]+$/, '');
-const optimized = new File(
-[blob],
-baseName + '-optimizado.webm',
-{type:'video/webm', lastModified:Date.now()}
-);
-return {
-file: optimized,
-optimized:true,
-originalSize:file.size,
-optimizedSize:optimized.size,
-width,
-height
-};
-}catch(error){
-console.warn('Optimización omitida:', error);
-return {file, optimized:false, reason:'error'};
-}finally{
-try{ video.pause(); }catch(e){}
-URL.revokeObjectURL(url);
-}
-}
-document.querySelectorAll('.upload-execution-btn').forEach(btn=>{
-btn.addEventListener('click',()=>openExecutionModal(btn));
-});
-executionFile.addEventListener('change', async ()=>{
-const originalFile = executionFile.files && executionFile.files[0];
-optimizedUploadFile = null;
-if(!originalFile){
-executionSend.disabled = true;
-return;
-}
-if(!originalFile.type.startsWith('video/')){
-alert('Selecciona un archivo de video.');
-executionFile.value='';
-executionSend.disabled=true;
-return;
-}
-if(originalFile.size > VIDEO_MAX_BYTES){
-alert('Este proyecto gratuito permite archivos de hasta 50 MB. Selecciona un video menor a ese tamaño.');
-executionFile.value='';
-executionSend.disabled=true;
-return;
-}
-if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
-activeVideoUrl = URL.createObjectURL(originalFile);
-executionPreview.src = activeVideoUrl;
-executionPreview.classList.add('active');
-selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
-selectedVideoInfo.classList.add('active');
-executionSend.disabled = true;
-executionSend.textContent = 'Preparando…';
-optimizationBox.classList.add('active');
-optimizationBox.innerHTML =
-'<strong>⚡ Preparando tu video…</strong><br>' +
-'Esto puede tardar unos segundos.';
-const result = await optimizarVideoParaEnvio(originalFile);
-optimizedUploadFile = result.file;
-optimizationBox.innerHTML =
-`<strong>✅ Video listo para enviar</strong><br>` +
-`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
-executionSend.textContent = 'Enviar a MoveSmart';
-executionSend.disabled = false;
-});
-async function subirVideoStoragePrimero(file, objectName, session, rutina, ejercicio, comentario){
-if(!supabaseClient){
-throw new Error("No se cargó Supabase en el navegador.");
-}
-if(!session || !session.access_token){
-throw new Error("No se pudo obtener una sesión válida para subir el video.");
-}
-// Para archivos pequeños usamos la subida estándar: es más simple y evita
-// overhead innecesario de TUS.
-const LIMITE_STANDARD = 6 * 1024 * 1024;
-if(file.size <= LIMITE_STANDARD){
-uploadProgressText.textContent = 'Subiendo video…';
-uploadProgressBar.style.width = '35%';
-uploadProgressPercent.textContent = '35%';
-const { error } = await supabaseClient.storage
-.from(VIDEO_BUCKET)
-.upload(objectName, file, {
-cacheControl: '3600',
-upsert: false,
-contentType: file.type || 'video/mp4'
-});
-if(error){
-const e = new Error("Storage: " + (error.message || "falló la subida directa."));
-e.code = error.statusCode || error.status || error.code || "storage_upload";
-throw e;
-}
-uploadProgressBar.style.width = '100%';
-uploadProgressPercent.textContent = '100%';
-return { metodo: 'standard' };
-}
-// Archivos grandes: subida reanudable TUS.
-if(!window.tus || typeof window.tus.Upload !== 'function'){
-throw new Error("No se cargó el módulo de subida reanudable TUS.");
-}
-await new Promise((resolve, reject) => {
-const upload = new tus.Upload(file, {
-endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
-retryDelays: [0, 3000, 5000, 10000, 20000],
-headers: {
-authorization: `Bearer ${session.access_token}`
-},
-uploadDataDuringCreation: true,
-removeFingerprintOnSuccess: true,
-metadata: {
-bucketName: VIDEO_BUCKET,
-objectName: objectName,
-contentType: file.type || 'video/mp4',
-cacheControl: '3600',
-metadata: JSON.stringify({
-cliente: CLIENTE,
-rutina,
-ejercicio,
-comentario,
-enviado_desde: 'MoveSmart',
-optimizado_en_navegador: !!optimizedUploadFile,
-tamano_subida_bytes: file.size
-})
-},
-chunkSize: 6 * 1024 * 1024,
-onError(error){
-reject(new Error("TUS: " + (error?.message || "falló la subida reanudable.")));
-},
-onProgress(bytesUploaded, bytesTotal){
-const percent = bytesTotal > 0
-? Math.min(100, (bytesUploaded / bytesTotal) * 100)
-: 0;
-const rounded = Math.round(percent);
-uploadProgressBar.style.width = rounded + '%';
-uploadProgressPercent.textContent = rounded + '%';
-const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
-const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
-uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
-},
-onSuccess(){
-resolve();
-}
-});
-upload.findPreviousUploads()
-.then(previousUploads => {
-if(previousUploads.length){
-upload.resumeFromPreviousUpload(previousUploads[0]);
-uploadProgressText.textContent = 'Reanudando una subida anterior…';
-}
-upload.start();
-})
-.catch(reject);
-});
-return { metodo: 'tus' };
-}
-function mensajeErrorVideo(error){
-const msg = String(error?.message || error || 'Error desconocido');
-if(/row-level security|RLS|policy/i.test(msg)){
-return 'Supabase bloqueó la subida por permisos del bucket. Hay que revisar la policy INSERT de Storage.';
-}
-if(/session|auth|JWT|token|anonymous/i.test(msg)){
-return 'No se pudo crear o mantener la sesión segura de Supabase.';
-}
-if(/Failed to fetch|NetworkError|Load failed|network/i.test(msg)){
-return 'Hubo un problema de red al conectar con Supabase.';
-}
-if(/TUS/i.test(msg)){
-return 'Falló la subida reanudable del video.';
-}
-if(/Storage/i.test(msg)){
-return msg;
-}
-return msg;
-}
-executionSend.addEventListener('click', async ()=>{
-const file = optimizedUploadFile || (executionFile.files && executionFile.files[0]);
-if(!file || !activeUploadButton) return;
-const reviewBox = activeUploadButton.closest('.review-request');
-const status = reviewBox ? reviewBox.querySelector('.upload-status') : null;
-const rutina = obtenerRutinaVideo(activeUploadButton);
-const objectName = construirRutaVideo(rutina, activeExerciseName, file);
-try{
-executionSend.disabled = true;
-executionSend.classList.add('uploading');
-executionSend.textContent = 'Conectando…';
-uploadProgressWrap.classList.add('active');
-uploadProgressBar.style.width = '0%';
-uploadProgressPercent.textContent = '0%';
-uploadProgressText.textContent = 'Creando conexión segura…';
-if(status){
-status.textContent = 'Preparando el envío seguro del video…';
-}
-// 1) Autenticación
-const session = await obtenerSesionSupabase();
-// 2) STORAGE PRIMERO. Si esto termina, el archivo ya está guardado.
-executionSend.textContent = 'Enviando…';
-const resultadoSubida = await subirVideoStoragePrimero(
-file,
-objectName,
-session,
-rutina,
-activeExerciseName,
-executionComment.value.trim()
-);
-uploadProgressBar.style.width = '100%';
-uploadProgressPercent.textContent = '100%';
-uploadProgressText.textContent = 'Video guardado en MoveSmart';
-activeUploadButton.classList.add('done');
-activeUploadButton.textContent = '✅ Video enviado';
-executionSend.textContent = '✅ Enviado';
-if(status){
-status.textContent = '✅ Video enviado correctamente a MoveSmart.';
-}
-// Cierra rápidamente después de confirmar el envío. Los registros y la
-// sincronización posteriores continúan en segundo plano.
-setTimeout(closeExecutionModal, 500);
-// Fallback local inmediato: ya sabemos que Storage funcionó.
-try{
-const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
-localStorage.setItem(localKey, JSON.stringify({
-client: CLIENTE,
-routine: rutina,
-exercise: activeExerciseName,
-path: objectName,
-fechaSesion: fechaSesionSantiago(),
-sentAt: new Date().toISOString(),
-status: 'enviado',
-metodo: resultadoSubida.metodo
-}));
-}catch(e){}
-// 3) REGISTRO EN SHEETS. Si falla, el video continúa considerándose enviado.
-try{
-await registrarVideoEnSheet({
-rutina,
-ejercicio: activeExerciseName,
-comentario: executionComment.value.trim(),
-rutaVideo: objectName
-});
-}catch(sheetError){
-console.warn('El video se guardó, pero no se pudo registrar en Sheets:', sheetError);
-}
-// 4) SINCRONIZACIÓN DESPUÉS. Si falla, NO consideramos fallida la subida.
-uploadProgressText.textContent = 'Sincronizando entre dispositivos…';
-try{
-await registrarVideoEnviadoEnSupabase({
-rutina,
-ejercicio: activeExerciseName,
-rutaVideo: objectName
-});
-uploadProgressText.textContent = 'Video guardado y sincronizado';
-if(status){
-status.textContent =
-'✅ Video enviado y sincronizado para hoy entre tus dispositivos.';
-}
-try{
-await sincronizarVideosEnviadosHoy();
-}catch(syncRefreshError){
-console.warn('El video se guardó, pero no se pudo refrescar el estado:', syncRefreshError);
-}
-}catch(syncError){
-console.warn('Video guardado; falló solo la sincronización:', syncError);
-uploadProgressText.textContent =
-'Video guardado. Sincronización pendiente.';
-if(status){
-status.textContent =
-'✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
-}
-}
-}catch(error){
-console.error('Error REAL de subida de video:', error);
-executionSend.disabled = false;
-executionSend.classList.remove('uploading');
-executionSend.textContent = 'Reintentar envío';
-const detalle = mensajeErrorVideo(error);
-uploadProgressText.textContent = 'Error: ' + detalle;
-if(status){
-status.textContent = '❌ ' + detalle + ' Puedes tocar “Reintentar envío”.';
-}
-alert(
-'No se pudo guardar el video.\n\n' +
-'Detalle: ' + detalle
-);
-}
-});
-if(executionClose) executionClose.addEventListener('click',closeExecutionModal);
-if(executionCancel) executionCancel.addEventListener('click',closeExecutionModal);
-if(executionModal) executionModal.addEventListener('click',e=>{ if(e.target===executionModal) closeExecutionModal(); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape' && executionModal.classList.contains('active')) closeExecutionModal(); });
-sincronizarVideosEnviadosHoy();
-window.addEventListener('focus', () => {
-sincronizarVideosEnviadosHoy();
-});
-
-
-updateProgress();
-</script>
+    window.addEventListener('resize', render);
+    cargarDatos();
+  </script>
 </body>
 </html>
