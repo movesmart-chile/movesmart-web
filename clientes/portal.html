@@ -2,955 +2,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seguimiento de tolerancia a la carga | MoveSmart</title>
-
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-
-:root{
---bg:#080a0f;
---card:rgba(20,17,27,.91);
---soft:rgba(255,255,255,.055);
---border:rgba(255,255,255,.10);
---text:#fff;
---muted:rgba(255,255,255,.72);
---orange:#ff8c00;
---orange2:#ff6a00;
---green:#22c55e;
---yellow:#facc15;
---red:#ef4444;
-}
-
-
-body{
-font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:
-linear-gradient(180deg,rgba(6,8,13,.78),rgba(6,8,13,.88)),
-radial-gradient(circle at top right,rgba(255,140,0,.18),transparent 30%),
-url("https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp") center / cover fixed no-repeat;
-color:var(--text);
-min-height:100vh;
-padding:0 0 50px;
-}
-
-a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:50;background:rgba(10,8,14,.88);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.header-inner{width:min(1200px,calc(100% - 48px));min-height:92px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.header-logo{width:82px;height:auto;display:block;flex:0 0 auto}
-.header-nav{display:flex;align-items:center;gap:34px;font-weight:800;white-space:nowrap}
-.header-nav a{position:relative;padding:10px 0;color:#fff}
-.header-nav a:hover,.header-nav a.active{color:#fff}
-.header-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:99px;background:#f36b2a}
-.header-actions,.header-socials{display:flex;align-items:center}
-.header-actions{gap:20px}.header-socials{gap:14px}
-.header-social{width:48px;height:48px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);display:grid;place-items:center;transition:.2s ease}
-.header-social:hover{transform:translateY(-2px);background:rgba(255,255,255,.1)}
-.header-social svg{width:22px;height:22px;fill:currentColor}
-.header-social.instagram{color:#ff5a8a}.header-social.twitter{color:#4da3ff}.header-social.linkedin{color:#58a6ff}.header-social.spotify{color:#1ed760}
-.header-blog{min-height:58px;padding:0 30px;border-radius:16px;background:linear-gradient(180deg,#ff8b4f,#f36b2a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:850}
-
-
-.wrap{
-width:min(1180px,100%);
-margin:auto;
-padding:14px 16px 0;
-}
-
-
-.brand{
-display:flex;
-align-items:center;
-justify-content:flex-start;
-margin:0 0 8px 0;
-}
-
-
-.brand-logo{
-display:block;
-width:150px;
-height:auto;
-object-fit:contain;
-}
-
-
-.card{
-width:min(780px,100%);
-margin:0 auto;
-background:var(--card);
-border:1px solid var(--border);
-border-radius:28px;
-padding:28px 24px;
-box-shadow:0 24px 60px rgba(0,0,0,.30);
-backdrop-filter:blur(12px);
-}
-
-
-.kicker{
-text-align:center;
-color:#ffb45c;
-font-size:.8rem;
-font-weight:850;
-letter-spacing:.08em;
-text-transform:uppercase;
-margin-bottom:10px;
-}
-
-
-h2{
-text-align:center;
-font-size:clamp(2rem,6vw,3.05rem);
-line-height:1.04;
-letter-spacing:-.045em;
-margin-bottom:14px;
-}
-
-
-.intro{
-color:var(--muted);
-text-align:center;
-line-height:1.65;
-max-width:640px;
-margin:0 auto 24px;
-}
-
-
-.cliente-info{
-background:rgba(255,140,0,.08);
-border:1px solid rgba(255,140,0,.25);
-border-radius:18px;
-padding:14px 16px;
-margin-bottom:24px;
-text-align:center;
-color:#ffd6a5;
-font-weight:750;
-}
-
-
-.question{
-padding:22px 0;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-
-.question:first-of-type{
-border-top:none;
-padding-top:0;
-}
-
-
-.q-title{
-font-weight:850;
-font-size:1.02rem;
-margin-bottom:8px;
-line-height:1.4;
-}
-
-
-.q-help{
-color:var(--muted);
-font-size:.9rem;
-line-height:1.5;
-margin-bottom:14px;
-}
-
-
-.options,.zones{
-display:grid;
-gap:10px;
-}
-
-
-.options.two,
-.zones{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-
-.options.three{
-grid-template-columns:repeat(3,minmax(0,1fr));
-}
-
-
-.radio{
-position:absolute;
-opacity:0;
-pointer-events:none;
-}
-
-
-.option{
-min-height:58px;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-border-radius:16px;
-border:1px solid var(--border);
-background:var(--soft);
-padding:13px 14px;
-cursor:pointer;
-font-size:.95rem;
-font-weight:750;
-transition:.18s ease;
-}
-
-
-.radio:checked + .option{
-border-color:var(--orange);
-background:rgba(255,140,0,.14);
-box-shadow:0 0 0 1px rgba(255,140,0,.18);
-}
-
-
-.text-input,.textarea{
-width:100%;
-border-radius:16px;
-border:1px solid var(--border);
-background:var(--soft);
-color:#fff;
-padding:14px 15px;
-font:inherit;
-outline:none;
-}
-
-
-.text-input{min-height:54px}
-.textarea{min-height:94px;resize:vertical}
-.text-input::placeholder,.textarea::placeholder{color:rgba(255,255,255,.42)}
-
-.voice-input-wrap{position:relative;width:100%}
-.voice-input-wrap .text-input,.voice-input-wrap .textarea{padding-right:62px}
-.voice-mic{
-position:absolute;right:9px;top:7px;width:42px;height:42px;padding:0;border:0;border-radius:50%;
-background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:2;
-transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
-}
-.voice-mic:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
-.voice-mic:focus-visible{outline:3px solid rgba(255,140,0,.35);outline-offset:2px}
-.voice-mic svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.voice-mic.is-listening{background:var(--orange2);color:#fff;box-shadow:0 0 0 6px rgba(255,106,0,.18);animation:voicePulse 1.25s infinite}
-.voice-status{display:block;min-height:20px;margin-top:7px;color:var(--muted);font-size:.82rem}
-.voice-status.is-listening{color:#ffb45c;font-weight:750}
-.voice-status.is-error{color:#fca5a5}
-@keyframes voicePulse{50%{box-shadow:0 0 0 11px rgba(255,106,0,.07)}}
-
-
-.hidden{display:none!important}
-
-
-.btn{
-width:100%;
-min-height:58px;
-border:none;
-border-radius:18px;
-background:linear-gradient(135deg,var(--orange),var(--orange2));
-color:#fff;
-font-size:1rem;
-font-weight:850;
-cursor:pointer;
-box-shadow:0 12px 30px rgba(255,140,0,.23);
-margin-top:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-transition:transform .18s ease,filter .18s ease,background .18s ease;
-}
-
-.btn:not(:disabled):hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn:disabled{cursor:wait;opacity:.88;transform:none}
-.btn.is-sending{background:linear-gradient(135deg,#d97706,#ea580c)}
-.spinner{
-width:20px;
-height:20px;
-border:3px solid rgba(255,255,255,.38);
-border-top-color:#fff;
-border-radius:50%;
-animation:spin .75s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.send-status{
-min-height:24px;
-margin-top:12px;
-text-align:center;
-font-size:.9rem;
-font-weight:750;
-color:#ffd6a5;
-}
-.send-status.error{color:#fca5a5}
-
-
-.success{
-display:none;
-text-align:center;
-padding:26px 10px 8px;
-}
-
-
-.success.show{display:block}
-
-
-.success-icon{
-width:64px;height:64px;
-margin:0 auto 16px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(34,197,94,.13);
-border:1px solid rgba(34,197,94,.35);
-font-size:1.8rem;
-}
-
-
-.success h3{font-size:1.35rem;margin-bottom:8px}
-.success p{color:var(--muted);line-height:1.6}
-
-
-.note{
-margin-top:18px;
-text-align:center;
-color:rgba(255,255,255,.46);
-font-size:.78rem;
-line-height:1.5;
-}
-
-
-@media(max-width:650px){
-body{padding-bottom:40px}
-.wrap{padding:20px 12px 0}
-.card{padding:22px 17px;border-radius:22px}
-.options.two,.options.three,.zones{grid-template-columns:1fr}
-.option{min-height:54px}
-.voice-mic{width:44px;height:44px;right:7px;top:6px}
-.voice-input-wrap .text-input,.voice-input-wrap .textarea{padding-right:60px}
-}
-
-@media(max-width:760px){
-.header-inner{width:100%;min-height:auto;padding:12px 34px 11px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:10px 12px}
-.header-inner>a:first-child{grid-column:1;grid-row:1;align-self:center}
-.header-logo{width:58px}
-.header-actions{grid-column:2;grid-row:1;justify-self:end;justify-content:flex-end;gap:8px}
-.header-socials{gap:7px}
-.header-social{width:auto;height:auto;border:0;background:transparent;border-radius:0}
-.header-social svg{width:15px;height:15px}
-.header-blog{min-height:32px;padding:0 12px;border-radius:10px;font-size:.7rem}
-.header-nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:28px;font-size:.76rem}
-.header-nav a{padding:4px 0 12px}
-.header-nav a.active::after{left:50%;right:auto;bottom:0;width:46px;transform:translateX(-50%);height:3px}
-}
-
-@media(max-width:390px){
-.header-inner{padding-left:30px;padding-right:30px}
-.header-logo{width:54px}
-.header-socials{gap:6px}.header-social svg{width:13px;height:13px}
-.header-blog{padding:0 9px;font-size:.64rem}
-.header-nav{gap:20px;font-size:.69rem}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparando tu espacio | MoveSmart</title>
+  <style>
+    :root{
+      --bg:#0c0812;--card:rgba(24,16,32,.62);--border:rgba(255,255,255,.10);
+      --text:#f3edf7;--muted:#cbc0d3;--accent:#f36b2a;--accent-2:#ff8b4f;
+      --error:#ff9d8b;--shadow:0 18px 42px rgba(0,0,0,.34)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%}
+    body{
+      min-height:100vh;display:grid;place-items:center;padding:22px;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(180deg,rgba(8,10,18,.48),rgba(8,10,18,.68)),
+        url('../imagenes/fondo-index-realista.webp') center center/cover no-repeat fixed,
+        var(--bg)
+    }
+    .glow{
+      position:fixed;inset:0;pointer-events:none;
+      background:
+        radial-gradient(circle at 18% 18%,rgba(73,58,146,.18),transparent 30%),
+        radial-gradient(circle at 82% 18%,rgba(243,107,42,.20),transparent 22%)
+    }
+    .card{
+      position:relative;z-index:1;width:min(560px,100%);padding:34px;border-radius:30px;
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025)),var(--card);
+      border:1px solid var(--border);box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:center
+    }
+    .brand{margin:0 0 26px;font-size:clamp(2rem,8vw,3.3rem);line-height:1;font-weight:900;letter-spacing:-.05em}
+    .brand span{color:var(--accent)}
+    .loader{
+      width:64px;height:64px;margin:0 auto 24px;border-radius:50%;
+      border:5px solid rgba(255,255,255,.12);border-top-color:var(--accent);
+      animation:girar .85s linear infinite
+    }
+    h1{margin:0 0 10px;font-size:clamp(1.55rem,5vw,2.2rem);letter-spacing:-.03em}
+    p{margin:0;color:var(--muted);line-height:1.65}
+    .estado{
+      margin-top:20px;padding:14px 16px;border-radius:16px;
+      background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);
+      color:#fff;font-weight:750
+    }
+    .error{color:var(--error)}
+    .acciones{display:none;gap:10px;margin-top:18px}
+    .acciones.visible{display:grid}
+    a,button{
+      min-height:52px;display:flex;align-items:center;justify-content:center;padding:14px 18px;
+      border-radius:15px;border:1px solid rgba(255,255,255,.12);
+      font:inherit;font-weight:850;text-decoration:none;cursor:pointer
+    }
+    a{color:#fff;background:rgba(255,255,255,.08)}
+    button{color:#fff;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
+    @keyframes girar{to{transform:rotate(360deg)}}
+    @media(max-width:560px){.card{padding:26px 20px;border-radius:24px}}
+  </style>
 </head>
-
-
 <body>
-<header class="site-header">
-<div class="header-inner">
-<a href="https://movesmart-chile.github.io/movesmart-web/#inicio" aria-label="Inicio MoveSmart"><img class="header-logo" src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp" alt="MoveSmart"></a>
-<nav class="header-nav" aria-label="Navegación principal">
-<a href="https://movesmart-chile.github.io/movesmart-web/#inicio">Inicio</a>
-<a href="https://movesmart-chile.github.io/movesmart-web/#como-funciona">Cómo Funciona</a>
-<a class="active" href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html">Acceso Clientes</a>
-</nav>
-<div class="header-actions">
-<div class="header-socials" aria-label="Redes sociales MoveSmart">
-<a class="header-social instagram" href="https://www.instagram.com/movesmart.plan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2m0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2M17.2 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1"/></svg></a>
-<a class="header-social twitter" href="https://x.com/movesmartchile" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.7 1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9A12 12 0 0 1 3 5.5a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1c-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1a4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.5 21c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.4 2.1-2.2z"/></svg></a>
-<a class="header-social linkedin" href="https://www.linkedin.com/in/movesmart-chile-b4b03b40a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5M3 10h4v11H3zm6 0h3.8v1.5h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H9z"/></svg></a>
-<a class="header-social spotify" href="https://open.spotify.com/user/31lcttv3ugvu6s5ifvcj5tf5syre" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.6 14.5c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-1-.4.1-.7-.1-.8-.5s.1-.7.5-.8c4-.9 7.5-.5 10.3 1.1.3.2.4.6.2 1m1.2-2.7c-.2.4-.7.5-1.1.3-2.8-1.7-7.1-2.2-10.4-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.1 8.6-.6 11.8 1.4.4.2.5.7.2 1m.1-2.8c-3.4-2-9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.1 9.8-.9 13.8 1.5.4.3.6.9.3 1.3-.3.4-.9.5-1.3.2"/></svg></a>
-</div>
-<a class="header-blog" href="https://movesmart-chile.github.io/movesmart-web/blog/portada.html">Blog</a>
-</div>
-</div>
-</header>
-
-<div class="wrap">
-
-
-<section class="card">
-
-
-<div id="formArea">
-
-
-<div class="kicker">Seguimiento de tolerancia a la carga</div>
-
-
-<h2>¿Cómo respondió tu cuerpo después de la última rutina?</h2>
-
-
-<p class="intro">
-Queremos conocer cómo respondiste durante las horas posteriores y al día siguiente.
-Tus respuestas nos ayudan a ajustar la próxima sesión de forma más personalizada.
-</p>
-
-
-<div id="clienteInfo" class="cliente-info hidden"></div>
-
-
-<form id="followupForm">
-
-
-<!-- RESPUESTA TARDÍA -->
-<div class="question">
-<div class="q-title">¿Cómo te sentiste después de la sesión y al día siguiente?</div>
-<div class="q-help">
-Elige la opción que mejor represente cómo respondiste después de la rutina.
-</div>
-
-
-<div class="options">
-<input class="radio" type="radio" name="respuesta_tardia" id="verde" value="verde" required>
-<label class="option" for="verde">🟢 Me sentí bien después de la sesión</label>
-
-
-<input class="radio" type="radio" name="respuesta_tardia" id="amarillo" value="amarillo">
-<label class="option" for="amarillo">🟡 Tuve alguna molestia, pero pude realizar mis actividades normalmente</label>
-
-
-<input class="radio" type="radio" name="respuesta_tardia" id="rojo" value="rojo">
-<label class="option" for="rojo">🔴 Tuve molestias que afectaron mis actividades</label>
-</div>
-</div>
-
-
-<!-- BLOQUE CONDICIONAL -->
-<div id="molestiaDetalle" class="hidden">
-
-
-<div class="question">
-<div class="q-title">¿En qué ejercicio apareció o se relacionó la molestia?</div>
-<div class="q-help">
-Escribe el ejercicio que estabas realizando cuando apareció la molestia.
-</div>
-<input
-class="text-input"
-type="text"
-id="ejercicio_reportado"
-name="ejercicio_reportado"
-placeholder="Ej: Sentarse y levantarse de una silla">
-</div>
-
-
-<div class="question">
-<div class="q-title">¿Dónde sentiste la molestia?</div>
-<div class="q-help">Selecciona la zona principal.</div>
-
-
-<div class="zones">
-<input class="radio" type="radio" name="zona" id="cuello" value="Cuello">
-<label class="option" for="cuello">Cuello</label>
-
-
-<input class="radio" type="radio" name="zona" id="hombro" value="Hombro">
-<label class="option" for="hombro">Hombro</label>
-
-
-<input class="radio" type="radio" name="zona" id="codo" value="Codo / antebrazo">
-<label class="option" for="codo">Codo / antebrazo</label>
-
-
-<input class="radio" type="radio" name="zona" id="muneca" value="Muñeca / mano">
-<label class="option" for="muneca">Muñeca / mano</label>
-
-
-<input class="radio" type="radio" name="zona" id="espalda" value="Espalda">
-<label class="option" for="espalda">Espalda</label>
-
-
-<input class="radio" type="radio" name="zona" id="cadera" value="Cadera">
-<label class="option" for="cadera">Cadera</label>
-
-
-<input class="radio" type="radio" name="zona" id="rodilla" value="Rodilla">
-<label class="option" for="rodilla">Rodilla</label>
-
-
-<input class="radio" type="radio" name="zona" id="tobillo" value="Tobillo / pie">
-<label class="option" for="tobillo">Tobillo / pie</label>
-
-
-<input class="radio" type="radio" name="zona" id="otra" value="Otra zona">
-<label class="option" for="otra">Otra zona</label>
-</div>
-</div>
-
-
-<div class="question">
-<div class="q-title">¿Cuándo apareció la molestia?</div>
-<div class="q-help">
-Esto nos ayuda a saber si apareció con poca exposición o después de acumular trabajo.
-</div>
-
-
-<div class="options two">
-<input class="radio" type="radio" name="aparicion" id="inicio" value="Desde el inicio / primeras repeticiones">
-<label class="option" for="inicio">Desde el inicio o primeras repeticiones</label>
-
-
-<input class="radio" type="radio" name="aparicion" id="acumulada" value="Después de varias repeticiones o minutos">
-<label class="option" for="acumulada">Después de varias repeticiones o minutos</label>
-</div>
-</div>
-
-
-<div class="question">
-<div class="q-title">¿Qué pasó con la molestia mientras continuabas?</div>
-
-
-<div class="options three">
-<input class="radio" type="radio" name="durante" id="disminuyo" value="Disminuyó">
-<label class="option" for="disminuyo">🟢 Disminuyó</label>
-
-
-<input class="radio" type="radio" name="durante" id="igual" value="Se mantuvo">
-<label class="option" for="igual">🟡 Se mantuvo</label>
-
-
-<input class="radio" type="radio" name="durante" id="aumento" value="Aumentó">
-<label class="option" for="aumento">🔴 Aumentó</label>
-</div>
-</div>
-
-
-<div class="question">
-<div class="q-title">¿Qué pasó con la molestia al terminar el ejercicio?</div>
-
-
-<div class="options three">
-<input class="radio" type="radio" name="recuperacion" id="rapida" value="Desapareció rápido">
-<label class="option" for="rapida">🟢 Desapareció rápido</label>
-
-
-<input class="radio" type="radio" name="recuperacion" id="rato" value="Quedó un rato">
-<label class="option" for="rato">🟡 Quedó un rato</label>
-
-
-<input class="radio" type="radio" name="recuperacion" id="persistio" value="Persistió bastante">
-<label class="option" for="persistio">🔴 Persistió bastante</label>
-</div>
-</div>
-
-
-<div class="question">
-<div class="q-title">¿Cómo está esa molestia hoy?</div>
-
-
-<div class="options two">
-<input class="radio" type="radio" name="estado_actual" id="yaNo" value="Ya no está">
-<label class="option" for="yaNo">✅ Ya no está</label>
-
-
-<input class="radio" type="radio" name="estado_actual" id="menos" value="Está, pero menos">
-<label class="option" for="menos">🟢 Está, pero menos</label>
-
-
-<input class="radio" type="radio" name="estado_actual" id="sigueIgual" value="Sigue igual">
-<label class="option" for="sigueIgual">🟡 Sigue igual</label>
-
-
-<input class="radio" type="radio" name="estado_actual" id="peor" value="Está peor">
-<label class="option" for="peor">🔴 Está peor</label>
-</div>
-</div>
-
-
-<div class="question">
-<div class="q-title">Si quieres, cuéntanos brevemente qué notaste</div>
-<div class="q-help">Opcional.</div>
-
-
-<textarea
-class="textarea"
-id="comentario"
-name="comentario"
-placeholder="Ej: me molestó al bajar escaleras, amanecí más rígido o se me pasó durante la tarde..."></textarea>
-</div>
-
-
-</div>
-
-
-<!-- Datos por URL -->
-<input type="hidden" id="cliente_id" name="cliente_id">
-<input type="hidden" id="rutina" name="rutina">
-<input type="hidden" id="fecha_sesion" name="fecha_sesion">
-
-
-<button class="btn" id="submitBtn" type="submit">
-<span id="submitSpinner" class="spinner hidden" aria-hidden="true"></span>
-<span id="submitText">Enviar seguimiento</span>
-</button>
-<div id="sendStatus" class="send-status" role="status" aria-live="polite"></div>
-
-
-</form>
-</div>
-
-
-<div id="successArea" class="success">
-<div class="success-icon">✓</div>
-<h3>¡Gracias!</h3>
-<p>
-Tu respuesta quedó registrada. Esta información nos ayudará a orientar la próxima sesión.
-</p>
-</div>
-
-
-<p class="note">
-MoveSmart utiliza esta información para evaluar tu tolerancia a la carga y orientar el seguimiento de tu programa.
-</p>
-
-
-</section>
-</div>
-
-
-<script>
-// ------------------------------------------------------------
-// CONFIGURACIÓN
-// ------------------------------------------------------------
-// Cuando conectemos el Apps Script, pega aquí la URL del Web App.
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyn_HkW_j5vFZ2_nkJ-CjApGT4Xei6xqdfpvukvXp2dCwmTZMSHYXTegQ3nVYsQK8uw/exec";
-
-
-// ------------------------------------------------------------
-// DATOS DESDE URL
-// Ejemplo:
-// ?cliente_id=juany-flores&rutina=Rutina%20A&fecha_sesion=2026-09-02
-// ------------------------------------------------------------
-const params = new URLSearchParams(window.location.search);
-
-
-const clienteIdParam = (params.get("cliente_id") || "").trim();
-const rutinaParam = (params.get("rutina") || "").trim();
-const fechaSesionParam = (params.get("fecha_sesion") || "").trim();
-
-
-document.getElementById("cliente_id").value = clienteIdParam;
-document.getElementById("rutina").value = rutinaParam;
-document.getElementById("fecha_sesion").value = fechaSesionParam;
-
-
-const info = [clienteIdParam, rutinaParam, fechaSesionParam].filter(Boolean);
-const clienteInfo = document.getElementById("clienteInfo");
-
-
-if(rutinaParam || fechaSesionParam){
-const infoVisible = [rutinaParam, fechaSesionParam].filter(Boolean);
-clienteInfo.textContent = infoVisible.join(" · ");
-clienteInfo.classList.remove("hidden");
-}
-
-
-// ------------------------------------------------------------
-// MOSTRAR DETALLE SOLO SI HAY MOLESTIA
-// ------------------------------------------------------------
-const molestiaDetalle = document.getElementById("molestiaDetalle");
-
-
-document.querySelectorAll('input[name="respuesta_tardia"]').forEach(radio => {
-radio.addEventListener("change", () => {
-
-
-if(radio.value === "verde"){
-molestiaDetalle.classList.add("hidden");
-
-
-document.getElementById("ejercicio_reportado").value = "";
-document.getElementById("comentario").value = "";
-
-
-document
-.querySelectorAll(
-'input[name="zona"], input[name="aparicion"], input[name="durante"], input[name="recuperacion"], input[name="estado_actual"]'
-)
-.forEach(el => el.checked = false);
-
-
-}else{
-molestiaDetalle.classList.remove("hidden");
-}
-});
-});
-
-
-// ------------------------------------------------------------
-// VALIDACIÓN + ENVÍO
-// ------------------------------------------------------------
-const form = document.getElementById("followupForm");
-const formArea = document.getElementById("formArea");
-const successArea = document.getElementById("successArea");
-const submitBtn = document.getElementById("submitBtn");
-const submitText = document.getElementById("submitText");
-const submitSpinner = document.getElementById("submitSpinner");
-const sendStatus = document.getElementById("sendStatus");
-
-function cambiarEstadoEnvio(enviando){
-submitBtn.disabled = enviando;
-submitBtn.classList.toggle("is-sending", enviando);
-submitSpinner.classList.toggle("hidden", !enviando);
-submitText.textContent = enviando ? "Enviando..." : "Enviar seguimiento";
-submitBtn.setAttribute("aria-busy", String(enviando));
-sendStatus.classList.remove("error");
-sendStatus.textContent = enviando ? "Espera un momento, estamos registrando tu respuesta." : "";
-}
-
-
-function valorRadio(nombre){
-const el = document.querySelector(`input[name="${nombre}"]:checked`);
-return el ? el.value : "";
-}
-
-
-form.addEventListener("submit", async e => {
-e.preventDefault();
-
-if(submitBtn.disabled) return;
-
-
-const clienteId = document.getElementById("cliente_id").value.trim();
-
-
-if(!clienteId){
-alert("Falta identificar al cliente. Abre este formulario desde su enlace personalizado.");
-return;
-}
-
-
-
-
-const respuestaTardia = valorRadio("respuesta_tardia");
-
-
-const ejercicio = document.getElementById("ejercicio_reportado").value.trim();
-const zona = valorRadio("zona");
-const aparicion = valorRadio("aparicion");
-const durante = valorRadio("durante");
-const recuperacion = valorRadio("recuperacion");
-const estadoActual = valorRadio("estado_actual");
-const comentario = document.getElementById("comentario").value.trim();
-
-
-if(respuestaTardia !== "verde"){
-if(!ejercicio){
-alert("Indica en qué ejercicio apareció o se relacionó la molestia.");
-return;
-}
-
-
-if(!zona){
-alert("Selecciona la zona donde sentiste la molestia.");
-return;
-}
-
-
-if(!aparicion){
-alert("Indica cuándo apareció la molestia.");
-return;
-}
-
-
-if(!durante){
-alert("Indica qué pasó con la molestia mientras continuabas.");
-return;
-}
-
-
-if(!recuperacion){
-alert("Indica qué pasó con la molestia al terminar.");
-return;
-}
-
-
-if(!estadoActual){
-alert("Indica cómo está la molestia hoy.");
-return;
-}
-}
-
-
-const payload = {
-fecha_respuesta: new Date().toISOString(),
-cliente_id: document.getElementById("cliente_id").value,
-rutina: document.getElementById("rutina").value,
-fecha_sesion: document.getElementById("fecha_sesion").value,
-
-
-respuesta_tardia: respuestaTardia,
-
-
-ejercicio: respuestaTardia === "verde" ? "" : ejercicio,
-zona: respuestaTardia === "verde" ? "" : zona,
-aparicion: respuestaTardia === "verde" ? "" : aparicion,
-durante: respuestaTardia === "verde" ? "" : durante,
-recuperacion: respuestaTardia === "verde" ? "" : recuperacion,
-estado_actual: respuestaTardia === "verde" ? "" : estadoActual,
-comentario: respuestaTardia === "verde" ? "" : comentario
-};
-
-
-// DEMO: si no hay Apps Script configurado, igual permite probar el flujo.
-if(!SCRIPT_URL){
-console.log("DEMO MoveSmart - payload:", payload);
-formArea.style.display = "none";
-successArea.classList.add("show");
-successArea.scrollIntoView({behavior:"smooth", block:"center"});
-return;
-}
-
-
-try{
-cambiarEstadoEnvio(true);
-const formData = new URLSearchParams();
-
-
-Object.entries(payload).forEach(([key, value]) => {
-formData.append(key, value ?? "");
-});
-
-
-await fetch(SCRIPT_URL,{
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":"application/x-www-form-urlencoded"
-},
-body:formData.toString()
-});
-
-
-formArea.style.display = "none";
-successArea.classList.add("show");
-successArea.scrollIntoView({behavior:"smooth", block:"center"});
-
-
-}catch(error){
-console.error(error);
-cambiarEstadoEnvio(false);
-sendStatus.classList.add("error");
-sendStatus.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo nuevamente.";
-}
-});
-
-// Dictado por voz para los campos que requieren escribir.
-(() => {
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const voiceFieldIds = ["ejercicio_reportado", "comentario"];
-let active = null;
-
-const micIcon = `
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<rect x="9" y="3" width="6" height="11" rx="3"></rect>
-<path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"></path>
-</svg>`;
-
-function setVoiceState(item, listening, message = ""){
-item.button.classList.toggle("is-listening", listening);
-item.status.classList.toggle("is-listening", listening);
-item.button.setAttribute("aria-pressed", String(listening));
-item.button.setAttribute("aria-label", listening ? "Detener dictado" : "Dictar respuesta");
-item.button.title = listening ? "Detener dictado" : "Dictar respuesta";
-item.status.textContent = message;
-}
-
-voiceFieldIds.forEach(id => {
-const field = document.getElementById(id);
-if(!field || field.closest(".voice-input-wrap")) return;
-
-const wrap = document.createElement("div");
-wrap.className = "voice-input-wrap";
-field.parentNode.insertBefore(wrap, field);
-wrap.appendChild(field);
-
-const button = document.createElement("button");
-button.type = "button";
-button.className = "voice-mic";
-button.innerHTML = micIcon;
-button.setAttribute("aria-label", "Dictar respuesta");
-button.setAttribute("aria-pressed", "false");
-button.title = "Dictar respuesta";
-wrap.appendChild(button);
-
-const status = document.createElement("span");
-status.className = "voice-status";
-status.setAttribute("aria-live", "polite");
-wrap.insertAdjacentElement("afterend", status);
-
-const item = {field, button, status, recognition:null, baseText:""};
-
-if(!SpeechRecognition){
-button.addEventListener("click", () => {
-status.classList.add("is-error");
-status.textContent = "Este navegador no permite el dictado directo. Puedes usar el micrófono del teclado de tu celular.";
-});
-return;
-}
-
-const recognition = new SpeechRecognition();
-recognition.lang = "es-CL";
-recognition.continuous = false;
-recognition.interimResults = true;
-item.recognition = recognition;
-
-recognition.onstart = () => {
-active = item;
-item.baseText = field.value.trim();
-status.classList.remove("is-error");
-setVoiceState(item, true, "Escuchando… habla ahora");
-};
-
-recognition.onresult = event => {
-let transcript = "";
-for(let i = 0; i < event.results.length; i++) transcript += event.results[i][0].transcript;
-field.value = [item.baseText, transcript.trim()].filter(Boolean).join(item.baseText ? " " : "");
-field.dispatchEvent(new Event("input", {bubbles:true}));
-};
-
-recognition.onerror = event => {
-const messages = {
-"not-allowed":"Debes permitir el acceso al micrófono para dictar.",
-"audio-capture":"No se encontró un micrófono disponible.",
-"no-speech":"No se detectó voz. Presiona el micrófono e inténtalo nuevamente."
-};
-status.classList.add("is-error");
-setVoiceState(item, false, messages[event.error] || "No pudimos escuchar la respuesta. Inténtalo nuevamente.");
-};
-
-recognition.onend = () => {
-if(active === item) active = null;
-button.classList.remove("is-listening");
-status.classList.remove("is-listening");
-button.setAttribute("aria-pressed", "false");
-button.setAttribute("aria-label", "Dictar respuesta");
-button.title = "Dictar respuesta";
-if(!status.classList.contains("is-error")) status.textContent = field.value.trim() ? "Dictado agregado. Puedes editar el texto antes de enviar." : "";
-};
-
-button.addEventListener("click", () => {
-status.classList.remove("is-error");
-if(active === item){recognition.stop();return;}
-if(active?.recognition) active.recognition.stop();
-try{recognition.start();}
-catch(_){status.textContent = "Espera un momento y vuelve a presionar el micrófono.";}
-});
-});
-})();
-</script>
-
-
+  <div class="glow"></div>
+
+  <main class="card">
+    <h2 class="brand">Move<span>Smart</span></h2>
+    <div class="loader" id="loader" aria-hidden="true"></div>
+    <h1 id="titulo">Preparando tu espacio</h1>
+    <p id="descripcion">Estamos revisando qué parte de tu programa corresponde mostrarte hoy.</p>
+    <div class="estado" id="estado">Consultando tu avance…</div>
+
+    <div class="acciones" id="acciones">
+      <button type="button" id="reintentar">Intentar nuevamente</button>
+      <a href="../acceso-clientes.html">Volver al acceso</a>
+    </div>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyk33sXnUcNYSu3pkGUTMjgjEhUpxioXc7cT4_eJhtlw8xJbTWHrxAHFwVuAXYf6IfOw/exec";
+
+    const params = new URLSearchParams(window.location.search);
+    const cliente = (params.get("cliente") || "").trim();
+    const plan = (params.get("plan") || "").trim();
+    const fechaPrueba = (params.get("fecha") || "").trim();
+
+    const estado = document.getElementById("estado");
+    const titulo = document.getElementById("titulo");
+    const descripcion = document.getElementById("descripcion");
+    const loader = document.getElementById("loader");
+    const acciones = document.getElementById("acciones");
+
+    function mostrarError(mensaje){
+      loader.style.display="none";
+      titulo.textContent="No pudimos abrir tu espacio";
+      descripcion.textContent="Puedes intentarlo nuevamente o volver al acceso de clientes.";
+      estado.textContent=mensaje;
+      estado.classList.add("error");
+      acciones.classList.add("visible");
+    }
+
+    function crearRutaCompromiso(archivo){
+      const destinoDesdeCompromisos = `../${plan}`;
+      const query = new URLSearchParams({
+        cliente: cliente,
+        destino: destinoDesdeCompromisos
+      });
+      return `compromisos/${archivo}?${query.toString()}`;
+    }
+
+    function redirigirSegunEstado(respuesta){
+      if(respuesta.mostrar==="inicial"){
+        estado.textContent="Abriendo tu compromiso inicial…";
+        window.location.replace(crearRutaCompromiso("compromiso-inicial.html"));
+        return;
+      }
+      if(respuesta.mostrar==="mitad"){
+        estado.textContent="Abriendo tu revisión de mitad del programa…";
+        window.location.replace(crearRutaCompromiso("compromiso-mitad.html"));
+        return;
+      }
+      if(respuesta.mostrar==="plan"){
+        estado.textContent="Abriendo tu programa…";
+        window.location.replace(plan);
+        return;
+      }
+      throw new Error("El servidor devolvió un estado desconocido.");
+    }
+
+    async function consultarEstado(){
+      estado.classList.remove("error");
+      acciones.classList.remove("visible");
+      loader.style.display="block";
+      titulo.textContent="Preparando tu espacio";
+      descripcion.textContent="Estamos revisando qué parte de tu programa corresponde mostrarte hoy.";
+      estado.textContent="Consultando tu avance…";
+
+      if(!cliente){mostrarError("No se recibió el nombre del cliente.");return}
+      if(!plan){mostrarError("No se recibió la dirección del programa.");return}
+
+      try{
+        const consulta = new URL(SCRIPT_URL);
+        consulta.searchParams.set("cliente",cliente);
+        if(fechaPrueba) consulta.searchParams.set("fecha",fechaPrueba);
+
+        const respuestaHttp = await fetch(consulta.toString(),{method:"GET",cache:"no-store"});
+        if(!respuestaHttp.ok) throw new Error("No fue posible consultar el servidor.");
+
+        const respuesta = await respuestaHttp.json();
+        if(!respuesta.ok) throw new Error(respuesta.mensaje || "El servidor no pudo revisar tu estado.");
+
+        redirigirSegunEstado(respuesta);
+      }catch(error){
+        console.error(error);
+        mostrarError(error.message || "Ocurrió un problema inesperado.");
+      }
+    }
+
+    document.getElementById("reintentar").addEventListener("click",consultarEstado);
+    consultarEstado();
+  </script>
 </body>
 </html>
