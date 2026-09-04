@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -503,6 +504,14 @@ return el ? el.value : "";
 form.addEventListener("submit", async e => {
 e.preventDefault();
 
+const clienteId = document.getElementById("cliente_id").value.trim();
+
+if(!clienteId){
+alert("Falta identificar al cliente. Abre este formulario desde su enlace personalizado.");
+return;
+}
+
+
 const respuestaTardia = valorRadio("respuesta_tardia");
 
 const ejercicio = document.getElementById("ejercicio_reportado").value.trim();
@@ -571,10 +580,19 @@ return;
 }
 
 try{
+const formData = new URLSearchParams();
+
+Object.entries(payload).forEach(([key, value]) => {
+formData.append(key, value ?? "");
+});
+
 await fetch(SCRIPT_URL,{
 method:"POST",
 mode:"no-cors",
-body:JSON.stringify(payload)
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:formData.toString()
 });
 
 formArea.style.display = "none";
