@@ -586,8 +586,6 @@ Object.entries(payload).forEach(([key, value]) => {
 formData.append(key, value ?? "");
 });
 
-alert(JSON.stringify(payload));
-
 await fetch(SCRIPT_URL,{
 method:"POST",
 mode:"no-cors",
