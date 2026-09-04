@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -623,7 +624,7 @@
           <button class="tab active" data-tab="evolucion">Mi evolución</button>
           <button class="tab" data-tab="registro">Mi registro</button>
           <button class="tab" data-tab="proximo">Mi plan</button>
-          <a class="tab tab-link" href="/movesmart-chile/movesmart-web/clientes/tolerancia_carga.html">Tolerancia a la carga</a>
+          <a class="tab tab-link" href="../../tolerancia_carga.html?cliente_id=juany-flores">Tolerancia a la carga</a>
         </div>
       </div>
 
@@ -1214,7 +1215,7 @@
       }
     }
 
-    document.querySelectorAll('.tab').forEach(button => {
+    document.querySelectorAll('.tab[data-tab]').forEach(button => {
       button.addEventListener('click', () => {
         document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
