@@ -1109,8 +1109,9 @@
 
         CLIENTE_DASHBOARD = json.cliente;
         MES_PROGRAMA = Number(json.mes_programa) || 0;
-        FECHA_INICIO = parseFecha(json.fecha_inicio);
-        FECHA_FIN = parseFecha(json.fecha_reevaluacion);
+        const fechaBasePrograma = parseFecha(json.fecha_inicio);
+        FECHA_INICIO = sumarMeses(fechaBasePrograma, Math.max(MES_PROGRAMA - 1, 0));
+        FECHA_FIN = sumarMeses(fechaBasePrograma, Math.max(MES_PROGRAMA, 1));
         NOMBRE_PERIODO = formatearPeriodo(FECHA_INICIO, FECHA_FIN);
 
         document.getElementById('nombreCliente').textContent = CLIENTE_DASHBOARD;
