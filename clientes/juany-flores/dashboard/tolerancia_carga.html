@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -408,7 +409,7 @@ placeholder="Ej: me molestó al bajar escaleras, amanecí más rígido o se me p
 </div>
 
 <!-- Datos por URL -->
-<input type="hidden" id="cliente" name="cliente">
+<input type="hidden" id="cliente_id" name="cliente_id">
 <input type="hidden" id="rutina" name="rutina">
 <input type="hidden" id="fecha_sesion" name="fecha_sesion">
 
@@ -442,23 +443,24 @@ const SCRIPT_URL = "";
 // ------------------------------------------------------------
 // DATOS DESDE URL
 // Ejemplo:
-// ?cliente=Juany%20Flores&rutina=Rutina%20A&fecha_sesion=2026-09-02
+// ?cliente_id=juany-flores&rutina=Rutina%20A&fecha_sesion=2026-09-02
 // ------------------------------------------------------------
 const params = new URLSearchParams(window.location.search);
 
-const clienteParam = (params.get("cliente") || "").trim();
+const clienteIdParam = (params.get("cliente_id") || "").trim();
 const rutinaParam = (params.get("rutina") || "").trim();
 const fechaSesionParam = (params.get("fecha_sesion") || "").trim();
 
-document.getElementById("cliente").value = clienteParam;
+document.getElementById("cliente_id").value = clienteIdParam;
 document.getElementById("rutina").value = rutinaParam;
 document.getElementById("fecha_sesion").value = fechaSesionParam;
 
-const info = [clienteParam, rutinaParam, fechaSesionParam].filter(Boolean);
+const info = [clienteIdParam, rutinaParam, fechaSesionParam].filter(Boolean);
 const clienteInfo = document.getElementById("clienteInfo");
 
-if(info.length){
-clienteInfo.textContent = info.join(" · ");
+if(rutinaParam || fechaSesionParam){
+const infoVisible = [rutinaParam, fechaSesionParam].filter(Boolean);
+clienteInfo.textContent = infoVisible.join(" · ");
 clienteInfo.classList.remove("hidden");
 }
 
@@ -547,7 +549,7 @@ return;
 
 const payload = {
 fecha_respuesta: new Date().toISOString(),
-cliente: document.getElementById("cliente").value,
+cliente_id: document.getElementById("cliente_id").value,
 rutina: document.getElementById("rutina").value,
 fecha_sesion: document.getElementById("fecha_sesion").value,
 
