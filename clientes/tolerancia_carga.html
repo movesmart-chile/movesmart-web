@@ -6,8 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seguimiento de tolerancia a la carga | MoveSmart</title>
 
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 
 :root{
 --bg:#080a0f;
@@ -23,6 +25,7 @@
 --red:#ef4444;
 }
 
+
 body{
 font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 background:
@@ -34,10 +37,12 @@ min-height:100vh;
 padding:14px 16px 50px;
 }
 
+
 .wrap{
 width:min(1180px,100%);
 margin:auto;
 }
+
 
 .brand{
 display:flex;
@@ -46,12 +51,14 @@ justify-content:flex-start;
 margin:0 0 8px 0;
 }
 
+
 .brand-logo{
 display:block;
 width:150px;
 height:auto;
 object-fit:contain;
 }
+
 
 .card{
 width:min(780px,100%);
@@ -64,6 +71,7 @@ box-shadow:0 24px 60px rgba(0,0,0,.30);
 backdrop-filter:blur(12px);
 }
 
+
 .kicker{
 text-align:center;
 color:#ffb45c;
@@ -74,6 +82,7 @@ text-transform:uppercase;
 margin-bottom:10px;
 }
 
+
 h2{
 text-align:center;
 font-size:clamp(2rem,6vw,3.05rem);
@@ -82,6 +91,7 @@ letter-spacing:-.045em;
 margin-bottom:14px;
 }
 
+
 .intro{
 color:var(--muted);
 text-align:center;
@@ -89,6 +99,7 @@ line-height:1.65;
 max-width:640px;
 margin:0 auto 24px;
 }
+
 
 .cliente-info{
 background:rgba(255,140,0,.08);
@@ -101,15 +112,18 @@ color:#ffd6a5;
 font-weight:750;
 }
 
+
 .question{
 padding:22px 0;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
+
 .question:first-of-type{
 border-top:none;
 padding-top:0;
 }
+
 
 .q-title{
 font-weight:850;
@@ -118,6 +132,7 @@ margin-bottom:8px;
 line-height:1.4;
 }
 
+
 .q-help{
 color:var(--muted);
 font-size:.9rem;
@@ -125,25 +140,30 @@ line-height:1.5;
 margin-bottom:14px;
 }
 
+
 .options,.zones{
 display:grid;
 gap:10px;
 }
+
 
 .options.two,
 .zones{
 grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
+
 .options.three{
 grid-template-columns:repeat(3,minmax(0,1fr));
 }
+
 
 .radio{
 position:absolute;
 opacity:0;
 pointer-events:none;
 }
+
 
 .option{
 min-height:58px;
@@ -161,11 +181,13 @@ font-weight:750;
 transition:.18s ease;
 }
 
+
 .radio:checked + .option{
 border-color:var(--orange);
 background:rgba(255,140,0,.14);
 box-shadow:0 0 0 1px rgba(255,140,0,.18);
 }
+
 
 .text-input,.textarea{
 width:100%;
@@ -178,11 +200,14 @@ font:inherit;
 outline:none;
 }
 
+
 .text-input{min-height:54px}
 .textarea{min-height:94px;resize:vertical}
 .text-input::placeholder,.textarea::placeholder{color:rgba(255,255,255,.42)}
 
+
 .hidden{display:none!important}
+
 
 .btn{
 width:100%;
@@ -196,7 +221,36 @@ font-weight:850;
 cursor:pointer;
 box-shadow:0 12px 30px rgba(255,140,0,.23);
 margin-top:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+transition:transform .18s ease,filter .18s ease,background .18s ease;
 }
+
+.btn:not(:disabled):hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn:disabled{cursor:wait;opacity:.88;transform:none}
+.btn.is-sending{background:linear-gradient(135deg,#d97706,#ea580c)}
+.spinner{
+width:20px;
+height:20px;
+border:3px solid rgba(255,255,255,.38);
+border-top-color:#fff;
+border-radius:50%;
+animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.send-status{
+min-height:24px;
+margin-top:12px;
+text-align:center;
+font-size:.9rem;
+font-weight:750;
+color:#ffd6a5;
+}
+.send-status.error{color:#fca5a5}
+
 
 .success{
 display:none;
@@ -204,7 +258,9 @@ text-align:center;
 padding:26px 10px 8px;
 }
 
+
 .success.show{display:block}
+
 
 .success-icon{
 width:64px;height:64px;
@@ -218,8 +274,10 @@ border:1px solid rgba(34,197,94,.35);
 font-size:1.8rem;
 }
 
+
 .success h3{font-size:1.35rem;margin-bottom:8px}
 .success p{color:var(--muted);line-height:1.6}
+
 
 .note{
 margin-top:18px;
@@ -228,6 +286,7 @@ color:rgba(255,255,255,.46);
 font-size:.78rem;
 line-height:1.5;
 }
+
 
 @media(max-width:650px){
 body{padding:20px 12px 40px}
@@ -238,29 +297,39 @@ body{padding:20px 12px 40px}
 </style>
 </head>
 
+
 <body>
 <div class="wrap">
+
 
 <div class="brand">
 <img src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp" alt="MoveSmart" class="brand-logo">
 </div>
 
+
 <section class="card">
+
 
 <div id="formArea">
 
+
 <div class="kicker">Seguimiento de tolerancia a la carga</div>
 
+
 <h2>¿Cómo respondió tu cuerpo después de la última rutina?</h2>
+
 
 <p class="intro">
 Queremos conocer cómo respondiste durante las horas posteriores y al día siguiente.
 Tus respuestas nos ayudan a ajustar la próxima sesión de forma más personalizada.
 </p>
 
+
 <div id="clienteInfo" class="cliente-info hidden"></div>
 
+
 <form id="followupForm">
+
 
 <!-- RESPUESTA TARDÍA -->
 <div class="question">
@@ -269,20 +338,25 @@ Tus respuestas nos ayudan a ajustar la próxima sesión de forma más personaliz
 Elige la opción que mejor represente cómo respondiste después de la rutina.
 </div>
 
+
 <div class="options">
 <input class="radio" type="radio" name="respuesta_tardia" id="verde" value="verde" required>
 <label class="option" for="verde">🟢 Me sentí bien después de la sesión</label>
 
+
 <input class="radio" type="radio" name="respuesta_tardia" id="amarillo" value="amarillo">
 <label class="option" for="amarillo">🟡 Tuve alguna molestia, pero pude realizar mis actividades normalmente</label>
+
 
 <input class="radio" type="radio" name="respuesta_tardia" id="rojo" value="rojo">
 <label class="option" for="rojo">🔴 Tuve molestias que afectaron mis actividades</label>
 </div>
 </div>
 
+
 <!-- BLOQUE CONDICIONAL -->
 <div id="molestiaDetalle" class="hidden">
+
 
 <div class="question">
 <div class="q-title">¿En qué ejercicio apareció o se relacionó la molestia?</div>
@@ -297,39 +371,50 @@ name="ejercicio_reportado"
 placeholder="Ej: Sentarse y levantarse de una silla">
 </div>
 
+
 <div class="question">
 <div class="q-title">¿Dónde sentiste la molestia?</div>
 <div class="q-help">Selecciona la zona principal.</div>
+
 
 <div class="zones">
 <input class="radio" type="radio" name="zona" id="cuello" value="Cuello">
 <label class="option" for="cuello">Cuello</label>
 
+
 <input class="radio" type="radio" name="zona" id="hombro" value="Hombro">
 <label class="option" for="hombro">Hombro</label>
+
 
 <input class="radio" type="radio" name="zona" id="codo" value="Codo / antebrazo">
 <label class="option" for="codo">Codo / antebrazo</label>
 
+
 <input class="radio" type="radio" name="zona" id="muneca" value="Muñeca / mano">
 <label class="option" for="muneca">Muñeca / mano</label>
+
 
 <input class="radio" type="radio" name="zona" id="espalda" value="Espalda">
 <label class="option" for="espalda">Espalda</label>
 
+
 <input class="radio" type="radio" name="zona" id="cadera" value="Cadera">
 <label class="option" for="cadera">Cadera</label>
+
 
 <input class="radio" type="radio" name="zona" id="rodilla" value="Rodilla">
 <label class="option" for="rodilla">Rodilla</label>
 
+
 <input class="radio" type="radio" name="zona" id="tobillo" value="Tobillo / pie">
 <label class="option" for="tobillo">Tobillo / pie</label>
+
 
 <input class="radio" type="radio" name="zona" id="otra" value="Otra zona">
 <label class="option" for="otra">Otra zona</label>
 </div>
 </div>
+
 
 <div class="question">
 <div class="q-title">¿Cuándo apareció la molestia?</div>
@@ -337,66 +422,83 @@ placeholder="Ej: Sentarse y levantarse de una silla">
 Esto nos ayuda a saber si apareció con poca exposición o después de acumular trabajo.
 </div>
 
+
 <div class="options two">
 <input class="radio" type="radio" name="aparicion" id="inicio" value="Desde el inicio / primeras repeticiones">
 <label class="option" for="inicio">Desde el inicio o primeras repeticiones</label>
+
 
 <input class="radio" type="radio" name="aparicion" id="acumulada" value="Después de varias repeticiones o minutos">
 <label class="option" for="acumulada">Después de varias repeticiones o minutos</label>
 </div>
 </div>
 
+
 <div class="question">
 <div class="q-title">¿Qué pasó con la molestia mientras continuabas?</div>
+
 
 <div class="options three">
 <input class="radio" type="radio" name="durante" id="disminuyo" value="Disminuyó">
 <label class="option" for="disminuyo">🟢 Disminuyó</label>
 
+
 <input class="radio" type="radio" name="durante" id="igual" value="Se mantuvo">
 <label class="option" for="igual">🟡 Se mantuvo</label>
+
 
 <input class="radio" type="radio" name="durante" id="aumento" value="Aumentó">
 <label class="option" for="aumento">🔴 Aumentó</label>
 </div>
 </div>
 
+
 <div class="question">
 <div class="q-title">¿Qué pasó con la molestia al terminar el ejercicio?</div>
+
 
 <div class="options three">
 <input class="radio" type="radio" name="recuperacion" id="rapida" value="Desapareció rápido">
 <label class="option" for="rapida">🟢 Desapareció rápido</label>
 
+
 <input class="radio" type="radio" name="recuperacion" id="rato" value="Quedó un rato">
 <label class="option" for="rato">🟡 Quedó un rato</label>
+
 
 <input class="radio" type="radio" name="recuperacion" id="persistio" value="Persistió bastante">
 <label class="option" for="persistio">🔴 Persistió bastante</label>
 </div>
 </div>
 
+
 <div class="question">
 <div class="q-title">¿Cómo está esa molestia hoy?</div>
+
 
 <div class="options two">
 <input class="radio" type="radio" name="estado_actual" id="yaNo" value="Ya no está">
 <label class="option" for="yaNo">✅ Ya no está</label>
 
+
 <input class="radio" type="radio" name="estado_actual" id="menos" value="Está, pero menos">
 <label class="option" for="menos">🟢 Está, pero menos</label>
 
+
 <input class="radio" type="radio" name="estado_actual" id="sigueIgual" value="Sigue igual">
 <label class="option" for="sigueIgual">🟡 Sigue igual</label>
+
 
 <input class="radio" type="radio" name="estado_actual" id="peor" value="Está peor">
 <label class="option" for="peor">🔴 Está peor</label>
 </div>
 </div>
 
+
 <div class="question">
 <div class="q-title">Si quieres, cuéntanos brevemente qué notaste</div>
 <div class="q-help">Opcional.</div>
+
 
 <textarea
 class="textarea"
@@ -405,17 +507,26 @@ name="comentario"
 placeholder="Ej: me molestó al bajar escaleras, amanecí más rígido o se me pasó durante la tarde..."></textarea>
 </div>
 
+
 </div>
+
 
 <!-- Datos por URL -->
 <input type="hidden" id="cliente_id" name="cliente_id">
 <input type="hidden" id="rutina" name="rutina">
 <input type="hidden" id="fecha_sesion" name="fecha_sesion">
 
-<button class="btn" type="submit">Enviar seguimiento</button>
+
+<button class="btn" id="submitBtn" type="submit">
+<span id="submitSpinner" class="spinner hidden" aria-hidden="true"></span>
+<span id="submitText">Enviar seguimiento</span>
+</button>
+<div id="sendStatus" class="send-status" role="status" aria-live="polite"></div>
+
 
 </form>
 </div>
+
 
 <div id="successArea" class="success">
 <div class="success-icon">✓</div>
@@ -425,12 +536,15 @@ Tu respuesta quedó registrada. Esta información nos ayudará a orientar la pr�
 </p>
 </div>
 
+
 <p class="note">
 MoveSmart utiliza esta información para evaluar tu tolerancia a la carga y orientar el seguimiento de tu programa.
 </p>
 
+
 </section>
 </div>
+
 
 <script>
 // ------------------------------------------------------------
@@ -439,6 +553,7 @@ MoveSmart utiliza esta información para evaluar tu tolerancia a la carga y orie
 // Cuando conectemos el Apps Script, pega aquí la URL del Web App.
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyn_HkW_j5vFZ2_nkJ-CjApGT4Xei6xqdfpvukvXp2dCwmTZMSHYXTegQ3nVYsQK8uw/exec";
 
+
 // ------------------------------------------------------------
 // DATOS DESDE URL
 // Ejemplo:
@@ -446,16 +561,20 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyn_HkW_j5vFZ2_nkJ-C
 // ------------------------------------------------------------
 const params = new URLSearchParams(window.location.search);
 
+
 const clienteIdParam = (params.get("cliente_id") || "").trim();
 const rutinaParam = (params.get("rutina") || "").trim();
 const fechaSesionParam = (params.get("fecha_sesion") || "").trim();
+
 
 document.getElementById("cliente_id").value = clienteIdParam;
 document.getElementById("rutina").value = rutinaParam;
 document.getElementById("fecha_sesion").value = fechaSesionParam;
 
+
 const info = [clienteIdParam, rutinaParam, fechaSesionParam].filter(Boolean);
 const clienteInfo = document.getElementById("clienteInfo");
+
 
 if(rutinaParam || fechaSesionParam){
 const infoVisible = [rutinaParam, fechaSesionParam].filter(Boolean);
@@ -463,19 +582,24 @@ clienteInfo.textContent = infoVisible.join(" · ");
 clienteInfo.classList.remove("hidden");
 }
 
+
 // ------------------------------------------------------------
 // MOSTRAR DETALLE SOLO SI HAY MOLESTIA
 // ------------------------------------------------------------
 const molestiaDetalle = document.getElementById("molestiaDetalle");
 
+
 document.querySelectorAll('input[name="respuesta_tardia"]').forEach(radio => {
 radio.addEventListener("change", () => {
+
 
 if(radio.value === "verde"){
 molestiaDetalle.classList.add("hidden");
 
+
 document.getElementById("ejercicio_reportado").value = "";
 document.getElementById("comentario").value = "";
+
 
 document
 .querySelectorAll(
@@ -483,11 +607,13 @@ document
 )
 .forEach(el => el.checked = false);
 
+
 }else{
 molestiaDetalle.classList.remove("hidden");
 }
 });
 });
+
 
 // ------------------------------------------------------------
 // VALIDACIÓN + ENVÍO
@@ -495,16 +621,36 @@ molestiaDetalle.classList.remove("hidden");
 const form = document.getElementById("followupForm");
 const formArea = document.getElementById("formArea");
 const successArea = document.getElementById("successArea");
+const submitBtn = document.getElementById("submitBtn");
+const submitText = document.getElementById("submitText");
+const submitSpinner = document.getElementById("submitSpinner");
+const sendStatus = document.getElementById("sendStatus");
+
+function cambiarEstadoEnvio(enviando){
+submitBtn.disabled = enviando;
+submitBtn.classList.toggle("is-sending", enviando);
+submitSpinner.classList.toggle("hidden", !enviando);
+submitText.textContent = enviando ? "Enviando..." : "Enviar seguimiento";
+submitBtn.setAttribute("aria-busy", String(enviando));
+sendStatus.classList.remove("error");
+sendStatus.textContent = enviando ? "Espera un momento, estamos registrando tu respuesta." : "";
+}
+
 
 function valorRadio(nombre){
 const el = document.querySelector(`input[name="${nombre}"]:checked`);
 return el ? el.value : "";
 }
 
+
 form.addEventListener("submit", async e => {
 e.preventDefault();
 
+if(submitBtn.disabled) return;
+
+
 const clienteId = document.getElementById("cliente_id").value.trim();
+
 
 if(!clienteId){
 alert("Falta identificar al cliente. Abre este formulario desde su enlace personalizado.");
@@ -512,7 +658,10 @@ return;
 }
 
 
+
+
 const respuestaTardia = valorRadio("respuesta_tardia");
+
 
 const ejercicio = document.getElementById("ejercicio_reportado").value.trim();
 const zona = valorRadio("zona");
@@ -522,31 +671,37 @@ const recuperacion = valorRadio("recuperacion");
 const estadoActual = valorRadio("estado_actual");
 const comentario = document.getElementById("comentario").value.trim();
 
+
 if(respuestaTardia !== "verde"){
 if(!ejercicio){
 alert("Indica en qué ejercicio apareció o se relacionó la molestia.");
 return;
 }
 
+
 if(!zona){
 alert("Selecciona la zona donde sentiste la molestia.");
 return;
 }
+
 
 if(!aparicion){
 alert("Indica cuándo apareció la molestia.");
 return;
 }
 
+
 if(!durante){
 alert("Indica qué pasó con la molestia mientras continuabas.");
 return;
 }
 
+
 if(!recuperacion){
 alert("Indica qué pasó con la molestia al terminar.");
 return;
 }
+
 
 if(!estadoActual){
 alert("Indica cómo está la molestia hoy.");
@@ -554,13 +709,16 @@ return;
 }
 }
 
+
 const payload = {
 fecha_respuesta: new Date().toISOString(),
 cliente_id: document.getElementById("cliente_id").value,
 rutina: document.getElementById("rutina").value,
 fecha_sesion: document.getElementById("fecha_sesion").value,
 
+
 respuesta_tardia: respuestaTardia,
+
 
 ejercicio: respuestaTardia === "verde" ? "" : ejercicio,
 zona: respuestaTardia === "verde" ? "" : zona,
@@ -571,20 +729,26 @@ estado_actual: respuestaTardia === "verde" ? "" : estadoActual,
 comentario: respuestaTardia === "verde" ? "" : comentario
 };
 
+
 // DEMO: si no hay Apps Script configurado, igual permite probar el flujo.
 if(!SCRIPT_URL){
 console.log("DEMO MoveSmart - payload:", payload);
 formArea.style.display = "none";
 successArea.classList.add("show");
+successArea.scrollIntoView({behavior:"smooth", block:"center"});
 return;
 }
 
+
 try{
+cambiarEstadoEnvio(true);
 const formData = new URLSearchParams();
+
 
 Object.entries(payload).forEach(([key, value]) => {
 formData.append(key, value ?? "");
 });
+
 
 await fetch(SCRIPT_URL,{
 method:"POST",
@@ -595,15 +759,21 @@ headers:{
 body:formData.toString()
 });
 
+
 formArea.style.display = "none";
 successArea.classList.add("show");
+successArea.scrollIntoView({behavior:"smooth", block:"center"});
+
 
 }catch(error){
 console.error(error);
-alert("No se pudo enviar el seguimiento. Inténtalo nuevamente.");
+cambiarEstadoEnvio(false);
+sendStatus.classList.add("error");
+sendStatus.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo nuevamente.";
 }
 });
 </script>
+
 
 </body>
 </html>
