@@ -34,13 +34,30 @@ radial-gradient(circle at top right,rgba(255,140,0,.18),transparent 30%),
 url("https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp") center / cover fixed no-repeat;
 color:var(--text);
 min-height:100vh;
-padding:14px 16px 50px;
+padding:0 0 50px;
 }
+
+a{color:inherit;text-decoration:none}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(10,8,14,.88);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.header-inner{width:min(1200px,calc(100% - 48px));min-height:92px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.header-logo{width:82px;height:auto;display:block;flex:0 0 auto}
+.header-nav{display:flex;align-items:center;gap:34px;font-weight:800;white-space:nowrap}
+.header-nav a{position:relative;padding:10px 0;color:#fff}
+.header-nav a:hover,.header-nav a.active{color:#fff}
+.header-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:99px;background:#f36b2a}
+.header-actions,.header-socials{display:flex;align-items:center}
+.header-actions{gap:20px}.header-socials{gap:14px}
+.header-social{width:48px;height:48px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);display:grid;place-items:center;transition:.2s ease}
+.header-social:hover{transform:translateY(-2px);background:rgba(255,255,255,.1)}
+.header-social svg{width:22px;height:22px;fill:currentColor}
+.header-social.instagram{color:#ff5a8a}.header-social.twitter{color:#4da3ff}.header-social.linkedin{color:#58a6ff}.header-social.spotify{color:#1ed760}
+.header-blog{min-height:58px;padding:0 30px;border-radius:16px;background:linear-gradient(180deg,#ff8b4f,#f36b2a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:850}
 
 
 .wrap{
 width:min(1180px,100%);
 margin:auto;
+padding:14px 16px 0;
 }
 
 
@@ -205,6 +222,22 @@ outline:none;
 .textarea{min-height:94px;resize:vertical}
 .text-input::placeholder,.textarea::placeholder{color:rgba(255,255,255,.42)}
 
+.voice-input-wrap{position:relative;width:100%}
+.voice-input-wrap .text-input,.voice-input-wrap .textarea{padding-right:62px}
+.voice-mic{
+position:absolute;right:9px;top:7px;width:42px;height:42px;padding:0;border:0;border-radius:50%;
+background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:2;
+transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.voice-mic:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+.voice-mic:focus-visible{outline:3px solid rgba(255,140,0,.35);outline-offset:2px}
+.voice-mic svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.voice-mic.is-listening{background:var(--orange2);color:#fff;box-shadow:0 0 0 6px rgba(255,106,0,.18);animation:voicePulse 1.25s infinite}
+.voice-status{display:block;min-height:20px;margin-top:7px;color:var(--muted);font-size:.82rem}
+.voice-status.is-listening{color:#ffb45c;font-weight:750}
+.voice-status.is-error{color:#fca5a5}
+@keyframes voicePulse{50%{box-shadow:0 0 0 11px rgba(255,106,0,.07)}}
+
 
 .hidden{display:none!important}
 
@@ -289,22 +322,61 @@ line-height:1.5;
 
 
 @media(max-width:650px){
-body{padding:20px 12px 40px}
+body{padding-bottom:40px}
+.wrap{padding:20px 12px 0}
 .card{padding:22px 17px;border-radius:22px}
 .options.two,.options.three,.zones{grid-template-columns:1fr}
 .option{min-height:54px}
+.voice-mic{width:44px;height:44px;right:7px;top:6px}
+.voice-input-wrap .text-input,.voice-input-wrap .textarea{padding-right:60px}
+}
+
+@media(max-width:760px){
+.header-inner{width:100%;min-height:auto;padding:12px 20px 11px;display:grid;grid-template-columns:auto 1fr;gap:10px 12px}
+.header-logo{width:70px}
+.header-actions{justify-content:flex-end;gap:8px}
+.header-socials{gap:7px}
+.header-social{width:auto;height:auto;border:0;background:transparent;border-radius:0}
+.header-social svg{width:15px;height:15px}
+.header-blog{min-height:32px;padding:0 12px;border-radius:10px;font-size:.7rem}
+.header-nav{grid-column:1/-1;justify-content:center;gap:28px;font-size:.76rem}
+.header-nav a{padding:4px 0 12px}
+.header-nav a.active::after{left:50%;right:auto;bottom:0;width:46px;transform:translateX(-50%);height:3px}
+}
+
+@media(max-width:390px){
+.header-inner{padding-left:14px;padding-right:14px}
+.header-logo{width:62px}
+.header-socials{gap:6px}.header-social svg{width:13px;height:13px}
+.header-blog{padding:0 9px;font-size:.64rem}
+.header-nav{gap:20px;font-size:.69rem}
 }
 </style>
 </head>
 
 
 <body>
-<div class="wrap">
-
-
-<div class="brand">
-<img src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp" alt="MoveSmart" class="brand-logo">
+<header class="site-header">
+<div class="header-inner">
+<a href="https://movesmart-chile.github.io/movesmart-web/#inicio" aria-label="Inicio MoveSmart"><img class="header-logo" src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp" alt="MoveSmart"></a>
+<nav class="header-nav" aria-label="Navegación principal">
+<a href="https://movesmart-chile.github.io/movesmart-web/#inicio">Inicio</a>
+<a href="https://movesmart-chile.github.io/movesmart-web/#como-funciona">Cómo Funciona</a>
+<a class="active" href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html">Acceso Clientes</a>
+</nav>
+<div class="header-actions">
+<div class="header-socials" aria-label="Redes sociales MoveSmart">
+<a class="header-social instagram" href="https://www.instagram.com/movesmart.plan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4zm4.2 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2m0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2M17.2 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1"/></svg></a>
+<a class="header-social twitter" href="https://x.com/movesmartchile" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.7 1A4.2 4.2 0 0 0 11.5 9c0 .3 0 .6.1.9A12 12 0 0 1 3 5.5a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1c-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1a4.2 4.2 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5 12 12 0 0 0 8.5 21c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.4 2.1-2.2z"/></svg></a>
+<a class="header-social linkedin" href="https://www.linkedin.com/in/movesmart-chile-b4b03b40a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5M3 10h4v11H3zm6 0h3.8v1.5h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V21H9z"/></svg></a>
+<a class="header-social spotify" href="https://open.spotify.com/user/31lcttv3ugvu6s5ifvcj5tf5syre" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m4.6 14.5c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-1-.4.1-.7-.1-.8-.5s.1-.7.5-.8c4-.9 7.5-.5 10.3 1.1.3.2.4.6.2 1m1.2-2.7c-.2.4-.7.5-1.1.3-2.8-1.7-7.1-2.2-10.4-1.2-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.8-1.1 8.6-.6 11.8 1.4.4.2.5.7.2 1m.1-2.8c-3.4-2-9-2.2-12.2-1.2-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.1 9.8-.9 13.8 1.5.4.3.6.9.3 1.3-.3.4-.9.5-1.3.2"/></svg></a>
 </div>
+<a class="header-blog" href="https://movesmart-chile.github.io/movesmart-web/blog/portada.html">Blog</a>
+</div>
+</div>
+</header>
+
+<div class="wrap">
 
 
 <section class="card">
@@ -772,6 +844,110 @@ sendStatus.classList.add("error");
 sendStatus.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo nuevamente.";
 }
 });
+
+// Dictado por voz para los campos que requieren escribir.
+(() => {
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const voiceFieldIds = ["ejercicio_reportado", "comentario"];
+let active = null;
+
+const micIcon = `
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<rect x="9" y="3" width="6" height="11" rx="3"></rect>
+<path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"></path>
+</svg>`;
+
+function setVoiceState(item, listening, message = ""){
+item.button.classList.toggle("is-listening", listening);
+item.status.classList.toggle("is-listening", listening);
+item.button.setAttribute("aria-pressed", String(listening));
+item.button.setAttribute("aria-label", listening ? "Detener dictado" : "Dictar respuesta");
+item.button.title = listening ? "Detener dictado" : "Dictar respuesta";
+item.status.textContent = message;
+}
+
+voiceFieldIds.forEach(id => {
+const field = document.getElementById(id);
+if(!field || field.closest(".voice-input-wrap")) return;
+
+const wrap = document.createElement("div");
+wrap.className = "voice-input-wrap";
+field.parentNode.insertBefore(wrap, field);
+wrap.appendChild(field);
+
+const button = document.createElement("button");
+button.type = "button";
+button.className = "voice-mic";
+button.innerHTML = micIcon;
+button.setAttribute("aria-label", "Dictar respuesta");
+button.setAttribute("aria-pressed", "false");
+button.title = "Dictar respuesta";
+wrap.appendChild(button);
+
+const status = document.createElement("span");
+status.className = "voice-status";
+status.setAttribute("aria-live", "polite");
+wrap.insertAdjacentElement("afterend", status);
+
+const item = {field, button, status, recognition:null, baseText:""};
+
+if(!SpeechRecognition){
+button.addEventListener("click", () => {
+status.classList.add("is-error");
+status.textContent = "Este navegador no permite el dictado directo. Puedes usar el micrófono del teclado de tu celular.";
+});
+return;
+}
+
+const recognition = new SpeechRecognition();
+recognition.lang = "es-CL";
+recognition.continuous = false;
+recognition.interimResults = true;
+item.recognition = recognition;
+
+recognition.onstart = () => {
+active = item;
+item.baseText = field.value.trim();
+status.classList.remove("is-error");
+setVoiceState(item, true, "Escuchando… habla ahora");
+};
+
+recognition.onresult = event => {
+let transcript = "";
+for(let i = 0; i < event.results.length; i++) transcript += event.results[i][0].transcript;
+field.value = [item.baseText, transcript.trim()].filter(Boolean).join(item.baseText ? " " : "");
+field.dispatchEvent(new Event("input", {bubbles:true}));
+};
+
+recognition.onerror = event => {
+const messages = {
+"not-allowed":"Debes permitir el acceso al micrófono para dictar.",
+"audio-capture":"No se encontró un micrófono disponible.",
+"no-speech":"No se detectó voz. Presiona el micrófono e inténtalo nuevamente."
+};
+status.classList.add("is-error");
+setVoiceState(item, false, messages[event.error] || "No pudimos escuchar la respuesta. Inténtalo nuevamente.");
+};
+
+recognition.onend = () => {
+if(active === item) active = null;
+button.classList.remove("is-listening");
+status.classList.remove("is-listening");
+button.setAttribute("aria-pressed", "false");
+button.setAttribute("aria-label", "Dictar respuesta");
+button.title = "Dictar respuesta";
+if(!status.classList.contains("is-error")) status.textContent = field.value.trim() ? "Dictado agregado. Puedes editar el texto antes de enviar." : "";
+};
+
+button.addEventListener("click", () => {
+status.classList.remove("is-error");
+if(active === item){recognition.stop();return;}
+if(active?.recognition) active.recognition.stop();
+try{recognition.start();}
+catch(_){status.textContent = "Espera un momento y vuelve a presionar el micrófono.";}
+});
+});
+})();
 </script>
 
 
