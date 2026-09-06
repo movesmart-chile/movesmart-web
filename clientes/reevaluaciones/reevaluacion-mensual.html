@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,10 +9,8 @@
     name="description"
     content="Reevaluación mensual MoveSmart V2 con reflexión y feedback personalizado."
   />
-
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-
     :root{
       --bg:#0b0811;
       --card:rgba(24,16,32,.88);
@@ -28,9 +25,7 @@
       --shadow:0 24px 70px rgba(0,0,0,.42);
       --wrap:min(790px, calc(100% - 28px));
     }
-
     html{scroll-behavior:smooth}
-
     body{
       min-height:100vh;
       color:var(--text);
@@ -41,7 +36,6 @@
         var(--bg);
       overflow-x:hidden;
     }
-
     body::before{
       content:"";
       position:fixed;
@@ -51,10 +45,8 @@
         radial-gradient(circle at 14% 12%,rgba(76,58,146,.24),transparent 30%),
         radial-gradient(circle at 86% 18%,rgba(255,90,31,.22),transparent 24%);
     }
-
     button,input,textarea{font:inherit}
     button{border:0}
-
     .page{
       position:relative;
       z-index:1;
@@ -62,7 +54,6 @@
       margin:0 auto;
       padding:22px 0 46px;
     }
-
     .topbar{
       display:flex;
       align-items:center;
@@ -70,14 +61,12 @@
       gap:16px;
       margin-bottom:18px;
     }
-
     .logo{
       width:170px;
       max-width:46vw;
       display:block;
       filter:drop-shadow(0 12px 24px rgba(0,0,0,.34));
     }
-
     .back{
       display:inline-flex;
       align-items:center;
@@ -91,7 +80,6 @@
       background:rgba(255,255,255,.07);
       border:1px solid var(--border);
     }
-
     .card{
       background:
         linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025)),
@@ -102,12 +90,10 @@
       -webkit-backdrop-filter:blur(14px);
       border-radius:30px;
     }
-
     .loading{
       padding:34px;
       text-align:center;
     }
-
     .spinner{
       width:58px;
       height:58px;
@@ -117,19 +103,15 @@
       border-top-color:var(--accent);
       animation:girar .85s linear infinite;
     }
-
     .loading h1{margin-bottom:10px}
     .loading p{color:var(--muted);line-height:1.65}
-
     .hero{
       display:none;
       padding:clamp(26px,5vw,42px);
       margin-bottom:18px;
       text-align:center;
     }
-
     .hero.active{display:block}
-
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -144,16 +126,13 @@
       background:rgba(255,90,31,.11);
       border:1px solid rgba(255,90,31,.28);
     }
-
     .hero h1{
       margin:16px 0 14px;
       font-size:clamp(2.1rem,7vw,4rem);
       line-height:.98;
       letter-spacing:-.045em;
     }
-
     .hero h1 span{color:var(--accent-2)}
-
     .hero p{
       max-width:660px;
       margin:0 auto;
@@ -161,7 +140,6 @@
       font-size:clamp(1rem,2.3vw,1.15rem);
       line-height:1.7;
     }
-
     .context-box{
       margin-top:24px;
       padding:18px;
@@ -170,15 +148,12 @@
       background:rgba(23,36,79,.54);
       border:1px solid rgba(255,255,255,.08);
     }
-
     .context-box strong{
       display:block;
       margin-bottom:7px;
       color:#fff;
     }
-
     .context-box p{font-size:.98rem}
-
     .progress-wrap{
       display:none;
       margin-bottom:18px;
@@ -187,9 +162,7 @@
       background:rgba(10,8,16,.56);
       border:1px solid var(--border);
     }
-
     .progress-wrap.active{display:block}
-
     .progress-head{
       display:flex;
       justify-content:space-between;
@@ -201,14 +174,12 @@
       text-transform:uppercase;
       letter-spacing:.04em;
     }
-
     .progress-track{
       height:8px;
       overflow:hidden;
       border-radius:999px;
       background:rgba(255,255,255,.09);
     }
-
     .progress-bar{
       width:20%;
       height:100%;
@@ -216,76 +187,62 @@
       background:linear-gradient(90deg,var(--accent-2),var(--accent));
       transition:width .25s ease;
     }
-
     form{display:none}
     form.active{display:grid;gap:18px}
-
     .step{display:none}
     .step.active{display:block;animation:fadeUp .28s ease both}
-
     .step-card{overflow:hidden}
-
     .step-head{
       padding:22px 24px;
       background:
         linear-gradient(135deg,rgba(47,99,255,.30),rgba(255,90,31,.16));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
-
     .step-head h2{
       margin-bottom:7px;
       font-size:clamp(1.35rem,4vw,1.85rem);
     }
-
     .step-head p{
       color:var(--muted);
       line-height:1.55;
     }
-
     .step-body{
       display:grid;
       gap:16px;
       padding:22px;
     }
-
     .field{
       padding:18px;
       border-radius:20px;
       background:var(--soft);
       border:1px solid rgba(255,255,255,.075);
     }
-
     .field-title{
       display:block;
       margin-bottom:12px;
       font-weight:850;
       line-height:1.45;
     }
-
     .helper{
       margin-top:8px;
       color:var(--muted);
       font-size:.87rem;
       line-height:1.5;
     }
-
     .choices{
       display:grid;
       gap:10px;
     }
-
     .two{grid-template-columns:repeat(2,minmax(0,1fr))}
     .three{grid-template-columns:repeat(3,minmax(0,1fr))}
     .five{grid-template-columns:repeat(5,minmax(0,1fr))}
     .six{grid-template-columns:repeat(6,minmax(0,1fr))}
-
     .choice{position:relative}
     .choice input{
       position:absolute;
       opacity:0;
       pointer-events:none;
     }
-
     .choice span{
       min-height:56px;
       display:flex;
@@ -302,14 +259,12 @@
       border:1px solid rgba(255,255,255,.095);
       transition:.18s ease;
     }
-
     .choice input:checked + span{
       color:#fff;
       background:linear-gradient(180deg,rgba(255,90,31,.28),rgba(255,90,31,.12));
       border-color:var(--accent);
       box-shadow:0 0 0 1px rgba(255,90,31,.28);
     }
-
     textarea,input[type="text"]{
       width:100%;
       min-height:52px;
@@ -320,32 +275,26 @@
       border-radius:15px;
       outline:none;
     }
-
     textarea{
       min-height:104px;
       resize:vertical;
       line-height:1.55;
     }
-
     .future-box{
       padding:20px;
       border-left:4px solid var(--accent);
       border-radius:18px;
       background:rgba(23,36,79,.62);
     }
-
     .future-box h3{margin-bottom:8px}
     .future-box p{color:var(--muted);line-height:1.6}
-
     .actions{
       display:flex;
       justify-content:space-between;
       gap:12px;
       padding:0 22px 22px;
     }
-
     .actions.first{justify-content:flex-end}
-
     .btn{
       min-height:54px;
       padding:13px 20px;
@@ -354,17 +303,14 @@
       font-weight:900;
       cursor:pointer;
     }
-
     .primary{
       background:linear-gradient(180deg,var(--accent-2),var(--accent));
       box-shadow:0 14px 30px rgba(255,90,31,.24);
     }
-
     .secondary{
       background:rgba(255,255,255,.075);
       border:1px solid var(--border);
     }
-
     .status{
       display:none;
       margin:0 22px 18px;
@@ -373,31 +319,25 @@
       font-weight:800;
       line-height:1.55;
     }
-
     .status.show{display:block}
-
     .status.error{
       color:var(--error);
       background:rgba(255,90,31,.09);
       border:1px solid rgba(255,90,31,.24);
     }
-
     .status.ok{
       color:var(--ok);
       background:rgba(55,198,116,.10);
       border:1px solid rgba(55,198,116,.24);
     }
-
     .result{
       display:none;
       padding:clamp(28px,5vw,42px);
       text-align:center;
     }
-
     .result.active{display:block;animation:fadeUp .28s ease both}
     .result h2{margin-bottom:12px;font-size:clamp(1.8rem,5vw,2.6rem)}
     .result p{color:var(--muted);line-height:1.7}
-
     .next-step{
       margin-top:24px;
       padding:20px;
@@ -406,40 +346,53 @@
       background:rgba(255,255,255,.055);
       border:1px solid rgba(255,255,255,.08);
     }
-
     .next-step strong{
       display:block;
       margin-bottom:8px;
       color:#fff;
     }
-
     #feedbackBox{
       border-left:4px solid var(--accent);
       background:rgba(23,36,79,.58);
     }
-
     #feedbackText{
       color:#f0e8f5;
     }
-
+    /* Dictado por voz para todas las respuestas abiertas */
+    .voice-input-wrap{position:relative;width:100%}
+    .voice-input-wrap:has(.hidden){display:none}
+    .voice-input-wrap textarea,
+    .voice-input-wrap input[type="text"]{padding-right:62px}
+    .voice-mic{
+      position:absolute;right:10px;top:10px;width:42px;height:42px;border-radius:50%;
+      border:0;background:transparent;color:#111;display:grid;place-items:center;
+      cursor:pointer;z-index:2;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+    .voice-mic:hover{background:rgba(0,0,0,.08);transform:translateY(-1px)}
+    .voice-mic:focus-visible{outline:3px solid rgba(255,90,31,.35);outline-offset:2px}
+    .voice-mic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .voice-mic.is-listening{background:var(--accent);color:#fff;box-shadow:0 0 0 6px rgba(255,90,31,.18);animation:voicePulse 1.25s infinite}
+    .voice-status{display:block;min-height:20px;margin-top:7px;color:var(--muted);font-size:.88rem}
+    .voice-status.is-listening{color:#ffb18d;font-weight:700}
+    .voice-status.is-error{color:#ffd1c2}
+    @keyframes voicePulse{50%{box-shadow:0 0 0 11px rgba(255,90,31,.08)}}
     .hidden{display:none!important}
-
     @keyframes girar{to{transform:rotate(360deg)}}
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(12px)}
       to{opacity:1;transform:translateY(0)}
     }
-
     @media(max-width:700px){
       .two,.three,.five{grid-template-columns:1fr}
       .six{grid-template-columns:repeat(3,minmax(0,1fr))}
       .actions{flex-direction:column-reverse}
       .actions .btn{width:100%}
       .step-body{padding:18px}
+      .voice-mic{width:44px;height:44px;right:8px;top:8px}
+      .voice-input-wrap textarea,.voice-input-wrap input[type="text"]{padding-right:60px}
     }
   </style>
 </head>
-
 <body>
   <main class="page">
     <header class="topbar">
@@ -452,7 +405,6 @@
         ← Volver
       </a>
     </header>
-
     <section class="card loading" id="loadingCard">
       <div class="spinner" aria-hidden="true"></div>
       <h1>Preparando tu reevaluación</h1>
@@ -460,35 +412,28 @@
         Estamos cargando tu información inicial para personalizar esta experiencia.
       </p>
     </section>
-
     <section class="card hero" id="hero">
       <div class="eyebrow">🎉 Cierre de ciclo</div>
-
       <h1 id="heroTitle">
         Completaste un nuevo <span>mes</span>
       </h1>
-
       <p>
         Antes de comenzar un nuevo ciclo, queremos ayudarte a reconocer tus avances, entender qué funcionó y decidir cómo seguir construyendo sobre lo logrado.
       </p>
-
       <div class="context-box">
         <strong>Tu objetivo de este ciclo</strong>
         <p id="objectiveText"></p>
       </div>
     </section>
-
     <div class="progress-wrap" id="progressWrap">
       <div class="progress-head">
         <span id="progressLabel">Bloque 1 de 5</span>
         <span id="progressPercent">20%</span>
       </div>
-
       <div class="progress-track">
         <div class="progress-bar" id="progressBar"></div>
       </div>
     </div>
-
     <form id="reevaluationForm" novalidate>
       <section class="step active" data-step="1">
         <article class="card step-card">
@@ -498,13 +443,11 @@
               Piensa en cómo comenzaste este ciclo y en cómo te sientes hoy.
             </p>
           </div>
-
           <div class="step-body">
             <div class="field">
               <span class="field-title">
                 En general, comparado con el inicio del mes, hoy te sientes… *
               </span>
-
               <div class="choices five">
                 <label class="choice">
                   <input type="radio" name="cambio_molestias" value="Mucho mejor" required />
@@ -528,21 +471,18 @@
                 </label>
               </div>
             </div>
-
             <div class="field">
               <span class="field-title" id="zone1Label">
                 Molestia principal durante la última semana *
               </span>
               <div class="choices six" id="zone1Scale"></div>
             </div>
-
             <div class="field">
               <span class="field-title" id="zone2Label">
                 Molestia secundaria durante la última semana *
               </span>
               <div class="choices six" id="zone2Scale"></div>
             </div>
-
             <div class="field">
               <span class="field-title">
                 ¿Cómo estuvo tu energía durante la última semana? *
@@ -550,7 +490,6 @@
               <div class="choices five" id="energyScale"></div>
             </div>
           </div>
-
           <div class="actions first">
             <button class="btn primary" type="button" data-next>
               Continuar →
@@ -558,7 +497,6 @@
           </div>
         </article>
       </section>
-
       <section class="step" data-step="2">
         <article class="card step-card">
           <div class="step-head">
@@ -567,16 +505,13 @@
               A veces el progreso se nota primero en pequeños momentos del día.
             </p>
           </div>
-
           <div class="step-body" id="activitiesContainer"></div>
-
           <div class="actions">
             <button class="btn secondary" type="button" data-prev>← Atrás</button>
             <button class="btn primary" type="button" data-next>Continuar →</button>
           </div>
         </article>
       </section>
-
       <section class="step" data-step="3">
         <article class="card step-card">
           <div class="step-head">
@@ -585,7 +520,6 @@
               Queremos saber si el programa fue realista para tu vida.
             </p>
           </div>
-
           <div class="step-body">
             <div class="field">
               <span class="field-title">
@@ -593,20 +527,17 @@
               </span>
               <div class="choices five" id="sessionsScale"></div>
             </div>
-
             <div class="field">
               <span class="field-title">
                 ¿Qué tan fácil fue adaptar el programa a tu tiempo y energía? *
               </span>
               <div class="choices five" id="easeScale"></div>
             </div>
-
             <div class="field">
               <span class="field-title">
                 ¿Cuál fue tu principal dificultad? *
               </span>
               <div class="choices two" id="difficultyOptions"></div>
-
               <input
                 id="otherDifficulty"
                 class="hidden"
@@ -616,14 +547,12 @@
               />
             </div>
           </div>
-
           <div class="actions">
             <button class="btn secondary" type="button" data-prev>← Atrás</button>
             <button class="btn primary" type="button" data-next>Continuar →</button>
           </div>
         </article>
       </section>
-
       <section class="step" data-step="4">
         <article class="card step-card">
           <div class="step-head">
@@ -632,7 +561,6 @@
               Reconocer lo que funcionó nos ayuda a diseñar mejor el próximo ciclo.
             </p>
           </div>
-
           <div class="step-body">
             <div class="field">
               <label class="field-title">
@@ -644,7 +572,6 @@
                 placeholder="Puede ser un cambio pequeño o grande."
               ></textarea>
             </div>
-
             <div class="field">
               <label class="field-title">
                 ¿Qué fue lo que más te ayudó a mantenerte en movimiento este mes? *
@@ -655,24 +582,20 @@
                 placeholder="Puede ser el seguimiento, la duración de las sesiones, sentirte acompañada o acompañado, la adaptación del plan o una parte específica del programa."
               ></textarea>
             </div>
-
             <div class="field">
               <span class="field-title">
                 ¿Hay alguna parte del programa que necesitemos revisar? *
               </span>
-
               <div class="choices two">
                 <label class="choice">
                   <input type="radio" name="revisar_programa" value="No" required />
                   <span>✅ No</span>
                 </label>
-
                 <label class="choice">
                   <input type="radio" name="revisar_programa" value="Sí" required />
                   <span>💬 Sí, quiero comentarlo</span>
                 </label>
               </div>
-
               <textarea
                 id="reviewDetail"
                 class="hidden"
@@ -681,14 +604,12 @@
               ></textarea>
             </div>
           </div>
-
           <div class="actions">
             <button class="btn secondary" type="button" data-prev>← Atrás</button>
             <button class="btn primary" type="button" data-next>Continuar →</button>
           </div>
         </article>
       </section>
-
       <section class="step" data-step="5">
         <article class="card step-card">
           <div class="step-head">
@@ -697,39 +618,33 @@
               No se trata de empezar de nuevo, sino de construir sobre la base que ya tienes.
             </p>
           </div>
-
           <div class="step-body">
             <div class="future-box">
               <h3>Un mes puede mostrarte que el cambio es posible.</h3>
               <p id="continuityMessage"></p>
             </div>
-
             <div class="field">
               <span class="field-title">
                 ¿Qué te gustaría conseguir durante las próximas semanas? *
               </span>
               <div class="choices two" id="nextGoals"></div>
             </div>
-
             <div class="field">
               <span class="field-title">
                 Sabiendo lo que avanzaste y lo que todavía quieres lograr,
                 ¿qué te gustaría hacer ahora? *
               </span>
-
               <div class="choices">
                 <label class="choice">
                   <input type="radio" name="continuidad" value="Sí, quiero continuar" required />
                   <span>🚀 Quiero continuar y seguir mejorando en el siguiente ciclo</span>
                 </label>
-
                 <label class="choice">
                   <input type="radio" name="continuidad" value="Quiero conversar primero" required />
                   <span>💬 Quiero revisar mis resultados contigo antes de comenzar</span>
                 </label>
               </div>
             </div>
-
             <div class="field">
               <label class="field-title">
                 Opcional: ¿qué te dirías al recordar que completaste este mes?
@@ -740,15 +655,12 @@
               ></textarea>
             </div>
           </div>
-
           <div class="field">
             <p class="helper" style="margin:0;text-align:center;">
               Al enviar, verás un resumen breve y personalizado de este ciclo.
             </p>
           </div>
-
           <div id="formStatus" class="status"></div>
-
           <div class="actions">
             <button class="btn secondary" type="button" data-prev>← Atrás</button>
             <button class="btn primary" id="submitBtn" type="submit">
@@ -758,47 +670,37 @@
         </article>
       </section>
     </form>
-
     <section class="card result" id="resultCard">
       <h2 id="resultTitle">¡Reevaluación enviada!</h2>
       <p id="resultText"></p>
-
       <div class="next-step" id="feedbackBox">
         <strong>Lo que vemos en este ciclo</strong>
         <p id="feedbackText"></p>
       </div>
-
       <div class="next-step">
         <strong>Próximo paso</strong>
         <p id="nextStepText"></p>
       </div>
     </section>
   </main>
-
   <script>
     /*
       ============================================================
       URLS DE LOS DOS APPS SCRIPT
       ============================================================
-
       CONFIG_SCRIPT_URL:
       Lee la evaluación inicial y devuelve la configuración personalizada.
-
       SAVE_SCRIPT_URL:
       Guarda las respuestas de la reevaluación mensual.
     */
-
     const CONFIG_SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbzhuPqwYu8RH4EJwXMamDWtqcCJgooq40aeCFbayooREac1WvAYRpeFSE0PIwk3E8dzRA/exec";
-
     const SAVE_SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbw-cJiUJ6LbkE5E4g2YpFz5galGmxuaN2N7t682ZSQkGv-FgxBj7_H1bPvzBCr8uOZ8/exec";
-
     const params =
       new URLSearchParams(
         window.location.search
       );
-
     const clienteId =
       (
         params.get("cliente_id") ||
@@ -807,7 +709,6 @@
       )
         .trim()
         .toLowerCase();
-
     const mesPrograma =
       Math.max(
         1,
@@ -815,49 +716,34 @@
           params.get("mes") || 1
         )
       );
-
     const totalSteps = 5;
-
     let currentStep = 1;
     let sending = false;
     let config = null;
-
     const loadingCard =
       document.getElementById("loadingCard");
-
     const hero =
       document.getElementById("hero");
-
     const form =
       document.getElementById("reevaluationForm");
-
     const progressWrap =
       document.getElementById("progressWrap");
-
     const progressBar =
       document.getElementById("progressBar");
-
     const progressLabel =
       document.getElementById("progressLabel");
-
     const progressPercent =
       document.getElementById("progressPercent");
-
     const formStatus =
       document.getElementById("formStatus");
-
     const submitBtn =
       document.getElementById("submitBtn");
-
     const resultCard =
       document.getElementById("resultCard");
-
     const otherDifficulty =
       document.getElementById("otherDifficulty");
-
     const reviewDetail =
       document.getElementById("reviewDetail");
-
     function escapeHtml(value) {
       return String(value || "")
         .replace(/&/g, "&amp;")
@@ -866,7 +752,6 @@
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
     }
-
     function makeRadioOptions(
       containerId,
       name,
@@ -876,7 +761,6 @@
         document.getElementById(
           containerId
         );
-
       container.innerHTML =
         items
           .map(
@@ -894,7 +778,6 @@
           )
           .join("");
     }
-
     function buildFixedOptions() {
       makeRadioOptions(
         "zone1Scale",
@@ -908,7 +791,6 @@
           ["10", "10<br>Muy alta"]
         ]
       );
-
       makeRadioOptions(
         "zone2Scale",
         "dolor_cadera",
@@ -921,7 +803,6 @@
           ["10", "10<br>Muy alta"]
         ]
       );
-
       makeRadioOptions(
         "energyScale",
         "energia",
@@ -933,7 +814,6 @@
           ["5", "5<br>Muy buena"]
         ]
       );
-
       makeRadioOptions(
         "sessionsScale",
         "sesiones_semana",
@@ -945,7 +825,6 @@
           ["4 o más", "4 o más"]
         ]
       );
-
       makeRadioOptions(
         "easeScale",
         "facilidad_programa",
@@ -957,7 +836,6 @@
           ["5", "5<br>Muy fácil"]
         ]
       );
-
       makeRadioOptions(
         "difficultyOptions",
         "principal_dificultad",
@@ -970,7 +848,6 @@
           ["Otra", "✍️ Otra"]
         ]
       );
-
       makeRadioOptions(
         "nextGoals",
         "cambios_proximo_mes",
@@ -984,19 +861,16 @@
         ]
       );
     }
-
     function buildActivities(activities) {
       const container =
         document.getElementById(
           "activitiesContainer"
         );
-
       const names = [
         "levantarse_silla",
         "escaleras",
         "trabajo_de_pie"
       ];
-
       container.innerHTML =
         activities
           .slice(0, 3)
@@ -1007,7 +881,6 @@
                   Comparado con el inicio del mes,
                   ${escapeHtml(activity).toLowerCase()} se siente… *
                 </span>
-
                 <div class="choices three">
                   <label class="choice">
                     <input
@@ -1018,7 +891,6 @@
                     />
                     <span>✨ Más fácil</span>
                   </label>
-
                   <label class="choice">
                     <input
                       type="radio"
@@ -1028,7 +900,6 @@
                     />
                     <span>😐 Igual</span>
                   </label>
-
                   <label class="choice">
                     <input
                       type="radio"
@@ -1043,7 +914,6 @@
             `
           )
           .join("");
-
       container.insertAdjacentHTML(
         "beforeend",
         `
@@ -1051,12 +921,10 @@
             <span class="field-title">
               ¿Qué tan segura o seguro te sientes al moverte? *
             </span>
-
             <div class="choices five" id="confidenceScale"></div>
           </div>
         `
       );
-
       makeRadioOptions(
         "confidenceScale",
         "confianza_movimiento",
@@ -1069,7 +937,6 @@
         ]
       );
     }
-
     function crearConfiguracionRespaldo(id) {
       const nombresConocidos = {
         "juan-ugalde": "Juan Ugalde",
@@ -1077,7 +944,6 @@
         "dixie-acosta": "Dixie Acosta",
         "cliente-de-referencia": "Cliente de Referencia"
       };
-
       const nombre =
         nombresConocidos[id] ||
         id
@@ -1089,7 +955,6 @@
               palabra.slice(1)
           )
           .join(" ");
-
       return {
         nombre: nombre,
         cliente_id: id,
@@ -1106,32 +971,26 @@
           "Continuar puede ayudarte a consolidar tus avances y trabajar lo que todavía quieres mejorar."
       };
     }
-
     async function loadConfiguration() {
       if (!clienteId) {
         throw new Error(
           "La URL no incluye cliente_id."
         );
       }
-
       const url =
         new URL(
           CONFIG_SCRIPT_URL
         );
-
       url.searchParams.set(
         "accion",
         "configuracion_reevaluacion"
       );
-
       url.searchParams.set(
         "cliente_id",
         clienteId
       );
-
       let response = null;
       let data = null;
-
       try {
         response =
           await fetch(
@@ -1141,21 +1000,17 @@
               cache: "no-store"
             }
           );
-
         data =
           await response.json();
-
       } catch (error) {
         console.warn(
           "No se pudo consultar la configuración personalizada.",
           error
         );
       }
-
       /*
         Si existe una configuración personalizada,
         se utiliza normalmente.
-
         Si el cliente todavía no tiene evaluación inicial,
         se crea una configuración general para que igualmente
         pueda completar su reevaluación.
@@ -1169,45 +1024,37 @@
       ) {
         config =
           data.configuracion;
-
       } else {
         config =
           crearConfiguracionRespaldo(
             clienteId
           );
       }
-
       document.title =
         `Reevaluación mes ${mesPrograma} | ${config.nombre} · MoveSmart`;
-
       document.getElementById(
         "heroTitle"
       ).innerHTML =
         `${escapeHtml(config.nombre)}, completaste tu <span>mes ${mesPrograma}</span>`;
-
       document.getElementById(
         "objectiveText"
       ).textContent =
         config.objetivo_seguimiento ||
         config.objetivo_principal ||
         "Seguir mejorando tu bienestar y capacidad física.";
-
       document.getElementById(
         "zone1Label"
       ).textContent =
         `Molestia en ${config.zona_1} durante la última semana *`;
-
       document.getElementById(
         "zone2Label"
       ).textContent =
         `Molestia en ${config.zona_2} durante la última semana *`;
-
       document.getElementById(
         "continuityMessage"
       ).textContent =
         config.mensaje_continuidad ||
         "Continuar puede ayudarte a consolidar tus avances y trabajar lo que todavía quieres mejorar.";
-
       buildActivities(
         Array.isArray(config.actividades)
           ? config.actividades
@@ -1217,24 +1064,19 @@
               "Mantener tus actividades con menos esfuerzo"
             ]
       );
-
       loadingCard.classList.add(
         "hidden"
       );
-
       hero.classList.add(
         "active"
       );
-
       progressWrap.classList.add(
         "active"
       );
-
       form.classList.add(
         "active"
       );
     }
-
     function updateProgress() {
       const percent =
         Math.round(
@@ -1242,17 +1084,13 @@
           totalSteps *
           100
         );
-
       progressBar.style.width =
         `${percent}%`;
-
       progressLabel.textContent =
         `Bloque ${currentStep} de ${totalSteps}`;
-
       progressPercent.textContent =
         `${percent}%`;
     }
-
     function goToStep(stepNumber) {
       document
         .querySelectorAll(".step")
@@ -1262,10 +1100,8 @@
               "active"
             )
         );
-
       currentStep =
         stepNumber;
-
       document
         .querySelector(
           `.step[data-step="${stepNumber}"]`
@@ -1273,31 +1109,25 @@
         .classList.add(
           "active"
         );
-
       updateProgress();
-
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
     }
-
     function validateCurrentStep() {
       const step =
         document.querySelector(
           `.step[data-step="${currentStep}"]`
         );
-
       const required =
         Array.from(
           step.querySelectorAll(
             "[required]"
           )
         );
-
       const checkedNames =
         new Set();
-
       for (
         const field of required
       ) {
@@ -1311,11 +1141,9 @@
           ) {
             continue;
           }
-
           checkedNames.add(
             field.name
           );
-
           if (
             !step.querySelector(
               `input[name="${field.name}"]:checked`
@@ -1324,28 +1152,22 @@
             alert(
               "Completa todas las preguntas antes de continuar."
             );
-
             return false;
           }
-
         } else if (
           !String(
             field.value || ""
           ).trim()
         ) {
           field.focus();
-
           alert(
             "Completa todas las preguntas antes de continuar."
           );
-
           return false;
         }
       }
-
       return true;
     }
-
     document
       .querySelectorAll(
         "[data-next]"
@@ -1369,7 +1191,6 @@
           );
         }
       );
-
     document
       .querySelectorAll(
         "[data-prev]"
@@ -1389,7 +1210,6 @@
           );
         }
       );
-
     document.addEventListener(
       "change",
       event => {
@@ -1400,23 +1220,19 @@
           const show =
             event.target.value ===
             "Otra";
-
           otherDifficulty
             .classList
             .toggle(
               "hidden",
               !show
             );
-
           otherDifficulty.required =
             show;
-
           if (!show) {
             otherDifficulty.value =
               "";
           }
         }
-
         if (
           event.target.name ===
           "revisar_programa"
@@ -1424,131 +1240,104 @@
           const show =
             event.target.value ===
             "Sí";
-
           reviewDetail
             .classList
             .toggle(
               "hidden",
               !show
             );
-
           reviewDetail.required =
             show;
-
           if (!show) {
             reviewDetail.value =
               "";
           }
         }
-
       }
     );
-
     function buildPayload() {
       const formData =
         new FormData(form);
-
       return {
         nombre:
           config.nombre,
-
         cliente_id:
           config.cliente_id ||
           clienteId,
-
         mes_programa:
           mesPrograma,
-
         dolor_rodillas:
           formData.get(
             "dolor_rodillas"
           ),
-
         dolor_cadera:
           formData.get(
             "dolor_cadera"
           ),
-
         cambio_molestias:
           formData.get(
             "cambio_molestias"
           ),
-
         energia:
           formData.get(
             "energia"
           ),
-
         levantarse_silla:
           formData.get(
             "levantarse_silla"
           ),
-
         escaleras:
           formData.get(
             "escaleras"
           ),
-
         trabajo_de_pie:
           formData.get(
             "trabajo_de_pie"
           ),
-
         confianza_movimiento:
           formData.get(
             "confianza_movimiento"
           ),
-
         sesiones_semana:
           formData.get(
             "sesiones_semana"
           ),
-
         facilidad_programa:
           formData.get(
             "facilidad_programa"
           ),
-
         principal_dificultad:
           formData.get(
             "principal_dificultad"
           ),
-
         otra_dificultad:
           formData.get(
             "otra_dificultad"
           ) || "",
-
         mayor_mejora:
           formData.get(
             "mayor_mejora"
           ),
-
         ejercicio_incomodo:
           formData.get(
             "ejercicio_incomodo"
           ) || "",
-
         ejercicio_util:
           formData.get(
             "ejercicio_util"
           ),
-
         cambios_proximo_mes:
           formData.get(
             "cambios_proximo_mes"
           ),
-
         continuidad:
           formData.get(
             "continuidad"
           )
       };
     }
-
     function generarFeedback(datos, mes) {
       const partes = [];
-
       const mejoras = [
         datos.levantarse_silla,
         datos.escaleras,
@@ -1556,7 +1345,6 @@
       ].filter(
         valor => valor === "Más fácil"
       ).length;
-
       const empeoramientos = [
         datos.levantarse_silla,
         datos.escaleras,
@@ -1564,25 +1352,21 @@
       ].filter(
         valor => valor === "Más difícil"
       ).length;
-
       const cambio = datos.cambio_molestias || "";
       const sesiones = datos.sesiones_semana || "";
       const dificultad = datos.principal_dificultad || "";
       const proximoObjetivo = (
         datos.cambios_proximo_mes || ""
       ).toLowerCase();
-
       const aperturaPorMes = {
         1: "Este primer ciclo te permitió construir una base y reconocer tus primeras señales de progreso.",
         2: "En este segundo ciclo ya no partiste desde cero: comenzaste a consolidar lo aprendido anteriormente.",
         3: "Este tercer ciclo muestra una etapa de mayor experiencia, adaptación y autonomía dentro del programa."
       };
-
       partes.push(
         aperturaPorMes[mes] ||
         `En este ciclo número ${mes} pudiste seguir observando cómo responde tu cuerpo y qué necesitas para avanzar.`
       );
-
       if (
         cambio === "Mucho mejor" ||
         cambio === "Algo mejor"
@@ -1605,7 +1389,6 @@
             : "Tus respuestas muestran que algunas molestias necesitan ser revisadas antes de avanzar."
         );
       }
-
       if (dificultad === "Falta de tiempo") {
         partes.push(
           "La falta de tiempo fue la principal barrera, por lo que el próximo ciclo puede priorizar sesiones más simples y fáciles de integrar."
@@ -1627,7 +1410,6 @@
           "La motivación fue una dificultad, por lo que el próximo ciclo puede enfocarse en objetivos más visibles y sesiones que se sientan alcanzables."
         );
       }
-
       if (
         sesiones === "3 sesiones" ||
         sesiones === "4 o más"
@@ -1643,118 +1425,92 @@
           "La frecuencia alcanzada ya entrega un punto de partida; ahora podemos buscar una estructura que te permita sostenerla o aumentarla."
         );
       }
-
       if (proximoObjetivo) {
         partes.push(
           `Tu siguiente foco será ${proximoObjetivo}.`
         );
       }
-
       return partes.join(" ");
     }
-
-
     function showResult(
       continuity
     ) {
       hero.classList.add(
         "hidden"
       );
-
       progressWrap.classList.add(
         "hidden"
       );
-
       form.classList.add(
         "hidden"
       );
-
       resultCard.classList.add(
         "active"
       );
-
       const resultTitle =
         document.getElementById(
           "resultTitle"
         );
-
       const resultText =
         document.getElementById(
           "resultText"
         );
-
       const nextStepText =
         document.getElementById(
           "nextStepText"
         );
-
       const feedbackText =
         document.getElementById(
           "feedbackText"
         );
-
       const feedbackData =
         buildPayload();
-
       feedbackText.textContent =
         generarFeedback(
           feedbackData,
           mesPrograma
         );
-
       if (
         continuity ===
         "Sí, quiero continuar"
       ) {
         resultTitle.textContent =
           `¡Terminaste este ciclo, ${config.nombre}! 🚀`;
-
         resultText.textContent =
           "Tus respuestas nos permiten reconocer lo que avanzó y preparar una nueva etapa con mayor claridad.";
-
         nextStepText.textContent =
           "Revisaremos tus resultados y definiremos los ajustes del próximo ciclo antes de confirmar su inicio.";
-
       } else {
         resultTitle.textContent =
           "Gracias por mirar tu proceso con honestidad 💬";
-
         resultText.textContent =
           "Tus dudas y observaciones también son información valiosa para decidir cómo continuar.";
-
         nextStepText.textContent =
           "Conversaremos sobre tus resultados y revisaremos juntas o juntos qué opción tiene más sentido para ti.";
       }
-
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
     }
-
     form.addEventListener(
       "submit",
       async event => {
         event.preventDefault();
-
         if (
           sending ||
           !validateCurrentStep()
         ) {
           return;
         }
-
         sending = true;
         submitBtn.disabled = true;
         submitBtn.textContent =
           "Enviando…";
-
         formStatus.className =
           "status";
-
         const payload =
           buildPayload();
-
         try {
           /*
             Envío tradicional de formulario hacia Apps Script.
@@ -1765,70 +1521,52 @@
             document.getElementById(
               "reevaluationPostFrame"
             );
-
           if (!iframe) {
             iframe =
               document.createElement(
                 "iframe"
               );
-
             iframe.id =
               "reevaluationPostFrame";
-
             iframe.name =
               "reevaluationPostFrame";
-
             iframe.style.display =
               "none";
-
             document.body.appendChild(
               iframe
             );
           }
-
           const postForm =
             document.createElement(
               "form"
             );
-
           postForm.method =
             "POST";
-
           postForm.action =
             SAVE_SCRIPT_URL;
-
           postForm.target =
             "reevaluationPostFrame";
-
           postForm.style.display =
             "none";
-
           const payloadInput =
             document.createElement(
               "input"
             );
-
           payloadInput.type =
             "hidden";
-
           payloadInput.name =
             "payload";
-
           payloadInput.value =
             JSON.stringify(
               payload
             );
-
           postForm.appendChild(
             payloadInput
           );
-
           document.body.appendChild(
             postForm
           );
-
           postForm.submit();
-
           /*
             Damos un pequeño margen para que el navegador
             alcance a enviar el POST antes de mostrar el resultado.
@@ -1840,23 +1578,17 @@
                 1200
               )
           );
-
           postForm.remove();
-
           showResult(
             payload.continuidad
           );
-
         } catch (error) {
           console.error(error);
-
           formStatus.className =
             "status show error";
-
           formStatus.textContent =
             error.message ||
             "No se pudo enviar la reevaluación. Inténtalo nuevamente.";
-
         } finally {
           sending = false;
           submitBtn.disabled = false;
@@ -1865,26 +1597,124 @@
         }
       }
     );
-
     async function initialize() {
       try {
         buildFixedOptions();
         await loadConfiguration();
         form.reset();
         updateProgress();
-
       } catch (error) {
         console.error(error);
-
         loadingCard.innerHTML = `
           <h1>No pudimos preparar tu reevaluación</h1>
           <p>${escapeHtml(error.message)}</p>
         `;
       }
     }
-
     initialize();
+  </script>
+  <script>
+    // Agrega dictado por voz a cada campo donde el cliente puede escribir.
+    (() => {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const fields = document.querySelectorAll(
+        '#reevaluationForm textarea, #reevaluationForm input[type="text"]'
+      );
+      let active = null;
+      const micIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3"></rect>
+          <path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"></path>
+        </svg>`;
+
+      function setState(item, listening, message = "") {
+        item.button.classList.toggle("is-listening", listening);
+        item.status.classList.toggle("is-listening", listening);
+        item.button.setAttribute("aria-pressed", String(listening));
+        item.button.setAttribute("aria-label", listening ? "Detener dictado" : "Dictar respuesta");
+        item.button.title = listening ? "Detener dictado" : "Dictar respuesta";
+        item.status.textContent = message;
+      }
+
+      fields.forEach(field => {
+        if (field.closest(".voice-input-wrap")) return;
+        const wrap = document.createElement("div");
+        wrap.className = "voice-input-wrap";
+        field.parentNode.insertBefore(wrap, field);
+        wrap.appendChild(field);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "voice-mic";
+        button.innerHTML = micIcon;
+        button.setAttribute("aria-label", "Dictar respuesta");
+        button.setAttribute("aria-pressed", "false");
+        button.title = "Dictar respuesta";
+        wrap.appendChild(button);
+
+        const status = document.createElement("span");
+        status.className = "voice-status";
+        status.setAttribute("aria-live", "polite");
+        wrap.insertAdjacentElement("afterend", status);
+
+        const item = {field, button, status, recognition:null, baseText:""};
+        if (!SpeechRecognition) {
+          button.addEventListener("click", () => {
+            status.classList.add("is-error");
+            status.textContent = "Este navegador no permite el dictado. Usa Chrome o el micrófono del teclado de tu celular.";
+          });
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = "es-CL";
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        item.recognition = recognition;
+
+        recognition.onstart = () => {
+          active = item;
+          item.baseText = field.value.trim();
+          setState(item, true, "Escuchando… habla ahora");
+        };
+        recognition.onresult = event => {
+          let transcript = "";
+          for (let i = 0; i < event.results.length; i++) transcript += event.results[i][0].transcript;
+          field.value = [item.baseText, transcript.trim()].filter(Boolean).join(item.baseText ? " " : "");
+          field.dispatchEvent(new Event("input", {bubbles:true}));
+        };
+        recognition.onerror = event => {
+          const messages = {
+            "not-allowed":"Debes permitir el acceso al micrófono para dictar.",
+            "audio-capture":"No se encontró un micrófono disponible.",
+            "no-speech":"No se detectó voz. Presiona el micrófono e inténtalo nuevamente."
+          };
+          status.classList.add("is-error");
+          setState(item, false, messages[event.error] || "No pudimos escuchar la respuesta. Inténtalo nuevamente.");
+        };
+        recognition.onend = () => {
+          if (active === item) active = null;
+          button.classList.remove("is-listening");
+          status.classList.remove("is-listening");
+          button.setAttribute("aria-pressed", "false");
+          button.setAttribute("aria-label", "Dictar respuesta");
+          button.title = "Dictar respuesta";
+          if (!status.classList.contains("is-error")) {
+            status.textContent = field.value.trim() ? "Dictado agregado. Puedes editar el texto antes de enviar." : "";
+          }
+        };
+        button.addEventListener("click", () => {
+          status.classList.remove("is-error");
+          if (active === item) {
+            recognition.stop();
+            return;
+          }
+          if (active?.recognition) active.recognition.stop();
+          try { recognition.start(); }
+          catch (_) { status.textContent = "Espera un momento y vuelve a presionar el micrófono."; }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
-
