@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -121,6 +122,30 @@
         window.location.replace(crearRutaCompromiso("compromiso-mitad.html"));
         return;
       }
+      if(respuesta.mostrar==="reevaluacion"){
+        const clienteId = cliente
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g,"")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g,"-")
+          .replace(/^-+|-+$/g,"");
+
+        const mesesPorCliente = {
+          "juany-flores": 2
+        };
+
+        const query = new URLSearchParams({
+          cliente_id: clienteId,
+          mes: String(mesesPorCliente[clienteId] || 1)
+        });
+
+        estado.textContent="Abriendo tu reevaluación mensual…";
+        window.location.replace(
+          `reevaluaciones/reevaluacion-mensual.html?${query.toString()}`
+        );
+        return;
+      }
       if(respuesta.mostrar==="plan"){
         estado.textContent="Abriendo tu programa…";
         window.location.replace(plan);
@@ -163,3 +188,4 @@
   </script>
 </body>
 </html>
+
