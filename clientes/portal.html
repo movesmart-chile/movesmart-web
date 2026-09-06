@@ -123,21 +123,18 @@
         return;
       }
       if(respuesta.mostrar==="reevaluacion"){
-        const clienteId = cliente
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g,"")
-          .toLowerCase()
-          .trim()
-          .replace(/[^a-z0-9]+/g,"-")
-          .replace(/^-+|-+$/g,"");
+        const clienteId = respuesta.clienteIdEvaluacion;
+        const mesEvaluacion = Number(respuesta.mesEvaluacion);
 
-        const mesesPorCliente = {
-          "juany-flores": 2
-        };
+        if(!clienteId || !mesEvaluacion){
+          throw new Error(
+            "Falta la configuración de reevaluación del cliente."
+          );
+        }
 
         const query = new URLSearchParams({
           cliente_id: clienteId,
-          mes: String(mesesPorCliente[clienteId] || 1)
+          mes: String(mesEvaluacion)
         });
 
         estado.textContent="Abriendo tu reevaluación mensual…";
@@ -188,4 +185,3 @@
   </script>
 </body>
 </html>
-
