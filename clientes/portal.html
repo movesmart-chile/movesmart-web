@@ -92,6 +92,7 @@
     const descripcion = document.getElementById("descripcion");
     const loader = document.getElementById("loader");
     const acciones = document.getElementById("acciones");
+    const reintentar = document.getElementById("reintentar");
 
     function mostrarError(mensaje){
       loader.style.display="none";
@@ -143,6 +144,16 @@
         );
         return;
       }
+      if(respuesta.mostrar==="espera"){
+        loader.style.display="none";
+        titulo.textContent="Ya completaste tu reevaluación";
+        descripcion.textContent="Recibimos correctamente tus respuestas de este ciclo.";
+        estado.textContent="Estamos revisando tus resultados para preparar el siguiente paso de tu programa.";
+        estado.classList.remove("error");
+        reintentar.style.display="none";
+        acciones.classList.add("visible");
+        return;
+      }
       if(respuesta.mostrar==="plan"){
         estado.textContent="Abriendo tu programa…";
         window.location.replace(plan);
@@ -154,6 +165,7 @@
     async function consultarEstado(){
       estado.classList.remove("error");
       acciones.classList.remove("visible");
+      reintentar.style.display="flex";
       loader.style.display="block";
       titulo.textContent="Preparando tu espacio";
       descripcion.textContent="Estamos revisando qué parte de tu programa corresponde mostrarte hoy.";
