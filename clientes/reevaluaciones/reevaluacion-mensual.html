@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1069,6 +1070,43 @@
       );
     }
 
+    function crearConfiguracionRespaldo(id) {
+      const nombresConocidos = {
+        "juan-ugalde": "Juan Ugalde",
+        "juany-flores": "Juany Flores",
+        "dixie-acosta": "Dixie Acosta",
+        "cliente-de-referencia": "Cliente de Referencia"
+      };
+
+      const nombre =
+        nombresConocidos[id] ||
+        id
+          .split("-")
+          .filter(Boolean)
+          .map(
+            palabra =>
+              palabra.charAt(0).toUpperCase() +
+              palabra.slice(1)
+          )
+          .join(" ");
+
+      return {
+        nombre: nombre,
+        cliente_id: id,
+        objetivo_principal:
+          "Seguir mejorando tu bienestar y capacidad física.",
+        zona_1: "tu zona principal",
+        zona_2: "tu zona secundaria",
+        actividades: [
+          "Realizar tus actividades diarias con mayor facilidad",
+          "Moverte con mayor seguridad",
+          "Mantener tus actividades con menos esfuerzo"
+        ],
+        mensaje_continuidad:
+          "Continuar puede ayudarte a consolidar tus avances y trabajar lo que todavía quieres mejorar."
+      };
+    }
+
     async function loadConfiguration() {
       if (!clienteId) {
         throw new Error(
@@ -1091,31 +1129,53 @@
         clienteId
       );
 
-      const response =
-        await fetch(
-          url.toString(),
-          {
-            method: "GET",
-            cache: "no-store"
-          }
-        );
+      let response = null;
+      let data = null;
 
-      const data =
-        await response.json();
+      try {
+        response =
+          await fetch(
+            url.toString(),
+            {
+              method: "GET",
+              cache: "no-store"
+            }
+          );
 
-      if (
-        !response.ok ||
-        data.ok !== true ||
-        !data.configuracion
-      ) {
-        throw new Error(
-          data.mensaje ||
-          "No se pudo cargar la configuración del cliente."
+        data =
+          await response.json();
+
+      } catch (error) {
+        console.warn(
+          "No se pudo consultar la configuración personalizada.",
+          error
         );
       }
 
-      config =
-        data.configuracion;
+      /*
+        Si existe una configuración personalizada,
+        se utiliza normalmente.
+
+        Si el cliente todavía no tiene evaluación inicial,
+        se crea una configuración general para que igualmente
+        pueda completar su reevaluación.
+      */
+      if (
+        response &&
+        response.ok &&
+        data &&
+        data.ok === true &&
+        data.configuracion
+      ) {
+        config =
+          data.configuracion;
+
+      } else {
+        config =
+          crearConfiguracionRespaldo(
+            clienteId
+          );
+      }
 
       document.title =
         `Reevaluación mes ${mesPrograma} | ${config.nombre} · MoveSmart`;
@@ -1827,3 +1887,4 @@
   </script>
 </body>
 </html>
+
