@@ -481,6 +481,86 @@
         border:1px solid #ddd;
       }
     }
+  
+    /* Dictado por voz */
+    .voice-input-wrap{position:relative;width:100%}
+    .voice-input-wrap textarea,
+    .voice-input-wrap input{padding-right:62px}
+
+    .voice-mic{
+      position:absolute;
+      right:10px;
+      top:10px;
+      width:42px;
+      height:42px;
+      padding:0;
+      border-radius:50%;
+      border:0;
+      background:transparent;
+      color:#ffffff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      z-index:2;
+      transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+    }
+
+    .voice-mic:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
+    }
+
+    .voice-mic:focus-visible{
+      outline:3px solid rgba(243,107,42,.35);
+      outline-offset:2px;
+    }
+
+    .voice-mic svg{
+      width:22px;
+      height:22px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .voice-mic.is-listening{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 0 0 6px rgba(243,107,42,.18);
+      animation:voicePulse 1.25s infinite;
+    }
+
+    .voice-status{
+      display:block;
+      min-height:20px;
+      margin-top:7px;
+      color:var(--muted);
+      font-size:.88rem;
+    }
+
+    .voice-status.is-listening{color:#ffb18d;font-weight:700}
+    .voice-status.is-error{color:#ffd1c2}
+
+    @keyframes voicePulse{
+      50%{box-shadow:0 0 0 11px rgba(243,107,42,.08)}
+    }
+
+    @media (max-width:760px){
+      .voice-mic{
+        width:44px;
+        height:44px;
+        right:8px;
+        top:8px;
+      }
+
+      .voice-input-wrap textarea,
+      .voice-input-wrap input{
+        padding-right:60px;
+      }
+    }
+
   </style>
 </head>
 
@@ -847,5 +927,142 @@
       }
     });
   </script>
+
+  <script>
+    (() => {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const voiceFieldIds = ["objetivo", "si", "entonces"];
+      let active = null;
+
+      const micIcon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="11" rx="3"></rect>
+          <path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"></path>
+        </svg>`;
+
+      function setState(item, listening, message = "") {
+        item.button.classList.toggle("is-listening", listening);
+        item.status.classList.toggle("is-listening", listening);
+        item.button.setAttribute("aria-pressed", String(listening));
+        item.button.setAttribute("aria-label", listening ? "Detener dictado" : "Dictar respuesta");
+        item.button.title = listening ? "Detener dictado" : "Dictar respuesta";
+        item.status.textContent = message;
+      }
+
+      voiceFieldIds.forEach(id => {
+        const field = document.getElementById(id);
+        if (!field || field.closest(".voice-input-wrap")) return;
+
+        const wrap = document.createElement("div");
+        wrap.className = "voice-input-wrap";
+        field.parentNode.insertBefore(wrap, field);
+        wrap.appendChild(field);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "voice-mic";
+        button.innerHTML = micIcon;
+        button.setAttribute("aria-label", "Dictar respuesta");
+        button.setAttribute("aria-pressed", "false");
+        button.title = "Dictar respuesta";
+        wrap.appendChild(button);
+
+        const status = document.createElement("span");
+        status.className = "voice-status";
+        status.setAttribute("aria-live", "polite");
+        wrap.insertAdjacentElement("afterend", status);
+
+        const item = { field, button, status, recognition: null, baseText: "" };
+
+        if (!SpeechRecognition) {
+          button.addEventListener("click", () => {
+            status.classList.add("is-error");
+            status.textContent =
+              "El dictado por voz no está disponible en este navegador. Puedes escribir la respuesta o usar el micrófono del teclado de tu celular.";
+          });
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = "es-CL";
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        item.recognition = recognition;
+
+        recognition.onstart = () => {
+          active = item;
+          item.baseText = field.value.trim();
+          status.classList.remove("is-error");
+          setState(item, true, "Escuchando… habla ahora");
+        };
+
+        recognition.onresult = event => {
+          let transcript = "";
+          for (let i = 0; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+          }
+
+          field.value = [item.baseText, transcript.trim()]
+            .filter(Boolean)
+            .join(item.baseText ? " " : "");
+
+          field.dispatchEvent(new Event("input", { bubbles: true }));
+        };
+
+        recognition.onerror = event => {
+          const messages = {
+            "not-allowed": "Debes permitir el acceso al micrófono para dictar.",
+            "audio-capture": "No se encontró un micrófono disponible.",
+            "no-speech": "No se detectó voz. Presiona el micrófono e inténtalo nuevamente."
+          };
+
+          status.classList.add("is-error");
+          setState(
+            item,
+            false,
+            messages[event.error] ||
+              "No pudimos escuchar la respuesta. Inténtalo nuevamente."
+          );
+        };
+
+        recognition.onend = () => {
+          if (active === item) active = null;
+
+          button.classList.remove("is-listening");
+          status.classList.remove("is-listening");
+          button.setAttribute("aria-pressed", "false");
+          button.setAttribute("aria-label", "Dictar respuesta");
+          button.title = "Dictar respuesta";
+
+          if (!status.classList.contains("is-error")) {
+            status.textContent = field.value.trim()
+              ? "Dictado agregado. Puedes editar el texto antes de enviar."
+              : "";
+          }
+        };
+
+        button.addEventListener("click", () => {
+          status.classList.remove("is-error");
+
+          if (active === item) {
+            recognition.stop();
+            return;
+          }
+
+          if (active?.recognition) active.recognition.stop();
+
+          try {
+            recognition.start();
+          } catch (_) {
+            status.textContent =
+              "Espera un momento y vuelve a presionar el micrófono.";
+          }
+        });
+      });
+    })();
+  </script>
+
 </body>
 </html>
