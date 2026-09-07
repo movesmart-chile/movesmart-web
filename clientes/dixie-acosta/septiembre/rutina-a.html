@@ -1,5 +1,8 @@
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +11,8 @@
 <title>Encuesta Rutina A Mes 2 | Dixie Acosta</title>
 <style>
     *{box-sizing:border-box;margin:0;padding:0}
+
+
 
 
     :root{
@@ -25,6 +30,8 @@
     }
 
 
+
+
     body{
       min-height:100vh;
       font-family:'Segoe UI',system-ui,sans-serif;
@@ -34,6 +41,8 @@
         url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
+
+
 
 
     body::before{
@@ -48,6 +57,8 @@
     }
 
 
+
+
     .wrap{
       width:var(--wrap);
       margin:auto;
@@ -55,6 +66,8 @@
       position:relative;
       z-index:1;
     }
+
+
 
 
     .topbar{
@@ -66,11 +79,15 @@
     }
 
 
+
+
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
     }
+
+
 
 
     .brand-badge{
@@ -85,6 +102,8 @@
     }
 
 
+
+
     .brand-text h1{
       font-size:1.28rem;
       line-height:1.05;
@@ -93,11 +112,15 @@
     }
 
 
+
+
     .brand-text p{
       color:var(--muted);
       font-size:.92rem;
       margin-top:4px;
     }
+
+
 
 
     .back-btn{
@@ -109,6 +132,8 @@
       border-radius:16px;
       font-weight:800;
     }
+
+
 
 
     .hero{
@@ -126,6 +151,8 @@
     }
 
 
+
+
     .hero::before{
       content:"";
       position:absolute;
@@ -138,6 +165,8 @@
     }
 
 
+
+
     .hero-copy{
       position:relative;
       z-index:2;
@@ -148,12 +177,16 @@
     }
 
 
+
+
     .hello{
       color:var(--accent-2);
       font-weight:900;
       font-size:1.1rem;
       margin-bottom:14px;
     }
+
+
 
 
     .hero h2{
@@ -165,12 +198,16 @@
     }
 
 
+
+
     .hero p{
       color:rgba(255,255,255,.82);
       font-size:1.05rem;
       line-height:1.7;
       max-width:560px;
     }
+
+
 
 
     .hero-image{
@@ -180,6 +217,8 @@
       z-index:0;
       transform:scale(1.01);
     }
+
+
 
 
     .survey-card{
@@ -193,6 +232,8 @@
     }
 
 
+
+
     .survey-head{
       display:flex;
       justify-content:space-between;
@@ -202,11 +243,15 @@
     }
 
 
+
+
     .survey-title{
       display:flex;
       align-items:center;
       gap:14px;
     }
+
+
 
 
     .survey-icon{
@@ -221,15 +266,21 @@
     }
 
 
+
+
     .survey-title h3{
       font-size:1.55rem;
       margin-bottom:4px;
     }
 
 
+
+
     .survey-title p{
       color:var(--muted);
     }
+
+
 
 
     .progress-wrap{
@@ -241,12 +292,16 @@
     }
 
 
+
+
     .progress-bar{
       height:7px;
       border-radius:999px;
       background:rgba(255,255,255,.08);
       overflow:hidden;
     }
+
+
 
 
     .progress-fill{
@@ -258,11 +313,15 @@
     }
 
 
+
+
     .progress-text{
       color:rgba(255,255,255,.72);
       font-size:.98rem;
       white-space:nowrap;
     }
+
+
 
 
     .question{
@@ -271,7 +330,11 @@
     }
 
 
+
+
     .question:first-of-type{border-top:none}
+
+
 
 
     .q-title{
@@ -280,6 +343,8 @@
       gap:16px;
       margin-bottom:18px;
     }
+
+
 
 
     .q-icon{
@@ -296,11 +361,15 @@
     }
 
 
+
+
     .q-title h4{
       color:var(--accent-2);
       font-size:1.24rem;
       margin-bottom:6px;
     }
+
+
 
 
     .q-title p{
@@ -309,11 +378,15 @@
     }
 
 
+
+
     .choices{
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:18px;
     }
+
+
 
 
     .choice{
@@ -335,10 +408,14 @@
     }
 
 
+
+
     .choice:hover{
       transform:translateY(-2px);
       border-color:rgba(255,90,31,.45);
     }
+
+
 
 
     .choice.selected{
@@ -348,10 +425,14 @@
     }
 
 
+
+
     .choice .emoji{
       font-size:1.7rem;
       line-height:1;
     }
+
+
 
 
     .choice strong{
@@ -360,10 +441,14 @@
     }
 
 
+
+
     .choice span{
       color:rgba(255,255,255,.74);
       font-size:.94rem;
     }
+
+
 
 
     .submit-btn{
@@ -382,12 +467,16 @@
     }
 
 
+
+
     .microcopy{
       color:rgba(255,255,255,.68);
       text-align:center;
       margin-top:16px;
       font-size:.95rem;
     }
+
+
 
 
     .result-card{
@@ -402,7 +491,11 @@
     }
 
 
+
+
     .result-card.active{display:block}
+
+
 
 
     .quick-stats{
@@ -413,12 +506,16 @@
     }
 
 
+
+
     .stat{
       background:rgba(255,255,255,.07);
       border:1px solid rgba(255,255,255,.10);
       border-radius:20px;
       padding:16px;
     }
+
+
 
 
     .stat small{
@@ -428,10 +525,14 @@
     }
 
 
+
+
     .stat strong{
       font-size:1rem;
       line-height:1.4;
     }
+
+
 
 
     .mode-card{
@@ -446,7 +547,11 @@
     }
 
 
+
+
     .mode-card strong{color:#fff;display:block;margin-bottom:6px;font-size:1.05rem}
+
+
 
 
     .routine-version-label{
@@ -464,6 +569,8 @@
     }
 
 
+
+
     .smart-loading{
       display:none;
       margin-top:22px;
@@ -477,7 +584,11 @@
     }
 
 
+
+
     .smart-loading.active{display:block}
+
+
 
 
     .smart-orb{
@@ -493,16 +604,22 @@
     }
 
 
+
+
     .smart-loading h3{
       font-size:1.35rem;
       margin-bottom:8px;
     }
 
 
+
+
     .smart-loading p{
       color:rgba(255,255,255,.76);
       line-height:1.6;
     }
+
+
 
 
     .survey-card.is-processing{
@@ -512,10 +629,14 @@
     }
 
 
+
+
     @keyframes pulseOrb{
       0%,100%{transform:scale(.92);opacity:.72}
       50%{transform:scale(1.06);opacity:1}
     }
+
+
 
 
     .routine-container{
@@ -525,7 +646,11 @@
     }
 
 
+
+
     .routine-container.active{display:block}
+
+
 
 
     .routine-intro{
@@ -538,6 +663,8 @@
     }
 
 
+
+
     .routine-intro h2{
       font-size:clamp(1.7rem,3vw,2.6rem);
       line-height:1.05;
@@ -546,11 +673,15 @@
     }
 
 
+
+
     .routine-intro p{
       color:var(--muted);
       line-height:1.7;
       max-width:760px;
     }
+
+
 
 
     .section{
@@ -563,11 +694,15 @@
     }
 
 
+
+
     .section-head{
       background:linear-gradient(135deg, rgba(47,99,255,.34), rgba(255,90,31,.18));
       padding:20px 24px;
       border-bottom:1px solid rgba(255,255,255,.10);
     }
+
+
 
 
     .section-head h2{
@@ -576,10 +711,14 @@
     }
 
 
+
+
     .section-head p{
       color:rgba(255,255,255,.78);
       line-height:1.55;
     }
+
+
 
 
     .section-body{
@@ -587,6 +726,8 @@
       display:grid;
       gap:16px;
     }
+
+
 
 
     .exercise-card{
@@ -602,10 +743,14 @@
     }
 
 
+
+
     .exercise-card:hover{
       transform:translateY(-2px);
       border-color:rgba(255,90,31,.38);
     }
+
+
 
 
     .exercise-name{
@@ -616,6 +761,8 @@
     }
 
 
+
+
     .exercise-desc{
       color:rgba(255,255,255,.76);
       line-height:1.65;
@@ -623,11 +770,15 @@
     }
 
 
+
+
     .exercise-meta{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:10px;
     }
+
+
 
 
     .pill{
@@ -640,12 +791,16 @@
     }
 
 
+
+
     .pill span{
       display:block;
       color:rgba(255,255,255,.62);
       font-size:.82rem;
       margin-bottom:4px;
     }
+
+
 
 
     .video-btn{
@@ -667,6 +822,8 @@
     }
 
 
+
+
     .simple-card,.note,.finish-session-text{
       background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
       border:1px solid rgba(255,255,255,.12);
@@ -677,12 +834,16 @@
     }
 
 
+
+
     .note{
       margin-top:22px;
       background:rgba(29,191,115,.12);
       border-color:rgba(29,191,115,.28);
       color:#ddffea;
     }
+
+
 
 
     .warning{
@@ -696,6 +857,8 @@
     }
 
 
+
+
     .finish-session-wrap{
       margin-top:22px;
       display:flex;
@@ -705,10 +868,14 @@
     }
 
 
+
+
     .finish-session-text{
       width:100%;
       text-align:center;
     }
+
+
 
 
     .finish-session-btn{
@@ -729,6 +896,8 @@
     }
 
 
+
+
     .video-modal{
       position:fixed;
       inset:0;
@@ -741,7 +910,11 @@
     }
 
 
+
+
     .video-modal.active{ display:flex; }
+
+
 
 
     .video-box{
@@ -754,6 +927,8 @@
     }
 
 
+
+
     .video-box-head{
       display:flex;
       align-items:center;
@@ -763,6 +938,8 @@
       background:rgba(255,255,255,.05);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
+
+
 
 
     .close-video{
@@ -777,12 +954,16 @@
     }
 
 
+
+
     .video-frame-wrap{
       position:relative;
       width:100%;
       padding-top:56.25%;
       background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
     }
+
+
 
 
     .video-frame-wrap iframe,
@@ -793,6 +974,8 @@
       height:100%;
       border:0;
     }
+
+
 
 
     .video-frame-wrap video{
@@ -807,10 +990,14 @@
     .video-frame-wrap video::-webkit-media-controls{display:none!important}
 
 
+
+
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(14px)}
       to{opacity:1;transform:translateY(0)}
     }
+
+
 
 
     @media (max-width:900px){
@@ -822,6 +1009,8 @@
       .exercise-card{grid-template-columns:1fr}
       .exercise-meta{grid-template-columns:repeat(2,1fr)}
     }
+
+
 
 
     @media (max-width:640px){
@@ -836,6 +1025,8 @@
       .choice:hover,.exercise-card:hover{transform:none}
       .smart-orb{animation:none}
     }
+
+
 
 
 .video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}
@@ -902,6 +1093,7 @@ line-height:1.5;
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
 
+
 /* ===== Corrección MoveSmart: casillas seleccionables en móvil ===== */
 .question,
 .choices,
@@ -911,6 +1103,7 @@ line-height:1.5;
   pointer-events:auto !important;
 }
 
+
 .choice{
   -webkit-appearance:none !important;
   appearance:none !important;
@@ -919,9 +1112,11 @@ line-height:1.5;
   user-select:none;
 }
 
+
 .choice *{
   pointer-events:none !important;
 }
+
 
 .submit-btn{
   position:relative !important;
@@ -930,17 +1125,22 @@ line-height:1.5;
   touch-action:manipulation !important;
 }
 
+
 .survey-card{
   position:relative !important;
   z-index:5 !important;
 }
 
+
 .survey-card:not(.is-processing){
   pointer-events:auto !important;
 }
 
+
 </style>
 </head>
+
+
 
 
 <body>
@@ -953,8 +1153,10 @@ line-height:1.5;
       <p>Dixie Acosta · Rutina A · Mes 2</p>
     </div>
   </div>
-  <a class="back-btn" href="[[[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html))]([[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)))">← Volver al plan</a>
+  <a class="back-btn" href="[[[[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html))]([[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)))](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/septiembre/[[[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html))]([[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html)](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/julio/recuperativa/[/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html](https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html))))">← Volver al plan</a>
 </header>
+
+
 
 
 <section class="hero">
@@ -969,6 +1171,8 @@ line-height:1.5;
 </section>
 
 
+
+
 <main class="survey-card">
   <div class="survey-head">
     <div class="survey-title">
@@ -981,10 +1185,14 @@ line-height:1.5;
   </div>
 
 
+
+
   <div class="progress-wrap">
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-text" id="progressText">Pregunta 0 de 3</div>
   </div>
+
+
 
 
   <section class="question" data-question="tiempo">
@@ -1015,6 +1223,8 @@ line-height:1.5;
   </section>
 
 
+
+
   <section class="question" data-question="energia">
     <div class="q-title">
       <div class="q-icon">⚡</div>
@@ -1041,6 +1251,8 @@ line-height:1.5;
       </button>
     </div>
   </section>
+
+
 
 
   <section class="question" data-question="personalizada">
@@ -1071,11 +1283,17 @@ line-height:1.5;
   </section>
 
 
+
+
   <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
   <p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
 
 
+
+
   <div class="result-card" id="resultCard"></div>
+
+
 
 
   <div aria-live="polite" class="smart-loading" id="smartLoading">
@@ -1086,12 +1304,16 @@ line-height:1.5;
 
 
 
+
+
+
   <!-- EXPRESS -->
   <div class="routine-container" id="rutina-express">
     <div class="routine-intro">
       <div class="routine-version-label">⚡ Rutina A · Mes 2 Express · 10–15 min</div>
       <h2>Rutina A · Fuerza básica y Aquiles</h2>
       <p>Versión breve para empezar a recuperar fuerza sin aumentar innecesariamente la carga sobre el talón durante el despegue.</p>
+
 
       <div class="quick-stats">
         <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
@@ -1101,11 +1323,13 @@ line-height:1.5;
       </div>
     </div>
 
+
     <div class="warning">
       <strong>Objetivo del segundo mes:</strong> ganar fuerza sin aumentar de forma clara la molestia del talón/Aquiles.
       Como el dolor sigue siendo alto y aparece especialmente durante el despegue, el trabajo directo del Aquiles se mantiene principalmente en forma isométrica.
       Todavía no buscamos elevaciones de talón dinámicas exigentes.
     </div>
+
 
     <section class="section">
       <div class="section-head"><h2>Entrada suave</h2><p>Comienza sin fatiga y observa cómo está el talón hoy.</p></div>
@@ -1118,9 +1342,11 @@ line-height:1.5;
       </div>
     </section>
 
+
     <section class="section">
       <div class="section-head"><h2>Fuerza de piernas</h2><p>Fortalece sin exigir directamente el despegue del pie.</p></div>
       <div class="section-body">
+
 
         <article class="exercise-card">
           <div>
@@ -1144,6 +1370,7 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Arco activo del pie</div>
@@ -1165,6 +1392,7 @@ line-height:1.5;
             <div class="upload-status" aria-live="polite"></div>
           </div>
         </article>
+
 
         <article class="exercise-card">
           <div>
@@ -1189,8 +1417,10 @@ line-height:1.5;
           </div>
         </article>
 
+
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
@@ -1201,15 +1431,18 @@ line-height:1.5;
       </div>
     </section>
 
+
     <div class="note">
       <strong>Regla del mes 2:</strong> si el talón queda claramente peor durante la caminata o al día siguiente, reduce el tiempo de los isométricos o el volumen de la próxima sesión.
     </div>
 
+
     <div class="finish-session-wrap">
       <p class="finish-session-text">Cuando termines, registra especialmente cómo quedó el dolor del talón al caminar y durante el despegue.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Express&amp;sesion_objetivo=Fuerza%20y%20Aquiles">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="[https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Express&amp;sesion_objetivo=Fuerza%20y%20Aquiles](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Mes%202%20Express\&sesion_objetivo=Fuerza%20y%20Aquiles)">✅ Finalicé mi sesión</a>
     </div>
   </div>
+
 
   <!-- BASE -->
   <div class="routine-container" id="rutina-base">
@@ -1217,6 +1450,7 @@ line-height:1.5;
       <div class="routine-version-label">🕒 Rutina A · Mes 2 Base · 20–25 min</div>
       <h2>Rutina A · Fuerza progresiva de piernas, pie y Aquiles</h2>
       <p>Esta es la versión principal del segundo mes: aumenta la fuerza alrededor del tobillo y del miembro inferior sin progresar todavía a elevaciones de talón dinámicas exigentes.</p>
+
 
       <div class="quick-stats">
         <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
@@ -1226,10 +1460,12 @@ line-height:1.5;
       </div>
     </div>
 
+
     <div class="warning">
       <strong>Importante:</strong> la molestia principal se asume en la zona talón/Aquiles y sigue siendo alta, especialmente durante el despegue al caminar.
       Por eso, la progresión del tendón sigue siendo conservadora: rango cómodo, sin rebotes y sin llevar el talón por debajo del nivel del antepié.
     </div>
+
 
     <section class="section">
       <div class="section-head"><h2>Preparación</h2><p>Entrada suave antes del trabajo de fuerza.</p></div>
@@ -1238,11 +1474,12 @@ line-height:1.5;
           <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
         </div>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Flexión y extensión de tobillo sentado</div>
             <p class="exercise-desc">Mueve el tobillo dentro de un rango cómodo. No busques un estiramiento profundo del Aquiles.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
+            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
           </div>
           <div class="exercise-meta">
             <div class="pill"><span>Series</span>2</div>
@@ -1262,9 +1499,11 @@ line-height:1.5;
       </div>
     </section>
 
+
     <section class="section">
       <div class="section-head"><h2>Fuerza de cadera y rodilla</h2><p>Aumenta la capacidad de las piernas sin concentrar toda la carga en el talón.</p></div>
       <div class="section-body">
+
 
         <article class="exercise-card">
           <div>
@@ -1288,6 +1527,7 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Abducción de cadera de pie</div>
@@ -1310,11 +1550,12 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Marcha sentada</div>
             <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable. Busca control, no velocidad.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button>
+            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/marcha_sentado.mp4" type="button">▶ Ver video</button>
           </div>
           <div class="exercise-meta">
             <div class="pill"><span>Series</span>2</div>
@@ -1332,12 +1573,15 @@ line-height:1.5;
           </div>
         </article>
 
+
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-head"><h2>Pie y Aquiles</h2><p>Fortalecimiento específico, todavía sin exigir el despegue dinámico.</p></div>
       <div class="section-body">
+
 
         <article class="exercise-card">
           <div>
@@ -1360,6 +1604,7 @@ line-height:1.5;
             <div class="upload-status" aria-live="polite"></div>
           </div>
         </article>
+
 
         <article class="exercise-card">
           <div>
@@ -1384,8 +1629,10 @@ line-height:1.5;
           </div>
         </article>
 
+
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
@@ -1396,15 +1643,18 @@ line-height:1.5;
       </div>
     </section>
 
+
     <div class="note">
       <strong>Regla de 24 horas:</strong> si al día siguiente caminar o despegar el pie está claramente peor que antes de la sesión, baja el volumen de los isométricos o usa la versión Express.
     </div>
 
+
     <div class="finish-session-wrap">
       <p class="finish-session-text">Registra especialmente si el dolor del talón durante el despegue quedó igual, mejor o peor después de esta sesión.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Base&amp;sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="[https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Base&amp;sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Mes%202%20Base\&sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles)">✅ Finalicé mi sesión</a>
     </div>
   </div>
+
 
   <!-- COMPLETA -->
   <div class="routine-container" id="rutina-completa">
@@ -1412,6 +1662,7 @@ line-height:1.5;
       <div class="routine-version-label">🕘 Rutina A · Mes 2 Completa · 25–30 min</div>
       <h2>Rutina A · Fuerza progresiva completa</h2>
       <p>Versión ampliada para días con más tiempo. Aumenta el volumen de fuerza general y mantiene una carga específica del Aquiles todavía controlada.</p>
+
 
       <div class="quick-stats">
         <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
@@ -1421,10 +1672,12 @@ line-height:1.5;
       </div>
     </div>
 
+
     <div class="warning">
       <strong>No buscamos forzar el despegue todavía:</strong> evita elevaciones de talón rápidas, unipodales o desde un escalón.
       La molestia del talón/Aquiles debe mantenerse en un nivel tolerable y no empeorar claramente durante las siguientes 24 horas.
     </div>
+
 
     <section class="section">
       <div class="section-head"><h2>Preparación</h2><p>Movilidad breve antes de la fuerza.</p></div>
@@ -1433,11 +1686,12 @@ line-height:1.5;
           <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
         </div>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Flexión y extensión de tobillo sentado</div>
             <p class="exercise-desc">Realiza el movimiento dentro de un rango cómodo, sin buscar estiramiento profundo del tendón.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
+            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_inferior/flex-exte_tobillo.mp4" type="button">▶ Ver video</button>
           </div>
           <div class="exercise-meta">
             <div class="pill"><span>Series</span>2</div>
@@ -1457,9 +1711,11 @@ line-height:1.5;
       </div>
     </section>
 
+
     <section class="section">
       <div class="section-head"><h2>Fuerza de piernas</h2><p>Más volumen, manteniendo una técnica controlada.</p></div>
       <div class="section-body">
+
 
         <article class="exercise-card">
           <div>
@@ -1483,6 +1739,7 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Abducción de cadera de pie</div>
@@ -1505,11 +1762,12 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Marcha sentada</div>
             <p class="exercise-desc">Eleva alternadamente una rodilla y luego la otra manteniendo el tronco estable y el movimiento controlado.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/marcha%20sentado.mp4" type="button">▶ Ver video</button>
+            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/marcha_sentado.mp4" type="button">▶ Ver video</button>
           </div>
           <div class="exercise-meta">
             <div class="pill"><span>Series</span>2</div>
@@ -1527,12 +1785,15 @@ line-height:1.5;
           </div>
         </article>
 
+
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-head"><h2>Pie y Aquiles</h2><p>Carga específica controlada para preparar progresivamente el despegue.</p></div>
       <div class="section-body">
+
 
         <article class="exercise-card">
           <div>
@@ -1555,6 +1816,7 @@ line-height:1.5;
             <div class="upload-status" aria-live="polite"></div>
           </div>
         </article>
+
 
         <article class="exercise-card">
           <div>
@@ -1579,11 +1841,12 @@ line-height:1.5;
           </div>
         </article>
 
+
         <article class="exercise-card">
           <div>
             <div class="exercise-name">Círculos de tobillo</div>
             <p class="exercise-desc">Realiza círculos pequeños y lentos en ambas direcciones para terminar con movilidad suave.</p>
-            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/circunduccion_tobillos.mp4" type="button">▶ Ver video</button>
+            <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_inferior/circunduccion_tobillos.mp4" type="button">▶ Ver video</button>
           </div>
           <div class="exercise-meta">
             <div class="pill"><span>Series</span>1–2</div>
@@ -1601,8 +1864,10 @@ line-height:1.5;
           </div>
         </article>
 
+
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
@@ -1613,19 +1878,25 @@ line-height:1.5;
       </div>
     </section>
 
+
     <div class="note">
       <strong>Cómo progresaremos:</strong> primero buscamos que el isométrico y la marcha sean mejor tolerados. Las elevaciones de talón dinámicas se introducirán más adelante solo si la molestia durante el despegue disminuye y la respuesta de 24 horas es favorable.
     </div>
 
+
     <div class="finish-session-wrap">
       <p class="finish-session-text">Registra cómo quedó la molestia del talón/Aquiles al caminar y si el despegue se sintió igual, mejor o peor después de la sesión.</p>
-      <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Completa&amp;sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles">✅ Finalicé mi sesión</a>
+      <a class="finish-session-btn" href="[https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20A%20Mes%202%20Completa&amp;sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta\&rutina=Rutina%20A%20Mes%202%20Completa\&sesion_objetivo=Fuerza%20progresiva%20y%20Aquiles)">✅ Finalicé mi sesión</a>
     </div>
   </div>
 
 
+
+
 </main>
 </div>
+
+
 
 
 <div aria-hidden="true" class="video-modal" id="videoModal">
@@ -1640,6 +1911,10 @@ line-height:1.5;
     </div>
   </div>
 </div>
+
+
+
+
 
 
 
@@ -1677,8 +1952,8 @@ line-height:1.5;
 </div>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
+<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
+<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
@@ -1910,6 +2185,8 @@ box,
 }
 
 
+
+
 const respuestas = { tiempo:null, energia:null, personalizada:null };
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
@@ -1920,11 +2197,15 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     const smartLoadingText = document.getElementById('smartLoadingText');
 
 
+
+
     function updateProgress(){
       const answered = Object.values(respuestas).filter(Boolean).length;
       progressFill.style.width = `${(answered / 3) * 100}%`;
       progressText.textContent = `Pregunta ${answered} de 3`;
     }
+
+
 
 
     function modoSegunEnergia(){
@@ -1934,11 +2215,15 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     function nombreEstructura(){
       if(respuestas.tiempo === 'express') return 'Express';
       if(respuestas.tiempo === 'base') return 'Base';
       return 'Completa';
     }
+
+
 
 
     function guardarRespuestaEnSheets(estructura, modo){
@@ -1952,6 +2237,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         estructura: estructura,
         modo: modo
       };
+
+
 
 
       fetch(SCRIPT_URL, {
@@ -1974,6 +2261,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     document.querySelectorAll('.choice').forEach(btn => {
       btn.addEventListener('click', () => {
         const question = btn.closest('.question').dataset.question;
@@ -1987,8 +2276,12 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     });
 
 
+
+
     document.getElementById('createRoutine').addEventListener('click', () => {
       const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
+
+
 
 
       if(faltan.length){
@@ -2001,15 +2294,23 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
       }
 
 
+
+
       const estructura = nombreEstructura();
       const modo = modoSegunEnergia();
+
+
 
 
       guardarRespuestaEnSheets(estructura, modo);
 
 
+
+
       resultCard.classList.remove('active');
       document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+
+
 
 
       if(modo === 'Detener'){
@@ -2023,10 +2324,14 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
       }
 
 
+
+
       const modoTexto = {
         Recovery: 'Hoy usa menor volumen y rango cómodo. Prioriza que el talón quede igual o mejor después de la sesión.',
         Normal: 'Realiza la versión planificada. Busca fuerza controlada y mantén el dolor del talón en un rango tolerable.'
       };
+
+
 
 
       smartLoading.classList.add('active');
@@ -2036,10 +2341,14 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
       smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 
 
+
+
       setTimeout(() => {
         smartLoadingTitle.textContent = 'Adaptando tu Rutina A del segundo mes...';
         smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
       }, 180);
+
+
 
 
       setTimeout(() => {
@@ -2048,9 +2357,13 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
       }, 380);
 
 
+
+
       setTimeout(() => {
         smartLoading.classList.remove('active');
         surveyCard.classList.remove('is-processing');
+
+
 
 
         resultCard.style.background = 'rgba(29,191,115,.12)';
@@ -2058,6 +2371,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         resultCard.style.color = '#ddffea';
         resultCard.innerHTML = `<strong>✨ Rutina A Mes 2 ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
         resultCard.classList.add('active');
+
+
 
 
         const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
@@ -2068,16 +2383,22 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     });
 
 
+
+
     function toEmbedUrl(url) {
       if (!url) return null;
       const cleanUrl = String(url).trim();
       if (!cleanUrl) return null;
 
 
+
+
       try {
         const parsed = new URL(cleanUrl);
         const host = parsed.hostname.replace('www.', '');
         let videoId = '';
+
+
 
 
         if (cleanUrl.includes('youtube.com/embed/')) {
@@ -2093,7 +2414,11 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         }
 
 
+
+
         if (!videoId) return null;
+
+
 
 
         return 'https://www.youtube.com/embed/' + videoId +
@@ -2104,12 +2429,16 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     const videoModal = document.getElementById('videoModal');
     const videoFrame = document.getElementById('videoFrame');
     const videoPlayer = document.getElementById('videoPlayer');
     const closeVideo = document.getElementById('closeVideo');
     const videoTitle = document.getElementById('videoTitle');
     let videoLoopTimeout = null;
+
+
 
 
     function restartVideoWithFade() {
@@ -2128,7 +2457,11 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     videoPlayer.addEventListener('ended', restartVideoWithFade);
+
+
 
 
     function showYoutubeVideo(url, title) {
@@ -2142,6 +2475,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
+
 
 
     function showDirectVideo(url, title) {
@@ -2164,6 +2499,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     function hideVideo() {
       videoModal.classList.remove('active');
       clearTimeout(videoLoopTimeout);
@@ -2177,10 +2514,14 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     }
 
 
+
+
     document.querySelectorAll('.video-btn').forEach(function (button) {
       button.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
+
+
 
 
         const card = button.closest('.exercise-card');
@@ -2191,10 +2532,14 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         const isDirectVideo = /^https:\/\/[^\s]+\.(mp4|webm|ogg)(\?[^\s]*)?$/i.test(cleanUrl);
 
 
+
+
         if (isDirectVideo) {
           showDirectVideo(cleanUrl, title);
           return;
         }
+
+
 
 
         const embedUrl = toEmbedUrl(cleanUrl);
@@ -2204,7 +2549,11 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
     });
 
 
+
+
     if (closeVideo) closeVideo.addEventListener('click', hideVideo);
+
+
 
 
     if (videoModal) {
@@ -2212,6 +2561,8 @@ const respuestas = { tiempo:null, energia:null, personalizada:null };
         if (e.target === videoModal) hideVideo();
       });
     }
+
+
 
 
     document.addEventListener('keydown', function (e) {
@@ -2647,8 +2998,11 @@ sincronizarVideosEnviadosHoy();
 });
 
 
+
+
 updateProgress();
 </script>
+
 
 <script>
 /* Respaldo táctil para selección de la encuesta */
@@ -2657,13 +3011,17 @@ updateProgress();
     const btn = e.target.closest && e.target.closest('.choice');
     if(!btn) return;
 
+
     const questionEl = btn.closest('.question');
     if(!questionEl) return;
+
 
     const question = questionEl.dataset.question;
     if(!question || typeof respuestas === 'undefined') return;
 
+
     respuestas[question] = btn.dataset.value;
+
 
     const choices = btn.closest('.choices');
     if(choices){
@@ -2673,19 +3031,24 @@ updateProgress();
       });
     }
 
+
     btn.classList.add('selected');
     btn.setAttribute('aria-pressed','true');
 
+
     if(typeof updateProgress === 'function') updateProgress();
+
 
     if(typeof resultCard !== 'undefined' && resultCard){
       resultCard.classList.remove('active');
     }
 
+
     document.querySelectorAll('.routine-container').forEach(function(r){
       r.classList.remove('active');
     });
   }, true);
+
 
   document.querySelectorAll('.choice').forEach(function(btn){
     btn.setAttribute('role','button');
@@ -2693,6 +3056,7 @@ updateProgress();
   });
 })();
 </script>
+
 
 </body>
 </html>
