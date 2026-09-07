@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -726,7 +725,6 @@ line-height:1.5;
 }
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
-
 /* ===== Corrección MoveSmart: casillas seleccionables en móvil ===== */
 .question,
 .choices,
@@ -758,7 +756,70 @@ line-height:1.5;
 .survey-card:not(.is-processing){
   pointer-events:auto !important;
 }
-
+.video-help-note{margin:18px 0 22px;padding:18px;border-radius:22px;display:flex;align-items:flex-start;gap:14px;background:linear-gradient(180deg,rgba(47,99,255,.13),rgba(255,255,255,.04));border:1px solid rgba(111,142,255,.28);box-shadow:0 12px 26px rgba(0,0,0,.18)}                                                                                                                                                                                                 |
+| .video-help-icon{width:44px;height:44px;flex:0 0 44px;border-radius:14px;display:grid;place-items:center;background:rgba(47,99,255,.16);border:1px solid rgba(111,142,255,.25);font-size:1.25rem}                                                                                                                                                                                                                                                                            |
+| .video-help-note strong{display:block;margin-bottom:5px;color:#fff;font-size:1rem}                                                                                                                                                                                                                                                                                                                                                                                             |
+| .video-help-note p{margin:0;color:rgba(255,255,255,.72);line-height:1.55;font-size:.93rem}                                                                                                                                                                                                                                                                                                                                                                                     |
+| .review-request{margin-top:12px;padding:14px;border-radius:17px;background:rgba(47,99,255,.08);border:1px solid rgba(111,142,255,.18)}                                                                                                                                                                                                                                                                                                                                         |
+| .review-request-copy{margin-bottom:11px}                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| .review-badge{display:block;color:#fff;font-weight:850;margin-bottom:4px;font-size:.94rem}                                                                                                                                                                                                                                                                                                                                                                                     |
+| .review-request small{color:rgba(255,255,255,.65);line-height:1.45;display:block}                                                                                                                                                                                                                                                                                                                                                                                             |
+| .upload-execution-btn{width:100%;border:none;border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fff;cursor:pointer;font-family:inherit;font-size:.95rem;font-weight:850}                                                                                                                                                                                                                                   |
+| .upload-execution-btn.done{background:rgba(53,208,98,.12);border-color:rgba(53,208,98,.28);color:#dfffe8}                                                                                                                                                                                                                                                                                                                                                                     |
+| .upload-status{margin-top:8px;color:rgba(255,255,255,.66);font-size:.82rem;line-height:1.4}                                                                                                                                                                                                                                                                                                                                                                                    |
+| .execution-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(4,6,14,.82)}                                                                                                                                                                                                                                                                                                                     |
+| .execution-modal.active{display:flex}                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| .execution-dialog{width:min(620px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,rgba(18,20,34,.98),rgba(10,12,22,.98));border:1px solid rgba(255,255,255,.12);border-radius:26px;box-shadow:0 24px 60px rgba(0,0,0,.45)}                                                                                                                                                                                                                             |
+| .execution-head{padding:18px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}                                                                                                                                                                                                                                                                                                                  |
+| .execution-head strong{display:block;font-size:1.12rem;margin-bottom:4px}                                                                                                                                                                                                                                                                                                                                                                                                      |
+| .execution-head p{color:rgba(255,255,255,.66);line-height:1.4;font-size:.9rem}                                                                                                                                                                                                                                                                                                                                                                                                 |
+| .execution-close{border:none;background:rgba(255,255,255,.09);color:#fff;border-radius:12px;padding:9px 12px;cursor:pointer;font-weight:800}                                                                                                                                                                                                                                                                                                                                 |
+| .execution-body{padding:20px}                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| .execution-tip{padding:14px;border-radius:16px;background:rgba(255,90,31,.10);border:1px solid rgba(255,90,31,.18);color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:16px;font-size:.92rem}                                                                                                                                                                                                                                                                          |
+| .execution-file-label{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:72px;padding:16px;border-radius:18px;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;font-weight:850}                                                                                                                                                                                             |
+| .execution-file-label input{display:none}                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| .execution-preview{display:none;width:100%;max-height:340px;object-fit:contain;margin-top:14px;border-radius:16px;background:#000}                                                                                                                                                                                                                                                                                                                                            |
+| .execution-preview.active{display:block}                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| .selected-video-info{display:none;margin-top:10px;color:#dfffe8;font-size:.88rem}                                                                                                                                                                                                                                                                                                                                                                                              |
+| .selected-video-info.active{display:block}                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| .execution-comment-label{display:block;margin-top:16px;font-size:.9rem;font-weight:800;color:#fff}                                                                                                                                                                                                                                                                                                                                                                             |
+| .execution-comment{margin-top:8px;width:100%;min-height:90px;resize:vertical;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;padding:12px 14px;font:inherit;outline:none}                                                                                                                                                                                                                                             |
+| .execution-actions{display:flex;gap:10px;margin-top:18px}                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| .execution-cancel,.execution-send{flex:1;border:none;border-radius:15px;padding:13px 14px;font:inherit;font-weight:850;cursor:pointer}                                                                                                                                                                                                                                                                                                                                       |
+| .execution-cancel{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}                                                                                                                                                                                                                                                                                                                                                                          |
+| .execution-send{background:linear-gradient(180deg,#ff7a1f,#ff4f13);color:#fff}                                                                                                                                                                                                                                                                                                                                                                                                 |
+| .execution-send:disabled{opacity:.45;cursor:not-allowed}                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| @media(max-width:640px){.video-help-note{padding:15px;border-radius:18px}.video-help-icon{width:40px;height:40px;flex-basis:40px}.execution-actions{flex-direction:column-reverse}}                                                                                                                                                                                                                                                                                            |
+| .exercise-card > .review-request{                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| grid-column:1 / -1;                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| margin-top:0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| }                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| @media (max-width:640px){                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| .exercise-card > .review-request{                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| margin-top:4px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| }                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| }                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| .upload-progress-wrap{display:none;margin-top:14px}                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| .upload-progress-wrap.active{display:block}                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| .upload-progress-track{height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08)}                                                                                                                                                                                                                                                                                                                               |
+| .upload-progress-bar{width:0%;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff5a1f,#ff8a3d);transition:width .18s ease}                                                                                                                                                                                                                                                                                                                                   |
+| .upload-progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;color:rgba(255,255,255,.72);font-size:.84rem}                                                                                                                                                                                                                                                                                                                    |
+| .upload-progress-percent{color:#fff;font-weight:900;white-space:nowrap}                                                                                                                                                                                                                                                                                                                                                                                                        |
+| .execution-send.uploading{cursor:wait;opacity:.9}                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| .optimization-box{                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| display:none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| margin-top:12px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| padding:12px 14px;                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| border-radius:16px;                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| background:rgba(47,99,255,.09);                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| border:1px solid rgba(111,142,255,.18);                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| color:rgba(255,255,255,.78);                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| font-size:.86rem;                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| line-height:1.5;                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| }                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| .optimization-box.active{display:block}                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| .optimization-box strong{color:#fff}                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|
 </style>
 </head>
 <body>
@@ -771,7 +832,7 @@ line-height:1.5;
 <p>Dixie Acosta · Rutina B · Mes 2</p>
 </div>
 </div>
-<a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver al plan</a>
+<a class="back-btn" href="/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver al plan</a>
 </header>
 <section class="hero">
 <div aria-hidden="true" class="hero-image"></div>
@@ -883,15 +944,12 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
 <h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
 <p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
 </div>
-
-
 <!-- EXPRESS -->
 <div class="routine-container" id="rutina-express">
   <div class="routine-intro">
     <div class="routine-version-label">⚡ Rutina B · Mes 2 Express · 10–15 min</div>
     <h2>Rutina B · Fuerza funcional complementaria</h2>
     <p>Una sesión breve para trabajar glúteos, muslos y tronco sin repetir los ejercicios principales de la Rutina A.</p>
-
     <div class="quick-stats">
       <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
       <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
@@ -899,12 +957,10 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       <div class="stat"><small>Objetivo</small><strong>Fuerza general</strong></div>
     </div>
   </div>
-
   <div class="warning">
     <strong>Complementa la Rutina A:</strong> aquí no repetimos el trabajo específico de pie/Aquiles.
     El objetivo es ganar fuerza alrededor de la cadera, muslos y tronco sin aumentar claramente la molestia del talón durante el despegue.
   </div>
-
   <section class="section">
     <div class="section-head"><h2>Entrada suave</h2><p>Comienza con baja exigencia.</p></div>
     <div class="section-body">
@@ -914,16 +970,14 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       </div>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Fuerza complementaria</h2><p>Trabaja otras capacidades sin repetir A.</p></div>
     <div class="section-body">
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Puente de glúteos</div>
           <p class="exercise-desc">Acostada boca arriba con rodillas flexionadas, eleva la pelvis lentamente y baja con control. El apoyo debe sentirse estable y sin aumentar el dolor del talón.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>2</div>
@@ -931,13 +985,21 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Pausa</span>2 s arriba</div>
           <div class="pill"><span>RPE</span>3</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="puente-de-gluteos">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Apretar cojín o pelota entre las rodillas</div>
           <p class="exercise-desc">Sentada, coloca un cojín o pelota blanda entre las rodillas y aprieta suavemente sin contener la respiración.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_sentada_almohada.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>2</div>
@@ -945,11 +1007,18 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Tiempo</span>5 s</div>
           <div class="pill"><span>RPE</span>3</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="apretar-cojin-o-pelota-entre-las-rodillas">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Apretar cojín o pelota entre las rodillas">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
     <div class="section-body">
@@ -958,24 +1027,20 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       </div>
     </div>
   </section>
-
   <div class="note">
     <strong>Regla:</strong> esta sesión debe dejar el talón igual o mejor. Si caminar o despegar el pie queda claramente peor, reduce el volumen la próxima vez.
   </div>
-
   <div class="finish-session-wrap">
     <p class="finish-session-text">Registra cómo quedó el talón/Aquiles al caminar y cómo sentiste el esfuerzo general.</p>
     <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Express&amp;sesion_objetivo=Fuerza%20funcional%20complementaria">✅ Finalicé mi sesión</a>
   </div>
 </div>
-
 <!-- BASE -->
 <div class="routine-container" id="rutina-base">
   <div class="routine-intro">
     <div class="routine-version-label">🕒 Rutina B · Mes 2 Base · 20–25 min</div>
     <h2>Rutina B · Fuerza funcional complementaria</h2>
     <p>La versión principal de B trabaja glúteos, muslos, tronco y tareas funcionales sin repetir el bloque específico de la Rutina A.</p>
-
     <div class="quick-stats">
       <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
       <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
@@ -983,21 +1048,17 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       <div class="stat"><small>Objetivo</small><strong>Fuerza + función</strong></div>
     </div>
   </div>
-
   <div class="warning">
     <strong>Diferencia con A:</strong> no incluye short foot, movilidad específica de tobillo, extensión de rodilla, marcha sentada,
     abducción de cadera ni isométricos de pantorrilla. Así distribuimos mejor la carga semanal.
   </div>
-
   <section class="section">
     <div class="section-head"><h2>Preparación</h2><p>Movilidad global con poca carga sobre el talón.</p></div>
     <div class="section-body">
-
       <div class="simple-card">
         <strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/>
         <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
       </div>
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Rotación torácica sentada</div>
@@ -1009,20 +1070,26 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Reps</span>6 por lado</div>
           <div class="pill"><span>RPE</span>1–2</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="rotacion-toracica-sentada">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Fuerza general</h2><p>Más fuerza sin convertir el Aquiles en el foco.</p></div>
     <div class="section-body">
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Puente de glúteos</div>
           <p class="exercise-desc">Eleva la pelvis con control, mantén brevemente arriba y baja lentamente. Busca trabajo de glúteos, no empujes fuerte desde las puntas de los pies.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>3</div>
@@ -1030,13 +1097,21 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Pausa</span>2 s arriba</div>
           <div class="pill"><span>RPE</span>3–4</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="puente-de-gluteos">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Apretar cojín o pelota entre las rodillas</div>
           <p class="exercise-desc">Sentada, aprieta una pelota blanda o cojín entre las rodillas durante 5 segundos y relaja lentamente.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_sentada_almohada.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>2</div>
@@ -1044,13 +1119,21 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Tiempo</span>5 s</div>
           <div class="pill"><span>RPE</span>3</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="apretar-cojin-o-pelota-entre-las-rodillas">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Apretar cojín o pelota entre las rodillas">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Sentarse y levantarse de una silla</div>
           <p class="exercise-desc">Ponte de pie usando ambas piernas y vuelve a sentarte lentamente. Usa las manos si las necesitas. Si el talón aumenta claramente de dolor durante el movimiento, omite este ejercicio.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>1–2</div>
@@ -1059,31 +1142,44 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>RPE</span>3–4</div>
           <div class="pill"><span>Talón</span>0–3/10</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y levantarse de una silla">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Control postural</h2><p>Una tarea de equilibrio de baja complejidad.</p></div>
     <div class="section-body">
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Equilibrio semi-tándem con apoyo</div>
           <p class="exercise-desc">Coloca un pie ligeramente delante del otro y mantén la posición cerca de una silla o pared. Ambos pies permanecen apoyados.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/semitandem_con_apoyo.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>1–2</div>
           <div class="pill"><span>Tiempo</span>15–20 s por lado</div>
           <div class="pill"><span>RPE</span>2–3</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="equilibrio-semi-tandem-con-apoyo">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Equilibrio semi-tándem con apoyo">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
     <div class="section-body">
@@ -1092,24 +1188,20 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       </div>
     </div>
   </section>
-
   <div class="note">
     <strong>Objetivo:</strong> aumentar fuerza general y función sin sumar otra sesión específica de carga del Aquiles.
   </div>
-
   <div class="finish-session-wrap">
     <p class="finish-session-text">Registra si levantarte y caminar se sintieron igual, mejor o peor después de la sesión.</p>
     <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Base&amp;sesion_objetivo=Fuerza%20funcional%20complementaria">✅ Finalicé mi sesión</a>
   </div>
 </div>
-
 <!-- COMPLETA -->
 <div class="routine-container" id="rutina-completa">
   <div class="routine-intro">
     <div class="routine-version-label">🕘 Rutina B · Mes 2 Completa · 25–30 min</div>
     <h2>Rutina B · Fuerza funcional completa</h2>
     <p>Una sesión diferente a A, con mayor volumen de glúteos, muslos, tronco, equilibrio y función.</p>
-
     <div class="quick-stats">
       <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
       <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
@@ -1117,20 +1209,16 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       <div class="stat"><small>Objetivo</small><strong>Fuerza general + función</strong></div>
     </div>
   </div>
-
   <div class="warning">
     <strong>Rutina complementaria:</strong> no repetimos el bloque específico del Aquiles de la Rutina A.
     Si aparece un aumento claro del dolor del talón, cojera o una molestia diferente, reduce la sesión.
   </div>
-
   <section class="section">
     <div class="section-head"><h2>Preparación</h2><p>Entrada global antes de la fuerza.</p></div>
     <div class="section-body">
-
       <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/>
         <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
       </div>
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Rotación torácica sentada</div>
@@ -1142,20 +1230,26 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Reps</span>8 por lado</div>
           <div class="pill"><span>RPE</span>1–2</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="rotacion-toracica-sentada">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Fuerza</h2><p>Bloque principal sin repetir A.</p></div>
     <div class="section-body">
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Puente de glúteos</div>
           <p class="exercise-desc">Eleva la pelvis con control y baja lentamente. Mantén los pies cómodos y evita empujar desde las puntas.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>3</div>
@@ -1163,13 +1257,21 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Pausa</span>2 s arriba</div>
           <div class="pill"><span>RPE</span>3–4</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="puente-de-gluteos">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Apretar cojín o pelota entre las rodillas</div>
           <p class="exercise-desc">Aprieta de forma progresiva durante 5 segundos y relaja lentamente. Mantén respiración normal.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/aduccion_cadera_sentada_almohada.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>3</div>
@@ -1177,13 +1279,21 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>Tiempo</span>5 s</div>
           <div class="pill"><span>RPE</span>3</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="apretar-cojin-o-pelota-entre-las-rodillas">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Apretar cojín o pelota entre las rodillas">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Sentarse y levantarse de una silla</div>
           <p class="exercise-desc">Ponte de pie y vuelve a sentarte con control. Mantén ambos pies apoyados y usa las manos si lo necesitas. Omite si el talón se vuelve claramente más doloroso.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>2</div>
@@ -1191,44 +1301,44 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
           <div class="pill"><span>RPE</span>3–4</div>
           <div class="pill"><span>Talón</span>0–3/10</div>
         </div>
-      </article>
 
+        <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y levantarse de una silla">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
+        </div>
+</article>
     </div>
   </section>
-
   <section class="section">
-    <div class="section-head"><h2>Control y estabilidad</h2><p>Integra la fuerza con tareas de control corporal.</p></div>
+    <div class="section-head"><h2>Control y estabilidad</h2><p>Integra la fuerza con una tarea sencilla de equilibrio.</p></div>
     <div class="section-body">
-
       <article class="exercise-card">
         <div>
           <div class="exercise-name">Equilibrio semi-tándem con apoyo</div>
           <p class="exercise-desc">Mantén un pie ligeramente delante del otro con ambos pies apoyados. Ten una silla o pared cerca.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/semitandem_con_apoyo.mp4" type="button">▶ Ver video</button>
         </div>
         <div class="exercise-meta">
           <div class="pill"><span>Series</span>2</div>
           <div class="pill"><span>Tiempo</span>20 s por lado</div>
           <div class="pill"><span>RPE</span>2–3</div>
         </div>
-      </article>
 
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Reloj pélvico sentado</div>
-          <p class="exercise-desc">Sentada, realiza pequeños movimientos de pelvis hacia delante, atrás y hacia los lados, manteniendo el tronco relajado.</p>
-          <button class="video-btn" type="button" disabled>🎥 Video pendiente</button>
+        <div class="review-request" data-exercise="equilibrio-semi-tandem-con-apoyo">
+          <div class="review-request-copy">
+            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
+            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
+          </div>
+          <button class="upload-execution-btn" type="button" data-exercise-name="Equilibrio semi-tándem con apoyo">📹 Enviar mi ejecución</button>
+          <div class="upload-status" aria-live="polite"></div>
         </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>1–2</div>
-          <div class="pill"><span>Reps</span>6 por dirección</div>
-          <div class="pill"><span>RPE</span>1–2</div>
-        </div>
-      </article>
-
-    </div>
+</article>
+</div>
   </section>
-
   <section class="section">
     <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
     <div class="section-body">
@@ -1237,17 +1347,14 @@ Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B seg�
       </div>
     </div>
   </section>
-
   <div class="note">
     <strong>Distribución semanal:</strong> A trabaja principalmente pie/Aquiles; B trabaja principalmente fuerza general, función y estabilidad.
   </div>
-
   <div class="finish-session-wrap">
     <p class="finish-session-text">Registra cómo quedó el talón/Aquiles y cómo sentiste la fuerza general después de la sesión.</p>
     <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Completa&amp;sesion_objetivo=Fuerza%20general%20funcion%20estabilidad">✅ Finalicé mi sesión</a>
   </div>
 </div>
-
 </main>
 </div>
 <div aria-hidden="true" class="video-modal" id="videoModal">
@@ -2194,108 +2301,6 @@ sincronizarVideosEnviadosHoy();
 updateProgress();
 </script>
 <script>
-(function () {
-  const modal = document.getElementById('videoModal');
-  const player = document.getElementById('videoPlayer');
-  const frame = document.getElementById('videoFrame');
-  const title = document.getElementById('videoTitle');
-  const close = document.getElementById('closeVideo');
-
-  if (!modal || !player || !frame) return;
-
-  function youtubeEmbed(url) {
-    try {
-      const parsed = new URL(url);
-      const host = parsed.hostname.replace(/^www\./, '');
-      let id = '';
-
-      if (host === 'youtu.be') {
-        id = parsed.pathname.split('/').filter(Boolean)[0] || '';
-      } else if (host === 'youtube.com' || host === 'm.youtube.com') {
-        if (parsed.pathname.startsWith('/shorts/')) {
-          id = parsed.pathname.split('/shorts/')[1].split('/')[0];
-        } else if (parsed.pathname === '/watch') {
-          id = parsed.searchParams.get('v') || '';
-        } else if (parsed.pathname.startsWith('/embed/')) {
-          id = parsed.pathname.split('/embed/')[1].split('/')[0];
-        }
-      }
-
-      return id
-        ? 'https://www.youtube.com/embed/' + id +
-          '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&playsinline=1'
-        : '';
-    } catch (_) {
-      return '';
-    }
-  }
-
-  function closeVideoSafe() {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    frame.src = '';
-    frame.style.display = 'none';
-    player.pause();
-    player.removeAttribute('src');
-    player.load();
-    player.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('click', function (event) {
-    const button = event.target.closest('.video-btn');
-    if (!button) return;
-
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    const url = String(button.dataset.video || button.getAttribute('href') || '').trim();
-    const card = button.closest('.exercise-card, .simple-card');
-    const name = card && card.querySelector('.exercise-name, strong');
-
-    title.textContent = name ? name.textContent.trim() : 'Video del ejercicio';
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) {
-      frame.src = '';
-      frame.style.display = 'none';
-      player.style.display = 'block';
-      player.src = url;
-      player.muted = true;
-      player.controls = true;
-      player.playsInline = true;
-      player.play().catch(function () {});
-      return;
-    }
-
-    const embed = youtubeEmbed(url);
-    if (embed) {
-      player.pause();
-      player.removeAttribute('src');
-      player.load();
-      player.style.display = 'none';
-      frame.style.display = 'block';
-      frame.src = embed;
-      return;
-    }
-
-    closeVideoSafe();
-    alert('Este ejercicio todavía no tiene un video válido.');
-  }, true);
-
-  if (close) close.addEventListener('click', closeVideoSafe, true);
-  modal.addEventListener('click', function (event) {
-    if (event.target === modal) closeVideoSafe();
-  }, true);
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') closeVideoSafe();
-  });
-})();
-</script>
-
-<script>
 /* Respaldo táctil para selección de la encuesta */
 (function(){
   document.addEventListener('click', function(e){
@@ -2305,9 +2310,7 @@ updateProgress();
     if(!questionEl) return;
     const question = questionEl.dataset.question;
     if(!question || typeof respuestas === 'undefined') return;
-
     respuestas[question] = btn.dataset.value;
-
     const choices = btn.closest('.choices');
     if(choices){
       choices.querySelectorAll('.choice').forEach(function(other){
@@ -2317,7 +2320,6 @@ updateProgress();
     }
     btn.classList.add('selected');
     btn.setAttribute('aria-pressed','true');
-
     if(typeof updateProgress === 'function') updateProgress();
     if(typeof resultCard !== 'undefined' && resultCard){
       resultCard.classList.remove('active');
@@ -2326,13 +2328,11 @@ updateProgress();
       r.classList.remove('active');
     });
   }, true);
-
   document.querySelectorAll('.choice').forEach(function(btn){
     btn.setAttribute('role','button');
     btn.setAttribute('aria-pressed', btn.classList.contains('selected') ? 'true' : 'false');
   });
 })();
 </script>
-
 </body>
 </html>
