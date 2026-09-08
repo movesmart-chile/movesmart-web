@@ -637,7 +637,7 @@
       <div class="grid">
         <article class="card">
           <h2>Resumen mensual</h2>
-          <p class="muted">Este dashboard muestra exclusivamente los registros de julio 2026.</p>
+          <p class="muted" id="textoResumenMensual">Cargando periodo del dashboard...</p>
           <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
         </article>
 
@@ -849,6 +849,7 @@
 
     document.getElementById('nombreHero').textContent = CLIENTE_DASHBOARD;
     document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
+    document.getElementById('textoResumenMensual').textContent = `Este dashboard muestra exclusivamente los registros de ${NOMBRE_MES_DASHBOARD}.`;
     document.getElementById('linkTolerancia').href = `../../tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
 
     function textoSeguro(valor, respaldo = '—') {
