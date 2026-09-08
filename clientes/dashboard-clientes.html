@@ -636,8 +636,8 @@
     <section id="evolucion" class="section active">
       <div class="grid">
         <article class="card">
-          <h2>Resumen mensual</h2>
-          <p class="muted">Este dashboard muestra exclusivamente los registros de julio 2026.</p>
+          <h2>Resumen del ciclo</h2>
+          <p class="muted" id="textoResumenMensual">Cargando ciclo actual...</p>
           <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
         </article>
 
@@ -838,10 +838,11 @@
     const CLIENTE_DASHBOARD = CLIENTES[CLIENTE_ID] || "Juany Flores";
     const API_URL = `${API_BASE_URL}?cliente=${encodeURIComponent(CLIENTE_ID)}`;
 
-    // Vista de septiembre de 2026 para el ciclo actual.
-    const MES_DASHBOARD = 9;
-    const ANIO_DASHBOARD = 2026;
-    const NOMBRE_MES_DASHBOARD = "septiembre 2026";
+    // El periodo se obtiene desde ciclos_clientes mediante el Apps Script.
+    let MES_PROGRAMA = null;
+    let NOMBRE_CICLO_DASHBOARD = "ciclo actual";
+    let FECHA_INICIO_CICLO = null;
+    let FECHA_TERMINO_CICLO = null;
 
     let sesiones = [];
     let elecciones = [];
@@ -850,6 +851,34 @@
     document.getElementById('nombreHero').textContent = CLIENTE_DASHBOARD;
     document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
     document.getElementById('linkTolerancia').href = `../../tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
+
+    function actualizarPeriodo(datos) {
+      MES_PROGRAMA = Number(datos.mes_programa) || null;
+      NOMBRE_CICLO_DASHBOARD = MES_PROGRAMA ? `Mes ${MES_PROGRAMA}` : 'Ciclo actual';
+
+      FECHA_INICIO_CICLO = parseFecha(datos.fecha_inicio);
+      FECHA_TERMINO_CICLO = parseFecha(datos.fecha_reevaluacion);
+
+      const inicio = dayKey(datos.fecha_inicio);
+      const termino = dayKey(datos.fecha_reevaluacion);
+      const tieneFechas = inicio !== 'Sin fecha' && termino !== 'Sin fecha';
+
+      document.getElementById('textoResumenMensual').textContent = tieneFechas
+        ? `Este dashboard muestra todos los registros del ${NOMBRE_CICLO_DASHBOARD}, desde el ${inicio} hasta el ${termino}.`
+        : `Este dashboard muestra todos los registros del ${NOMBRE_CICLO_DASHBOARD}.`;
+    }
+
+    function perteneceAlCiclo(registro) {
+      if (
+        !FECHA_INICIO_CICLO || isNaN(FECHA_INICIO_CICLO.getTime()) ||
+        !FECHA_TERMINO_CICLO || isNaN(FECHA_TERMINO_CICLO.getTime())
+      ) return true;
+
+      const fechaRegistro = parseFecha(registro.fecha || registro.Fecha);
+      if (isNaN(fechaRegistro.getTime())) return false;
+
+      return fechaRegistro >= FECHA_INICIO_CICLO && fechaRegistro <= FECHA_TERMINO_CICLO;
+    }
 
     function textoSeguro(valor, respaldo = '—') {
       const texto = String(valor == null ? '' : valor).trim();
@@ -1136,20 +1165,20 @@
         document.getElementById('kpis').innerHTML = `
           <div class="kpi">
             <small>Estado</small>
-            <strong>Sin datos de ${NOMBRE_MES_DASHBOARD} para ${CLIENTE_DASHBOARD}</strong>
+            <strong>Sin datos del ${NOMBRE_CICLO_DASHBOARD} para ${CLIENTE_DASHBOARD}</strong>
           </div>
         `;
 
         document.getElementById('history').innerHTML = `
           <li class="log">
-            <strong>${NOMBRE_MES_DASHBOARD}</strong>
+            <strong>${NOMBRE_CICLO_DASHBOARD}</strong>
             <div>
               <span class="badge b-red">Sin registros</span>
               <p class="muted" style="margin-top:8px">
-                El dashboard está filtrando solo los datos de ${NOMBRE_MES_DASHBOARD}.
+                El dashboard está mostrando únicamente los datos del ciclo configurado.
               </p>
             </div>
-            <span class="badge b-blue">Mes filtrado</span>
+            <span class="badge b-blue">Ciclo actual</span>
           </li>
         `;
         return;
@@ -1159,15 +1188,8 @@
       document.querySelector('.hero h1').innerHTML = `Mi evolución<br><span class="accent">${cliente}</span>`;
       document.querySelector('.topbar .pill').textContent = `Evolución ${cliente}`;
 
-      const months = {};
-      sesiones.forEach(session => {
-        const month = monthKey(session.fecha);
-        months[month] = months[month] || [];
-        months[month].push(session);
-      });
-
-      const labels = Object.keys(months);
-      const sesionesMes = labels.map(month => months[month].length);
+      const labels = [NOMBRE_CICLO_DASHBOARD];
+      const sesionesMes = [sesiones.length];
       const completadas = sesiones.filter(session => String(session.completada).toLowerCase().includes('completa')).length;
       const adherencia = Math.round((completadas / sesiones.length) * 100);
       const dolorInicial = dolorNum(sesiones[0].dolor);
@@ -1242,27 +1264,16 @@
         const todasLasSesiones = json.respuestas_registro || [];
         const todasLasElecciones = json.respuestas || [];
         planDetalle = json.plan_detalle || {};
+        actualizarPeriodo(json);
 
         sesiones = todasLasSesiones.filter(session => {
-          const fecha = parseFecha(session.fecha || session.Fecha);
-
           const cliente = String(session.cliente || session.Cliente || '').trim().toLowerCase();
-
-          return !isNaN(fecha.getTime()) &&
-                 fecha.getMonth() + 1 === MES_DASHBOARD &&
-                 fecha.getFullYear() === ANIO_DASHBOARD &&
-                 cliente === CLIENTE_DASHBOARD.toLowerCase();
+          return cliente === CLIENTE_DASHBOARD.toLowerCase() && perteneceAlCiclo(session);
         });
 
         elecciones = todasLasElecciones.filter(row => {
-          const fecha = parseFecha(row.fecha || row.Fecha);
-
           const cliente = String(row.cliente || row.Cliente || '').trim().toLowerCase();
-
-          return !isNaN(fecha.getTime()) &&
-                 fecha.getMonth() + 1 === MES_DASHBOARD &&
-                 fecha.getFullYear() === ANIO_DASHBOARD &&
-                 cliente === CLIENTE_DASHBOARD.toLowerCase();
+          return cliente === CLIENTE_DASHBOARD.toLowerCase() && perteneceAlCiclo(row);
         });
 
         sesiones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
