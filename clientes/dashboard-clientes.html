@@ -34,7 +34,7 @@
       color: var(--text);
       background:
         linear-gradient(180deg, rgba(8,10,18,.45), rgba(8,10,18,.72)),
-        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center / cover fixed no-repeat;
+        url('../../../imagenes/fondo-preview-rutina.webp') center / cover fixed no-repeat;
       overflow-x: hidden;
     }
 
@@ -602,7 +602,7 @@
   <header class="topbar">
     <div class="nav">
       <div class="brand">
-        <img src="/movesmart-web/imagenes/logo.webp" alt="MoveSmart" />
+        <img src="../../../imagenes/logo.webp" alt="MoveSmart" />
         <div class="brand-divider"></div>
         <div class="brand-title">
           <strong>Dashboard</strong>
@@ -617,7 +617,7 @@
     <section class="hero">
       <div class="card">
         <div class="pill">Programa personalizado</div>
-        <h1>Mi evolución<br><span class="accent" id="nombreCliente">Cargando…</span></h1>
+        <h1>Mi evolución<br><span class="accent" id="nombreHero">Cliente</span></h1>
         <p>
           Seguimiento del proceso desde el inicio del programa, incluyendo tus registros, sensaciones, esfuerzo y respuesta después de cada sesión.
         </p>
@@ -625,8 +625,8 @@
         <div class="tabs">
           <button class="tab active" data-tab="evolucion">Mi evolución</button>
           <button class="tab" data-tab="registro">Mi registro</button>
-          <a class="tab tab-link" id="enlacePlan" href="#">Mi plan</a>
-          <a class="tab tab-link" id="enlaceTolerancia" href="#">Tolerancia a la carga</a>
+          <button class="tab" data-tab="proximo">Mi plan</button>
+          <a class="tab tab-link" id="linkTolerancia" href="../../tolerancia_carga.html">Tolerancia a la carga</a>
         </div>
       </div>
 
@@ -637,7 +637,7 @@
       <div class="grid">
         <article class="card">
           <h2>Resumen mensual</h2>
-          <p class="muted" id="descripcionPeriodo">Cargando el ciclo actual…</p>
+          <p class="muted">Este dashboard muestra exclusivamente los registros de julio 2026.</p>
           <div class="chart-box"><canvas id="monthlyChart"></canvas></div>
         </article>
 
@@ -653,7 +653,7 @@
           <div>
             <h2>Programa actual</h2>
             <p class="muted">
-              Puedes escoger una versión completa o adaptada según cómo llegas ese día.
+              Sistema de autonomía: Juany puede escoger una versión completa o adaptada según cómo llega ese día.
             </p>
           </div>
 
@@ -667,20 +667,20 @@
           <div class="routine">
             <h3>Rutina A</h3>
             <ul>
-              <li>Bloque principal definido en tu programa.</li>
-              <li>Opciones ajustables según tiempo y energía.</li>
-              <li>Progresión de acuerdo con tus sensaciones.</li>
-              <li>Registro al finalizar la sesión.</li>
+              <li>Movilidad y activación de caderas y rodillas.</li>
+              <li>Fuerza base con silla, bandas y ejercicios simples.</li>
+              <li>Estabilidad de cadera, rodilla y core.</li>
+              <li>Vuelta a la calma.</li>
             </ul>
           </div>
 
           <div class="routine">
             <h3>Rutina B</h3>
             <ul>
-              <li>Bloque complementario definido en tu programa.</li>
-              <li>Alternativa para variar el trabajo semanal.</li>
-              <li>Opciones adaptables a tu tolerancia.</li>
-              <li>Registro al finalizar la sesión.</li>
+              <li>Bicicleta suave, core y movilidad.</li>
+              <li>Movilidad inicial.</li>
+              <li>Bloque funcional de bajo impacto.</li>
+              <li>Opción más suave cuando baja la energía.</li>
             </ul>
           </div>
         </div>
@@ -722,23 +722,193 @@
       </article>
     </section>
 
+    <section id="proximo" class="section">
+      <article class="card">
+        <div class="year-title">
+          <h2>🎯 Mi plan actual</h2>
+          <span></span>
+        </div>
+        <p class="muted">
+          Este bloque resume el foco del programa y lo que iremos observando durante el proceso.
+        </p>
+
+        <div class="plan-hero">
+          <div class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">🎯</div>
+              <h2>Objetivo del bloque</h2>
+            </div>
+            <p class="muted" id="planObjetivo">Cargando objetivo...</p>
+            <div class="note" id="planFrecuencia">
+              <strong>Frecuencia esperada:</strong> Cargando...
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">📅</div>
+              <h2>Datos del bloque</h2>
+            </div>
+            <div class="kpis" style="margin-top:12px">
+              <div class="kpi"><small>Sesiones/semana</small><strong id="planFrecuenciaValor">—</strong></div>
+              <div class="kpi"><small>Total estimado</small><strong id="planTotal">—</strong></div>
+              <div class="kpi"><small>Foco principal</small><strong id="planFoco">—</strong></div>
+              <div class="kpi"><small>Fase</small><strong id="planFase">—</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon">🟠</div>
+              <h2>Rutina A</h2>
+            </div>
+            <p class="muted" id="planRutinaADescripcion">Cargando...</p>
+            <ul class="plan-list" id="planRutinaAEjercicios"></ul>
+          </article>
+
+          <article class="card">
+            <div class="plan-card-title">
+              <div class="plan-icon" style="background:rgba(79,140,255,.14);border-color:rgba(79,140,255,.34)">🔵</div>
+              <h2>Rutina B</h2>
+            </div>
+            <p class="muted" id="planRutinaBDescripcion">Cargando...</p>
+            <ul class="plan-list" id="planRutinaBEjercicios"></ul>
+          </article>
+        </div>
+
+        <article class="card closing-evaluation">
+          <div>
+            <div class="closing-evaluation-tag">🎯 Propósito del bloque</div>
+            <h2>Mi objetivo funcional</h2>
+            <p class="muted">
+              Define la actividad cotidiana que quieres mejorar durante este ciclo.
+              Este objetivo nos ayudará a orientar el plan y evaluar avances que sean
+              importantes para ti.
+            </p>
+          </div>
+
+          <a
+            class="closing-evaluation-btn"
+            id="linkObjetivoFuncional"
+            href="#"
+          >
+            🎯 Abrir objetivo funcional →
+          </a>
+        </article>
+
+        <div class="grid">
+          <article class="card">
+            <div class="plan-summary">
+              <div class="big-icon">⭐</div>
+              <div>
+                <h2>En resumen</h2>
+                <p class="muted" id="planResumen">Cargando resumen del plan...</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>¿Qué evaluaremos?</h2>
+            <div class="eval-grid">
+              <div class="eval-item"><span>💪</span>Fuerza base</div>
+              <div class="eval-item"><span>🛡️</span>Estabilidad</div>
+              <div class="eval-item"><span>🧡</span>Sensaciones</div>
+              <div class="eval-item"><span>🚶</span>Movimiento</div>
+              <div class="eval-item"><span>✅</span>Constancia</div>
+            </div>
+          </article>
+        </div>
+      </article>
+    </section>
   </main>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbz8-zBNCtj8liL7_s622NVGEUHBxtrK8rR6YiqLrD26jzha1ZB5EhY94IhYc0I6bZ3z/exec";
-    const params = new URLSearchParams(window.location.search);
-    const CLIENTE_ID = (params.get('cliente') || '').trim().toLowerCase();
-    const PLAN_PARAM = (params.get('plan') || '').trim();
+    const API_BASE_URL = "https://script.google.com/macros/s/AKfycby-YY0243Pg_0Y3wlNGVFm92QMkwp19oE2yha90yPB5OlbmEACNcmz96yuXaLKpJp_E/exec";
 
-    let CLIENTE_DASHBOARD = '';
-    let MES_PROGRAMA = 0;
-    let TOTAL_SESIONES = 0;
-    let FECHA_INICIO = null;
-    let FECHA_FIN = null;
-    let NOMBRE_PERIODO = '';
+    const CLIENTES = {
+      "juany-flores": "Juany Flores",
+      "dixie-acosta": "Dixie Acosta",
+      "juan-ugalde": "Juan Ugalde"
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const CLIENTE_ID = String(params.get('cliente_id') || 'juany-flores').trim().toLowerCase();
+    const CLIENTE_DASHBOARD = CLIENTES[CLIENTE_ID] || "Juany Flores";
+    const API_URL = `${API_BASE_URL}?cliente=${encodeURIComponent(CLIENTE_ID)}`;
+
+    // Vista de septiembre de 2026 para el ciclo actual.
+    const MES_DASHBOARD = 9;
+    const ANIO_DASHBOARD = 2026;
+    const NOMBRE_MES_DASHBOARD = "septiembre 2026";
 
     let sesiones = [];
     let elecciones = [];
+    let planDetalle = {};
+
+    document.getElementById('nombreHero').textContent = CLIENTE_DASHBOARD;
+    document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
+    document.getElementById('linkTolerancia').href = `../../tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
+
+    function textoSeguro(valor, respaldo = '—') {
+      const texto = String(valor == null ? '' : valor).trim();
+      return texto || respaldo;
+    }
+
+    function renderListaEjercicios(id, valor) {
+      const lista = document.getElementById(id);
+      const ejercicios = String(valor || '')
+        .split(';')
+        .map(item => item.trim())
+        .filter(Boolean);
+
+      lista.replaceChildren(...(ejercicios.length ? ejercicios : ['Sin ejercicios configurados']).map(texto => {
+        const item = document.createElement('li');
+        item.textContent = texto;
+        return item;
+      }));
+    }
+
+    function renderPlan() {
+      const plan = planDetalle || {};
+      const frecuencia = textoSeguro(plan.frecuencia_semanal);
+      const total = textoSeguro(plan.total_sesiones);
+      const objetivo = textoSeguro(plan.objetivo, 'Objetivo todavía no configurado.');
+
+      document.getElementById('planObjetivo').textContent = objetivo;
+      document.getElementById('planFrecuencia').innerHTML = `<strong>Frecuencia esperada:</strong> ${frecuencia} actividades por semana · ${total} actividades durante el bloque.`;
+      document.getElementById('planFrecuenciaValor').textContent = frecuencia;
+      document.getElementById('planTotal').textContent = total;
+      document.getElementById('planFoco').textContent = textoSeguro(plan.foco_principal);
+      document.getElementById('planFase').textContent = textoSeguro(plan.fase);
+      document.getElementById('planRutinaADescripcion').textContent = textoSeguro(plan.rutina_a_descripcion);
+      document.getElementById('planRutinaBDescripcion').textContent = textoSeguro(plan.rutina_b_descripcion);
+      document.getElementById('planResumen').textContent = objetivo;
+
+      renderListaEjercicios('planRutinaAEjercicios', plan.rutina_a_ejercicios);
+      renderListaEjercicios('planRutinaBEjercicios', plan.rutina_b_ejercicios);
+
+      const linkObjetivo = document.getElementById('linkObjetivoFuncional');
+      const urlObjetivo = textoSeguro(
+        plan.enlace_objetivo_funcional || plan.enlace_evaluacion,
+        ''
+      );
+
+      if (urlObjetivo) {
+        linkObjetivo.href = urlObjetivo;
+        linkObjetivo.textContent = '🎯 Abrir objetivo funcional →';
+        linkObjetivo.style.opacity = '1';
+        linkObjetivo.style.pointerEvents = 'auto';
+        linkObjetivo.removeAttribute('aria-disabled');
+      } else {
+        linkObjetivo.href = '#';
+        linkObjetivo.textContent = '🎯 Objetivo funcional por configurar';
+        linkObjetivo.style.opacity = '.62';
+        linkObjetivo.style.pointerEvents = 'none';
+        linkObjetivo.setAttribute('aria-disabled', 'true');
+      }
+    }
 
     function parseFecha(fecha) {
       const text = String(fecha || '').trim();
@@ -769,38 +939,6 @@
         month: 'long',
         year: 'numeric'
       });
-    }
-
-    function sumarMeses(fecha, cantidad) {
-      const resultado = new Date(fecha);
-      const diaOriginal = resultado.getDate();
-      resultado.setDate(1);
-      resultado.setMonth(resultado.getMonth() + cantidad);
-      const ultimoDia = new Date(
-        resultado.getFullYear(),
-        resultado.getMonth() + 1,
-        0
-      ).getDate();
-      resultado.setDate(Math.min(diaOriginal, ultimoDia));
-      return resultado;
-    }
-
-    function formatearPeriodo(inicio, fin) {
-      const formato = { day: 'numeric', month: 'long', year: 'numeric' };
-      const ultimoDia = new Date(fin);
-      ultimoDia.setDate(ultimoDia.getDate() - 1);
-      return `${inicio.toLocaleDateString('es-CL', formato)} al ${ultimoDia.toLocaleDateString('es-CL', formato)}`;
-    }
-
-    function dentroDelCiclo(fechaValor) {
-      const fecha = parseFecha(fechaValor);
-      return !isNaN(fecha.getTime()) && fecha >= FECHA_INICIO && fecha < FECHA_FIN;
-    }
-
-    function crearRutaPlan(valor) {
-      if (!valor) return '';
-      if (/^https?:\/\//i.test(valor)) return valor;
-      return `/movesmart-web/clientes/${valor.replace(/^\/+/, '')}`;
     }
 
     function dayKey(fecha) {
@@ -992,21 +1130,23 @@
     }
 
     function render() {
+      renderPlan();
+
       if (!sesiones.length) {
         document.getElementById('kpis').innerHTML = `
           <div class="kpi">
             <small>Estado</small>
-            <strong>Sin datos del mes ${MES_PROGRAMA} para ${CLIENTE_DASHBOARD}</strong>
+            <strong>Sin datos de ${NOMBRE_MES_DASHBOARD} para ${CLIENTE_DASHBOARD}</strong>
           </div>
         `;
 
         document.getElementById('history').innerHTML = `
           <li class="log">
-            <strong>Mes ${MES_PROGRAMA}</strong>
+            <strong>${NOMBRE_MES_DASHBOARD}</strong>
             <div>
               <span class="badge b-red">Sin registros</span>
               <p class="muted" style="margin-top:8px">
-                Periodo revisado: ${NOMBRE_PERIODO}.
+                El dashboard está filtrando solo los datos de ${NOMBRE_MES_DASHBOARD}.
               </p>
             </div>
             <span class="badge b-blue">Mes filtrado</span>
@@ -1035,7 +1175,7 @@
       const esfuerzoProm = Math.round(avg(sesiones.map(session => esfuerzoNum(session.esfuerzo))) * 10) / 10;
 
       document.getElementById('kpis').innerHTML = `
-        <div class="kpi"><small>Sesiones del ciclo</small><strong>${sesiones.length} de ${TOTAL_SESIONES}</strong></div>
+        <div class="kpi"><small>Sesiones registradas</small><strong>${sesiones.length}</strong></div>
         <div class="kpi"><small>Adherencia</small><strong>${adherencia}%</strong></div>
         <div class="kpi"><small>Dolor inicial → actual</small><strong>${dolorInicial} → ${dolorActual}</strong></div>
         <div class="kpi"><small>Esfuerzo promedio</small><strong>${esfuerzoProm}/10</strong></div>
@@ -1092,14 +1232,7 @@
           <div class="kpi"><small>Estado</small><strong>Cargando...</strong></div>
         `;
 
-        if (!CLIENTE_ID) {
-          throw new Error('Falta el cliente en la dirección del dashboard');
-        }
-
-        const response = await fetch(
-          `${API_URL}?cliente=${encodeURIComponent(CLIENTE_ID)}`,
-          { cache: 'no-store' }
-        );
+        const response = await fetch(API_URL);
         const json = await response.json();
 
         if (!json.ok) {
@@ -1108,35 +1241,28 @@
 
         const todasLasSesiones = json.respuestas_registro || [];
         const todasLasElecciones = json.respuestas || [];
-
-        CLIENTE_DASHBOARD = json.cliente;
-        MES_PROGRAMA = Number(json.mes_programa) || 0;
-        TOTAL_SESIONES = Number(json.total_sesiones) || 0;
-        FECHA_INICIO = parseFecha(json.fecha_inicio);
-        FECHA_FIN = parseFecha(json.fecha_reevaluacion);
-        NOMBRE_PERIODO = formatearPeriodo(FECHA_INICIO, FECHA_FIN);
-
-        document.getElementById('nombreCliente').textContent = CLIENTE_DASHBOARD;
-        document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
-        document.getElementById('descripcionPeriodo').textContent =
-          `Mes ${MES_PROGRAMA} del programa · ${NOMBRE_PERIODO}`;
-        document.getElementById('enlaceTolerancia').href =
-          `/movesmart-web/clientes/tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
-
-        const enlacePlan = document.getElementById('enlacePlan');
-        const rutaPlan = crearRutaPlan(PLAN_PARAM || json.plan);
-        if (rutaPlan) {
-          enlacePlan.href = rutaPlan;
-        } else {
-          enlacePlan.style.display = 'none';
-        }
+        planDetalle = json.plan_detalle || {};
 
         sesiones = todasLasSesiones.filter(session => {
-          return dentroDelCiclo(session.fecha || session.Fecha);
+          const fecha = parseFecha(session.fecha || session.Fecha);
+
+          const cliente = String(session.cliente || session.Cliente || '').trim().toLowerCase();
+
+          return !isNaN(fecha.getTime()) &&
+                 fecha.getMonth() + 1 === MES_DASHBOARD &&
+                 fecha.getFullYear() === ANIO_DASHBOARD &&
+                 cliente === CLIENTE_DASHBOARD.toLowerCase();
         });
 
         elecciones = todasLasElecciones.filter(row => {
-          return dentroDelCiclo(row.fecha || row.Fecha);
+          const fecha = parseFecha(row.fecha || row.Fecha);
+
+          const cliente = String(row.cliente || row.Cliente || '').trim().toLowerCase();
+
+          return !isNaN(fecha.getTime()) &&
+                 fecha.getMonth() + 1 === MES_DASHBOARD &&
+                 fecha.getFullYear() === ANIO_DASHBOARD &&
+                 cliente === CLIENTE_DASHBOARD.toLowerCase();
         });
 
         sesiones.sort((a, b) => parseFecha(a.fecha || a.Fecha) - parseFecha(b.fecha || b.Fecha));
