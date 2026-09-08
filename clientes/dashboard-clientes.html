@@ -859,13 +859,8 @@
       FECHA_INICIO_CICLO = parseFecha(datos.fecha_inicio);
       FECHA_TERMINO_CICLO = parseFecha(datos.fecha_reevaluacion);
 
-      const inicio = dayKey(datos.fecha_inicio);
-      const termino = dayKey(datos.fecha_reevaluacion);
-      const tieneFechas = inicio !== 'Sin fecha' && termino !== 'Sin fecha';
-
-      document.getElementById('textoResumenMensual').textContent = tieneFechas
-        ? `Este dashboard muestra todos los registros del ${NOMBRE_CICLO_DASHBOARD}, desde el ${inicio} hasta el ${termino}.`
-        : `Este dashboard muestra todos los registros del ${NOMBRE_CICLO_DASHBOARD}.`;
+      document.getElementById('textoResumenMensual').textContent =
+        `Este dashboard muestra todos los registros del ${NOMBRE_CICLO_DASHBOARD}.`;
     }
 
     function perteneceAlCiclo(registro) {
