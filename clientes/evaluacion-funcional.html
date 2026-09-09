@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Evaluación funcional | MoveSmart</title>
+<title>Evaluación funcional | Dixie Acosta · MoveSmart</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -37,15 +37,25 @@ body{
 .field{padding:17px;border-radius:19px;background:var(--soft);border:1px solid rgba(255,255,255,.075);margin-top:13px}
 .field label,.field-title{display:block;font-weight:850;margin-bottom:10px;line-height:1.45}
 .helper{color:var(--muted);font-size:.88rem;line-height:1.5;margin-top:7px}
-.scale{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
+.scale{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:7px}
 .scale label{margin:0}
 .scale input{position:absolute;opacity:0}
-.scale span{min-height:52px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);cursor:pointer;font-weight:850;color:var(--muted)}
+.scale span{min-height:48px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);cursor:pointer;font-weight:850;color:var(--muted)}
 .scale input:checked+span{color:#fff;border-color:var(--accent);background:rgba(255,90,31,.17)}
 input[type="number"],textarea,select{
   width:100%;border:0;border-radius:14px;padding:13px 14px;background:#fff;color:#17131c;font:inherit;outline:none
 }
 textarea{min-height:90px;resize:vertical}
+.voice-field{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.voice-field textarea{min-width:0}
+.mic-btn{width:52px;height:52px;border-radius:15px;border:1px solid rgba(255,90,31,.38);background:rgba(255,90,31,.13);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.2s ease}
+.mic-btn:hover{background:rgba(255,90,31,.22)}
+.mic-btn.recording{background:var(--accent);box-shadow:0 0 0 6px rgba(255,90,31,.16);animation:pulse 1.15s infinite}
+.mic-btn:disabled{opacity:.45;cursor:not-allowed;animation:none}
+.mic-btn svg{width:24px;height:24px;fill:currentColor}
+.voice-status{grid-column:1/-1;margin-top:-3px;color:var(--muted);font-size:.86rem;line-height:1.45}
+.voice-status.active{color:#ffd7c8;font-weight:750}
+@keyframes pulse{50%{transform:scale(1.06)}}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .notice{padding:15px;border-radius:17px;background:rgba(255,166,35,.10);border:1px solid rgba(255,166,35,.22);color:#ffe6b0;line-height:1.55;margin-top:14px}
 .btn{width:100%;border:0;border-radius:17px;padding:17px 20px;font:inherit;font-weight:900;cursor:pointer;background:linear-gradient(180deg,var(--accent2),var(--accent));color:#fff;box-shadow:0 14px 28px rgba(255,90,31,.22);margin-top:18px}
@@ -54,10 +64,10 @@ textarea{min-height:90px;resize:vertical}
 .metric{padding:14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}
 .metric small{display:block;color:var(--muted);margin-bottom:5px}.metric strong{font-size:1.15rem}
 .copy-btn{background:rgba(255,255,255,.08);border:1px solid var(--border);box-shadow:none}
-.pending{display:none;padding:24px;margin-bottom:18px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025)),var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow)}
-.pending.active{display:block}.pending h3{font-size:1.45rem;margin-bottom:9px}.pending p{color:var(--muted);line-height:1.6}
+.timer-box{margin-top:14px;padding:18px;text-align:center;border-radius:18px;background:rgba(47,99,255,.11);border:1px solid rgba(111,142,255,.25)}
+.timer-box strong{display:block;font-size:2rem;margin-bottom:10px}.timer-btn{margin:0;padding:12px 18px;width:auto}
 @media(max-width:700px){
-  .scale{grid-template-columns:repeat(3,1fr)}.two,.result-grid{grid-template-columns:1fr}.hero,.card{padding:19px}
+  .scale{grid-template-columns:repeat(6,1fr)}.scale label:last-child{grid-column:auto}.two,.result-grid{grid-template-columns:1fr}.hero,.card{padding:19px}
   .topbar{align-items:flex-start}.back{font-size:.88rem}
 }
 </style>
@@ -67,24 +77,19 @@ textarea{min-height:90px;resize:vertical}
   <header class="topbar">
     <div class="brand">
       <div class="badge">M</div>
-      <div><h1>MoveSmart</h1><p id="clientSubtitle">Evaluación funcional</p></div>
+      <div><h1>MoveSmart</h1><p>Dixie Acosta · Evaluación inicial</p></div>
     </div>
-    <a class="back" id="backLink" href="/movesmart-web/acceso-clientes.html">← Volver</a>
+    <a class="back" href="/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver</a>
   </header>
 
   <section class="hero">
-    <span class="eyebrow" id="cycleLabel">📍 Evaluación funcional</span>
-    <h2 id="heroTitle">Cargando tu <span>evaluación</span></h2>
-    <p id="heroText">Estamos preparando la evaluación correspondiente a tu ciclo.</p>
-    <div class="goal" id="goalBox">
+    <span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
+    <h2>Evaluemos tu <span>despegue al caminar</span></h2>
+    <p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
+    <div class="goal">
       <strong>Objetivo funcional</strong>
-      <span id="goalText"></span>
+      Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.
     </div>
-  </section>
-
-  <section class="pending" id="pendingState">
-    <h3 id="pendingTitle">Evaluación funcional pendiente</h3>
-    <p id="pendingText"></p>
   </section>
 
   <form id="evalForm">
@@ -93,14 +98,7 @@ textarea{min-height:90px;resize:vertical}
       <p class="section-sub">Camina unos pasos a tu velocidad habitual y piensa específicamente en el momento en que el pie impulsa el cuerpo hacia delante.</p>
       <div class="field">
         <span class="field-title">¿Cuánto molesta el talón/Aquiles durante el despegue? *</span>
-        <div class="scale">
-          <label><input type="radio" name="dolor_despegue" value="0" required><span>0</span></label>
-          <label><input type="radio" name="dolor_despegue" value="2"><span>2</span></label>
-          <label><input type="radio" name="dolor_despegue" value="4"><span>4</span></label>
-          <label><input type="radio" name="dolor_despegue" value="6"><span>6</span></label>
-          <label><input type="radio" name="dolor_despegue" value="8"><span>8</span></label>
-          <label><input type="radio" name="dolor_despegue" value="10"><span>10</span></label>
-        </div>
+        <div class="scale" data-scale="dolor_despegue"></div>
         <p class="helper">0 = nada · 10 = máxima molestia imaginable.</p>
       </div>
     </section>
@@ -110,23 +108,30 @@ textarea{min-height:90px;resize:vertical}
       <p class="section-sub">Queremos saber qué tan capaz te sientes de realizar la tarea, no solamente cuánto duele.</p>
       <div class="field">
         <span class="field-title">¿Qué tan capaz te sientes de impulsarte con ese pie al caminar? *</span>
-        <div class="scale">
-          <label><input type="radio" name="psfs_despegue" value="0" required><span>0</span></label>
-          <label><input type="radio" name="psfs_despegue" value="2"><span>2</span></label>
-          <label><input type="radio" name="psfs_despegue" value="4"><span>4</span></label>
-          <label><input type="radio" name="psfs_despegue" value="6"><span>6</span></label>
-          <label><input type="radio" name="psfs_despegue" value="8"><span>8</span></label>
-          <label><input type="radio" name="psfs_despegue" value="10"><span>10</span></label>
-        </div>
+        <div class="scale" data-scale="psfs_despegue"></div>
         <p class="helper">0 = no puedo hacerlo · 10 = lo hago sin dificultad.</p>
       </div>
     </section>
 
     <section class="card">
-      <h3 class="section-title">3. Elevaciones bilaterales de talón</h3>
-      <p class="section-sub">Solo si hoy caminar es tolerable. De pie y con apoyo ligero de manos para equilibrio, eleva ambos talones desde el suelo en un rango cómodo.</p>
+      <h3 class="section-title">3. Confianza funcional</h3>
+      <p class="section-sub">La seguridad que sientes al moverte también es parte de tu progreso.</p>
+      <div class="field">
+        <span class="field-title">¿Qué tanta confianza tienes para impulsarte con ese pie al caminar? *</span>
+        <div class="scale" data-scale="confianza_despegue"></div>
+        <p class="helper">0 = nada de confianza · 10 = total confianza.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="section-title">4. Elevaciones bilaterales de talón en 30 segundos</h3>
+      <p class="section-sub">Esta es una prueba funcional adaptada MoveSmart. La repetiremos de la misma forma al final del ciclo.</p>
+      <div class="field">
+        <span class="field-title">Preparación de la prueba</span>
+        <p class="helper">Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas realizadas durante 30 segundos.</p>
+      </div>
       <div class="notice">
-        Si al comenzar tienes dolor fuerte, cojera marcada o el movimiento provoca un aumento claro de la molestia, <strong>no hagas la prueba</strong>. Marca “No realizada”.
+        No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápido de la molestia, mareo, pérdida de equilibrio o inseguridad. No necesitas llegar al dolor para que el resultado sea válido.
       </div>
 
       <div class="field">
@@ -141,10 +146,15 @@ textarea{min-height:90px;resize:vertical}
       </div>
 
       <div id="heelRiseFields">
+        <div class="timer-box">
+          <strong id="timerDisplay">30 s</strong>
+          <button class="btn timer-btn" id="timerBtn" type="button">Iniciar cronómetro</button>
+          <p class="helper">El cronómetro avisará al comenzar y al finalizar.</p>
+        </div>
         <div class="two">
           <div class="field">
             <label for="reps">Repeticiones realizadas</label>
-            <input id="reps" name="heel_raise_reps" type="number" min="0" max="50" inputmode="numeric">
+            <input id="reps" name="heel_raise_reps" type="number" min="0" max="60" inputmode="numeric">
           </div>
           <div class="field">
             <label for="dolorTest">Dolor máximo durante la prueba (0–10)</label>
@@ -159,14 +169,14 @@ textarea{min-height:90px;resize:vertical}
             <option>Fatiga</option>
             <option>Pérdida de altura</option>
             <option>Inseguridad</option>
-            <option>Terminó el número que podía hacer cómodamente</option>
+          <option>Finalizaron los 30 segundos</option>
           </select>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h3 class="section-title">4. Observación de la marcha</h3>
+      <h3 class="section-title">5. Observación de la marcha</h3>
       <p class="section-sub">Una observación breve para comparar en futuras evaluaciones.</p>
       <div class="field">
         <label for="marcha">Durante la caminata, ¿cómo se ve el despegue?</label>
@@ -181,11 +191,17 @@ textarea{min-height:90px;resize:vertical}
       </div>
       <div class="field">
         <label for="comentario">Comentario opcional</label>
-        <textarea id="comentario" name="comentario" placeholder="Ej.: siento que evito impulsarme, tengo miedo de apoyar, el dolor aparece al final del paso..."></textarea>
+        <div class="voice-field">
+          <textarea id="comentario" name="comentario" placeholder="Ej.: siento que evito impulsarme, tengo miedo de apoyar, el dolor aparece al final del paso..."></textarea>
+          <button class="mic-btn" id="micBtn" type="button" aria-label="Dictar comentario" title="Dictar comentario">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5.3-3a1 1 0 1 1 2 0 7.3 7.3 0 0 1-6.3 7.23V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.77A7.3 7.3 0 0 1 4.7 11a1 1 0 1 1 2 0 5.3 5.3 0 0 0 10.6 0Z"/></svg>
+          </button>
+          <p class="voice-status" id="voiceStatus">También puedes responder hablando: presiona el micrófono.</p>
+        </div>
       </div>
     </section>
 
-    <button class="btn" type="submit">Guardar mi resultado →</button>
+    <button class="btn" id="submitBtn" type="submit">Guardar mi resultado →</button>
   </form>
 
   <section class="result" id="result">
@@ -197,90 +213,26 @@ textarea{min-height:90px;resize:vertical}
 </main>
 
 <script>
-const CLIENTS = {
-  "dixie-acosta": {
-    name: "Dixie Acosta",
-    cycle: 2,
-    active: true,
-    back: "/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html",
-    title: 'Evaluemos tu <span>despegue al caminar</span>',
-    intro: "Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.",
-    goal: "Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad."
-  },
-  "juan-ugalde": {
-    name: "Juan Ugalde",
-    cycle: 6,
-    active: false,
-    back: "/movesmart-web/clientes/juan-ugalde/plan-juan-ugalde.html",
-    pending: "Primero necesitamos tu respuesta del compromiso inicial para definir contigo un objetivo y una prueba funcional apropiada."
-  },
-  "juany-flores": {
-    name: "Juany Flores",
-    cycle: 2,
-    active: false,
-    back: "/movesmart-web/clientes/juany-flores/plan-juany-flores.html",
-    pending: "Tu evaluación funcional todavía no está disponible. La activaremos cuando puedas realizar una prueba apropiada con seguridad."
-  }
-};
-
-const params = new URLSearchParams(window.location.search);
-const CLIENTE_ID = String(params.get("cliente_id") || "").trim().toLowerCase();
-const CONFIG = CLIENTS[CLIENTE_ID] || null;
-const CLIENTE = CONFIG ? CONFIG.name : "Cliente no identificado";
-const CICLO = CONFIG ? CONFIG.cycle : "";
+const CLIENTE = "Dixie Acosta";
+const CICLO = 2;
+const MOMENTO = "inicial";
+const OBJETIVO_FUNCIONAL = "Mejorar la capacidad de impulsarse con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.";
 const SAVE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuVK8dFpq4wmkqRSoGMYMELak0l8caT-dMKZkwpKvpL8C1K5jt1o6GbMJ-Q9kTd05nJg/exec";
 
 const form = document.getElementById("evalForm");
+const submitBtn = document.getElementById("submitBtn");
 const result = document.getElementById("result");
 const resultGrid = document.getElementById("resultGrid");
 const testEstado = document.getElementById("testEstado");
 const heelRiseFields = document.getElementById("heelRiseFields");
 let lastSummary = "";
 
-function configurePage(){
-  const subtitle = document.getElementById("clientSubtitle");
-  const cycleLabel = document.getElementById("cycleLabel");
-  const heroTitle = document.getElementById("heroTitle");
-  const heroText = document.getElementById("heroText");
-  const goalBox = document.getElementById("goalBox");
-  const goalText = document.getElementById("goalText");
-  const pendingState = document.getElementById("pendingState");
-  const pendingText = document.getElementById("pendingText");
-
-  document.title = `Evaluación funcional | ${CLIENTE} · MoveSmart`;
-  subtitle.textContent = `${CLIENTE} · Evaluación funcional`;
-
-  if(!CONFIG){
-    document.getElementById("backLink").href = "/movesmart-web/acceso-clientes.html";
-    cycleLabel.textContent = "Cliente no identificado";
-    heroTitle.innerHTML = 'No pudimos abrir tu <span>evaluación</span>';
-    heroText.textContent = "El enlace no contiene un cliente válido.";
-    goalBox.style.display = "none";
-    form.style.display = "none";
-    if(pendingState) pendingState.classList.add("active");
-    pendingText.textContent = "Vuelve a tu plan y abre nuevamente la evaluación funcional.";
-    return;
-  }
-
-  document.getElementById("backLink").href = CONFIG.back;
-  cycleLabel.textContent = CONFIG.active
-    ? `📍 Punto de partida · Ciclo ${CONFIG.cycle}`
-    : `📍 Ciclo ${CONFIG.cycle} · Pendiente`;
-
-  if(CONFIG.active){
-    heroTitle.innerHTML = CONFIG.title;
-    heroText.textContent = CONFIG.intro;
-    goalText.textContent = CONFIG.goal;
-    return;
-  }
-
-  heroTitle.innerHTML = 'Tu evaluación está <span>pendiente</span>';
-  heroText.textContent = "Todavía no hemos definido la prueba funcional de este ciclo.";
-  goalBox.style.display = "none";
-  form.style.display = "none";
-  if(pendingState) pendingState.classList.add("active");
-  pendingText.textContent = CONFIG.pending;
-}
+document.querySelectorAll("[data-scale]").forEach(scale => {
+  const name = scale.dataset.scale;
+  scale.innerHTML = Array.from({length:11},(_,value) =>
+    `<label><input type="radio" name="${name}" value="${value}" ${value === 0 ? "required" : ""}><span>${value}</span></label>`
+  ).join("");
+});
 
 testEstado.addEventListener("change", () => {
   const performed = testEstado.value === "Realizada";
@@ -293,6 +245,97 @@ testEstado.addEventListener("change", () => {
     document.getElementById("motivoParada").value = "";
   }
 });
+
+const timerDisplay = document.getElementById("timerDisplay");
+const timerBtn = document.getElementById("timerBtn");
+let timerInterval = null;
+
+function beep(){
+  try{
+    const audio = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    oscillator.connect(gain); gain.connect(audio.destination);
+    oscillator.frequency.value = 880; gain.gain.value = .12;
+    oscillator.start(); oscillator.stop(audio.currentTime + .18);
+  }catch(_){}
+}
+
+timerBtn.addEventListener("click", () => {
+  if(timerInterval) return;
+  let seconds = 30;
+  timerDisplay.textContent = `${seconds} s`;
+  timerBtn.textContent = "Prueba en curso…";
+  timerBtn.disabled = true;
+  beep();
+  timerInterval = setInterval(() => {
+    seconds -= 1;
+    timerDisplay.textContent = `${seconds} s`;
+    if(seconds <= 0){
+      clearInterval(timerInterval); timerInterval = null; beep();
+      timerBtn.disabled = false;
+      timerBtn.textContent = "Repetir cronómetro";
+      document.getElementById("reps").focus();
+    }
+  },1000);
+});
+
+const micBtn = document.getElementById("micBtn");
+const voiceStatus = document.getElementById("voiceStatus");
+const comentario = document.getElementById("comentario");
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+let isListening = false;
+
+if(SpeechRecognition){
+  recognition = new SpeechRecognition();
+  recognition.lang = "es-CL";
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  let baseText = "";
+
+  recognition.onstart = () => {
+    isListening = true;
+    baseText = comentario.value.trim();
+    micBtn.classList.add("recording");
+    micBtn.setAttribute("aria-label","Detener dictado");
+    voiceStatus.textContent = "Escuchando… habla con normalidad. Presiona nuevamente para detener.";
+    voiceStatus.classList.add("active");
+  };
+
+  recognition.onresult = event => {
+    let dictated = "";
+    for(let i = 0; i < event.results.length; i++){
+      dictated += event.results[i][0].transcript;
+    }
+    comentario.value = `${baseText}${baseText && dictated ? " " : ""}${dictated}`.trim();
+  };
+
+  recognition.onend = () => {
+    isListening = false;
+    micBtn.classList.remove("recording");
+    micBtn.setAttribute("aria-label","Dictar comentario");
+    voiceStatus.textContent = "Dictado detenido. Puedes corregir el texto o volver a presionar el micrófono.";
+    voiceStatus.classList.remove("active");
+  };
+
+  recognition.onerror = event => {
+    const denied = event.error === "not-allowed" || event.error === "service-not-allowed";
+    voiceStatus.textContent = denied
+      ? "No se pudo usar el micrófono. Revisa el permiso del navegador o escribe tu respuesta."
+      : "No pudimos reconocer la voz. Puedes intentarlo nuevamente o escribir tu respuesta.";
+  };
+
+  micBtn.addEventListener("click", () => {
+    try{
+      if(isListening) recognition.stop();
+      else recognition.start();
+    }catch(_){}
+  });
+}else{
+  micBtn.disabled = true;
+  voiceStatus.textContent = "El dictado por voz no está disponible en este navegador; puedes escribir tu respuesta.";
+}
 
 function fechaChile(){
   return new Intl.DateTimeFormat("es-CL",{
@@ -309,36 +352,41 @@ form.addEventListener("submit", async (e)=>{
   e.preventDefault();
   if(!form.reportValidity()) return;
 
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Guardando…";
+
   const fd = new FormData(form);
   const data = Object.fromEntries(fd.entries());
-  data.cliente_id = CLIENTE_ID;
   data.cliente = CLIENTE;
   data.ciclo = CICLO;
+  data.momento = MOMENTO;
+  data.objetivo_funcional = OBJETIVO_FUNCIONAL;
   data.fecha = fechaChile();
-  data.fecha_cliente = data.fecha;
-  data.momento = "Inicial";
-  data.tipo = "evaluacion_funcional_despegue";
-  data.objetivo_funcional = CONFIG.goal;
-  data.dolor_actividad = data.dolor_despegue;
-  data.capacidad_funcional = data.psfs_despegue;
-  data.repeticiones_talon_30s = data.heel_raise_reps || "";
-  data.dolor_prueba = data.dolor_heel_raise || "";
+  data.tipo = "evaluacion_funcional_movesmart";
 
   try{
-    localStorage.setItem(`movesmart_eval_funcional_${CLIENTE_ID}_ciclo${CICLO}`, JSON.stringify(data));
+    localStorage.setItem(`movesmart_eval_funcional_dixie_ciclo${CICLO}_${MOMENTO}`, JSON.stringify(data));
   }catch(_){}
 
   if(SAVE_SCRIPT_URL){
-    fetch(SAVE_SCRIPT_URL,{
-      method:"POST",mode:"no-cors",keepalive:true,
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify(data)
-    }).catch(()=>{});
+    try{
+      await fetch(SAVE_SCRIPT_URL,{
+        method:"POST",mode:"no-cors",keepalive:true,
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body:JSON.stringify(data)
+      });
+    }catch(_){
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Guardar mi resultado →";
+      alert("No pudimos enviar la evaluación. Revisa tu conexión e inténtalo nuevamente.");
+      return;
+    }
   }
 
   resultGrid.innerHTML =
     metric("Dolor en despegue", `${data.dolor_despegue}/10`) +
     metric("Capacidad funcional", `${data.psfs_despegue}/10`) +
+    metric("Confianza funcional", `${data.confianza_despegue}/10`) +
     metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps} rep.` : data.test_estado) +
     metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
     metric("Motivo de parada", data.motivo_parada || "—") +
@@ -348,17 +396,20 @@ form.addEventListener("submit", async (e)=>{
 `MoveSmart · Evaluación funcional
 Cliente: ${CLIENTE}
 Fecha: ${data.fecha}
+Momento: evaluación ${MOMENTO} del ciclo ${CICLO}
 Objetivo: mejorar el impulso del pie durante la marcha.
 
 Dolor durante el despegue: ${data.dolor_despegue}/10
 Capacidad funcional (PSFS): ${data.psfs_despegue}/10
-Elevaciones bilaterales: ${data.test_estado === "Realizada" ? data.heel_raise_reps + " repeticiones" : data.test_estado}
+Confianza funcional: ${data.confianza_despegue}/10
+Elevaciones bilaterales en 30 segundos: ${data.test_estado === "Realizada" ? data.heel_raise_reps + " repeticiones" : data.test_estado}
 Dolor durante elevaciones: ${data.test_estado === "Realizada" ? data.dolor_heel_raise + "/10" : "No aplica"}
 Motivo de parada: ${data.motivo_parada || "No registrado"}
 Observación de marcha: ${data.observacion_marcha || "No registrado"}
 Comentario: ${data.comentario || "Sin comentario"}`;
 
   result.classList.add("active");
+  submitBtn.textContent = "✅ Evaluación guardada";
   result.scrollIntoView({behavior:"smooth",block:"start"});
 });
 
@@ -373,7 +424,6 @@ document.getElementById("copyBtn").addEventListener("click", async ()=>{
   }
 });
 
-configurePage();
 testEstado.dispatchEvent(new Event("change"));
 </script>
 </body>
