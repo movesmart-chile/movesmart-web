@@ -831,7 +831,7 @@ font-size:.88rem;
       <div class="brand-badge">M</div>
       <div class="brand-text"><h1>MoveSmart</h1><p>Juan Ugalde · Pausa activa</p></div>
     </div>
-    <a href="[../plan-juan-ugalde.html](https://movesmart-chile.github.io/movesmart-web/clientes/juan-ugalde/plan-juan-ugalde.html)" class="back-btn">← Volver al plan</a>
+    <a href="https://movesmart-chile.github.io/movesmart-web/clientes/juan-ugalde/plan-juan-ugalde.html" class="back-btn">← Volver al plan</a>
   </header>
   <section class="hero">
     <div class="hero-image" aria-hidden="true"></div>
@@ -946,7 +946,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> una pausa corta también cuenta. Lo importante es cambiar de posición.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="[../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Breve](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Breve)" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Breve" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
     <div class="routine-container" id="rutina-estandar">
@@ -1044,7 +1044,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> mantén los movimientos suaves. Si una molestia aumenta claramente, reduce el rango o detén ese ejercicio.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="[../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Estandar](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Estandar)" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Estandar" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
     <div class="routine-container" id="rutina-completa">
@@ -1175,7 +1175,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> el objetivo es sumar movimiento frecuente y cómodo, con especial atención a hombro, codo, antebrazo, muñeca y mano.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="[../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Completa](https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Completa)" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Completa" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
   </main>
@@ -1206,8 +1206,8 @@ font-size:.88rem;
     </div>
   </div>
 </div>
-<script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
-<script src="[https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js](https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js)"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const CLIENTE = "Juan Ugalde";
@@ -1354,7 +1354,7 @@ document.querySelectorAll('.open-video').forEach(button => {
   button.addEventListener('click', () => {
     const rawUrl = button.dataset.video;
     videoTitle.textContent = button.dataset.title || 'Video de ejercicio';
-    const isDirect = /.(mp4|webm|ogg)(?.*)?$/i.test(rawUrl);
+    const isDirect = /\.(mp4|webm|ogg)(\?.*)?$/i.test(rawUrl);
     videoPlayer.pause();
     videoPlayer.removeAttribute('src');
     videoPlayer.classList.remove('loop-fade-out');
@@ -1397,7 +1397,7 @@ document.addEventListener('keydown', event => {
   }
 });
 // Envío de ejecuciones a Supabase Storage.
-function slug(text){return String(text||'').normalize('NFD').replace(/[u0300-u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)}
+function slug(text){return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)}
 function nombreRutina(btn){const c=btn.closest('.routine-container');return c?.id==='rutina-breve'?'Pausa Activa Breve':c?.id==='rutina-estandar'?'Pausa Activa Estandar':'Pausa Activa Completa'}
 function fechaChile(){return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Santiago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
 function rutaVideo(rutina,ejercicio,file){const ext=(file.name.split('.').pop()||'mp4').replace(/[^a-z0-9]/gi,'');return `juan-ugalde/${slug(rutina)}/${fechaChile()}/${Date.now()}_${slug(ejercicio)}.${ext}`}
