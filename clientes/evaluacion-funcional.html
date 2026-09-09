@@ -8,15 +8,15 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#090b12;--card:rgba(19,18,29,.92);--soft:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.12);--text:#fff;--muted:rgba(255,255,255,.72);
-  --accent:#ff5a1f;--accent2:#ff8a3d;--ok:#35d062;--blue:#2f63ff;
-  --shadow:0 20px 55px rgba(0,0,0,.36);--wrap:min(850px,calc(100% - 28px));
+--bg:#090b12;--card:rgba(19,18,29,.92);--soft:rgba(255,255,255,.06);
+--border:rgba(255,255,255,.12);--text:#fff;--muted:rgba(255,255,255,.72);
+--accent:#ff5a1f;--accent2:#ff8a3d;--ok:#35d062;--blue:#2f63ff;
+--shadow:0 20px 55px rgba(0,0,0,.36);--wrap:min(850px,calc(100% - 28px));
 }
 body{
-  min-height:100vh;font-family:"Segoe UI",system-ui,sans-serif;color:var(--text);
-  background:linear-gradient(180deg,rgba(6,8,15,.58),rgba(6,8,15,.82)),
-  url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center/cover fixed no-repeat,var(--bg);
+min-height:100vh;font-family:"Segoe UI",system-ui,sans-serif;color:var(--text);
+background:linear-gradient(180deg,rgba(6,8,15,.58),rgba(6,8,15,.82)),
+url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center/cover fixed no-repeat,var(--bg);
 }
 .page{width:var(--wrap);margin:auto;padding:24px 0 46px}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
@@ -43,7 +43,7 @@ body{
 .scale span{min-height:48px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);cursor:pointer;font-weight:850;color:var(--muted)}
 .scale input:checked+span{color:#fff;border-color:var(--accent);background:rgba(255,90,31,.17)}
 input[type="number"],textarea,select{
-  width:100%;border:0;border-radius:14px;padding:13px 14px;background:#fff;color:#17131c;font:inherit;outline:none
+width:100%;border:0;border-radius:14px;padding:13px 14px;background:#fff;color:#17131c;font:inherit;outline:none
 }
 textarea{min-height:90px;resize:vertical}
 .voice-field{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
@@ -66,159 +66,216 @@ textarea{min-height:90px;resize:vertical}
 .copy-btn{background:rgba(255,255,255,.08);border:1px solid var(--border);box-shadow:none}
 .timer-box{margin-top:14px;padding:18px;text-align:center;border-radius:18px;background:rgba(47,99,255,.11);border:1px solid rgba(111,142,255,.25)}
 .timer-box strong{display:block;font-size:2rem;margin-bottom:10px}.timer-btn{margin:0;padding:12px 18px;width:auto}
+.demo-box{margin-top:14px;padding:16px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.demo-box strong{display:block;margin-bottom:10px}.demo-video{display:block;width:100%;max-height:430px;border-radius:15px;background:#000;object-fit:contain}
+.review-request{margin-top:14px;padding:16px;border-radius:18px;background:rgba(47,99,255,.09);border:1px solid rgba(111,142,255,.22)}
+.review-request{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.review-request-copy{flex:1 1 280px}.review-request-copy strong{display:block;margin-bottom:6px}.review-request-copy small{display:block;color:var(--muted);font-size:.9rem;line-height:1.5}
+.upload-execution-btn{border:0;border-radius:14px;padding:13px 17px;background:linear-gradient(180deg,var(--accent2),var(--accent));color:#fff;font:inherit;font-weight:900;cursor:pointer;white-space:nowrap;box-shadow:0 10px 24px rgba(255,90,31,.22)}
+.upload-execution-btn.done{background:linear-gradient(180deg,#44d86b,#20a94c)}
+.video-file-label{display:flex;align-items:center;justify-content:center;text-align:center;min-height:62px;padding:14px;border-radius:15px;border:1px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.055);cursor:pointer;font-weight:850}
+.video-file-label input{display:none}.client-video-preview{display:none;width:100%;max-height:360px;margin-top:13px;border-radius:15px;background:#000;object-fit:contain}.client-video-preview.active{display:block}
+.video-selected,.upload-status{margin-top:9px;color:var(--muted);font-size:.87rem;line-height:1.45}.video-comment{margin-top:12px}
+.video-send{margin-top:12px}.video-send:disabled{opacity:.45;cursor:not-allowed}
+.upload-track{display:none;height:9px;margin-top:13px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.1)}.upload-track.active{display:block}.upload-bar{width:0;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .18s ease}
+.execution-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,4,10,.82);backdrop-filter:blur(9px)}
+.execution-modal.active{display:flex}.execution-dialog{width:min(620px,100%);max-height:92vh;overflow:auto;border-radius:24px;background:#1a1923;border:1px solid rgba(255,255,255,.14);box-shadow:0 28px 80px rgba(0,0,0,.55)}
+.execution-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 20px;background:rgba(26,25,35,.97);border-bottom:1px solid rgba(255,255,255,.1)}
+.execution-head strong{font-size:1.18rem}.execution-head p{color:var(--muted);font-size:.87rem;margin-top:4px}.execution-close{border:1px solid var(--border);border-radius:12px;padding:9px 11px;background:rgba(255,255,255,.06);color:#fff;font-weight:800;cursor:pointer}
+.execution-body{padding:20px}.execution-tip{margin-bottom:15px;padding:14px;border-radius:15px;background:rgba(255,166,35,.09);border:1px solid rgba(255,166,35,.2);color:#ffe6b0;line-height:1.5;font-size:.9rem}.execution-tip strong{color:#fff}
+.execution-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;margin-top:14px}.execution-actions button{margin:0}.execution-cancel{border:1px solid var(--border);border-radius:15px;padding:14px;background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:850;cursor:pointer}
 @media(max-width:700px){
-  .scale{grid-template-columns:repeat(6,1fr)}.scale label:last-child{grid-column:auto}.two,.result-grid{grid-template-columns:1fr}.hero,.card{padding:19px}
-  .topbar{align-items:flex-start}.back{font-size:.88rem}
+.scale{grid-template-columns:repeat(6,1fr)}.scale label:last-child{grid-column:auto}.two,.result-grid{grid-template-columns:1fr}.hero,.card{padding:19px}
+.topbar{align-items:flex-start}.back{font-size:.88rem}.upload-execution-btn{width:100%}.execution-actions{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <main class="page">
-  <header class="topbar">
-    <div class="brand">
-      <div class="badge">M</div>
-      <div><h1>MoveSmart</h1><p>Dixie Acosta · Evaluación inicial</p></div>
-    </div>
-    <a class="back" href="/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver</a>
-  </header>
-
-  <section class="hero">
-    <span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
-    <h2>Evaluemos tu <span>despegue al caminar</span></h2>
-    <p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
-    <div class="goal">
-      <strong>Objetivo funcional</strong>
-      Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.
-    </div>
-  </section>
-
-  <form id="evalForm">
-    <section class="card">
-      <h3 class="section-title">1. Molestia durante el despegue</h3>
-      <p class="section-sub">Camina unos pasos a tu velocidad habitual y piensa específicamente en el momento en que el pie impulsa el cuerpo hacia delante.</p>
-      <div class="field">
-        <span class="field-title">¿Cuánto molesta el talón/Aquiles durante el despegue? *</span>
-        <div class="scale" data-scale="dolor_despegue"></div>
-        <p class="helper">0 = nada · 10 = máxima molestia imaginable.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <h3 class="section-title">2. Capacidad funcional</h3>
-      <p class="section-sub">Queremos saber qué tan capaz te sientes de realizar la tarea, no solamente cuánto duele.</p>
-      <div class="field">
-        <span class="field-title">¿Qué tan capaz te sientes de impulsarte con ese pie al caminar? *</span>
-        <div class="scale" data-scale="psfs_despegue"></div>
-        <p class="helper">0 = no puedo hacerlo · 10 = lo hago sin dificultad.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <h3 class="section-title">3. Confianza funcional</h3>
-      <p class="section-sub">La seguridad que sientes al moverte también es parte de tu progreso.</p>
-      <div class="field">
-        <span class="field-title">¿Qué tanta confianza tienes para impulsarte con ese pie al caminar? *</span>
-        <div class="scale" data-scale="confianza_despegue"></div>
-        <p class="helper">0 = nada de confianza · 10 = total confianza.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <h3 class="section-title">4. Elevaciones bilaterales de talón en 30 segundos</h3>
-      <p class="section-sub">Esta es una prueba funcional adaptada MoveSmart. La repetiremos de la misma forma al final del ciclo.</p>
-      <div class="field">
-        <span class="field-title">Preparación de la prueba</span>
-        <p class="helper">Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas realizadas durante 30 segundos.</p>
-      </div>
-      <div class="notice">
-        No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápido de la molestia, mareo, pérdida de equilibrio o inseguridad. No necesitas llegar al dolor para que el resultado sea válido.
-      </div>
-
-      <div class="field">
-        <label for="testEstado">¿Realizaste la prueba? *</label>
-        <select id="testEstado" name="test_estado" required>
-          <option value="">Selecciona</option>
-          <option value="Realizada">Sí, realizada</option>
-          <option value="No realizada por dolor">No realizada por dolor</option>
-          <option value="No realizada por inseguridad">No realizada por inseguridad</option>
-          <option value="No realizada por otro motivo">No realizada por otro motivo</option>
-        </select>
-      </div>
-
-      <div id="heelRiseFields">
-        <div class="timer-box">
-          <strong id="timerDisplay">30 s</strong>
-          <button class="btn timer-btn" id="timerBtn" type="button">Iniciar cronómetro</button>
-          <p class="helper">El cronómetro avisará al comenzar y al finalizar.</p>
-        </div>
-        <div class="two">
-          <div class="field">
-            <label for="reps">Repeticiones realizadas</label>
-            <input id="reps" name="heel_raise_reps" type="number" min="0" max="60" inputmode="numeric">
-          </div>
-          <div class="field">
-            <label for="dolorTest">Dolor máximo durante la prueba (0–10)</label>
-            <input id="dolorTest" name="dolor_heel_raise" type="number" min="0" max="10" step="1" inputmode="numeric">
-          </div>
-        </div>
-        <div class="field">
-          <label for="motivoParada">¿Por qué paraste?</label>
-          <select id="motivoParada" name="motivo_parada">
-            <option value="">Selecciona</option>
-            <option>Dolor</option>
-            <option>Fatiga</option>
-            <option>Pérdida de altura</option>
-            <option>Inseguridad</option>
-          <option>Finalizaron los 30 segundos</option>
-          </select>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h3 class="section-title">5. Observación de la marcha</h3>
-      <p class="section-sub">Una observación breve para comparar en futuras evaluaciones.</p>
-      <div class="field">
-        <label for="marcha">Durante la caminata, ¿cómo se ve el despegue?</label>
-        <select id="marcha" name="observacion_marcha">
-          <option value="">Selecciona</option>
-          <option>Sin cambio visible</option>
-          <option>Despegue más corto o cuidadoso</option>
-          <option>Cojera leve</option>
-          <option>Cojera marcada</option>
-          <option>No evaluado</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="comentario">Comentario opcional</label>
-        <div class="voice-field">
-          <textarea id="comentario" name="comentario" placeholder="Ej.: siento que evito impulsarme, tengo miedo de apoyar, el dolor aparece al final del paso..."></textarea>
-          <button class="mic-btn" id="micBtn" type="button" aria-label="Dictar comentario" title="Dictar comentario">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5.3-3a1 1 0 1 1 2 0 7.3 7.3 0 0 1-6.3 7.23V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.77A7.3 7.3 0 0 1 4.7 11a1 1 0 1 1 2 0 5.3 5.3 0 0 0 10.6 0Z"/></svg>
-          </button>
-          <p class="voice-status" id="voiceStatus">También puedes responder hablando: presiona el micrófono.</p>
-        </div>
-      </div>
-    </section>
-
-    <button class="btn" id="submitBtn" type="submit">Guardar mi resultado →</button>
-  </form>
-
-  <section class="result" id="result">
-    <h3>✅ Evaluación funcional registrada</h3>
-    <p style="color:var(--muted);line-height:1.6">Este será el punto de partida para comparar el próximo control.</p>
-    <div class="result-grid" id="resultGrid"></div>
-    <button class="btn copy-btn" id="copyBtn" type="button">📋 Copiar resumen</button>
-  </section>
+<header class="topbar">
+<div class="brand">
+<div class="badge">M</div>
+<div><h1>MoveSmart</h1><p>Dixie Acosta · Evaluación inicial</p></div>
+</div>
+<a class="back" href="/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver</a>
+</header>
+<section class="hero">
+<span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
+<h2>Evaluemos tu <span>despegue al caminar</span></h2>
+<p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
+<div class="goal">
+<strong>Objetivo funcional</strong>
+Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.
+</div>
+</section>
+<form id="evalForm">
+<section class="card">
+<h3 class="section-title">1. Molestia durante el despegue</h3>
+<p class="section-sub">Camina unos pasos a tu velocidad habitual y piensa específicamente en el momento en que el pie impulsa el cuerpo hacia delante.</p>
+<div class="field">
+<span class="field-title">¿Cuánto molesta el talón/Aquiles durante el despegue? *</span>
+<div class="scale" data-scale="dolor_despegue"></div>
+<p class="helper">0 = nada · 10 = máxima molestia imaginable.</p>
+</div>
+</section>
+<section class="card">
+<h3 class="section-title">2. Capacidad funcional</h3>
+<p class="section-sub">Queremos saber qué tan capaz te sientes de realizar la tarea, no solamente cuánto duele.</p>
+<div class="field">
+<span class="field-title">¿Qué tan capaz te sientes de impulsarte con ese pie al caminar? *</span>
+<div class="scale" data-scale="psfs_despegue"></div>
+<p class="helper">0 = no puedo hacerlo · 10 = lo hago sin dificultad.</p>
+</div>
+</section>
+<section class="card">
+<h3 class="section-title">3. Confianza funcional</h3>
+<p class="section-sub">La seguridad que sientes al moverte también es parte de tu progreso.</p>
+<div class="field">
+<span class="field-title">¿Qué tanta confianza tienes para impulsarte con ese pie al caminar? *</span>
+<div class="scale" data-scale="confianza_despegue"></div>
+<p class="helper">0 = nada de confianza · 10 = total confianza.</p>
+</div>
+</section>
+<section class="card">
+<h3 class="section-title">4. Elevaciones bilaterales de talón en 30 segundos</h3>
+<p class="section-sub">Esta es una prueba funcional adaptada MoveSmart. La repetiremos de la misma forma al final del ciclo.</p>
+<div class="field">
+<span class="field-title">Preparación de la prueba</span>
+<p class="helper">Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas realizadas durante 30 segundos.</p>
+</div>
+<div class="notice">
+No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápido de la molestia, mareo, pérdida de equilibrio o inseguridad. No necesitas llegar al dolor para que el resultado sea válido.
+</div>
+<div class="demo-box">
+<strong>▶ Mira cómo realizar el ejercicio</strong>
+<video class="demo-video" controls playsinline preload="metadata" src="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4"></video>
+</div>
+<div class="timer-box">
+<strong id="timerDisplay">30 s</strong>
+<button class="btn timer-btn" id="timerBtn" type="button">Iniciar cronómetro</button>
+<p class="helper">El cronómetro avisará al comenzar y al finalizar.</p>
+</div>
+<div class="review-request">
+<div class="review-request-copy">
+<strong>📹 ¿Quieres que revise esta prueba?</strong>
+<small>Es opcional. Puedes enviar el video completo de los 30 segundos a MoveSmart.</small>
+</div>
+<button class="upload-execution-btn" id="openTestVideo" type="button">📹 Enviar mi ejecución</button>
+<div class="upload-status" id="videoUploadStatusSummary" aria-live="polite"></div>
+</div>
+<div class="field">
+<label for="testEstado">¿Realizaste la prueba? *</label>
+<select id="testEstado" name="test_estado" required>
+<option value="">Selecciona</option>
+<option value="Realizada">Sí, realizada</option>
+<option value="No realizada por dolor">No realizada por dolor</option>
+<option value="No realizada por inseguridad">No realizada por inseguridad</option>
+<option value="No realizada por otro motivo">No realizada por otro motivo</option>
+</select>
+</div>
+<div id="heelRiseFields">
+<div class="two">
+<div class="field">
+<label for="reps">Repeticiones realizadas</label>
+<input id="reps" name="heel_raise_reps" type="number" min="0" max="60" inputmode="numeric">
+</div>
+<div class="field">
+<label for="dolorTest">Dolor máximo durante la prueba (0–10)</label>
+<input id="dolorTest" name="dolor_heel_raise" type="number" min="0" max="10" step="1" inputmode="numeric">
+</div>
+</div>
+<div class="field">
+<label for="motivoParada">¿Por qué paraste?</label>
+<select id="motivoParada" name="motivo_parada">
+<option value="">Selecciona</option>
+<option>Dolor</option>
+<option>Fatiga</option>
+<option>Pérdida de altura</option>
+<option>Inseguridad</option>
+<option>Finalizaron los 30 segundos</option>
+</select>
+</div>
+</div>
+</section>
+<section class="card">
+<h3 class="section-title">5. Observación de la marcha</h3>
+<p class="section-sub">Una observación breve para comparar en futuras evaluaciones.</p>
+<div class="field">
+<label for="marcha">Durante la caminata, ¿cómo se ve el despegue?</label>
+<select id="marcha" name="observacion_marcha">
+<option value="">Selecciona</option>
+<option>Sin cambio visible</option>
+<option>Despegue más corto o cuidadoso</option>
+<option>Cojera leve</option>
+<option>Cojera marcada</option>
+<option>No evaluado</option>
+</select>
+</div>
+<div class="field">
+<label for="comentario">Comentario opcional</label>
+<div class="voice-field">
+<textarea id="comentario" name="comentario" placeholder="Ej.: siento que evito impulsarme, tengo miedo de apoyar, el dolor aparece al final del paso..."></textarea>
+<button class="mic-btn" id="micBtn" type="button" aria-label="Dictar comentario" title="Dictar comentario">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5.3-3a1 1 0 1 1 2 0 7.3 7.3 0 0 1-6.3 7.23V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.77A7.3 7.3 0 0 1 4.7 11a1 1 0 1 1 2 0 5.3 5.3 0 0 0 10.6 0Z"/></svg>
+</button>
+<p class="voice-status" id="voiceStatus">También puedes responder hablando: presiona el micrófono.</p>
+</div>
+</div>
+</section>
+<button class="btn" id="submitBtn" type="submit">Guardar mi resultado →</button>
+</form>
+<section class="result" id="result">
+<h3>✅ Evaluación funcional registrada</h3>
+<p style="color:var(--muted);line-height:1.6">Este será el punto de partida para comparar el próximo control.</p>
+<div class="result-grid" id="resultGrid"></div>
+<button class="btn copy-btn" id="copyBtn" type="button">📋 Copiar resumen</button>
+</section>
 </main>
-
+<div class="execution-modal" id="executionModal" aria-hidden="true">
+<div class="execution-dialog" role="dialog" aria-modal="true" aria-labelledby="executionTitle">
+<div class="execution-head">
+<div><strong id="executionTitle">📹 Enviar mi ejecución</strong><p>Elevaciones bilaterales de talón en 30 segundos</p></div>
+<button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
+</div>
+<div class="execution-body">
+<div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea el cuerpo completo y realiza la prueba. Puedes grabar ahora o elegir un video desde tu teléfono.</div>
+<label class="video-file-label">
+<span>🎥 Grabar ahora o elegir desde el celular</span>
+<input id="testVideoFile" type="file" accept="video/*" capture="environment">
+</label>
+<video class="client-video-preview" id="testVideoPreview" controls playsinline></video>
+<div class="video-selected" id="videoSelected"></div>
+<textarea class="video-comment" id="testVideoComment" placeholder="Comentario opcional sobre la prueba..."></textarea>
+<div class="upload-track" id="uploadTrack"><div class="upload-bar" id="uploadBar"></div></div>
+<div class="upload-status" id="videoUploadStatus" aria-live="polite"></div>
+<div class="execution-actions">
+<button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
+<button class="btn video-send" id="sendTestVideo" type="button" disabled>Enviar a MoveSmart</button>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const CLIENTE = "Dixie Acosta";
 const CICLO = 2;
 const MOMENTO = "inicial";
 const OBJETIVO_FUNCIONAL = "Mejorar la capacidad de impulsarse con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.";
 const SAVE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuVK8dFpq4wmkqRSoGMYMELak0l8caT-dMKZkwpKvpL8C1K5jt1o6GbMJ-Q9kTd05nJg/exec";
-
+const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
+const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
+const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
+const VIDEO_BUCKET = "videos-clientes";
+const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
+const VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
+const VIDEO_EXERCISE = "Elevaciones bilaterales de talón en 30 segundos";
+const supabaseClient = window.supabase?.createClient
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}
+    })
+  : null;
 const form = document.getElementById("evalForm");
 const submitBtn = document.getElementById("submitBtn");
 const result = document.getElementById("result");
@@ -226,179 +283,157 @@ const resultGrid = document.getElementById("resultGrid");
 const testEstado = document.getElementById("testEstado");
 const heelRiseFields = document.getElementById("heelRiseFields");
 let lastSummary = "";
-
 document.querySelectorAll("[data-scale]").forEach(scale => {
-  const name = scale.dataset.scale;
-  scale.innerHTML = Array.from({length:11},(_,value) =>
-    `<label><input type="radio" name="${name}" value="${value}" ${value === 0 ? "required" : ""}><span>${value}</span></label>`
-  ).join("");
+const name = scale.dataset.scale;
+scale.innerHTML = Array.from({length:11},(_,value) =>
+`<label><input type="radio" name="${name}" value="${value}" ${value === 0 ? "required" : ""}><span>${value}</span></label>`
+).join("");
 });
-
 testEstado.addEventListener("change", () => {
-  const performed = testEstado.value === "Realizada";
-  heelRiseFields.style.display = performed ? "block" : "none";
-  document.getElementById("reps").required = performed;
-  document.getElementById("dolorTest").required = performed;
-  if(!performed){
-    document.getElementById("reps").value = "";
-    document.getElementById("dolorTest").value = "";
-    document.getElementById("motivoParada").value = "";
-  }
+const performed = testEstado.value === "Realizada";
+heelRiseFields.style.display = performed ? "block" : "none";
+document.getElementById("reps").required = performed;
+document.getElementById("dolorTest").required = performed;
+if(!performed){
+document.getElementById("reps").value = "";
+document.getElementById("dolorTest").value = "";
+document.getElementById("motivoParada").value = "";
+}
 });
-
 const timerDisplay = document.getElementById("timerDisplay");
 const timerBtn = document.getElementById("timerBtn");
 let timerInterval = null;
-
 function beep(){
-  try{
-    const audio = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audio.createOscillator();
-    const gain = audio.createGain();
-    oscillator.connect(gain); gain.connect(audio.destination);
-    oscillator.frequency.value = 880; gain.gain.value = .12;
-    oscillator.start(); oscillator.stop(audio.currentTime + .18);
-  }catch(_){}
+try{
+const audio = new (window.AudioContext || window.webkitAudioContext)();
+const oscillator = audio.createOscillator();
+const gain = audio.createGain();
+oscillator.connect(gain); gain.connect(audio.destination);
+oscillator.frequency.value = 880; gain.gain.value = .12;
+oscillator.start(); oscillator.stop(audio.currentTime + .18);
+}catch(_){}
 }
-
 timerBtn.addEventListener("click", () => {
-  if(timerInterval) return;
-  let seconds = 30;
-  timerDisplay.textContent = `${seconds} s`;
-  timerBtn.textContent = "Prueba en curso…";
-  timerBtn.disabled = true;
-  beep();
-  timerInterval = setInterval(() => {
-    seconds -= 1;
-    timerDisplay.textContent = `${seconds} s`;
-    if(seconds <= 0){
-      clearInterval(timerInterval); timerInterval = null; beep();
-      timerBtn.disabled = false;
-      timerBtn.textContent = "Repetir cronómetro";
-      document.getElementById("reps").focus();
-    }
-  },1000);
+if(timerInterval) return;
+let seconds = 30;
+timerDisplay.textContent = `${seconds} s`;
+timerBtn.textContent = "Prueba en curso…";
+timerBtn.disabled = true;
+beep();
+timerInterval = setInterval(() => {
+seconds -= 1;
+timerDisplay.textContent = `${seconds} s`;
+if(seconds <= 0){
+clearInterval(timerInterval); timerInterval = null; beep();
+timerBtn.disabled = false;
+timerBtn.textContent = "Repetir cronómetro";
+document.getElementById("reps").focus();
+}
+},1000);
 });
-
 const micBtn = document.getElementById("micBtn");
 const voiceStatus = document.getElementById("voiceStatus");
 const comentario = document.getElementById("comentario");
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = null;
 let isListening = false;
-
 if(SpeechRecognition){
-  recognition = new SpeechRecognition();
-  recognition.lang = "es-CL";
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  let baseText = "";
-
-  recognition.onstart = () => {
-    isListening = true;
-    baseText = comentario.value.trim();
-    micBtn.classList.add("recording");
-    micBtn.setAttribute("aria-label","Detener dictado");
-    voiceStatus.textContent = "Escuchando… habla con normalidad. Presiona nuevamente para detener.";
-    voiceStatus.classList.add("active");
-  };
-
-  recognition.onresult = event => {
-    let dictated = "";
-    for(let i = 0; i < event.results.length; i++){
-      dictated += event.results[i][0].transcript;
-    }
-    comentario.value = `${baseText}${baseText && dictated ? " " : ""}${dictated}`.trim();
-  };
-
-  recognition.onend = () => {
-    isListening = false;
-    micBtn.classList.remove("recording");
-    micBtn.setAttribute("aria-label","Dictar comentario");
-    voiceStatus.textContent = "Dictado detenido. Puedes corregir el texto o volver a presionar el micrófono.";
-    voiceStatus.classList.remove("active");
-  };
-
-  recognition.onerror = event => {
-    const denied = event.error === "not-allowed" || event.error === "service-not-allowed";
-    voiceStatus.textContent = denied
-      ? "No se pudo usar el micrófono. Revisa el permiso del navegador o escribe tu respuesta."
-      : "No pudimos reconocer la voz. Puedes intentarlo nuevamente o escribir tu respuesta.";
-  };
-
-  micBtn.addEventListener("click", () => {
-    try{
-      if(isListening) recognition.stop();
-      else recognition.start();
-    }catch(_){}
-  });
+recognition = new SpeechRecognition();
+recognition.lang = "es-CL";
+recognition.continuous = true;
+recognition.interimResults = true;
+let baseText = "";
+recognition.onstart = () => {
+isListening = true;
+baseText = comentario.value.trim();
+micBtn.classList.add("recording");
+micBtn.setAttribute("aria-label","Detener dictado");
+voiceStatus.textContent = "Escuchando… habla con normalidad. Presiona nuevamente para detener.";
+voiceStatus.classList.add("active");
+};
+recognition.onresult = event => {
+let dictated = "";
+for(let i = 0; i < event.results.length; i++){
+dictated += event.results[i][0].transcript;
+}
+comentario.value = `${baseText}${baseText && dictated ? " " : ""}${dictated}`.trim();
+};
+recognition.onend = () => {
+isListening = false;
+micBtn.classList.remove("recording");
+micBtn.setAttribute("aria-label","Dictar comentario");
+voiceStatus.textContent = "Dictado detenido. Puedes corregir el texto o volver a presionar el micrófono.";
+voiceStatus.classList.remove("active");
+};
+recognition.onerror = event => {
+const denied = event.error === "not-allowed" || event.error === "service-not-allowed";
+voiceStatus.textContent = denied
+? "No se pudo usar el micrófono. Revisa el permiso del navegador o escribe tu respuesta."
+: "No pudimos reconocer la voz. Puedes intentarlo nuevamente o escribir tu respuesta.";
+};
+micBtn.addEventListener("click", () => {
+try{
+if(isListening) recognition.stop();
+else recognition.start();
+}catch(_){}
+});
 }else{
-  micBtn.disabled = true;
-  voiceStatus.textContent = "El dictado por voz no está disponible en este navegador; puedes escribir tu respuesta.";
+micBtn.disabled = true;
+voiceStatus.textContent = "El dictado por voz no está disponible en este navegador; puedes escribir tu respuesta.";
 }
-
 function fechaChile(){
-  return new Intl.DateTimeFormat("es-CL",{
-    timeZone:"America/Santiago",year:"numeric",month:"2-digit",day:"2-digit",
-    hour:"2-digit",minute:"2-digit"
-  }).format(new Date());
+return new Intl.DateTimeFormat("es-CL",{
+timeZone:"America/Santiago",year:"numeric",month:"2-digit",day:"2-digit",
+hour:"2-digit",minute:"2-digit"
+}).format(new Date());
 }
-
 function metric(label,value){
-  return `<div class="metric"><small>${label}</small><strong>${value || "—"}</strong></div>`;
+return `<div class="metric"><small>${label}</small><strong>${value || "—"}</strong></div>`;
 }
-
 form.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  if(!form.reportValidity()) return;
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Guardando…";
-
-  const fd = new FormData(form);
-  const data = Object.fromEntries(fd.entries());
-  data.cliente = CLIENTE;
-  data.ciclo = CICLO;
-  data.momento = MOMENTO;
-  data.objetivo_funcional = OBJETIVO_FUNCIONAL;
-  data.fecha = fechaChile();
-  data.tipo = "evaluacion_funcional_movesmart";
-
-  try{
-    localStorage.setItem(`movesmart_eval_funcional_dixie_ciclo${CICLO}_${MOMENTO}`, JSON.stringify(data));
-  }catch(_){}
-
-  if(SAVE_SCRIPT_URL){
-    try{
-      await fetch(SAVE_SCRIPT_URL,{
-        method:"POST",mode:"no-cors",keepalive:true,
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body:JSON.stringify(data)
-      });
-    }catch(_){
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Guardar mi resultado →";
-      alert("No pudimos enviar la evaluación. Revisa tu conexión e inténtalo nuevamente.");
-      return;
-    }
-  }
-
-  resultGrid.innerHTML =
-    metric("Dolor en despegue", `${data.dolor_despegue}/10`) +
-    metric("Capacidad funcional", `${data.psfs_despegue}/10`) +
-    metric("Confianza funcional", `${data.confianza_despegue}/10`) +
-    metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps} rep.` : data.test_estado) +
-    metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
-    metric("Motivo de parada", data.motivo_parada || "—") +
-    metric("Marcha", data.observacion_marcha || "—");
-
-  lastSummary =
+e.preventDefault();
+if(!form.reportValidity()) return;
+submitBtn.disabled = true;
+submitBtn.textContent = "Guardando…";
+const fd = new FormData(form);
+const data = Object.fromEntries(fd.entries());
+data.cliente = CLIENTE;
+data.ciclo = CICLO;
+data.momento = MOMENTO;
+data.objetivo_funcional = OBJETIVO_FUNCIONAL;
+data.fecha = fechaChile();
+data.tipo = "evaluacion_funcional_movesmart";
+try{
+localStorage.setItem(`movesmart_eval_funcional_dixie_ciclo${CICLO}_${MOMENTO}`, JSON.stringify(data));
+}catch(_){}
+if(SAVE_SCRIPT_URL){
+try{
+await fetch(SAVE_SCRIPT_URL,{
+method:"POST",mode:"no-cors",keepalive:true,
+headers:{"Content-Type":"text/plain;charset=utf-8"},
+body:JSON.stringify(data)
+});
+}catch(_){
+submitBtn.disabled = false;
+submitBtn.textContent = "Guardar mi resultado →";
+alert("No pudimos enviar la evaluación. Revisa tu conexión e inténtalo nuevamente.");
+return;
+}
+}
+resultGrid.innerHTML =
+metric("Dolor en despegue", `${data.dolor_despegue}/10`) +
+metric("Capacidad funcional", `${data.psfs_despegue}/10`) +
+metric("Confianza funcional", `${data.confianza_despegue}/10`) +
+metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps} rep.` : data.test_estado) +
+metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
+metric("Motivo de parada", data.motivo_parada || "—") +
+metric("Marcha", data.observacion_marcha || "—");
+lastSummary =
 `MoveSmart · Evaluación funcional
 Cliente: ${CLIENTE}
 Fecha: ${data.fecha}
 Momento: evaluación ${MOMENTO} del ciclo ${CICLO}
 Objetivo: mejorar el impulso del pie durante la marcha.
-
 Dolor durante el despegue: ${data.dolor_despegue}/10
 Capacidad funcional (PSFS): ${data.psfs_despegue}/10
 Confianza funcional: ${data.confianza_despegue}/10
@@ -407,20 +442,188 @@ Dolor durante elevaciones: ${data.test_estado === "Realizada" ? data.dolor_heel_
 Motivo de parada: ${data.motivo_parada || "No registrado"}
 Observación de marcha: ${data.observacion_marcha || "No registrado"}
 Comentario: ${data.comentario || "Sin comentario"}`;
-
-  result.classList.add("active");
-  submitBtn.textContent = "✅ Evaluación guardada";
-  result.scrollIntoView({behavior:"smooth",block:"start"});
+result.classList.add("active");
+submitBtn.textContent = "✅ Evaluación guardada";
+result.scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("copyBtn").addEventListener("click", async ()=>{
+if(!lastSummary) return;
+try{
+await navigator.clipboard.writeText(lastSummary);
+document.getElementById("copyBtn").textContent = "✅ Resumen copiado";
+setTimeout(()=>document.getElementById("copyBtn").textContent="📋 Copiar resumen",1500);
+}catch(_){
+alert(lastSummary);
+}
 });
 
-document.getElementById("copyBtn").addEventListener("click", async ()=>{
-  if(!lastSummary) return;
+const testVideoFile = document.getElementById("testVideoFile");
+const testVideoPreview = document.getElementById("testVideoPreview");
+const videoSelected = document.getElementById("videoSelected");
+const testVideoComment = document.getElementById("testVideoComment");
+const sendTestVideo = document.getElementById("sendTestVideo");
+const uploadTrack = document.getElementById("uploadTrack");
+const uploadBar = document.getElementById("uploadBar");
+const videoUploadStatus = document.getElementById("videoUploadStatus");
+const videoUploadStatusSummary = document.getElementById("videoUploadStatusSummary");
+const executionModal = document.getElementById("executionModal");
+const openTestVideo = document.getElementById("openTestVideo");
+const executionClose = document.getElementById("executionClose");
+const executionCancel = document.getElementById("executionCancel");
+let clientVideoUrl = "";
+
+function abrirEnvioVideo(){
+  executionModal.classList.add("active");
+  executionModal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarEnvioVideo(){
+  executionModal.classList.remove("active");
+  executionModal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+openTestVideo.addEventListener("click",abrirEnvioVideo);
+executionClose.addEventListener("click",cerrarEnvioVideo);
+executionCancel.addEventListener("click",cerrarEnvioVideo);
+executionModal.addEventListener("click",event=>{
+  if(event.target === executionModal) cerrarEnvioVideo();
+});
+document.addEventListener("keydown",event=>{
+  if(event.key === "Escape" && executionModal.classList.contains("active")) cerrarEnvioVideo();
+});
+
+function fechaVideoChile(){
+  return new Intl.DateTimeFormat("en-CA",{
+    timeZone:"America/Santiago",year:"numeric",month:"2-digit",day:"2-digit"
+  }).format(new Date());
+}
+
+function videoSlug(text){
+  return String(text || "video").normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80);
+}
+
+function videoExtension(file){
+  const ext = String(file.name || "").split(".").pop().toLowerCase().replace(/[^a-z0-9]/g,"");
+  return ext || ({"video/quicktime":"mov","video/webm":"webm"}[file.type] || "mp4");
+}
+
+async function supabaseSession(){
+  if(!supabaseClient) throw new Error("No se pudo cargar el sistema de videos.");
+  const current = await supabaseClient.auth.getSession();
+  if(current.error) throw current.error;
+  if(current.data?.session) return current.data.session;
+  const created = await supabaseClient.auth.signInAnonymously();
+  if(created.error || !created.data?.session) throw created.error || new Error("No se pudo crear la conexión segura.");
+  return created.data.session;
+}
+
+function uploadWithTus(file, objectName, session){
+  return new Promise((resolve,reject)=>{
+    if(!window.tus?.Upload) return reject(new Error("No se cargó la subida reanudable."));
+    const upload = new tus.Upload(file,{
+      endpoint:`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
+      retryDelays:[0,3000,5000,10000],
+      headers:{authorization:`Bearer ${session.access_token}`},
+      uploadDataDuringCreation:true,
+      removeFingerprintOnSuccess:true,
+      chunkSize:6 * 1024 * 1024,
+      metadata:{
+        bucketName:VIDEO_BUCKET,
+        objectName,
+        contentType:file.type || "video/mp4",
+        cacheControl:"3600"
+      },
+      onError:error=>reject(error),
+      onProgress:(sent,total)=>{
+        const percent = total ? Math.round(sent / total * 100) : 0;
+        uploadBar.style.width = `${percent}%`;
+        videoUploadStatus.textContent = `Enviando video… ${percent}%`;
+      },
+      onSuccess:resolve
+    });
+    upload.findPreviousUploads().then(previous=>{
+      if(previous.length) upload.resumeFromPreviousUpload(previous[0]);
+      upload.start();
+    }).catch(reject);
+  });
+}
+
+testVideoFile.addEventListener("change",()=>{
+  const file = testVideoFile.files?.[0];
+  sendTestVideo.disabled = true;
+  videoUploadStatus.textContent = "";
+  if(!file) return;
+  if(!file.type.startsWith("video/")){
+    videoUploadStatus.textContent = "Selecciona un archivo de video.";
+    testVideoFile.value = "";
+    return;
+  }
+  if(file.size > VIDEO_MAX_BYTES){
+    videoUploadStatus.textContent = "El video debe pesar menos de 50 MB.";
+    testVideoFile.value = "";
+    return;
+  }
+  if(clientVideoUrl) URL.revokeObjectURL(clientVideoUrl);
+  clientVideoUrl = URL.createObjectURL(file);
+  testVideoPreview.src = clientVideoUrl;
+  testVideoPreview.classList.add("active");
+  videoSelected.textContent = `Video seleccionado · ${(file.size / 1048576).toFixed(1)} MB`;
+  sendTestVideo.disabled = false;
+});
+
+sendTestVideo.addEventListener("click",async()=>{
+  const file = testVideoFile.files?.[0];
+  if(!file) return;
+  const date = fechaVideoChile();
+  const objectName = `dixie-acosta/${videoSlug(VIDEO_ROUTINE)}/${date}/${Date.now()}-${videoSlug(VIDEO_EXERCISE)}.${videoExtension(file)}`;
   try{
-    await navigator.clipboard.writeText(lastSummary);
-    document.getElementById("copyBtn").textContent = "✅ Resumen copiado";
-    setTimeout(()=>document.getElementById("copyBtn").textContent="📋 Copiar resumen",1500);
-  }catch(_){
-    alert(lastSummary);
+    sendTestVideo.disabled = true;
+    sendTestVideo.textContent = "Enviando…";
+    uploadTrack.classList.add("active");
+    uploadBar.style.width = "0%";
+    videoUploadStatus.textContent = "Creando conexión segura…";
+    const session = await supabaseSession();
+    if(file.size <= 6 * 1024 * 1024){
+      uploadBar.style.width = "40%";
+      const result = await supabaseClient.storage.from(VIDEO_BUCKET).upload(objectName,file,{
+        cacheControl:"3600",upsert:false,contentType:file.type || "video/mp4"
+      });
+      if(result.error) throw result.error;
+    }else{
+      await uploadWithTus(file,objectName,session);
+    }
+    uploadBar.style.width = "100%";
+    videoUploadStatus.textContent = "✅ Video enviado correctamente a MoveSmart.";
+    sendTestVideo.textContent = "✅ Video enviado";
+    openTestVideo.textContent = "✅ Video enviado";
+    openTestVideo.classList.add("done");
+    videoUploadStatusSummary.textContent = "✅ Video enviado correctamente.";
+
+    try{
+      await supabaseClient.from("videos_enviados").insert({
+        cliente:CLIENTE,rutina:VIDEO_ROUTINE,ejercicio:VIDEO_EXERCISE,
+        fecha_sesion:date,ruta_video:objectName,estado:"por_revisar"
+      });
+    }catch(error){ console.warn("Video guardado; sincronización pendiente",error); }
+
+    fetch(VIDEO_COMMENTS_URL,{
+      method:"POST",mode:"no-cors",keepalive:true,
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({
+        cliente:CLIENTE,rutina:VIDEO_ROUTINE,ejercicio:VIDEO_EXERCISE,
+        comentario:testVideoComment.value.trim(),rutaVideo:objectName,estado:"Enviado"
+      })
+    }).catch(()=>{});
+    setTimeout(cerrarEnvioVideo,900);
+  }catch(error){
+    console.error(error);
+    sendTestVideo.disabled = false;
+    sendTestVideo.textContent = "Reintentar envío";
+    videoUploadStatus.textContent = `❌ No se pudo enviar el video: ${error.message || error}`;
+    videoUploadStatusSummary.textContent = "No se pudo enviar el video. Puedes intentarlo nuevamente.";
   }
 });
 
