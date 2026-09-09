@@ -398,6 +398,12 @@ submitBtn.disabled = true;
 submitBtn.textContent = "Guardando…";
 const fd = new FormData(form);
 const data = Object.fromEntries(fd.entries());
+const comentarioVideo = testVideoComment.value.trim();
+if(comentarioVideo){
+  data.comentario = data.comentario
+    ? `${data.comentario}\nComentario del video: ${comentarioVideo}`
+    : `Comentario del video: ${comentarioVideo}`;
+}
 data.cliente = CLIENTE;
 data.ciclo = CICLO;
 data.momento = MOMENTO;
