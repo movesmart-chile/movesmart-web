@@ -271,6 +271,7 @@ const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
 const VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
 const VIDEO_EXERCISE = "Elevaciones bilaterales de talón en 30 segundos";
+const VIDEO_STORAGE_FOLDER = `dixie-acosta/evaluacion_funcional/mes${CICLO}`;
 const supabaseClient = window.supabase?.createClient
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}
@@ -578,7 +579,7 @@ sendTestVideo.addEventListener("click",async()=>{
   const file = testVideoFile.files?.[0];
   if(!file) return;
   const date = fechaVideoChile();
-  const objectName = `dixie-acosta/${videoSlug(VIDEO_ROUTINE)}/${date}/${Date.now()}-${videoSlug(VIDEO_EXERCISE)}.${videoExtension(file)}`;
+  const objectName = `${VIDEO_STORAGE_FOLDER}/${date}-${Date.now()}-${videoSlug(VIDEO_EXERCISE)}.${videoExtension(file)}`;
   try{
     sendTestVideo.disabled = true;
     sendTestVideo.textContent = "Enviando…";
