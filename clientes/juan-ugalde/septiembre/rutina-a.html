@@ -447,7 +447,6 @@ transition:.25s ease;
     min-width:unset;
   }
 }
-  
 
 body{
       background:
@@ -674,13 +673,22 @@ width:100%;
 padding-top:56.25%;
 background:linear-gradient(180deg, rgba(10,10,18,.95), rgba(8,8,14,.98));
 }
-.video-frame-wrap iframe{
+.video-frame-wrap iframe,
+.video-frame-wrap video{
 position:absolute;
 inset:0;
 width:100%;
 height:100%;
 border:0;
 }
+.video-frame-wrap video{display:none;object-fit:contain;background:#000;pointer-events:none;opacity:1;transition:opacity .4s ease}
+.video-frame-wrap video.loop-fade-out{opacity:0}
+.video-frame-wrap video::-webkit-media-controls{display:none!important}
+.review-request{grid-column:1/-1;margin-top:4px;padding:14px;border-radius:17px;background:rgba(47,99,255,.08);border:1px solid rgba(111,142,255,.18)}
+.review-request small{display:block;margin-bottom:10px;color:rgba(255,255,255,.66);line-height:1.45}
+.upload-execution-btn{width:100%;border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:#fff;cursor:pointer;font:inherit;font-weight:850}
+.upload-execution-btn.done{background:rgba(53,208,98,.12);border-color:rgba(53,208,98,.28);color:#dfffe8}.upload-status{margin-top:8px;color:rgba(255,255,255,.66);font-size:.82rem}
+.execution-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(4,6,14,.82)}.execution-modal.active{display:flex}.execution-dialog{width:min(620px,100%);max-height:92vh;overflow:auto;background:#111522;border:1px solid rgba(255,255,255,.12);border-radius:26px}.execution-head{padding:18px 20px;display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}.execution-head p{color:rgba(255,255,255,.66);margin-top:4px}.execution-close,.execution-cancel,.execution-send{border:0;border-radius:14px;padding:12px 14px;font:inherit;font-weight:850;cursor:pointer}.execution-close,.execution-cancel{background:rgba(255,255,255,.09);color:#fff}.execution-body{padding:20px}.execution-tip{padding:14px;border-radius:16px;background:rgba(255,90,31,.10);margin-bottom:16px;line-height:1.5}.execution-file-label{display:flex;justify-content:center;padding:20px;border:1px dashed rgba(255,255,255,.24);border-radius:18px;cursor:pointer;font-weight:850}.execution-file-label input{display:none}.execution-preview{display:none;width:100%;max-height:340px;margin-top:14px;background:#000;border-radius:16px}.execution-preview.active{display:block}.selected-video-info,.upload-progress-wrap{display:none;margin-top:12px}.selected-video-info.active,.upload-progress-wrap.active{display:block}.execution-comment{width:100%;min-height:90px;margin-top:16px;padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;font:inherit}.execution-actions{display:flex;gap:10px;margin-top:18px}.execution-actions button{flex:1}.execution-send{background:linear-gradient(180deg,#ff7a1f,#ff4f13);color:#fff}.execution-send:disabled{opacity:.45}.upload-progress-track{height:10px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.09)}.upload-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#ff5a1f,#ff8a3d)}.upload-progress-row{display:flex;justify-content:space-between;margin-top:8px;font-size:.84rem}
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(14px)}
 to{opacity:1;transform:translateY(0)}
@@ -901,7 +909,6 @@ font-size:.88rem;
       <p id="smartLoadingText">MoveSmart está adaptando tu pausa activa.</p>
     </div>
 
-    
     <div class="routine-container" id="rutina-breve">
       <div class="routine-intro">
         <div class="routine-version-label">⚡ Pausa breve · 3 minutos</div>
@@ -964,7 +971,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> una pausa corta también cuenta. Lo importante es cambiar de posición.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Breve" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Breve" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
     <div class="routine-container" id="rutina-estandar">
@@ -997,7 +1004,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Retracción escapular</div>
         <p class="exercise-desc">Lleva suavemente los hombros hacia atrás y junta las escápulas sin elevarlos.</p>
-        <button class="video-btn open-video" type="button" data-video="" data-title="Retracción escapular" disabled>▶ Ver video</button>
+        <button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/retraccion_escapular.mp4" data-title="Retracción escapular">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>8–10</div>
@@ -1008,7 +1015,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación externa de hombro isométrica</div>
         <p class="exercise-desc">Mantén los codos junto al cuerpo y realiza una presión suave hacia afuera sin mover demasiado los brazos.</p>
-        <button class="video-btn open-video" type="button" data-video="" data-title="Rotación externa de hombro isométrica" disabled>▶ Ver video</button>
+        <button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/rotacion_externa_hombro_isometrica.mp4" data-title="Rotación externa de hombro isométrica">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>5</div>
@@ -1062,7 +1069,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> mantén los movimientos suaves. Si una molestia aumenta claramente, reduce el rango o detén ese ejercicio.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Estandar" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Estandar" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
     <div class="routine-container" id="rutina-completa">
@@ -1106,7 +1113,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Retracción escapular</div>
         <p class="exercise-desc">Lleva los hombros suavemente hacia atrás y junta las escápulas sin elevarlos.</p>
-        <button class="video-btn open-video" type="button" data-video="" data-title="Retracción escapular" disabled>▶ Ver video</button>
+        <button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/retraccion_escapular.mp4" data-title="Retracción escapular">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1117,7 +1124,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Rotación externa de hombro isométrica</div>
         <p class="exercise-desc">Realiza una presión suave hacia afuera manteniendo los codos cerca del cuerpo.</p>
-        <button class="video-btn open-video" type="button" data-video="" data-title="Rotación externa de hombro isométrica" disabled>▶ Ver video</button>
+        <button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/rotacion_externa_hombro_isometrica.mp4" data-title="Rotación externa de hombro isométrica">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>5</div>
@@ -1128,6 +1135,7 @@ font-size:.88rem;
       <div>
         <div class="exercise-name">Flexión y extensión de codo</div>
         <p class="exercise-desc">Dobla y estira los codos lentamente, manteniendo los hombros relajados.</p>
+        <button class="video-btn open-video" type="button" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/flex-ext-codos.mp4" data-title="Flexión y extensión de codo">▶ Ver video</button>
       </div>
       <div class="exercise-meta">
         <div class="pill"><span>Repeticiones</span>10</div>
@@ -1192,7 +1200,7 @@ font-size:.88rem;
       <div class="note"><strong>Recuerda:</strong> el objetivo es sumar movimiento frecuente y cómodo, con especial atención a hombro, codo, antebrazo, muñeca y mano.</div>
       <div class="finish-session-wrap">
         <p class="finish-session-text">Cuando termines, registra esta pausa para avanzar en tu meta mensual de 12.</p>
-        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&rutina=Pausa%20Activa%20Completa" class="finish-session-btn">✅ Registrar pausa activa</a>
+        <a href="../../registro-sesion.html?cliente=Juan%20Ugalde&amp;rutina=Pausa%20Activa%20Completa" class="finish-session-btn">✅ Registrar pausa activa</a>
       </div>
     </div>
   </main>
@@ -1207,12 +1215,38 @@ font-size:.88rem;
     </div>
     <div class="video-frame-wrap">
       <iframe id="videoFrame" src="" title="Video de ejercicio" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      <video id="videoPlayer" autoplay muted playsinline preload="auto" disablepictureinpicture></video>
     </div>
   </div>
 </div>
 
+<div class="execution-modal" id="executionModal" aria-hidden="true">
+  <div class="execution-dialog">
+    <div class="execution-head"><div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div><button class="execution-close" id="executionClose" type="button">Cerrar ✕</button></div>
+    <div class="execution-body">
+      <div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea bien el movimiento. Un video corto es suficiente.</div>
+      <label class="execution-file-label">🎥 Grabar ahora o elegir un video<input id="executionFile" type="file" accept="video/*" capture="environment"></label>
+      <video class="execution-preview" id="executionPreview" controls playsinline></video>
+      <div class="selected-video-info" id="selectedVideoInfo"></div>
+      <div class="upload-progress-wrap" id="uploadProgressWrap"><div class="upload-progress-track"><div class="upload-progress-bar" id="uploadProgressBar"></div></div><div class="upload-progress-row"><span id="uploadProgressText">Preparando subida…</span><strong id="uploadProgressPercent">0%</strong></div></div>
+      <textarea class="execution-comment" id="executionComment" placeholder="Comentario opcional para MoveSmart"></textarea>
+      <div class="execution-actions"><button class="execution-cancel" id="executionCancel" type="button">Cancelar</button><button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
+
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
+const CLIENTE = "Juan Ugalde";
+const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
+const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
+const VIDEO_BUCKET = "videos-clientes";
+const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}}) : null;
 const respuestas = { tiempo:null, sensacion:null, sentado:null };
 const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
@@ -1350,14 +1384,42 @@ function toEmbedUrl(url) {
 
 const videoModal = document.getElementById('videoModal');
 const videoFrame = document.getElementById('videoFrame');
+const videoPlayer = document.getElementById('videoPlayer');
 const videoTitle = document.getElementById('videoTitle');
 const closeVideo = document.getElementById('closeVideo');
 
+function reiniciarConFundido(){
+  videoPlayer.classList.add('loop-fade-out');
+  setTimeout(() => {
+    videoPlayer.currentTime = 0;
+    videoPlayer.play().catch(() => {});
+    requestAnimationFrame(() => requestAnimationFrame(() => videoPlayer.classList.remove('loop-fade-out')));
+  }, 400);
+}
+videoPlayer.addEventListener('ended', reiniciarConFundido);
+
 document.querySelectorAll('.open-video').forEach(button => {
   button.addEventListener('click', () => {
-    const embedUrl = toEmbedUrl(button.dataset.video);
+    const rawUrl = button.dataset.video;
     videoTitle.textContent = button.dataset.title || 'Video de ejercicio';
-    videoFrame.src = embedUrl;
+    const isDirect = /\.(mp4|webm|ogg)(\?.*)?$/i.test(rawUrl);
+    videoPlayer.pause();
+    videoPlayer.removeAttribute('src');
+    videoPlayer.classList.remove('loop-fade-out');
+    videoFrame.src = '';
+    if(isDirect){
+      videoFrame.style.display = 'none';
+      videoPlayer.style.display = 'block';
+      videoPlayer.src = rawUrl;
+      videoPlayer.muted = true;
+      videoPlayer.loop = false;
+      videoPlayer.controls = false;
+      videoPlayer.play().catch(() => {});
+    }else{
+      videoPlayer.style.display = 'none';
+      videoFrame.style.display = 'block';
+      videoFrame.src = toEmbedUrl(rawUrl);
+    }
     videoModal.classList.add('active');
     videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1368,6 +1430,10 @@ function cerrarVideo() {
   videoModal.classList.remove('active');
   videoModal.setAttribute('aria-hidden', 'true');
   videoFrame.src = '';
+  videoPlayer.pause();
+  videoPlayer.removeAttribute('src');
+  videoPlayer.load();
+  videoPlayer.classList.remove('loop-fade-out');
   document.body.style.overflow = '';
 }
 
@@ -1382,6 +1448,30 @@ document.addEventListener('keydown', event => {
     cerrarVideo();
   }
 });
+
+// Envío de ejecuciones a Supabase Storage.
+function slug(text){return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,80)}
+function nombreRutina(btn){const c=btn.closest('.routine-container');return c?.id==='rutina-breve'?'Pausa Activa Breve':c?.id==='rutina-estandar'?'Pausa Activa Estandar':'Pausa Activa Completa'}
+function fechaChile(){return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Santiago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function rutaVideo(rutina,ejercicio,file){const ext=(file.name.split('.').pop()||'mp4').replace(/[^a-z0-9]/gi,'');return `juan-ugalde/${slug(rutina)}/${fechaChile()}/${Date.now()}_${slug(ejercicio)}.${ext}`}
+async function sesionSupabase(){const current=await supabaseClient.auth.getSession();if(current.data?.session)return current.data.session;const signed=await supabaseClient.auth.signInAnonymously();if(signed.error)throw signed.error;return signed.data.session}
+
+document.querySelectorAll('.exercise-card').forEach(card=>{
+  const name=card.querySelector('.exercise-name')?.textContent.trim();
+  if(!name)return;
+  const box=document.createElement('div');
+  box.className='review-request';
+  box.innerHTML=`<small>¿Quieres que revise cómo realizas este ejercicio?</small><button class="upload-execution-btn" type="button" data-exercise-name="${name}">📹 Enviar mi ejecución</button><div class="upload-status"></div>`;
+  card.appendChild(box);
+});
+
+const executionModal=document.getElementById('executionModal'), executionFile=document.getElementById('executionFile'), executionPreview=document.getElementById('executionPreview'), executionSend=document.getElementById('executionSend'), executionComment=document.getElementById('executionComment'), selectedVideoInfo=document.getElementById('selectedVideoInfo'), uploadProgressWrap=document.getElementById('uploadProgressWrap'), uploadProgressBar=document.getElementById('uploadProgressBar'), uploadProgressText=document.getElementById('uploadProgressText'), uploadProgressPercent=document.getElementById('uploadProgressPercent');
+let activeUploadButton=null, previewUrl='';
+function closeExecution(){executionModal.classList.remove('active');document.body.style.overflow='';if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl='';executionPreview.pause();executionPreview.removeAttribute('src')}
+document.querySelectorAll('.upload-execution-btn').forEach(btn=>btn.addEventListener('click',()=>{activeUploadButton=btn;document.getElementById('executionExerciseName').textContent=btn.dataset.exerciseName;executionFile.value='';executionComment.value='';executionSend.disabled=true;selectedVideoInfo.classList.remove('active');uploadProgressWrap.classList.remove('active');executionPreview.classList.remove('active');executionModal.classList.add('active');document.body.style.overflow='hidden'}));
+executionFile.addEventListener('change',()=>{const f=executionFile.files?.[0];if(!f)return;if(!f.type.startsWith('video/')||f.size>VIDEO_MAX_BYTES){alert('Selecciona un video de hasta 50 MB.');executionFile.value='';return}if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(f);executionPreview.src=previewUrl;executionPreview.classList.add('active');selectedVideoInfo.textContent=`✅ ${f.name} · ${(f.size/1048576).toFixed(1)} MB`;selectedVideoInfo.classList.add('active');executionSend.disabled=false});
+executionSend.addEventListener('click',async()=>{const file=executionFile.files?.[0];if(!file||!activeUploadButton)return;const rutina=nombreRutina(activeUploadButton), ejercicio=activeUploadButton.dataset.exerciseName, path=rutaVideo(rutina,ejercicio,file), status=activeUploadButton.parentElement.querySelector('.upload-status');try{executionSend.disabled=true;uploadProgressWrap.classList.add('active');uploadProgressText.textContent='Conectando…';uploadProgressBar.style.width='10%';uploadProgressPercent.textContent='10%';const session=await sesionSupabase();if(file.size<=6*1024*1024){uploadProgressText.textContent='Subiendo video…';uploadProgressBar.style.width='45%';uploadProgressPercent.textContent='45%';const result=await supabaseClient.storage.from(VIDEO_BUCKET).upload(path,file,{upsert:false,contentType:file.type});if(result.error)throw result.error}else{await new Promise((resolve,reject)=>{const upload=new tus.Upload(file,{endpoint:`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,headers:{authorization:`Bearer ${session.access_token}`},metadata:{bucketName:VIDEO_BUCKET,objectName:path,contentType:file.type||'video/mp4'},chunkSize:6*1024*1024,retryDelays:[0,3000,5000,10000],onProgress:(sent,total)=>{const p=Math.round(sent/total*100);uploadProgressBar.style.width=p+'%';uploadProgressPercent.textContent=p+'%'},onError:reject,onSuccess:resolve});upload.start()})}uploadProgressBar.style.width='100%';uploadProgressPercent.textContent='100%';uploadProgressText.textContent='Video guardado en MoveSmart';activeUploadButton.classList.add('done');activeUploadButton.textContent='✅ Video enviado';status.textContent='✅ Video enviado correctamente.';setTimeout(closeExecution,600)}catch(err){console.error(err);executionSend.disabled=false;uploadProgressText.textContent='No se pudo enviar. Intenta nuevamente.';status.textContent='❌ Error al enviar el video.'}});
+document.getElementById('executionClose').addEventListener('click',closeExecution);document.getElementById('executionCancel').addEventListener('click',closeExecution);executionModal.addEventListener('click',e=>{if(e.target===executionModal)closeExecution()});
 
 updateProgress();
 </script>
