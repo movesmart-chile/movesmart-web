@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -244,6 +243,21 @@
     }
     .program-card {
       margin-top: 14px;
+    }
+    .functional-evaluation-card {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .functional-evaluation-card h2 {
+      margin-bottom: 8px;
+    }
+    .functional-evaluation-card .tab-link {
+      flex: 0 0 auto;
+      background: var(--accent);
+      border-color: var(--accent);
     }
     .program-header {
       display: grid;
@@ -503,6 +517,13 @@
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .functional-evaluation-card {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .functional-evaluation-card .tab-link {
+        width: 100%;
+      }
       .tab {
         width: 100%;
         min-height: 48px;
@@ -560,6 +581,17 @@
           <div class="chart-box"><canvas id="routineChart"></canvas></div>
         </article>
       </div>
+      <article class="card functional-evaluation-card">
+        <div>
+          <h2>Evaluación funcional</h2>
+          <p class="muted">Realiza la evaluación asociada a tu objetivo funcional y registra tu progreso durante el ciclo.</p>
+        </div>
+        <a
+          class="tab tab-link"
+          id="linkEvaluacionFuncional"
+          href="https://movesmart-chile.github.io/movesmart-web/clientes/evaluacion-funcional.html"
+        >Abrir evaluación funcional</a>
+      </article>
       <article class="card program-card">
         <div class="program-header">
           <div>
@@ -740,6 +772,7 @@
     document.getElementById('nombreHero').textContent = CLIENTE_DASHBOARD;
     document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
     document.getElementById('linkTolerancia').href = `https://movesmart-chile.github.io/movesmart-web/clientes/tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
+    document.getElementById('linkEvaluacionFuncional').href = `https://movesmart-chile.github.io/movesmart-web/clientes/evaluacion-funcional.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
     function actualizarPeriodo(datos) {
       MES_PROGRAMA = Number(datos.mes_programa) || null;
       NOMBRE_CICLO_DASHBOARD = MES_PROGRAMA ? `Mes ${MES_PROGRAMA}` : 'Ciclo actual';
