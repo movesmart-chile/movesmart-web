@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -540,7 +541,7 @@
           <button class="tab active" data-tab="evolucion">Mi evolución</button>
           <button class="tab" data-tab="registro">Mi registro</button>
           <button class="tab" data-tab="proximo">Mi plan</button>
-          <a class="tab tab-link" id="linkTolerancia" href="/movesmart-web/clientes/tolerancia_carga.html">Tolerancia a la carga</a>
+          <a class="tab tab-link" id="linkTolerancia" href="https://movesmart-chile.github.io/movesmart-web/clientes/tolerancia_carga.html">Tolerancia a la carga</a>
         </div>
       </div>
 
@@ -738,7 +739,7 @@
     let planDetalle = {};
     document.getElementById('nombreHero').textContent = CLIENTE_DASHBOARD;
     document.getElementById('nombreTopbar').textContent = `Evolución ${CLIENTE_DASHBOARD}`;
-    document.getElementById('linkTolerancia').href = `../../tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
+    document.getElementById('linkTolerancia').href = `https://movesmart-chile.github.io/movesmart-web/clientes/tolerancia_carga.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`;
     function actualizarPeriodo(datos) {
       MES_PROGRAMA = Number(datos.mes_programa) || null;
       NOMBRE_CICLO_DASHBOARD = MES_PROGRAMA ? `Mes ${MES_PROGRAMA}` : 'Ciclo actual';
