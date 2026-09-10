@@ -84,6 +84,12 @@ textarea{min-height:90px;resize:vertical}
 .execution-head strong{font-size:1.18rem}.execution-head p{color:var(--muted);font-size:.87rem;margin-top:4px}.execution-close{border:1px solid var(--border);border-radius:12px;padding:9px 11px;background:rgba(255,255,255,.06);color:#fff;font-weight:800;cursor:pointer}
 .execution-body{padding:20px}.execution-tip{margin-bottom:15px;padding:14px;border-radius:15px;background:rgba(255,166,35,.09);border:1px solid rgba(255,166,35,.2);color:#ffe6b0;line-height:1.5;font-size:.9rem}.execution-tip strong{color:#fff}
 .execution-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;margin-top:14px}.execution-actions button{margin:0}.execution-cancel{border:1px solid var(--border);border-radius:15px;padding:14px;background:rgba(255,255,255,.06);color:#fff;font:inherit;font-weight:850;cursor:pointer}
+.pending-state{padding:34px;text-align:center}
+.pending-state .badge{margin:0 auto 16px}
+.pending-state h2{font-size:clamp(1.8rem,6vw,2.8rem);margin-bottom:12px}
+.pending-state p{max-width:620px;margin:0 auto;color:var(--muted);line-height:1.65}
+.pending-state .back{display:inline-flex;margin-top:22px}
+[hidden]{display:none!important}
 @media(max-width:700px){
 .scale{grid-template-columns:repeat(6,1fr)}.scale label:last-child{grid-column:auto}.two,.result-grid{grid-template-columns:1fr}.hero,.card{padding:19px}
 .topbar{align-items:flex-start}.back{font-size:.88rem}.upload-execution-btn{width:100%}.execution-actions{grid-template-columns:1fr}
@@ -91,13 +97,13 @@ textarea{min-height:90px;resize:vertical}
 </style>
 </head>
 <body>
-<main class="page">
+<main class="page" id="evaluationApp">
 <header class="topbar">
 <div class="brand">
 <div class="badge">M</div>
-<div><h1>MoveSmart</h1><p>Dixie Acosta · Evaluación inicial</p></div>
+<div><h1>MoveSmart</h1><p id="clientEvaluationLabel">Dixie Acosta · Evaluación inicial</p></div>
 </div>
-<a class="back" href="/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver</a>
+<a class="back" id="backLink" href="https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=dixie-acosta">← Volver</a>
 </header>
 <section class="hero">
 <span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
@@ -231,6 +237,15 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <button class="btn copy-btn" id="copyBtn" type="button">📋 Copiar resumen</button>
 </section>
 </main>
+<main class="page" id="pendingApp" hidden>
+<section class="hero pending-state">
+<div class="badge">M</div>
+<span class="eyebrow">Evaluación funcional</span>
+<h2 id="pendingTitle">Evaluación pendiente</h2>
+<p id="pendingText">Tu evaluación funcional todavía está siendo preparada según tu objetivo y tu ciclo actual.</p>
+<a class="back" id="pendingBackLink" href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html">← Volver a mi evolución</a>
+</section>
+</main>
 <div class="execution-modal" id="executionModal" aria-hidden="true">
 <div class="execution-dialog" role="dialog" aria-modal="true" aria-labelledby="executionTitle">
 <div class="execution-head">
@@ -258,10 +273,60 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
-const CLIENTE = "Dixie Acosta";
-const CICLO = 2;
-const MOMENTO = "inicial";
-const OBJETIVO_FUNCIONAL = "Mejorar la capacidad de impulsarse con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.";
+const CLIENTES = {
+  "dixie-acosta": {
+    nombre: "Dixie Acosta",
+    activo: true,
+    ciclo: 2,
+    momento: "inicial",
+    objetivo: "Mejorar la capacidad de impulsarse con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad."
+  },
+  "juan-ugalde": {
+    nombre: "Juan Ugalde",
+    activo: false
+  },
+  "juany-flores": {
+    nombre: "Juany Flores",
+    activo: false
+  }
+};
+const params = new URLSearchParams(window.location.search);
+const CLIENTE_ID = String(params.get("cliente_id") || "").trim().toLowerCase();
+const CLIENTE_CONFIG = CLIENTES[CLIENTE_ID] || null;
+const CLIENTE = CLIENTE_CONFIG ? CLIENTE_CONFIG.nombre : "";
+const CICLO = CLIENTE_CONFIG?.ciclo || 0;
+const MOMENTO = CLIENTE_CONFIG?.momento || "inicial";
+const OBJETIVO_FUNCIONAL = CLIENTE_CONFIG?.objetivo || "";
+const DASHBOARD_URL = CLIENTE_CONFIG
+  ? `https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`
+  : "https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html";
+
+function configurarEvaluacionPorCliente(){
+  const evaluationApp = document.getElementById("evaluationApp");
+  const pendingApp = document.getElementById("pendingApp");
+
+  if(!CLIENTE_CONFIG || !CLIENTE_CONFIG.activo){
+    evaluationApp.hidden = true;
+    pendingApp.hidden = false;
+    document.title = CLIENTE_CONFIG
+      ? `Evaluación funcional pendiente | ${CLIENTE_CONFIG.nombre} · MoveSmart`
+      : "Cliente no identificado | MoveSmart";
+    document.getElementById("pendingTitle").textContent = CLIENTE_CONFIG
+      ? `Evaluación de ${CLIENTE_CONFIG.nombre} pendiente`
+      : "Cliente no identificado";
+    document.getElementById("pendingText").textContent = CLIENTE_CONFIG
+      ? "Tu evaluación funcional todavía está siendo preparada según tu objetivo y tu ciclo actual."
+      : "No pudimos identificar al cliente. Vuelve a ingresar desde tu acceso personal de MoveSmart.";
+    document.getElementById("pendingBackLink").href = DASHBOARD_URL;
+    return;
+  }
+
+  document.title = `Evaluación funcional | ${CLIENTE} · MoveSmart`;
+  document.getElementById("clientEvaluationLabel").textContent = `${CLIENTE} · Evaluación ${MOMENTO}`;
+  document.getElementById("backLink").href = DASHBOARD_URL;
+}
+
+configurarEvaluacionPorCliente();
 const SAVE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuVK8dFpq4wmkqRSoGMYMELak0l8caT-dMKZkwpKvpL8C1K5jt1o6GbMJ-Q9kTd05nJg/exec";
 const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
@@ -271,7 +336,7 @@ const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
 const VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
 const VIDEO_EXERCISE = "Elevaciones bilaterales de talón en 30 segundos";
-const VIDEO_STORAGE_FOLDER = `dixie-acosta/evaluacion_funcional/mes${CICLO}`;
+const VIDEO_STORAGE_FOLDER = `${CLIENTE_ID}/evaluacion_funcional/mes${CICLO}`;
 const supabaseClient = window.supabase?.createClient
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}
@@ -399,11 +464,7 @@ submitBtn.textContent = "Guardando…";
 const fd = new FormData(form);
 const data = Object.fromEntries(fd.entries());
 const comentarioVideo = testVideoComment.value.trim();
-if(comentarioVideo){
-  data.comentario = data.comentario
-    ? `${data.comentario}\nComentario del video: ${comentarioVideo}`
-    : `Comentario del video: ${comentarioVideo}`;
-}
+data.comentario_video = comentarioVideo;
 data.cliente = CLIENTE;
 data.ciclo = CICLO;
 data.momento = MOMENTO;
@@ -508,7 +569,7 @@ function fechaVideoChile(){
 }
 
 function videoSlug(text){
-  return String(text || "video").normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  return String(text || "video").normalize("NFD").replace(/[u0300-u036f]/g,"")
     .toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80);
 }
 
