@@ -614,8 +614,8 @@
  </div></div>
  <div class="field"><label class="title" for="goalReason">¿Por qué ese objetivo? <span class="req">*</span></label><textarea id="goalReason" name="goalReason" required></textarea></div>
  <div class="field"><label class="title" for="functionalGoal">¿Qué actividad de tu vida diaria te gustaría hacer con más facilidad, seguridad o menos molestia? <span class="req">*</span></label><p class="helper">Por ejemplo: bajar escaleras, jugar con mis hijos, trabajar frente al computador, caminar al supermercado o tocar guitarra.</p><textarea id="functionalGoal" name="functionalGoal" required placeholder="Quiero poder..."></textarea></div>
- <div class="field"><label class="title" for="functionalGoalCurrent">Hoy, ¿qué ocurre cuando intentas hacer esa actividad?</label><p class="helper">Puedes contar qué tanto alcanzas a hacer, qué molestia aparece o qué necesitas evitar.</p><textarea id="functionalGoalCurrent" name="functionalGoalCurrent" placeholder="Actualmente puedo... / Me cuesta porque..."></textarea></div>
- <div class="field"><label class="title" for="functionalGoalSuccess">¿Cómo notarías que mejoraste al final de este ciclo?</label><textarea id="functionalGoalSuccess" name="functionalGoalSuccess" placeholder="Sabré que mejoré cuando pueda..."></textarea></div>
+ <div class="field"><label class="title" for="functionalGoalCurrent">Hoy, ¿qué ocurre cuando intentas hacer esa actividad? <span class="req">*</span></label><p class="helper">Puedes contar qué tanto alcanzas a hacer, qué molestia aparece o qué necesitas evitar.</p><textarea id="functionalGoalCurrent" name="functionalGoalCurrent" required placeholder="Actualmente puedo... / Me cuesta porque..."></textarea></div>
+ <div class="field"><label class="title" for="functionalGoalSuccess">¿Cómo notarías que mejoraste al final de este ciclo? <span class="req">*</span></label><textarea id="functionalGoalSuccess" name="functionalGoalSuccess" required placeholder="Sabré que mejoré cuando pueda..."></textarea></div>
  </div>
  <div class="step-actions">
  <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
@@ -720,13 +720,6 @@
  <div class="field"><label class="title" for="emailAddress">✉️ Si elegiste correo electrónico, escríbelo aquí</label><input id="emailAddress" name="emailAddress" type="email" placeholder="ejemplo@correo.com"></div>
  <div class="field"><label class="title" for="whatsappNumber">📱 Si elegiste WhatsApp, escribe tu número en este formato: +56912345678</label><input id="whatsappNumber" name="whatsappNumber" type="tel" placeholder="+56912345678"></div>
  </div>
- <div class="step-actions">
- <button type="button" class="secondary" onclick="prevStep()">‹ Atrás</button>
- <button type="button" class="primary" onclick="nextStep()">Siguiente ›</button>
- </div>
- </section>
-
- <section class="step" data-step="8">
  <div class="submit-card">
  <h3>Enviar evaluación</h3>
  <p>Completa este formulario y recibirás una propuesta inicial según tu objetivo, tu disponibilidad y tu contexto.</p>
@@ -748,7 +741,7 @@
  const statusBox = document.getElementById("formStatus");
  const resetBtn = document.getElementById("resetBtn");
  const submitBtn = document.getElementById("submitBtn");
- const totalSteps = 8;
+ const totalSteps = 7;
  let currentStep = 1;
 
  function showStatus(message, type) {
@@ -788,11 +781,17 @@
  }
  }
 
+ function getQuestionText(element) {
+ const field = element.closest(".field");
+ const title = field ? field.querySelector(".title") : null;
+ return title ? title.textContent.replace("*", "").trim() : "esta pregunta";
+ }
+
  function validateCurrentStep(){
  const section = document.querySelector(`.step[data-step="${currentStep}"]`);
- if(!section) return true;
+ if(!section) return [];
 
- let valid = true;
+ const missing = [];
  const seenRadioNames = new Set();
 
  section.querySelectorAll("input[required], textarea[required]").forEach(el => {
@@ -800,24 +799,28 @@
  if(seenRadioNames.has(el.name)) return;
  seenRadioNames.add(el.name);
  const checked = section.querySelector(`input[name="${el.name}"]:checked`);
- if(!checked) valid = false;
+ if(!checked) missing.push(getQuestionText(el));
  }else if(el.type !== "checkbox"){
- if(!el.checkValidity()) valid = false;
+ if(!el.checkValidity()) missing.push(getQuestionText(el));
  }
  });
 
  const groupName = requiredCheckboxGroupByStep[currentStep];
  if(groupName){
  const checked = section.querySelectorAll(`input[name="${groupName}"]:checked`);
- if(checked.length === 0) valid = false;
+ if(checked.length === 0) {
+ const first = section.querySelector(`input[name="${groupName}"]`);
+ missing.push(getQuestionText(first));
+ }
  }
 
- return valid;
+ return [...new Set(missing)];
  }
 
  function nextStep(){
- if(!validateCurrentStep()){
- showStatus("Completa los campos obligatorios antes de continuar.", "error");
+ const missing = validateCurrentStep();
+ if(missing.length){
+ showStatus(`Para continuar, responde: ${missing[0]}.`, "error");
  return;
  }
  if(currentStep < totalSteps) goToStep(currentStep + 1);
@@ -858,6 +861,12 @@
 
  statusBox.className = "status";
  statusBox.textContent = "";
+
+ const missing = validateCurrentStep();
+ if (missing.length) {
+ showStatus(`Para enviar, responde: ${missing[0]}.`, "error");
+ return;
+ }
 
  if (!validateCustomFields()) return;
 
@@ -1017,4 +1026,3 @@
    </script>
  </body>
  </html>
-
