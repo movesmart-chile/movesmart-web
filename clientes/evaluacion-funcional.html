@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -107,19 +108,19 @@ textarea{min-height:90px;resize:vertical}
 </header>
 <section class="hero">
 <span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
-<h2>Evaluemos tu <span>despegue al caminar</span></h2>
+<h2>Evaluemos cómo <span>subes y bajas escaleras</span></h2>
 <p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
 <div class="goal">
 <strong>Objetivo funcional</strong>
-Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad.
+Subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza.
 </div>
 </section>
 <form id="evalForm">
 <section class="card">
-<h3 class="section-title">1. Molestia durante el despegue</h3>
-<p class="section-sub">Camina unos pasos a tu velocidad habitual y piensa específicamente en el momento en que el pie impulsa el cuerpo hacia delante.</p>
+<h3 class="section-title">1. Molestia al usar escaleras</h3>
+<p class="section-sub">Piensa en un tramo habitual de escaleras y en la molestia que sientes en el talón/Aquiles al subirlo y bajarlo.</p>
 <div class="field">
-<span class="field-title">¿Cuánto molesta el talón/Aquiles durante el despegue? *</span>
+<span class="field-title">¿Cuánto molesta el talón/Aquiles al subir y bajar escaleras? *</span>
 <div class="scale" data-scale="dolor_despegue"></div>
 <p class="helper">0 = nada · 10 = máxima molestia imaginable.</p>
 </div>
@@ -128,7 +129,7 @@ Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en 
 <h3 class="section-title">2. Capacidad funcional</h3>
 <p class="section-sub">Queremos saber qué tan capaz te sientes de realizar la tarea, no solamente cuánto duele.</p>
 <div class="field">
-<span class="field-title">¿Qué tan capaz te sientes de impulsarte con ese pie al caminar? *</span>
+<span class="field-title">¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *</span>
 <div class="scale" data-scale="psfs_despegue"></div>
 <p class="helper">0 = no puedo hacerlo · 10 = lo hago sin dificultad.</p>
 </div>
@@ -137,7 +138,7 @@ Mejorar la capacidad de impulsarte con el pie al caminar, con menos molestia en 
 <h3 class="section-title">3. Confianza funcional</h3>
 <p class="section-sub">La seguridad que sientes al moverte también es parte de tu progreso.</p>
 <div class="field">
-<span class="field-title">¿Qué tanta confianza tienes para impulsarte con ese pie al caminar? *</span>
+<span class="field-title">¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *</span>
 <div class="scale" data-scale="confianza_despegue"></div>
 <p class="helper">0 = nada de confianza · 10 = total confianza.</p>
 </div>
@@ -204,23 +205,24 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 </div>
 </section>
 <section class="card">
-<h3 class="section-title">5. Observación de la marcha</h3>
-<p class="section-sub">Una observación breve para comparar en futuras evaluaciones.</p>
+<h3 class="section-title">5. Observación al usar escaleras</h3>
+<p class="section-sub">Una observación breve para comparar al finalizar el ciclo.</p>
 <div class="field">
-<label for="marcha">Durante la caminata, ¿cómo se ve el despegue?</label>
+<label for="marcha">Al subir o bajar escaleras, ¿qué observas principalmente?</label>
 <select id="marcha" name="observacion_marcha">
 <option value="">Selecciona</option>
-<option>Sin cambio visible</option>
-<option>Despegue más corto o cuidadoso</option>
-<option>Cojera leve</option>
-<option>Cojera marcada</option>
+<option>Sube y baja sin dificultad visible</option>
+<option>Usa el pasamanos para apoyarse</option>
+<option>Sube o baja un escalón a la vez</option>
+<option>Movimiento más lento o cuidadoso</option>
+<option>Evita cargar el talón/Aquiles</option>
 <option>No evaluado</option>
 </select>
 </div>
 <div class="field">
 <label for="comentario">Comentario opcional</label>
 <div class="voice-field">
-<textarea id="comentario" name="comentario" placeholder="Ej.: siento que evito impulsarme, tengo miedo de apoyar, el dolor aparece al final del paso..."></textarea>
+<textarea id="comentario" name="comentario" placeholder="Ej.: me cuesta más bajar, necesito apoyarme en el pasamanos o la molestia aparece después de varios escalones..."></textarea>
 <button class="mic-btn" id="micBtn" type="button" aria-label="Dictar comentario" title="Dictar comentario">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5.3-3a1 1 0 1 1 2 0 7.3 7.3 0 0 1-6.3 7.23V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.77A7.3 7.3 0 0 1 4.7 11a1 1 0 1 1 2 0 5.3 5.3 0 0 0 10.6 0Z"/></svg>
 </button>
@@ -279,7 +281,7 @@ const CLIENTES = {
     activo: true,
     ciclo: 2,
     momento: "inicial",
-    objetivo: "Mejorar la capacidad de impulsarse con el pie al caminar, con menos molestia en el talón/Aquiles y mayor seguridad."
+    objetivo: "Subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza."
   },
   "juan-ugalde": {
     nombre: "Juan Ugalde",
@@ -472,7 +474,7 @@ data.objetivo_funcional = OBJETIVO_FUNCIONAL;
 data.fecha = fechaChile();
 data.tipo = "evaluacion_funcional_movesmart";
 try{
-localStorage.setItem(`movesmart_eval_funcional_dixie_ciclo${CICLO}_${MOMENTO}`, JSON.stringify(data));
+localStorage.setItem(`movesmart_eval_funcional_${CLIENTE_ID}_ciclo${CICLO}_${MOMENTO}`, JSON.stringify(data));
 }catch(_){}
 if(SAVE_SCRIPT_URL){
 try{
@@ -489,26 +491,26 @@ return;
 }
 }
 resultGrid.innerHTML =
-metric("Dolor en despegue", `${data.dolor_despegue}/10`) +
+metric("Molestia en escaleras", `${data.dolor_despegue}/10`) +
 metric("Capacidad funcional", `${data.psfs_despegue}/10`) +
 metric("Confianza funcional", `${data.confianza_despegue}/10`) +
 metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps} rep.` : data.test_estado) +
 metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
 metric("Motivo de parada", data.motivo_parada || "—") +
-metric("Marcha", data.observacion_marcha || "—");
+metric("Uso de escaleras", data.observacion_marcha || "—");
 lastSummary =
 `MoveSmart · Evaluación funcional
 Cliente: ${CLIENTE}
 Fecha: ${data.fecha}
 Momento: evaluación ${MOMENTO} del ciclo ${CICLO}
-Objetivo: mejorar el impulso del pie durante la marcha.
-Dolor durante el despegue: ${data.dolor_despegue}/10
+Objetivo: subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza.
+Molestia al subir y bajar escaleras: ${data.dolor_despegue}/10
 Capacidad funcional (PSFS): ${data.psfs_despegue}/10
 Confianza funcional: ${data.confianza_despegue}/10
 Elevaciones bilaterales en 30 segundos: ${data.test_estado === "Realizada" ? data.heel_raise_reps + " repeticiones" : data.test_estado}
 Dolor durante elevaciones: ${data.test_estado === "Realizada" ? data.dolor_heel_raise + "/10" : "No aplica"}
 Motivo de parada: ${data.motivo_parada || "No registrado"}
-Observación de marcha: ${data.observacion_marcha || "No registrado"}
+Observación al usar escaleras: ${data.observacion_marcha || "No registrado"}
 Comentario: ${data.comentario || "Sin comentario"}`;
 result.classList.add("active");
 submitBtn.textContent = "✅ Evaluación guardada";
