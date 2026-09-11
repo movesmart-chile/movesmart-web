@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -64,11 +63,11 @@ textarea{min-height:90px;resize:vertical}
 .result h3{font-size:1.55rem;margin-bottom:12px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .metric{padding:14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}
 .metric small{display:block;color:var(--muted);margin-bottom:5px}.metric strong{font-size:1.15rem}
-.copy-btn{background:rgba(255,255,255,.08);border:1px solid var(--border);box-shadow:none}
+.sent-confirmation{margin-top:16px;padding:15px;border-radius:16px;background:rgba(40,201,104,.12);border:1px solid rgba(40,201,104,.3);color:#dffff0;font-weight:800;line-height:1.5}
 .timer-box{margin-top:14px;padding:18px;text-align:center;border-radius:18px;background:rgba(47,99,255,.11);border:1px solid rgba(111,142,255,.25)}
 .timer-box strong{display:block;font-size:2rem;margin-bottom:10px}.timer-btn{margin:0;padding:12px 18px;width:auto}
 .demo-box{margin-top:14px;padding:16px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
-.demo-box strong{display:block;margin-bottom:10px}.demo-video{display:block;width:100%;max-height:430px;border-radius:15px;background:#000;object-fit:contain}
+.demo-box strong{display:block;margin-bottom:10px}.demo-video{display:block;width:100%;max-height:430px;border-radius:15px;background:#000;object-fit:contain;opacity:1;transition:opacity .45s ease}.demo-video.loop-fade-out{opacity:0}
 .review-request{margin-top:14px;padding:16px;border-radius:18px;background:rgba(47,99,255,.09);border:1px solid rgba(111,142,255,.22)}
 .review-request{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .review-request-copy{flex:1 1 280px}.review-request-copy strong{display:block;margin-bottom:6px}.review-request-copy small{display:block;color:var(--muted);font-size:.9rem;line-height:1.5}
@@ -155,12 +154,12 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 </div>
 <div class="demo-box">
 <strong>▶ Mira cómo realizar el ejercicio</strong>
-<video class="demo-video" controls playsinline preload="metadata" src="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4"></video>
+<video class="demo-video" controls muted autoplay playsinline preload="auto" src="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4"></video>
 </div>
 <div class="timer-box">
 <strong id="timerDisplay">30 s</strong>
 <button class="btn timer-btn" id="timerBtn" type="button">Iniciar cronómetro</button>
-<p class="helper">El cronómetro avisará al comenzar y al finalizar.</p>
+<p class="helper">Escucharás una cuenta regresiva antes de comenzar y avisos sonoros en los últimos segundos y al finalizar.</p>
 </div>
 <div class="review-request">
 <div class="review-request-copy">
@@ -233,10 +232,10 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <button class="btn" id="submitBtn" type="submit">Guardar mi resultado →</button>
 </form>
 <section class="result" id="result">
-<h3>✅ Evaluación funcional registrada</h3>
-<p style="color:var(--muted);line-height:1.6">Este será el punto de partida para comparar el próximo control.</p>
+<h3>✅ Tu evaluación ha sido enviada</h3>
+<p style="color:var(--muted);line-height:1.6">Guardamos tus respuestas correctamente. Las usaremos como punto de partida para comparar tu progreso al finalizar el ciclo.</p>
 <div class="result-grid" id="resultGrid"></div>
-<button class="btn copy-btn" id="copyBtn" type="button">📋 Copiar resumen</button>
+<div class="sent-confirmation" role="status">Ya puedes cerrar esta página o volver a tu panel MoveSmart.</div>
 </section>
 </main>
 <main class="page" id="pendingApp" hidden>
@@ -350,7 +349,6 @@ const result = document.getElementById("result");
 const resultGrid = document.getElementById("resultGrid");
 const testEstado = document.getElementById("testEstado");
 const heelRiseFields = document.getElementById("heelRiseFields");
-let lastSummary = "";
 document.querySelectorAll("[data-scale]").forEach(scale => {
 const name = scale.dataset.scale;
 scale.innerHTML = Array.from({length:11},(_,value) =>
@@ -371,34 +369,69 @@ document.getElementById("motivoParada").value = "";
 const timerDisplay = document.getElementById("timerDisplay");
 const timerBtn = document.getElementById("timerBtn");
 let timerInterval = null;
-function beep(){
+let timerPreparing = false;
+let audioContext = null;
+function beep(frequency = 880, duration = .18){
 try{
-const audio = new (window.AudioContext || window.webkitAudioContext)();
-const oscillator = audio.createOscillator();
-const gain = audio.createGain();
-oscillator.connect(gain); gain.connect(audio.destination);
-oscillator.frequency.value = 880; gain.gain.value = .12;
-oscillator.start(); oscillator.stop(audio.currentTime + .18);
+if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+if(audioContext.state === "suspended") audioContext.resume();
+const oscillator = audioContext.createOscillator();
+const gain = audioContext.createGain();
+oscillator.connect(gain); gain.connect(audioContext.destination);
+oscillator.frequency.value = frequency;
+gain.gain.setValueAtTime(.13,audioContext.currentTime);
+gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime + duration);
+oscillator.start(); oscillator.stop(audioContext.currentTime + duration);
 }catch(_){}
 }
-timerBtn.addEventListener("click", () => {
-if(timerInterval) return;
+function wait(milliseconds){
+return new Promise(resolve => setTimeout(resolve,milliseconds));
+}
+timerBtn.addEventListener("click", async () => {
+if(timerInterval || timerPreparing) return;
+timerPreparing = true;
+timerBtn.disabled = true;
+timerBtn.textContent = "Prepárate…";
+for(let count = 3; count >= 1; count -= 1){
+timerDisplay.textContent = count;
+beep(700,.13);
+await wait(1000);
+}
+timerDisplay.textContent = "¡Comienza!";
+beep(1050,.3);
+await wait(550);
 let seconds = 30;
 timerDisplay.textContent = `${seconds} s`;
 timerBtn.textContent = "Prueba en curso…";
-timerBtn.disabled = true;
-beep();
+timerPreparing = false;
 timerInterval = setInterval(() => {
 seconds -= 1;
 timerDisplay.textContent = `${seconds} s`;
+if(seconds > 0 && seconds <= 3) beep(700,.13);
 if(seconds <= 0){
-clearInterval(timerInterval); timerInterval = null; beep();
+clearInterval(timerInterval); timerInterval = null; beep(1100,.45);
 timerBtn.disabled = false;
 timerBtn.textContent = "Repetir cronómetro";
 document.getElementById("reps").focus();
 }
 },1000);
 });
+const demoVideo = document.querySelector(".demo-video");
+if(demoVideo){
+demoVideo.addEventListener("timeupdate", () => {
+if(Number.isFinite(demoVideo.duration) && demoVideo.duration - demoVideo.currentTime <= .45){
+demoVideo.classList.add("loop-fade-out");
+}
+});
+demoVideo.addEventListener("ended", () => {
+demoVideo.currentTime = 0;
+const playback = demoVideo.play();
+requestAnimationFrame(() => requestAnimationFrame(() => demoVideo.classList.remove("loop-fade-out")));
+if(playback && typeof playback.catch === "function") playback.catch(() => {});
+});
+const initialPlayback = demoVideo.play();
+if(initialPlayback && typeof initialPlayback.catch === "function") initialPlayback.catch(() => {});
+}
 const micBtn = document.getElementById("micBtn");
 const voiceStatus = document.getElementById("voiceStatus");
 const comentario = document.getElementById("comentario");
@@ -498,33 +531,9 @@ metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps
 metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
 metric("Motivo de parada", data.motivo_parada || "—") +
 metric("Uso de escaleras", data.observacion_marcha || "—");
-lastSummary =
-`MoveSmart · Evaluación funcional
-Cliente: ${CLIENTE}
-Fecha: ${data.fecha}
-Momento: evaluación ${MOMENTO} del ciclo ${CICLO}
-Objetivo: subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza.
-Molestia al subir y bajar escaleras: ${data.dolor_despegue}/10
-Capacidad funcional (PSFS): ${data.psfs_despegue}/10
-Confianza funcional: ${data.confianza_despegue}/10
-Elevaciones bilaterales en 30 segundos: ${data.test_estado === "Realizada" ? data.heel_raise_reps + " repeticiones" : data.test_estado}
-Dolor durante elevaciones: ${data.test_estado === "Realizada" ? data.dolor_heel_raise + "/10" : "No aplica"}
-Motivo de parada: ${data.motivo_parada || "No registrado"}
-Observación al usar escaleras: ${data.observacion_marcha || "No registrado"}
-Comentario: ${data.comentario || "Sin comentario"}`;
 result.classList.add("active");
-submitBtn.textContent = "✅ Evaluación guardada";
+submitBtn.textContent = "✅ Evaluación enviada";
 result.scrollIntoView({behavior:"smooth",block:"start"});
-});
-document.getElementById("copyBtn").addEventListener("click", async ()=>{
-if(!lastSummary) return;
-try{
-await navigator.clipboard.writeText(lastSummary);
-document.getElementById("copyBtn").textContent = "✅ Resumen copiado";
-setTimeout(()=>document.getElementById("copyBtn").textContent="📋 Copiar resumen",1500);
-}catch(_){
-alert(lastSummary);
-}
 });
 
 const testVideoFile = document.getElementById("testVideoFile");
