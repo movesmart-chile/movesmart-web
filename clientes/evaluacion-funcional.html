@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Evaluación funcional | Dixie Acosta · MoveSmart</title>
+<title>Evaluación funcional | MoveSmart</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -101,9 +101,9 @@ textarea{min-height:90px;resize:vertical}
 <header class="topbar">
 <div class="brand">
 <div class="badge">M</div>
-<div><h1>MoveSmart</h1><p id="clientEvaluationLabel">Dixie Acosta · Evaluación inicial</p></div>
+<div><h1>MoveSmart</h1><p id="clientEvaluationLabel">Cargando evaluación…</p></div>
 </div>
-<a class="back" id="backLink" href="https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=dixie-acosta">← Volver</a>
+<a class="back" id="backLink" href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html">← Volver</a>
 </header>
 <section class="hero">
 <span class="eyebrow" id="evaluationEyebrow">📍 Evaluación funcional</span>
@@ -183,7 +183,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <div class="two">
 <div class="field">
 <label for="reps" id="repsLabel">Repeticiones realizadas</label>
-<input id="reps" name="repeticiones_prueba" type="number" min="0" max="999" inputmode="numeric">
+<input id="reps" name="repeticiones_prueba" type="number" min="0" max="999" step="any" inputmode="decimal">
 </div>
 <div class="field">
 <label for="dolorTest">Dolor máximo durante la prueba (0–10)</label>
@@ -203,7 +203,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 </div>
 </div>
 <div class="two" id="stepDetails" hidden>
-<div class="field">
+<div class="field" id="piernaInicioField">
 <label for="piernaInicio">¿Con qué pierna comenzaste?</label>
 <select id="piernaInicio" name="pierna_inicio">
 <option value="">Selecciona</option>
@@ -211,7 +211,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <option>Izquierda</option>
 </select>
 </div>
-<div class="field">
+<div class="field" id="usoApoyoField">
 <label for="usoApoyo">¿Qué apoyo utilizaste?</label>
 <select id="usoApoyo" name="uso_apoyo">
 <option value="">Selecciona</option>
@@ -299,40 +299,6 @@ const params = new URLSearchParams(window.location.search);
 const CLIENTE_ID = String(params.get("cliente_id") || "").trim().toLowerCase();
 const CICLO_SOLICITADO = String(params.get("ciclo") || "").trim();
 const MOMENTO_SOLICITADO = String(params.get("momento") || "").trim().toLowerCase();
-const MODULOS = {
-  elevaciones_talon_30s: {
-    hero: 'Evaluemos cómo <span>subes y bajas escaleras</span>',
-    dolorSub: "Piensa en un tramo habitual de escaleras y en la molestia que sientes en el talón/Aquiles al subirlo y bajarlo.",
-    dolorPregunta: "¿Cuánto molesta el talón/Aquiles al subir y bajar escaleras? *",
-    capacidadPregunta: "¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *",
-    confianzaPregunta: "¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *",
-    tituloPrueba: "4. Elevaciones bilaterales de talón en 30 segundos",
-    instrucciones: "Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas.",
-    repeticionesLabel: "Repeticiones completas",
-    tecnicaParada: "Pérdida de altura",
-    observacionLabel: "Al subir o bajar escaleras, ¿qué observas principalmente?",
-    observaciones: ["Sube y baja sin dificultad visible","Usa el pasamanos para apoyarse","Sube o baja un escalón a la vez","Movimiento más lento o cuidadoso","Evita cargar el talón/Aquiles","No evaluado"],
-    comentarioPlaceholder: "Ej.: me cuesta más bajar, necesito apoyarme en el pasamanos o la molestia aparece después de varios escalones...",
-    videoEjercicio: "Elevaciones bilaterales de talón",
-    usaEscalon: false
-  },
-  escalon_15s: {
-    hero: 'Evaluemos cómo <span>subes y bajas un escalón</span>',
-    dolorSub: "Piensa en una escalera habitual y en la molestia que sientes al subirla y bajarla.",
-    dolorPregunta: "¿Cuánto te molesta subir y bajar escaleras? *",
-    capacidadPregunta: "¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *",
-    confianzaPregunta: "¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *",
-    tituloPrueba: "4. Subir y bajar un escalón durante 15 segundos",
-    instrucciones: "Usa calzado habitual y un escalón firme de 15 cm con pasamanos, pared o apoyo estable. Sube con un pie, lleva ambos pies al escalón y vuelve al piso de forma controlada. Cuenta una repetición cada vez que completes la subida y la bajada. Usa siempre el mismo escalón, pierna inicial y apoyo en la evaluación final.",
-    repeticionesLabel: "Ciclos completos de subida y bajada",
-    tecnicaParada: "Dificultad para completar el movimiento",
-    observacionLabel: "Durante la prueba, ¿qué observaste principalmente?",
-    observaciones: ["Sube y baja sin dificultad visible","Usa apoyo durante el movimiento","Sube o baja un escalón a la vez","Movimiento más lento o cuidadoso","Evita cargar una pierna","No evaluado"],
-    comentarioPlaceholder: "Ej.: me cuesta más bajar, necesito apoyarme o siento más molestia en una pierna...",
-    videoEjercicio: "Subir y bajar un escalón",
-    usaEscalon: true
-  }
-};
 let CLIENTE_CONFIG = null;
 let MODULO = null;
 let CLIENTE = "";
@@ -359,13 +325,28 @@ function mostrarPendiente(titulo, mensaje){
 
 function aplicarConfiguracion(config){
   CLIENTE_CONFIG = config;
-  MODULO = MODULOS[config.modulo_prueba];
+  MODULO = {
+    actividad: config.actividad_funcional || "esta actividad",
+    nombrePrueba: config.nombre_prueba || "Prueba funcional",
+    dolorPregunta: config.pregunta_dolor || "¿Cuánta molestia sientes?",
+    capacidadPregunta: config.pregunta_capacidad || "¿Qué tan capaz te sientes de realizar esta actividad?",
+    confianzaPregunta: config.pregunta_confianza || "¿Qué tanta confianza tienes para realizar esta actividad?",
+    instrucciones: config.instrucciones || "Sigue las indicaciones entregadas por MoveSmart.",
+    repeticionesLabel: config.resultado_etiqueta || "Resultado de la prueba",
+    resultadoUnidad: config.resultado_unidad || "",
+    tecnicaParada: config.motivo_tecnico || "Dificultad para completar el movimiento",
+    observacionLabel: config.observacion_etiqueta || "¿Qué observaste principalmente?",
+    observaciones: Array.isArray(config.opciones_observacion) ? config.opciones_observacion : [],
+    comentarioPlaceholder: config.comentario_ejemplo || "Puedes agregar cualquier detalle que consideres importante...",
+    requierePiernaInicio: Boolean(config.requiere_pierna_inicio),
+    requiereApoyo: Boolean(config.requiere_apoyo)
+  };
   CLIENTE = config.cliente;
   CICLO = Number(config.ciclo);
   MOMENTO = config.momento || "inicial";
   OBJETIVO_FUNCIONAL = config.objetivo_funcional || "";
   TEST_DURATION_SECONDS = Number(config.duracion_segundos) || 30;
-  VIDEO_EXERCISE = MODULO.videoEjercicio;
+  VIDEO_EXERCISE = MODULO.nombrePrueba;
   VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
   VIDEO_STORAGE_FOLDER = `${CLIENTE_ID}/evaluacion_funcional/mes${CICLO}`;
   document.getElementById("pendingApp").hidden = true;
@@ -375,12 +356,13 @@ function aplicarConfiguracion(config){
   document.getElementById("evaluationEyebrow").textContent = `📍 Evaluación ${MOMENTO} · Ciclo ${CICLO}`;
   document.getElementById("goalText").textContent = OBJETIVO_FUNCIONAL;
   document.getElementById("backLink").href = DASHBOARD_URL;
-  document.getElementById("heroTitle").innerHTML = MODULO.hero;
-  document.getElementById("painSectionSub").textContent = MODULO.dolorSub;
-  document.getElementById("painQuestion").textContent = MODULO.dolorPregunta;
-  document.getElementById("capacityQuestion").textContent = MODULO.capacidadPregunta;
-  document.getElementById("confidenceQuestion").textContent = MODULO.confianzaPregunta;
-  document.getElementById("testTitle").textContent = MODULO.tituloPrueba;
+  document.getElementById("heroTitle").innerHTML = 'Evaluemos <span id="heroActivity"></span>';
+  document.getElementById("heroActivity").textContent = MODULO.actividad;
+  document.getElementById("painSectionSub").textContent = `Piensa en ${MODULO.actividad.toLowerCase()} y en cómo te sientes al realizarla.`;
+  document.getElementById("painQuestion").textContent = `${MODULO.dolorPregunta} *`;
+  document.getElementById("capacityQuestion").textContent = `${MODULO.capacidadPregunta} *`;
+  document.getElementById("confidenceQuestion").textContent = `${MODULO.confianzaPregunta} *`;
+  document.getElementById("testTitle").textContent = `4. ${MODULO.nombrePrueba}`;
   document.getElementById("testInstructions").textContent = MODULO.instrucciones;
   document.getElementById("timerDisplay").textContent = `${TEST_DURATION_SECONDS} s`;
   document.getElementById("videoReviewText").textContent = `Es opcional. Puedes enviar el video completo de los ${TEST_DURATION_SECONDS} segundos a MoveSmart.`;
@@ -394,6 +376,7 @@ function aplicarConfiguracion(config){
   document.getElementById("executionSubtitle").textContent = `${VIDEO_EXERCISE} · ${TEST_DURATION_SECONDS} segundos`;
   const demoVideo = document.getElementById("demoVideo");
   demoVideo.src = config.video_demostrativo || "";
+  document.querySelector(".demo-box").hidden = !config.video_demostrativo;
   demoVideo.load();
   testEstado.dispatchEvent(new Event("change"));
 }
@@ -424,13 +407,6 @@ async function cargarConfiguracion(){
       mostrarPendiente(
         "Evaluación funcional pendiente",
         "Tu evaluación todavía está siendo preparada según tu objetivo y tu ciclo actual."
-      );
-      return;
-    }
-    if(!MODULOS[data.configuracion.modulo_prueba]){
-      mostrarPendiente(
-        `Evaluación de ${data.configuracion.cliente} pendiente`,
-        "La prueba correspondiente a este objetivo todavía está siendo preparada."
       );
       return;
     }
@@ -473,10 +449,13 @@ const performed = testEstado.value === "Realizada";
 testFields.style.display = performed ? "block" : "none";
 document.getElementById("reps").required = performed;
 document.getElementById("dolorTest").required = performed;
-const showStepDetails = performed && Boolean(MODULO?.usaEscalon);
-document.getElementById("stepDetails").hidden = !showStepDetails;
-document.getElementById("piernaInicio").required = showStepDetails;
-document.getElementById("usoApoyo").required = showStepDetails;
+const requireLeg = performed && Boolean(MODULO?.requierePiernaInicio);
+const requireSupport = performed && Boolean(MODULO?.requiereApoyo);
+document.getElementById("stepDetails").hidden = !(requireLeg || requireSupport);
+document.getElementById("piernaInicioField").hidden = !requireLeg;
+document.getElementById("usoApoyoField").hidden = !requireSupport;
+document.getElementById("piernaInicio").required = requireLeg;
+document.getElementById("usoApoyo").required = requireSupport;
 if(!performed){
 document.getElementById("reps").value = "";
 document.getElementById("dolorTest").value = "";
@@ -654,11 +633,14 @@ resultGrid.innerHTML =
 metric("Molestia en la actividad", `${data.dolor_actividad}/10`) +
 metric("Capacidad funcional", `${data.capacidad_funcional}/10`) +
 metric("Confianza funcional", `${data.confianza_funcional}/10`) +
-metric(MODULO.repeticionesLabel, data.test_estado === "Realizada" ? `${data.repeticiones_prueba} rep.` : data.test_estado) +
+metric(MODULO.repeticionesLabel, data.test_estado === "Realizada"
+  ? `${data.repeticiones_prueba}${MODULO.resultadoUnidad ? ` ${MODULO.resultadoUnidad}` : ""}`
+  : data.test_estado) +
 metric("Dolor durante la prueba", data.test_estado === "Realizada" ? `${data.dolor_prueba}/10` : "—") +
 metric("Motivo de parada", data.motivo_parada || "—") +
 metric("Observación", data.observacion_prueba || "—") +
-(MODULO.usaEscalon ? metric("Pierna inicial", data.pierna_inicio || "—") + metric("Apoyo", data.uso_apoyo || "—") : "");
+(MODULO.requierePiernaInicio ? metric("Pierna inicial", data.pierna_inicio || "—") : "") +
+(MODULO.requiereApoyo ? metric("Apoyo", data.uso_apoyo || "—") : "");
 result.classList.add("active");
 submitBtn.textContent = "✅ Evaluación enviada";
 result.scrollIntoView({behavior:"smooth",block:"start"});
@@ -708,7 +690,7 @@ function fechaVideoChile(){
 }
 
 function videoSlug(text){
-  return String(text || "video").normalize("NFD").replace(/[u0300-u036f]/g,"")
+  return String(text || "video").normalize("NFD").replace(/[\u0300-\u036f]/g,"")
     .toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80);
 }
 
