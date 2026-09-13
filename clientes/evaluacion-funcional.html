@@ -107,7 +107,7 @@ textarea{min-height:90px;resize:vertical}
 </header>
 <section class="hero">
 <span class="eyebrow" id="evaluationEyebrow">📍 Evaluación funcional</span>
-<h2>Evaluemos cómo <span>subes y bajas escaleras</span></h2>
+<h2 id="heroTitle">Evaluación funcional</h2>
 <p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
 <div class="goal">
 <strong>Objetivo funcional</strong>
@@ -116,11 +116,11 @@ textarea{min-height:90px;resize:vertical}
 </section>
 <form id="evalForm">
 <section class="card">
-<h3 class="section-title">1. Molestia al usar escaleras</h3>
-<p class="section-sub">Piensa en un tramo habitual de escaleras y en la molestia que sientes en el talón/Aquiles al subirlo y bajarlo.</p>
+<h3 class="section-title" id="painSectionTitle">1. Molestia durante la actividad</h3>
+<p class="section-sub" id="painSectionSub"></p>
 <div class="field">
-<span class="field-title">¿Cuánto molesta el talón/Aquiles al subir y bajar escaleras? *</span>
-<div class="scale" data-scale="dolor_despegue"></div>
+<span class="field-title" id="painQuestion">¿Cuánta molestia sientes? *</span>
+<div class="scale" data-scale="dolor_actividad"></div>
 <p class="helper">0 = nada · 10 = máxima molestia imaginable.</p>
 </div>
 </section>
@@ -128,8 +128,8 @@ textarea{min-height:90px;resize:vertical}
 <h3 class="section-title">2. Capacidad funcional</h3>
 <p class="section-sub">Queremos saber qué tan capaz te sientes de realizar la tarea, no solamente cuánto duele.</p>
 <div class="field">
-<span class="field-title">¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *</span>
-<div class="scale" data-scale="psfs_despegue"></div>
+<span class="field-title" id="capacityQuestion">¿Qué tan capaz te sientes de realizar esta actividad? *</span>
+<div class="scale" data-scale="capacidad_funcional"></div>
 <p class="helper">0 = no puedo hacerlo · 10 = lo hago sin dificultad.</p>
 </div>
 </section>
@@ -137,24 +137,24 @@ textarea{min-height:90px;resize:vertical}
 <h3 class="section-title">3. Confianza funcional</h3>
 <p class="section-sub">La seguridad que sientes al moverte también es parte de tu progreso.</p>
 <div class="field">
-<span class="field-title">¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *</span>
-<div class="scale" data-scale="confianza_despegue"></div>
+<span class="field-title" id="confidenceQuestion">¿Qué tanta confianza tienes para realizar esta actividad? *</span>
+<div class="scale" data-scale="confianza_funcional"></div>
 <p class="helper">0 = nada de confianza · 10 = total confianza.</p>
 </div>
 </section>
 <section class="card">
-<h3 class="section-title">4. Elevaciones bilaterales de talón en 30 segundos</h3>
+<h3 class="section-title" id="testTitle">4. Prueba funcional</h3>
 <p class="section-sub">Esta es una prueba funcional adaptada MoveSmart. La repetiremos de la misma forma al final del ciclo.</p>
 <div class="field">
 <span class="field-title">Preparación de la prueba</span>
-<p class="helper">Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas realizadas durante 30 segundos.</p>
+<p class="helper" id="testInstructions"></p>
 </div>
 <div class="notice">
 No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápido de la molestia, mareo, pérdida de equilibrio o inseguridad. No necesitas llegar al dolor para que el resultado sea válido.
 </div>
 <div class="demo-box">
 <strong>▶ Mira cómo realizar el ejercicio</strong>
-<video class="demo-video" controls muted autoplay playsinline preload="auto" src="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4"></video>
+<video class="demo-video" id="demoVideo" controls muted autoplay playsinline preload="auto"></video>
 </div>
 <div class="timer-box">
 <strong id="timerDisplay">30 s</strong>
@@ -164,7 +164,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <div class="review-request">
 <div class="review-request-copy">
 <strong>📹 ¿Quieres que revise esta prueba?</strong>
-<small>Es opcional. Puedes enviar el video completo de los 30 segundos a MoveSmart.</small>
+<small id="videoReviewText">Es opcional. Puedes enviar el video completo de la prueba a MoveSmart.</small>
 </div>
 <button class="upload-execution-btn" id="openTestVideo" type="button">📹 Enviar mi ejecución</button>
 <div class="upload-status" id="videoUploadStatusSummary" aria-live="polite"></div>
@@ -179,15 +179,15 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <option value="No realizada por otro motivo">No realizada por otro motivo</option>
 </select>
 </div>
-<div id="heelRiseFields">
+<div id="testFields">
 <div class="two">
 <div class="field">
-<label for="reps">Repeticiones realizadas</label>
-<input id="reps" name="heel_raise_reps" type="number" min="0" max="60" inputmode="numeric">
+<label for="reps" id="repsLabel">Repeticiones realizadas</label>
+<input id="reps" name="repeticiones_prueba" type="number" min="0" max="999" inputmode="numeric">
 </div>
 <div class="field">
 <label for="dolorTest">Dolor máximo durante la prueba (0–10)</label>
-<input id="dolorTest" name="dolor_heel_raise" type="number" min="0" max="10" step="1" inputmode="numeric">
+<input id="dolorTest" name="dolor_prueba" type="number" min="0" max="10" step="1" inputmode="numeric">
 </div>
 </div>
 <div class="field">
@@ -196,19 +196,39 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <option value="">Selecciona</option>
 <option>Dolor</option>
 <option>Fatiga</option>
-<option>Pérdida de altura</option>
+<option id="techniqueStopOption">Pérdida de altura</option>
 <option>Inseguridad</option>
-<option>Finalizaron los 30 segundos</option>
+<option id="timerStopOption">Finalizó el tiempo</option>
+</select>
+</div>
+</div>
+<div class="two" id="stepDetails" hidden>
+<div class="field">
+<label for="piernaInicio">¿Con qué pierna comenzaste?</label>
+<select id="piernaInicio" name="pierna_inicio">
+<option value="">Selecciona</option>
+<option>Derecha</option>
+<option>Izquierda</option>
+</select>
+</div>
+<div class="field">
+<label for="usoApoyo">¿Qué apoyo utilizaste?</label>
+<select id="usoApoyo" name="uso_apoyo">
+<option value="">Selecciona</option>
+<option>Sin apoyo</option>
+<option>Pasamanos</option>
+<option>Pared</option>
+<option>Silla estable</option>
 </select>
 </div>
 </div>
 </section>
 <section class="card">
-<h3 class="section-title">5. Observación al usar escaleras</h3>
+<h3 class="section-title" id="observationTitle">5. Observación del movimiento</h3>
 <p class="section-sub">Una observación breve para comparar al finalizar el ciclo.</p>
 <div class="field">
-<label for="marcha">Al subir o bajar escaleras, ¿qué observas principalmente?</label>
-<select id="marcha" name="observacion_marcha">
+<label for="marcha" id="observationLabel">¿Qué observaste principalmente?</label>
+<select id="marcha" name="observacion_prueba">
 <option value="">Selecciona</option>
 <option>Sube y baja sin dificultad visible</option>
 <option>Usa el pasamanos para apoyarse</option>
@@ -221,7 +241,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <div class="field">
 <label for="comentario">Comentario opcional</label>
 <div class="voice-field">
-<textarea id="comentario" name="comentario" placeholder="Ej.: me cuesta más bajar, necesito apoyarme en el pasamanos o la molestia aparece después de varios escalones..."></textarea>
+<textarea id="comentario" name="comentario" placeholder="Puedes agregar cualquier detalle que consideres importante..."></textarea>
 <button class="mic-btn" id="micBtn" type="button" aria-label="Dictar comentario" title="Dictar comentario">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5.3-3a1 1 0 1 1 2 0 7.3 7.3 0 0 1-6.3 7.23V21h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.77A7.3 7.3 0 0 1 4.7 11a1 1 0 1 1 2 0 5.3 5.3 0 0 0 10.6 0Z"/></svg>
 </button>
@@ -250,7 +270,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <div class="execution-modal" id="executionModal" aria-hidden="true">
 <div class="execution-dialog" role="dialog" aria-modal="true" aria-labelledby="executionTitle">
 <div class="execution-head">
-<div><strong id="executionTitle">📹 Enviar mi ejecución</strong><p>Elevaciones bilaterales de talón en 30 segundos</p></div>
+<div><strong id="executionTitle">📹 Enviar mi ejecución</strong><p id="executionSubtitle">Prueba funcional</p></div>
 <button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
 </div>
 <div class="execution-body">
@@ -279,13 +299,50 @@ const params = new URLSearchParams(window.location.search);
 const CLIENTE_ID = String(params.get("cliente_id") || "").trim().toLowerCase();
 const CICLO_SOLICITADO = String(params.get("ciclo") || "").trim();
 const MOMENTO_SOLICITADO = String(params.get("momento") || "").trim().toLowerCase();
+const MODULOS = {
+  elevaciones_talon_30s: {
+    hero: 'Evaluemos cómo <span>subes y bajas escaleras</span>',
+    dolorSub: "Piensa en un tramo habitual de escaleras y en la molestia que sientes en el talón/Aquiles al subirlo y bajarlo.",
+    dolorPregunta: "¿Cuánto molesta el talón/Aquiles al subir y bajar escaleras? *",
+    capacidadPregunta: "¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *",
+    confianzaPregunta: "¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *",
+    tituloPrueba: "4. Elevaciones bilaterales de talón en 30 segundos",
+    instrucciones: "Usa calzado habitual y un piso firme. Ponte de pie con los pies separados al ancho de las caderas y apoya suavemente los dedos en una pared o silla estable. Eleva ambos talones todo lo que puedas cómodamente y vuelve a apoyar. Cuenta solamente las repeticiones completas.",
+    repeticionesLabel: "Repeticiones completas",
+    tecnicaParada: "Pérdida de altura",
+    observacionLabel: "Al subir o bajar escaleras, ¿qué observas principalmente?",
+    observaciones: ["Sube y baja sin dificultad visible","Usa el pasamanos para apoyarse","Sube o baja un escalón a la vez","Movimiento más lento o cuidadoso","Evita cargar el talón/Aquiles","No evaluado"],
+    comentarioPlaceholder: "Ej.: me cuesta más bajar, necesito apoyarme en el pasamanos o la molestia aparece después de varios escalones...",
+    videoEjercicio: "Elevaciones bilaterales de talón",
+    usaEscalon: false
+  },
+  escalon_15s: {
+    hero: 'Evaluemos cómo <span>subes y bajas un escalón</span>',
+    dolorSub: "Piensa en una escalera habitual y en la molestia que sientes al subirla y bajarla.",
+    dolorPregunta: "¿Cuánto te molesta subir y bajar escaleras? *",
+    capacidadPregunta: "¿Qué tan capaz te sientes de subir y bajar un tramo de escaleras? *",
+    confianzaPregunta: "¿Qué tanta confianza tienes para subir y bajar un tramo de escaleras? *",
+    tituloPrueba: "4. Subir y bajar un escalón durante 15 segundos",
+    instrucciones: "Usa calzado habitual y un escalón firme de 15 cm con pasamanos, pared o apoyo estable. Sube con un pie, lleva ambos pies al escalón y vuelve al piso de forma controlada. Cuenta una repetición cada vez que completes la subida y la bajada. Usa siempre el mismo escalón, pierna inicial y apoyo en la evaluación final.",
+    repeticionesLabel: "Ciclos completos de subida y bajada",
+    tecnicaParada: "Dificultad para completar el movimiento",
+    observacionLabel: "Durante la prueba, ¿qué observaste principalmente?",
+    observaciones: ["Sube y baja sin dificultad visible","Usa apoyo durante el movimiento","Sube o baja un escalón a la vez","Movimiento más lento o cuidadoso","Evita cargar una pierna","No evaluado"],
+    comentarioPlaceholder: "Ej.: me cuesta más bajar, necesito apoyarme o siento más molestia en una pierna...",
+    videoEjercicio: "Subir y bajar un escalón",
+    usaEscalon: true
+  }
+};
 let CLIENTE_CONFIG = null;
+let MODULO = null;
 let CLIENTE = "";
 let CICLO = 0;
 let MOMENTO = "inicial";
 let OBJETIVO_FUNCIONAL = "";
+let TEST_DURATION_SECONDS = 30;
 let VIDEO_ROUTINE = "Evaluación funcional";
 let VIDEO_STORAGE_FOLDER = `${CLIENTE_ID || "cliente-no-identificado"}/evaluacion_funcional`;
+let VIDEO_EXERCISE = "Prueba funcional";
 const DASHBOARD_URL = CLIENTE_ID
   ? `https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`
   : "https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html";
@@ -302,10 +359,13 @@ function mostrarPendiente(titulo, mensaje){
 
 function aplicarConfiguracion(config){
   CLIENTE_CONFIG = config;
+  MODULO = MODULOS[config.modulo_prueba];
   CLIENTE = config.cliente;
   CICLO = Number(config.ciclo);
   MOMENTO = config.momento || "inicial";
   OBJETIVO_FUNCIONAL = config.objetivo_funcional || "";
+  TEST_DURATION_SECONDS = Number(config.duracion_segundos) || 30;
+  VIDEO_EXERCISE = MODULO.videoEjercicio;
   VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
   VIDEO_STORAGE_FOLDER = `${CLIENTE_ID}/evaluacion_funcional/mes${CICLO}`;
   document.getElementById("pendingApp").hidden = true;
@@ -315,6 +375,29 @@ function aplicarConfiguracion(config){
   document.getElementById("evaluationEyebrow").textContent = `📍 Evaluación ${MOMENTO} · Ciclo ${CICLO}`;
   document.getElementById("goalText").textContent = OBJETIVO_FUNCIONAL;
   document.getElementById("backLink").href = DASHBOARD_URL;
+  document.getElementById("heroTitle").innerHTML = MODULO.hero;
+  document.getElementById("painSectionSub").textContent = MODULO.dolorSub;
+  document.getElementById("painQuestion").textContent = MODULO.dolorPregunta;
+  document.getElementById("capacityQuestion").textContent = MODULO.capacidadPregunta;
+  document.getElementById("confidenceQuestion").textContent = MODULO.confianzaPregunta;
+  document.getElementById("testTitle").textContent = MODULO.tituloPrueba;
+  document.getElementById("testInstructions").textContent = MODULO.instrucciones;
+  document.getElementById("timerDisplay").textContent = `${TEST_DURATION_SECONDS} s`;
+  document.getElementById("videoReviewText").textContent = `Es opcional. Puedes enviar el video completo de los ${TEST_DURATION_SECONDS} segundos a MoveSmart.`;
+  document.getElementById("repsLabel").textContent = MODULO.repeticionesLabel;
+  document.getElementById("techniqueStopOption").textContent = MODULO.tecnicaParada;
+  document.getElementById("timerStopOption").textContent = `Finalizaron los ${TEST_DURATION_SECONDS} segundos`;
+  document.getElementById("observationLabel").textContent = MODULO.observacionLabel;
+  document.getElementById("marcha").innerHTML = '<option value="">Selecciona</option>' +
+    MODULO.observaciones.map(value => `<option>${value}</option>`).join("");
+  document.getElementById("comentario").placeholder = MODULO.comentarioPlaceholder;
+  document.getElementById("executionSubtitle").textContent = `${VIDEO_EXERCISE} · ${TEST_DURATION_SECONDS} segundos`;
+  const demoVideo = document.getElementById("demoVideo");
+  demoVideo.src = config.video_demostrativo || "";
+  demoVideo.load();
+  const playback = demoVideo.play();
+  if(playback && typeof playback.catch === "function") playback.catch(() => {});
+  testEstado.dispatchEvent(new Event("change"));
 }
 
 async function cargarConfiguracion(){
@@ -346,7 +429,7 @@ async function cargarConfiguracion(){
       );
       return;
     }
-    if(data.configuracion.modulo_prueba !== "elevaciones_talon_30s"){
+    if(!MODULOS[data.configuracion.modulo_prueba]){
       mostrarPendiente(
         `Evaluación de ${data.configuracion.cliente} pendiente`,
         "La prueba correspondiente a este objetivo todavía está siendo preparada."
@@ -370,7 +453,6 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
 const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
-const VIDEO_EXERCISE = "Elevaciones bilaterales de talón en 30 segundos";
 const supabaseClient = window.supabase?.createClient
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}
@@ -381,7 +463,7 @@ const submitBtn = document.getElementById("submitBtn");
 const result = document.getElementById("result");
 const resultGrid = document.getElementById("resultGrid");
 const testEstado = document.getElementById("testEstado");
-const heelRiseFields = document.getElementById("heelRiseFields");
+const testFields = document.getElementById("testFields");
 document.querySelectorAll("[data-scale]").forEach(scale => {
 const name = scale.dataset.scale;
 scale.innerHTML = Array.from({length:11},(_,value) =>
@@ -390,13 +472,19 @@ scale.innerHTML = Array.from({length:11},(_,value) =>
 });
 testEstado.addEventListener("change", () => {
 const performed = testEstado.value === "Realizada";
-heelRiseFields.style.display = performed ? "block" : "none";
+testFields.style.display = performed ? "block" : "none";
 document.getElementById("reps").required = performed;
 document.getElementById("dolorTest").required = performed;
+const showStepDetails = performed && Boolean(MODULO?.usaEscalon);
+document.getElementById("stepDetails").hidden = !showStepDetails;
+document.getElementById("piernaInicio").required = showStepDetails;
+document.getElementById("usoApoyo").required = showStepDetails;
 if(!performed){
 document.getElementById("reps").value = "";
 document.getElementById("dolorTest").value = "";
 document.getElementById("motivoParada").value = "";
+document.getElementById("piernaInicio").value = "";
+document.getElementById("usoApoyo").value = "";
 }
 });
 const timerDisplay = document.getElementById("timerDisplay");
@@ -433,7 +521,7 @@ await wait(1000);
 timerDisplay.textContent = "¡Comienza!";
 beep(1050,.3);
 await wait(550);
-let seconds = 30;
+let seconds = TEST_DURATION_SECONDS;
 timerDisplay.textContent = `${seconds} s`;
 timerBtn.textContent = "Prueba en curso…";
 timerPreparing = false;
@@ -534,9 +622,13 @@ const data = Object.fromEntries(fd.entries());
 const comentarioVideo = testVideoComment.value.trim();
 data.comentario_video = comentarioVideo;
 data.cliente = CLIENTE;
+data.cliente_id = CLIENTE_ID;
 data.ciclo = CICLO;
 data.momento = MOMENTO;
 data.objetivo_funcional = OBJETIVO_FUNCIONAL;
+data.modulo_prueba = CLIENTE_CONFIG.modulo_prueba;
+data.duracion_segundos = TEST_DURATION_SECONDS;
+data.altura_cm = CLIENTE_CONFIG.altura_cm ?? "";
 data.fecha = fechaChile();
 data.tipo = "evaluacion_funcional_movesmart";
 try{
@@ -557,13 +649,14 @@ return;
 }
 }
 resultGrid.innerHTML =
-metric("Molestia en escaleras", `${data.dolor_despegue}/10`) +
-metric("Capacidad funcional", `${data.psfs_despegue}/10`) +
-metric("Confianza funcional", `${data.confianza_despegue}/10`) +
-metric("Heel raises", data.test_estado === "Realizada" ? `${data.heel_raise_reps} rep.` : data.test_estado) +
-metric("Dolor en heel raises", data.test_estado === "Realizada" ? `${data.dolor_heel_raise}/10` : "—") +
+metric("Molestia en la actividad", `${data.dolor_actividad}/10`) +
+metric("Capacidad funcional", `${data.capacidad_funcional}/10`) +
+metric("Confianza funcional", `${data.confianza_funcional}/10`) +
+metric(MODULO.repeticionesLabel, data.test_estado === "Realizada" ? `${data.repeticiones_prueba} rep.` : data.test_estado) +
+metric("Dolor durante la prueba", data.test_estado === "Realizada" ? `${data.dolor_prueba}/10` : "—") +
 metric("Motivo de parada", data.motivo_parada || "—") +
-metric("Uso de escaleras", data.observacion_marcha || "—");
+metric("Observación", data.observacion_prueba || "—") +
+(MODULO.usaEscalon ? metric("Pierna inicial", data.pierna_inicio || "—") + metric("Apoyo", data.uso_apoyo || "—") : "");
 result.classList.add("active");
 submitBtn.textContent = "✅ Evaluación enviada";
 result.scrollIntoView({behavior:"smooth",block:"start"});
