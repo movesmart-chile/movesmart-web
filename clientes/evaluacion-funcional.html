@@ -97,7 +97,7 @@ textarea{min-height:90px;resize:vertical}
 </style>
 </head>
 <body>
-<main class="page" id="evaluationApp">
+<main class="page" id="evaluationApp" hidden>
 <header class="topbar">
 <div class="brand">
 <div class="badge">M</div>
@@ -106,12 +106,12 @@ textarea{min-height:90px;resize:vertical}
 <a class="back" id="backLink" href="https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=dixie-acosta">← Volver</a>
 </header>
 <section class="hero">
-<span class="eyebrow">📍 Evaluación inicial · Ciclo 2</span>
+<span class="eyebrow" id="evaluationEyebrow">📍 Evaluación funcional</span>
 <h2>Evaluemos cómo <span>subes y bajas escaleras</span></h2>
 <p>Esta evaluación dura pocos minutos y nos ayudará a comparar cómo estás hoy con tu evolución al final del ciclo.</p>
 <div class="goal">
 <strong>Objetivo funcional</strong>
-Subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza.
+<span id="goalText">Cargando objetivo…</span>
 </div>
 </section>
 <form id="evalForm">
@@ -238,12 +238,12 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <div class="sent-confirmation" role="status">Ya puedes cerrar esta página o volver a tu panel MoveSmart.</div>
 </section>
 </main>
-<main class="page" id="pendingApp" hidden>
+<main class="page" id="pendingApp">
 <section class="hero pending-state">
 <div class="badge">M</div>
 <span class="eyebrow">Evaluación funcional</span>
-<h2 id="pendingTitle">Evaluación pendiente</h2>
-<p id="pendingText">Tu evaluación funcional todavía está siendo preparada según tu objetivo y tu ciclo actual.</p>
+<h2 id="pendingTitle">Cargando evaluación…</h2>
+<p id="pendingText">Estamos buscando la evaluación correspondiente a tu ciclo actual.</p>
 <a class="back" id="pendingBackLink" href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html">← Volver a mi evolución</a>
 </section>
 </main>
@@ -274,70 +274,103 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
-const CLIENTES = {
-  "dixie-acosta": {
-    nombre: "Dixie Acosta",
-    activo: true,
-    ciclo: 2,
-    momento: "inicial",
-    objetivo: "Subir y bajar un tramo de escaleras con mayor facilidad, menos molestia en el talón/Aquiles y mayor confianza."
-  },
-  "juan-ugalde": {
-    nombre: "Juan Ugalde",
-    activo: false
-  },
-  "juany-flores": {
-    nombre: "Juany Flores",
-    activo: false
-  }
-};
+const SAVE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuVK8dFpq4wmkqRSoGMYMELak0l8caT-dMKZkwpKvpL8C1K5jt1o6GbMJ-Q9kTd05nJg/exec";
 const params = new URLSearchParams(window.location.search);
 const CLIENTE_ID = String(params.get("cliente_id") || "").trim().toLowerCase();
-const CLIENTE_CONFIG = CLIENTES[CLIENTE_ID] || null;
-const CLIENTE = CLIENTE_CONFIG ? CLIENTE_CONFIG.nombre : "";
-const CICLO = CLIENTE_CONFIG?.ciclo || 0;
-const MOMENTO = CLIENTE_CONFIG?.momento || "inicial";
-const OBJETIVO_FUNCIONAL = CLIENTE_CONFIG?.objetivo || "";
-const DASHBOARD_URL = CLIENTE_CONFIG
+const CICLO_SOLICITADO = String(params.get("ciclo") || "").trim();
+const MOMENTO_SOLICITADO = String(params.get("momento") || "").trim().toLowerCase();
+let CLIENTE_CONFIG = null;
+let CLIENTE = "";
+let CICLO = 0;
+let MOMENTO = "inicial";
+let OBJETIVO_FUNCIONAL = "";
+let VIDEO_ROUTINE = "Evaluación funcional";
+let VIDEO_STORAGE_FOLDER = `${CLIENTE_ID || "cliente-no-identificado"}/evaluacion_funcional`;
+const DASHBOARD_URL = CLIENTE_ID
   ? `https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`
   : "https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html";
 
-function configurarEvaluacionPorCliente(){
+function mostrarPendiente(titulo, mensaje){
   const evaluationApp = document.getElementById("evaluationApp");
   const pendingApp = document.getElementById("pendingApp");
+  evaluationApp.hidden = true;
+  pendingApp.hidden = false;
+  document.getElementById("pendingTitle").textContent = titulo;
+  document.getElementById("pendingText").textContent = mensaje;
+  document.getElementById("pendingBackLink").href = DASHBOARD_URL;
+}
 
-  if(!CLIENTE_CONFIG || !CLIENTE_CONFIG.activo){
-    evaluationApp.hidden = true;
-    pendingApp.hidden = false;
-    document.title = CLIENTE_CONFIG
-      ? `Evaluación funcional pendiente | ${CLIENTE_CONFIG.nombre} · MoveSmart`
-      : "Cliente no identificado | MoveSmart";
-    document.getElementById("pendingTitle").textContent = CLIENTE_CONFIG
-      ? `Evaluación de ${CLIENTE_CONFIG.nombre} pendiente`
-      : "Cliente no identificado";
-    document.getElementById("pendingText").textContent = CLIENTE_CONFIG
-      ? "Tu evaluación funcional todavía está siendo preparada según tu objetivo y tu ciclo actual."
-      : "No pudimos identificar al cliente. Vuelve a ingresar desde tu acceso personal de MoveSmart.";
-    document.getElementById("pendingBackLink").href = DASHBOARD_URL;
-    return;
-  }
-
+function aplicarConfiguracion(config){
+  CLIENTE_CONFIG = config;
+  CLIENTE = config.cliente;
+  CICLO = Number(config.ciclo);
+  MOMENTO = config.momento || "inicial";
+  OBJETIVO_FUNCIONAL = config.objetivo_funcional || "";
+  VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
+  VIDEO_STORAGE_FOLDER = `${CLIENTE_ID}/evaluacion_funcional/mes${CICLO}`;
+  document.getElementById("pendingApp").hidden = true;
+  document.getElementById("evaluationApp").hidden = false;
   document.title = `Evaluación funcional | ${CLIENTE} · MoveSmart`;
   document.getElementById("clientEvaluationLabel").textContent = `${CLIENTE} · Evaluación ${MOMENTO}`;
+  document.getElementById("evaluationEyebrow").textContent = `📍 Evaluación ${MOMENTO} · Ciclo ${CICLO}`;
+  document.getElementById("goalText").textContent = OBJETIVO_FUNCIONAL;
   document.getElementById("backLink").href = DASHBOARD_URL;
 }
 
-configurarEvaluacionPorCliente();
-const SAVE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuVK8dFpq4wmkqRSoGMYMELak0l8caT-dMKZkwpKvpL8C1K5jt1o6GbMJ-Q9kTd05nJg/exec";
+async function cargarConfiguracion(){
+  if(!CLIENTE_ID){
+    document.title = "Cliente no identificado | MoveSmart";
+    mostrarPendiente(
+      "Cliente no identificado",
+      "Vuelve a ingresar desde tu acceso personal de MoveSmart."
+    );
+    return;
+  }
+
+  const consulta = new URLSearchParams({
+    accion: "configuracion",
+    cliente_id: CLIENTE_ID
+  });
+  if(CICLO_SOLICITADO) consulta.set("ciclo", CICLO_SOLICITADO);
+  if(MOMENTO_SOLICITADO) consulta.set("momento", MOMENTO_SOLICITADO);
+
+  try{
+    const response = await fetch(`${SAVE_SCRIPT_URL}?${consulta.toString()}`, {cache:"no-store"});
+    if(!response.ok) throw new Error("No se pudo consultar la evaluación.");
+    const data = await response.json();
+    if(!data.ok) throw new Error(data.error || "La consulta no fue válida.");
+    if(!data.encontrada){
+      mostrarPendiente(
+        "Evaluación funcional pendiente",
+        "Tu evaluación todavía está siendo preparada según tu objetivo y tu ciclo actual."
+      );
+      return;
+    }
+    if(data.configuracion.modulo_prueba !== "elevaciones_talon_30s"){
+      mostrarPendiente(
+        `Evaluación de ${data.configuracion.cliente} pendiente`,
+        "La prueba correspondiente a este objetivo todavía está siendo preparada."
+      );
+      return;
+    }
+    aplicarConfiguracion(data.configuracion);
+  }catch(error){
+    console.error(error);
+    mostrarPendiente(
+      "No pudimos cargar tu evaluación",
+      "Revisa tu conexión e inténtalo nuevamente desde tu panel MoveSmart."
+    );
+  }
+}
+
+cargarConfiguracion();
 const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
 const VIDEO_BUCKET = "videos-clientes";
 const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
-const VIDEO_ROUTINE = `Evaluación funcional ciclo ${CICLO}`;
 const VIDEO_EXERCISE = "Elevaciones bilaterales de talón en 30 segundos";
-const VIDEO_STORAGE_FOLDER = `${CLIENTE_ID}/evaluacion_funcional/mes${CICLO}`;
 const supabaseClient = window.supabase?.createClient
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}
