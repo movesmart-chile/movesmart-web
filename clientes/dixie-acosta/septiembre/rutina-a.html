@@ -743,6 +743,28 @@ z-index:5 !important;
 pointer-events:auto !important;
 }
 </style>
+
+<style>
+/* FIX DEFINITIVO CASILLAS */
+.question,.choices,.choice{
+  position:relative !important;
+  z-index:40 !important;
+  pointer-events:auto !important;
+}
+.choice{
+  cursor:pointer !important;
+  touch-action:manipulation !important;
+  -webkit-tap-highlight-color:rgba(255,90,31,.20) !important;
+}
+.choice *{pointer-events:none !important;}
+.submit-btn{
+  position:relative !important;
+  z-index:41 !important;
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -1644,8 +1666,8 @@ const smartLoadingTitle = document.getElementById('smartLoadingTitle');
 const smartLoadingText = document.getElementById('smartLoadingText');
 function updateProgress(){
 const answered = Object.values(respuestas).filter(Boolean).length;
-progressFill.style.width = \`${(answered / 3) * 100}%\`;
-progressText.textContent = \`Pregunta ${answered} de 3\`;
+progressFill.style.width = `${(answered / 3) * 100}%`;
+progressText.textContent = `Pregunta ${answered} de 3`;
 }
 function modoSegunEnergia(){
 if(respuestas.personalizada === 'alto') return 'Detener';
@@ -1732,7 +1754,7 @@ smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y 
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 setTimeout(() => {
 smartLoadingTitle.textContent = 'Adaptando tu Rutina A del segundo mes...';
-smartLoadingText.textContent = \`Preparando versión ${estructura} con modo ${modo}.\`;
+smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
 }, 180);
 setTimeout(() => {
 smartLoadingTitle.textContent = '✨ Rutina lista';
@@ -1744,7 +1766,7 @@ surveyCard.classList.remove('is-processing');
 resultCard.style.background = 'rgba(29,191,115,.12)';
 resultCard.style.borderColor = 'rgba(29,191,115,.28)';
 resultCard.style.color = '#ddffea';
-resultCard.innerHTML = \`<strong>✨ Rutina A Mes 2 ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>\`;
+resultCard.innerHTML = `<strong>✨ Rutina A Mes 2 ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
 resultCard.classList.add('active');
 const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
 const routineContainer = document.getElementById(idRutina);
@@ -2053,7 +2075,7 @@ if(activeVideoUrl) URL.revokeObjectURL(activeVideoUrl);
 activeVideoUrl = URL.createObjectURL(originalFile);
 executionPreview.src = activeVideoUrl;
 executionPreview.classList.add('active');
-selectedVideoInfo.textContent = \`✅ ${originalFile.name} · ${formatoMB(originalFile.size)}\`;
+selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
 executionSend.textContent = 'Preparando…';
@@ -2064,8 +2086,8 @@ optimizationBox.innerHTML =
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
 optimizationBox.innerHTML =
-\`<strong>✅ Video listo para enviar</strong><br>\` +
-\`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.\`;
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
@@ -2105,10 +2127,10 @@ throw new Error("No se cargó el módulo de subida reanudable TUS.");
 }
 await new Promise((resolve, reject) => {
 const upload = new tus.Upload(file, {
-endpoint: \`https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable\`,
+endpoint: `https://${SUPABASE_PROJECT_ID}.storage.supabase.co/storage/v1/upload/resumable`,
 retryDelays: [0, 3000, 5000, 10000, 20000],
 headers: {
-authorization: \`Bearer ${session.access_token}\`
+authorization: `Bearer ${session.access_token}`
 },
 uploadDataDuringCreation: true,
 removeFingerprintOnSuccess: true,
@@ -2140,7 +2162,7 @@ uploadProgressBar.style.width = rounded + '%';
 uploadProgressPercent.textContent = rounded + '%';
 const mbUploaded = (bytesUploaded / (1024 * 1024)).toFixed(1);
 const mbTotal = (bytesTotal / (1024 * 1024)).toFixed(1);
-uploadProgressText.textContent = \`${mbUploaded} MB de ${mbTotal} MB\`;
+uploadProgressText.textContent = `${mbUploaded} MB de ${mbTotal} MB`;
 },
 onSuccess(){
 resolve();
