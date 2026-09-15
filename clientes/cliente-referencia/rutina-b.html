@@ -2361,8 +2361,10 @@ updateProgress();
       player.style.display = 'block';
       player.src = url;
       player.muted = true;
-      player.controls = true;
+      player.controls = false;
+      player.loop = true;
       player.playsInline = true;
+      player.autoplay = true;
       player.play().catch(function () {});
       return;
     }
