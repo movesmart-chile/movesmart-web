@@ -1,3 +1,38 @@
+Listo. Aquí tienes el ZIP con los ocho HTML:
+
+Descargar 
+adriana-jara-movesmart.zip
+
+hoy 10:04 a.m.
+
+vamos revisando los html primero En el HTML diagnostico-funcional-adriana-jara.html, los botones “Volver al plan” y “Ver mi programa” tienen una ruta relativa incorrecta:
+
+href="plan-adriana-jara.html"
+
+Como el diagnóstico está dentro de la carpeta diagnostico-funcional, el navegador busca erróneamente el plan en esa misma carpeta y genera un error 404.
+
+Cambia las dos apariciones por esta ruta absoluta:
+
+href="https://movesmart-chile.github.io/movesmart-web/clientes/adriana-jara/plan-adriana-jara.html"
+
+No modifiques el diseño ni ninguna otra parte del HTML.
+
+Listo. Cambié únicamente las dos rutas por la URL absoluta solicitada:
+
+Descargar diagnóstico funcional corregido
+
+No modifiqué ninguna otra parte. Cuando terminemos de revisar todos los HTML, generaré nuevamente el ZIP final.
+
+diagnostico-funcional-adriana-jara.html
+HTML
+otra cosa el fondo tiene esat ruta absoluta /movesmart-web/imagenes/fondo-preview-rutina.webp
+
+Listo. En el diagnóstico cambié únicamente el fondo a:
+
+url('/movesmart-web/imagenes/fondo-preview-rutina.webp')
+
+Descargar diagnóstico actualizado
+
 <!DOCTYPE html>
 <!-- saved from url=(0138)https://movesmart-chile.github.io/movesmart-web/clientes/adriana-jara/diagnostico-funcional/agosto/diagnostico-funcional-adriana-jara.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,7 +60,7 @@
       color:var(--text);
       background:
         linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-        url('../../../../imagenes/fondo-index-realista.webp') center center / cover no-repeat;
+        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
 
@@ -408,3 +443,5 @@
 <section class="info-grid"><article class="info-card blue"><div class="info-head"><div class="info-icon">✓</div><h3>Datos confirmados</h3></div><ul class="check-list"><li><span class="check">✓</span><span>Disponibilidad martes, jueves y sábado, 30–45 minutos.</span></li><li><span class="check">✓</span><span>Entrena en casa y gimnasio y dispone de equipamiento suficiente.</span></li><li><span class="check">✓</span><span>No presenta dolor diario; refiere dolor cervical ocasional.</span></li><li><span class="check">✓</span><span>Los movimientos de cuello pueden molestar y los realiza con mayor cuidado.</span></li><li><span class="check">✓</span><span>La prioridad confirmada posteriormente es recuperar la constancia.</span></li></ul></article><article class="info-card green"><div class="info-head"><div class="info-icon">🎯</div><h3>Qué vamos a trabajar</h3></div><ul class="check-list"><li><span class="check">✓</span><span>Una estructura semanal simple y predecible.</span></li><li><span class="check">✓</span><span>Fuerza de piernas mediante patrones de empuje, cadera y pantorrilla.</span></li><li><span class="check">✓</span><span>Fuerza general de empuje, tracción y control del tronco.</span></li><li><span class="check">✓</span><span>Alternativa domiciliaria para evitar perder sesiones por falta de tiempo.</span></li><li><span class="check">✓</span><span>Autorregulación de carga y cuidado de la posición cervical.</span></li></ul></article></section>
 <section class="goal-card"><div class="trophy">🏆</div><div><h3>Nuestro objetivo</h3><p>Completar las sesiones programadas del martes 15, jueves 17 y sábado 19 de septiembre. El éxito inicial se medirá por la adherencia, no por la carga levantada ni por llegar a fatiga máxima.</p></div></section><div class="cta-wrap"><a href="https://movesmart-chile.github.io/movesmart-web/clientes/adriana-jara/plan-adriana-jara.html" class="cta"><span>→</span><span>Ver mi programa</span></a><div class="secure-note">Interpretación funcional; no corresponde a un diagnóstico médico nuevo.</div></div></main>
 </body></html>
+diagnostico-funcional-adriana-jara.html
+HTML
