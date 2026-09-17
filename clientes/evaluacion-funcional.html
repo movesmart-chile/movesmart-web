@@ -142,7 +142,7 @@ textarea{min-height:90px;resize:vertical}
 <p class="helper">0 = nada de confianza · 10 = total confianza.</p>
 </div>
 </section>
-<section class="card">
+<section class="card" id="testCard">
 <h3 class="section-title" id="testTitle">4. Prueba funcional</h3>
 <p class="section-sub">Esta es una prueba funcional adaptada MoveSmart. La repetiremos de la misma forma al final del ciclo.</p>
 <div class="field">
@@ -223,7 +223,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 </div>
 </div>
 </section>
-<section class="card">
+<section class="card" id="observationCard">
 <h3 class="section-title" id="observationTitle">5. Observación del movimiento</h3>
 <p class="section-sub">Una observación breve para comparar al finalizar el ciclo.</p>
 <div class="field">
@@ -309,6 +309,8 @@ let TEST_DURATION_SECONDS = 30;
 let VIDEO_ROUTINE = "Evaluación funcional";
 let VIDEO_STORAGE_FOLDER = `${CLIENTE_ID || "cliente-no-identificado"}/evaluacion_funcional`;
 let VIDEO_EXERCISE = "Prueba funcional";
+let EVALUATION_ID = "";
+let IS_CONSTANCY = false;
 const DASHBOARD_URL = CLIENTE_ID
   ? `https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`
   : "https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html";
@@ -325,6 +327,8 @@ function mostrarPendiente(titulo, mensaje){
 
 function aplicarConfiguracion(config){
   CLIENTE_CONFIG = config;
+  EVALUATION_ID = String(config.modulo_prueba || config.id || config.codigo || config.evaluacion_id || "").trim().toLowerCase();
+  IS_CONSTANCY = EVALUATION_ID === "constancia_semanal";
   MODULO = {
     actividad: config.actividad_funcional || "esta actividad",
     nombrePrueba: config.nombre_prueba || "Prueba funcional",
@@ -362,6 +366,17 @@ function aplicarConfiguracion(config){
   document.getElementById("painQuestion").textContent = `${MODULO.dolorPregunta} *`;
   document.getElementById("capacityQuestion").textContent = `${MODULO.capacidadPregunta} *`;
   document.getElementById("confidenceQuestion").textContent = `${MODULO.confianzaPregunta} *`;
+  if(IS_CONSTANCY){
+    document.getElementById("painSectionTitle").textContent = "1. Interferencia de molestias";
+    document.getElementById("painSectionSub").textContent = "Indica cuánto interfirieron el dolor o las molestias con tu posibilidad de completar tus sesiones.";
+    document.getElementById("painQuestion").textContent = "¿Cuánto interfirieron el dolor o las molestias con tu posibilidad de completar tus sesiones? *";
+    document.querySelector("#painSectionTitle + .section-sub").textContent = "Indica cuánto interfirieron el dolor o las molestias con tu posibilidad de completar tus sesiones.";
+    document.querySelector("#painQuestion").nextElementSibling.nextElementSibling.textContent = "0 = nada de interferencia · 10 = impidieron completamente completar las sesiones.";
+    document.querySelector("#capacityQuestion").textContent = "¿Qué tan capaz te sientes de completar 3 sesiones de 30–45 minutos por semana? *";
+    document.querySelector("#capacityQuestion").closest(".card").querySelector(".section-sub").textContent = "Evalúa tu capacidad percibida para sostener tres sesiones semanales.";
+    document.querySelector("#confidenceQuestion").textContent = "¿Qué tanta confianza tienes en poder mantener 3 sesiones semanales durante el ciclo? *";
+    document.querySelector("#confidenceQuestion").closest(".card").querySelector(".section-sub").textContent = "La confianza también influye en la posibilidad de mantener una rutina.";
+  }
   document.getElementById("testTitle").textContent = `4. ${MODULO.nombrePrueba}`;
   document.getElementById("testInstructions").textContent = MODULO.instrucciones;
   document.getElementById("timerDisplay").textContent = `${TEST_DURATION_SECONDS} s`;
@@ -378,7 +393,60 @@ function aplicarConfiguracion(config){
   demoVideo.src = config.video_demostrativo || "";
   document.querySelector(".demo-box").hidden = !config.video_demostrativo;
   demoVideo.load();
+  configurarConstanciaSemanal();
+  testEstado.required = !IS_CONSTANCY;
   testEstado.dispatchEvent(new Event("change"));
+}
+
+function configurarConstanciaSemanal(){
+  if(!IS_CONSTANCY) return;
+
+  document.getElementById("evaluationEyebrow").textContent = `📍 Seguimiento ${MOMENTO} · Ciclo ${CICLO}`;
+  document.getElementById("heroTitle").innerHTML = 'Seguimiento de <span>constancia semanal</span>';
+  document.querySelector(".hero > p").textContent = "Este seguimiento nos ayuda a conocer cómo fue tu constancia durante los últimos 7 días. No es una prueba física y no necesitas realizar ningún ejercicio ahora.";
+
+  document.getElementById("testCard").hidden = true;
+  document.getElementById("observationCard").hidden = true;
+
+  const section = document.createElement("section");
+  section.className = "card";
+  section.id = "constancyCard";
+  section.innerHTML = `
+    <h3 class="section-title">4. Registro de constancia</h3>
+    <p class="section-sub">Responde pensando en los últimos 7 días. No necesitas realizar ningún ejercicio ahora.</p>
+    <div class="field">
+      <label for="sesionesCompletadas">¿Cuántas sesiones completas de entrenamiento realizaste en los últimos 7 días? *</label>
+      <input id="sesionesCompletadas" name="sesiones_completadas" type="number" min="0" step="1" required inputmode="numeric" placeholder="Ej.: 2">
+      <p class="helper">Considera una sesión completa cuando realizaste la rutina planificada, aunque hayas necesitado adaptarla.</p>
+    </div>
+    <div class="field">
+      <label for="constanciaEstado">¿Lograste completar las sesiones planificadas?</label>
+      <select id="constanciaEstado" name="constancia_estado">
+        <option value="">Selecciona</option>
+        <option value="Completó las sesiones planificadas">Sí, completé las sesiones planificadas</option>
+        <option value="No logró completar las sesiones planificadas">No, no completé todas las sesiones planificadas</option>
+      </select>
+    </div>
+    <div class="field" id="dificultadConstanciaField">
+      <label for="dificultadConstancia">Si no completaste todas, ¿qué lo dificultó principalmente?</label>
+      <select id="dificultadConstancia" name="dificultad_constancia">
+        <option value="">Selecciona</option>
+        <option>Falta de tiempo</option>
+        <option>Cansancio o poca energía</option>
+        <option>Dolor o molestias</option>
+        <option>Olvido o falta de organización</option>
+        <option>Cambio de horario o imprevistos</option>
+        <option>Nada, completé lo planificado</option>
+        <option>Otra dificultad</option>
+      </select>
+    </div>`;
+
+  document.getElementById("submitBtn").before(section);
+  document.getElementById("submitBtn").textContent = "Guardar seguimiento →";
+  document.getElementById("constanciaEstado").addEventListener("change", () => {
+    const complete = document.getElementById("constanciaEstado").value === "Completó las sesiones planificadas";
+    document.getElementById("dificultadConstancia").value = complete ? "Nada, completé lo planificado" : "";
+  });
 }
 
 async function cargarConfiguracion(){
@@ -629,8 +697,15 @@ alert("No pudimos enviar la evaluación. Revisa tu conexión e inténtalo nuevam
 return;
 }
 }
-resultGrid.innerHTML =
-metric("Molestia en la actividad", `${data.dolor_actividad}/10`) +
+resultGrid.innerHTML = IS_CONSTANCY
+  ? metric("Sesiones completadas", data.sesiones_completadas || "—") +
+    metric("Planificación semanal", data.constancia_estado || "—") +
+    metric("Principal dificultad", data.dificultad_constancia || "—") +
+    metric("Interferencia de molestias", `${data.dolor_actividad}/10`) +
+    metric("Capacidad percibida", `${data.capacidad_funcional}/10`) +
+    metric("Confianza", `${data.confianza_funcional}/10`)
+  :
+  metric("Molestia en la actividad", `${data.dolor_actividad}/10`) +
 metric("Capacidad funcional", `${data.capacidad_funcional}/10`) +
 metric("Confianza funcional", `${data.confianza_funcional}/10`) +
 metric(MODULO.repeticionesLabel, data.test_estado === "Realizada"
@@ -640,7 +715,7 @@ metric("Dolor durante la prueba", data.test_estado === "Realizada" ? `${data.dol
 metric("Motivo de parada", data.motivo_parada || "—") +
 metric("Observación", data.observacion_prueba || "—") +
 (MODULO.requierePiernaInicio ? metric("Pierna inicial", data.pierna_inicio || "—") : "") +
-(MODULO.requiereApoyo ? metric("Apoyo", data.uso_apoyo || "—") : "");
+  (MODULO.requiereApoyo ? metric("Apoyo", data.uso_apoyo || "—") : "");
 result.classList.add("active");
 submitBtn.textContent = "✅ Evaluación enviada";
 result.scrollIntoView({behavior:"smooth",block:"start"});
