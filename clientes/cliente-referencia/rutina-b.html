@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Encuesta Rutina B Mes 2 | Dixie Acosta</title>
+<title>Rutina B | Cliente de referencia</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -27,7 +27,7 @@ font-family:'Segoe UI',system-ui,sans-serif;
 color:var(--text);
 background:
 linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
+url('https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
 overflow-x:hidden;
 }
 body::before{
@@ -142,7 +142,7 @@ max-width:560px;
 .hero-image{
 position:absolute;
 inset:0;
-background:url('/movesmart-web/imagenes/contendor.webp') center right / cover no-repeat;
+background:url('https://movesmart-chile.github.io/movesmart-web/imagenes/contendor.webp') center right / cover no-repeat;
 z-index:0;
 transform:scale(1.01);
 }
@@ -826,579 +826,17 @@ line-height:1.5;
 |
 </style>
 </head>
-<body>
-<div class="wrap">
-<header class="topbar">
-<div class="brand">
-<div class="brand-badge">M</div>
-<div class="brand-text">
-<h1>MoveSmart</h1>
-<p>Dixie Acosta · Rutina B · Mes 2</p>
-</div>
-</div>
-<a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/dixie-acosta/plan-dixie-acosta.html">← Volver al plan</a>
-</header>
-<section class="hero">
-<div aria-hidden="true" class="hero-image"></div>
-<div class="hero-copy">
-<div class="hello">¡Hola Dixie!</div>
-<h2>Segundo mes: vamos a recuperar fuerza y control para mejorar tareas como bajar escaleras, mientras protegemos la tolerancia del talón y del tendón de Aquiles.</h2>
-<p>
-Responde estas 3 preguntas y MoveSmart ajustará la versión de tu Rutina B según tu tiempo, energía y cómo está hoy la molestia del talón y del tendón de Aquiles.
-</p>
-</div>
-</section>
-<main class="survey-card">
-<div class="survey-head">
-<div class="survey-title">
-<div class="survey-icon">✨</div>
-<div>
-<h3>Encuesta MoveSmart</h3>
-<p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p>
-</div>
-</div>
-</div>
-<div class="progress-wrap">
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<div class="progress-text" id="progressText">Pregunta 0 de 3</div>
-</div>
-<section class="question" data-question="tiempo">
-<div class="q-title">
-<div class="q-icon">⏱️</div>
-<div>
-<h4>1. ¿Cuánto tiempo tienes hoy?</h4>
-<p>Sé realista con el tiempo del que dispones.</p>
-</div>
-</div>
-<div class="choices">
-<button class="choice" data-value="express" type="button">
-<span class="emoji">⏱️</span>
-<strong>10 – 15 min</strong>
-<span>Poco tiempo</span>
-</button>
-<button class="choice" data-value="base" type="button">
-<span class="emoji">🕒</span>
-<strong>20 – 25 min</strong>
-<span>Tiempo moderado</span>
-</button>
-<button class="choice" data-value="completa" type="button">
-<span class="emoji">🕘</span>
-<strong>25 – 30 min</strong>
-<span>Más tiempo</span>
-</button>
-</div>
-</section>
-<section class="question" data-question="energia">
-<div class="q-title">
-<div class="q-icon">⚡</div>
-<div>
-<h4>2. ¿Cómo está tu energía hoy?</h4>
-<p>Piensa en cómo se siente tu cuerpo físicamente.</p>
-</div>
-</div>
-<div class="choices">
-<button class="choice" data-value="baja" type="button">
-<span class="emoji">🪫</span>
-<strong>Baja</strong>
-<span>Necesito moverme muy suave</span>
-</button>
-<button class="choice" data-value="media" type="button">
-<span class="emoji">⚡</span>
-<strong>Media</strong>
-<span>Me siento normal</span>
-</button>
-<button class="choice" data-value="alta" type="button">
-<span class="emoji">🔋</span>
-<strong>Alta</strong>
-<span>Me siento con buena energía</span>
-</button>
-</div>
-</section>
-<section class="question" data-question="personalizada">
-<div class="q-title">
-<div class="q-icon">🩹</div>
-<div>
-<h4>3. ¿Cómo está hoy la molestia del talón o tendón de Aquiles?</h4>
-<p>Piensa especialmente en cómo se siente al caminar, apoyar el pie y en tareas como bajar escaleras.</p>
-</div>
-</div>
-<div class="choices">
-<button class="choice" data-value="leve" type="button">
-<span class="emoji">🟢</span>
-<strong>Leve</strong>
-<span>0–3/10 y el despegue se siente similar o cómodo</span>
-</button>
-<button class="choice" data-value="moderado" type="button">
-<span class="emoji">🟡</span>
-<strong>Moderado</strong>
-<span>4–5/10 o el despegue se siente más sensible de lo habitual</span>
-</button>
-<button class="choice" data-value="alto" type="button">
-<span class="emoji">🔴</span>
-<strong>Alto o diferente</strong>
-<span>6/10 o más, dolor fuerte, cojera, inflamación o una molestia claramente distinta</span>
-</button>
-</div>
-</section>
-<button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
-<p class="microcopy">Tu rutina se adapta a ti. Recuperarse también es avanzar.</p>
-<div class="result-card" id="resultCard"></div>
-<div aria-live="polite" class="smart-loading" id="smartLoading">
-<div class="smart-orb"></div>
-<h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3>
-<p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado de tus molestias o zonas lesionadas.</p>
-</div>
-<!-- EXPRESS -->
-<div class="routine-container" id="rutina-express">
-  <div class="routine-intro">
-    <div class="routine-version-label">⚡ Rutina B · Mes 2 Express · 10–15 min</div>
-    <h2>Rutina B · Fuerza funcional complementaria</h2>
-    <p>Una sesión breve para trabajar glúteos, muslos y control de la bajada sin repetir el trabajo específico de pie/Aquiles de la Rutina A.</p>
-
-    <div class="quick-stats">
-      <div class="stat"><small>Duración</small><strong>10–15 min</strong></div>
-      <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
-      <div class="stat"><small>Material</small><strong>Silla + cojín/pelota</strong></div>
-      <div class="stat"><small>Objetivo</small><strong>Fuerza + control</strong></div>
-    </div>
-  </div>
-
-  <div class="warning">
-    <strong>Complementa la Rutina A:</strong> aquí no repetimos el trabajo específico de pie/Aquiles.
-    El objetivo es ganar fuerza y control de la bajada para apoyar tareas como descender escaleras, sin aumentar claramente la molestia del talón/Aquiles.
-  </div>
-
-  <section class="section">
-    <div class="section-head"><h2>Entrada suave</h2><p>Comienza con baja exigencia.</p></div>
-    <div class="section-body">
-      <div class="simple-card">
-        <strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Fuerza complementaria</h2><p>Trabaja otras capacidades sin repetir A.</p></div>
-    <div class="section-body">
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Puente de glúteos</div>
-          <p class="exercise-desc">Acostada boca arriba con rodillas flexionadas, eleva la pelvis lentamente y baja con control. El apoyo debe sentirse estable y sin aumentar el dolor del talón.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>2</div>
-          <div class="pill"><span>Reps</span>8</div>
-          <div class="pill"><span>Pausa</span>2 s arriba</div>
-          <div class="pill"><span>RPE</span>3</div>
-        </div>
-      
-        <div class="review-request" data-exercise="puente-de-gluteos">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-    <div class="section-body">
-      <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2 minutos.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="note">
-    <strong>Regla:</strong> esta sesión debe dejar el talón igual o mejor. Si caminar o despegar el pie queda claramente peor, reduce el volumen la próxima vez.
-  </div>
-
-  <div class="finish-session-wrap">
-    <p class="finish-session-text">Registra cómo quedó el talón/Aquiles al caminar y cómo sentiste el esfuerzo general.</p>
-    <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Express&amp;sesion_objetivo=Fuerza%20control%20excentrico%20y%20escaleras">✅ Finalicé mi sesión</a>
-  </div>
-</div>
-
-<!-- BASE -->
-<div class="routine-container" id="rutina-base">
-  <div class="routine-intro">
-    <div class="routine-version-label">🕒 Rutina B · Mes 2 Base · 20–25 min</div>
-    <h2>Rutina B · Fuerza funcional complementaria</h2>
-    <p>La versión principal de B trabaja glúteos, muslos, estabilidad y control excéntrico para apoyar tareas como bajar escaleras, sin repetir el bloque específico de la Rutina A.</p>
-
-    <div class="quick-stats">
-      <div class="stat"><small>Duración</small><strong>20–25 min</strong></div>
-      <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
-      <div class="stat"><small>Material</small><strong>Silla + cojín/pelota</strong></div>
-      <div class="stat"><small>Objetivo</small><strong>Fuerza + control excéntrico</strong></div>
-    </div>
-  </div>
-
-  <div class="warning">
-    <strong>Diferencia con A:</strong> esta rutina prioriza glúteos, control excéntrico y estabilidad. Así distribuimos mejor la carga semanal y acercamos el trabajo al objetivo funcional de bajar escaleras.
-  </div>
-
-  <section class="section">
-    <div class="section-head"><h2>Preparación</h2><p>Movilidad global con poca carga sobre el talón.</p></div>
-    <div class="section-body">
-
-      <div class="simple-card">
-        <strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Rotación torácica sentada</div>
-          <p class="exercise-desc">Gira suavemente el tronco hacia cada lado manteniendo hombros relajados y sin forzar el rango.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>1–2</div>
-          <div class="pill"><span>Reps</span>6 por lado</div>
-          <div class="pill"><span>RPE</span>1–2</div>
-        </div>
-      
-        <div class="review-request" data-exercise="rotacion-toracica-sentada">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Fuerza general</h2><p>Más fuerza sin convertir el Aquiles en el foco.</p></div>
-    <div class="section-body">
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Puente de glúteos</div>
-          <p class="exercise-desc">Eleva la pelvis con control, mantén brevemente arriba y baja lentamente. Busca trabajo de glúteos, no empujes fuerte desde las puntas de los pies.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>3</div>
-          <div class="pill"><span>Reps</span>8–10</div>
-          <div class="pill"><span>Pausa</span>2 s arriba</div>
-          <div class="pill"><span>RPE</span>3–4</div>
-        </div>
-      
-        <div class="review-request" data-exercise="puente-de-gluteos">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Sentarse y levantarse con bajada lenta</div>
-          <p class="exercise-desc">Ponte de pie usando ambas piernas y vuelve a sentarte bajando lentamente durante 3–4 segundos. Usa las manos si las necesitas. El objetivo es mejorar el control de la bajada sin aumentar claramente la molestia del talón/Aquiles.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/excentricos/sentarse_pararse_excentrico.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>1–2</div>
-          <div class="pill"><span>Reps</span>5–6</div>
-          <div class="pill"><span>Bajada</span>3–4 s</div>
-          <div class="pill"><span>RPE</span>3–4</div>
-          <div class="pill"><span>Talón</span>0–3/10</div>
-        </div>
-      
-        <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y levantarse con bajada lenta">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Control postural</h2><p>Una tarea de equilibrio de baja complejidad.</p></div>
-    <div class="section-body">
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Equilibrio semi-tándem con apoyo</div>
-          <p class="exercise-desc">Coloca un pie ligeramente delante del otro y mantén la posición cerca de una silla o pared. Ambos pies permanecen apoyados.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/semitandem_con_apoyo.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>1–2</div>
-          <div class="pill"><span>Tiempo</span>15–20 s por lado</div>
-          <div class="pill"><span>RPE</span>2–3</div>
-        </div>
-      
-        <div class="review-request" data-exercise="equilibrio-semi-tandem-con-apoyo">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Equilibrio semi-tándem con apoyo">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-    <div class="section-body">
-      <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="note">
-    <strong>Objetivo:</strong> aumentar fuerza general, control excéntrico y estabilidad sin sumar otra sesión específica de carga del Aquiles.
-  </div>
-
-  <div class="finish-session-wrap">
-    <p class="finish-session-text">Registra si el talón/Aquiles quedó igual, mejor o peor y cómo se sintió el control al sentarte o bajar escalones.</p>
-    <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Base&amp;sesion_objetivo=Fuerza%20control%20excentrico%20y%20escaleras">✅ Finalicé mi sesión</a>
-  </div>
-</div>
-
-<!-- COMPLETA -->
-<div class="routine-container" id="rutina-completa">
-  <div class="routine-intro">
-    <div class="routine-version-label">🕘 Rutina B · Mes 2 Completa · 25–30 min</div>
-    <h2>Rutina B · Fuerza funcional completa</h2>
-    <p>Una sesión diferente a A, con mayor volumen de glúteos, muslos, equilibrio y control de la bajada para mejorar la función en escaleras.</p>
-
-    <div class="quick-stats">
-      <div class="stat"><small>Duración</small><strong>25–30 min</strong></div>
-      <div class="stat"><small>Intensidad</small><strong>RPE 2–4/10</strong></div>
-      <div class="stat"><small>Material</small><strong>Silla + cojín/pelota</strong></div>
-      <div class="stat"><small>Objetivo</small><strong>Fuerza + escaleras</strong></div>
-    </div>
-  </div>
-
-  <div class="warning">
-    <strong>Rutina complementaria:</strong> no repetimos el bloque específico del Aquiles de la Rutina A. Aquí el foco es fuerza general, control al descender y estabilidad.
-    Si aparece un aumento claro del dolor del talón/Aquiles, cojera o una molestia diferente, reduce la sesión.
-  </div>
-
-  <section class="section">
-    <div class="section-head"><h2>Preparación</h2><p>Entrada global antes de la fuerza.</p></div>
-    <div class="section-body">
-
-      <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>5 respiraciones lentas.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Rotación torácica sentada</div>
-          <p class="exercise-desc">Gira el tronco lentamente hacia cada lado dentro de un rango cómodo.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/movilidad/tren_superior/rotacion_toracica_sentado.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>2</div>
-          <div class="pill"><span>Reps</span>8 por lado</div>
-          <div class="pill"><span>RPE</span>1–2</div>
-        </div>
-      
-        <div class="review-request" data-exercise="rotacion-toracica-sentada">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Rotación torácica sentada">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Fuerza</h2><p>Bloque principal sin repetir A.</p></div>
-    <div class="section-body">
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Puente de glúteos</div>
-          <p class="exercise-desc">Eleva la pelvis con control y baja lentamente. Mantén los pies cómodos y evita empujar desde las puntas.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>3</div>
-          <div class="pill"><span>Reps</span>10–12</div>
-          <div class="pill"><span>Pausa</span>2 s arriba</div>
-          <div class="pill"><span>RPE</span>3–4</div>
-        </div>
-      
-        <div class="review-request" data-exercise="puente-de-gluteos">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Sentarse y levantarse con bajada lenta</div>
-          <p class="exercise-desc">Ponte de pie con control y vuelve a sentarte bajando lentamente durante 3–4 segundos. Mantén ambos pies apoyados y usa las manos si lo necesitas. Omite si el talón/Aquiles se vuelve claramente más doloroso.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/excentricos/sentarse_pararse_excentrico.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>2</div>
-          <div class="pill"><span>Reps</span>5–6</div>
-          <div class="pill"><span>Bajada</span>3–4 s</div>
-          <div class="pill"><span>RPE</span>3–4</div>
-          <div class="pill"><span>Talón</span>0–3/10</div>
-        </div>
-      
-        <div class="review-request" data-exercise="sentarse-y-levantarse-de-una-silla">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y levantarse con bajada lenta">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Control y estabilidad</h2><p>Integra la fuerza con una tarea sencilla de equilibrio.</p></div>
-    <div class="section-body">
-
-      <article class="exercise-card">
-        <div>
-          <div class="exercise-name">Equilibrio semi-tándem con apoyo</div>
-          <p class="exercise-desc">Mantén un pie ligeramente delante del otro con ambos pies apoyados. Ten una silla o pared cerca.</p>
-          <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/semitandem_con_apoyo.mp4" type="button">▶ Ver video</button>
-        </div>
-        <div class="exercise-meta">
-          <div class="pill"><span>Series</span>2</div>
-          <div class="pill"><span>Tiempo</span>20 s por lado</div>
-          <div class="pill"><span>RPE</span>2–3</div>
-        </div>
-      
-        <div class="review-request" data-exercise="equilibrio-semi-tandem-con-apoyo">
-          <div class="review-request-copy">
-            <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-            <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-          </div>
-          <button class="upload-execution-btn" type="button" data-exercise-name="Equilibrio semi-tándem con apoyo">📹 Enviar mi ejecución</button>
-          <div class="upload-status" aria-live="polite"></div>
-        </div>
-
-</article>
-</div>
-  </section>
-
-  <section class="section">
-    <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando el ritmo.</p></div>
-    <div class="section-body">
-      <div class="simple-card"><strong>Respiración diafragmática sentada</strong><br/>2–3 minutos.<br/>
-        <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/respiracion/respiracion_diafragmatica.mp4" type="button">▶ Ver video</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="note">
-    <strong>Distribución semanal:</strong> A trabaja principalmente pie/Aquiles y fuerza local; B trabaja principalmente fuerza general, control excéntrico y estabilidad para apoyar la bajada de escaleras.
-  </div>
-
-  <div class="finish-session-wrap">
-    <p class="finish-session-text">Registra cómo quedó el talón/Aquiles y si bajar escaleras o controlar la bajada se sintió igual, mejor o peor.</p>
-    <a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Dixie%20Acosta&amp;rutina=Rutina%20B%20Mes%202%20Completa&amp;sesion_objetivo=Fuerza%20control%20excentrico%20estabilidad">✅ Finalicé mi sesión</a>
-  </div>
-</div>
-
-</main>
-</div>
-<div aria-hidden="true" class="video-modal" id="videoModal">
-<div class="video-box">
-<div class="video-box-head">
-<strong id="videoTitle">Video de ejercicio</strong>
-<button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
-</div>
-<div class="video-frame-wrap">
-<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" id="videoFrame" src="" title="Video de ejercicio"></iframe>
-<video autoplay disablepictureinpicture muted playsinline id="videoPlayer" preload="auto"></video>
-</div>
-</div>
-</div>
-<div class="execution-modal" id="executionModal" aria-hidden="true">
-<div class="execution-dialog">
-<div class="execution-head">
-<div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div>
-<button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
-</div>
-<div class="execution-body">
-<div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea bien el movimiento. Un video corto de 3–5 repeticiones o una serie es suficiente.</div>
-<label class="execution-file-label">
-<span>🎥 Grabar ahora o elegir desde el celular</span>
-<input id="executionFile" type="file" accept="video/*" capture="environment"/>
-</label>
-<video class="execution-preview" id="executionPreview" controls playsinline></video>
-<div class="selected-video-info" id="selectedVideoInfo"></div>
-<div class="optimization-box" id="optimizationBox"></div>
-<div class="upload-progress-wrap" id="uploadProgressWrap">
-<div class="upload-progress-track">
-<div class="upload-progress-bar" id="uploadProgressBar"></div>
-</div>
-<div class="upload-progress-row">
-<span id="uploadProgressText">Preparando subida…</span>
-<span class="upload-progress-percent" id="uploadProgressPercent">0%</span>
-</div>
-</div>
-<label class="execution-comment-label" for="executionComment">Comentario opcional</label>
-<textarea class="execution-comment" id="executionComment" placeholder="Ej.: siento tirantez, no sé si estoy haciendo bien el movimiento..."></textarea>
-<div class="execution-actions">
-<button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
-<button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button>
-</div>
-</div>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<body><div class="wrap"><header class="topbar"><div class="brand"><div class="brand-badge">M</div><div class="brand-text"><h1>MoveSmart</h1><p>Cliente de referencia · Rutina B</p></div></div><a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html">← Volver al plan</a></header><section class="hero"><div aria-hidden="true" class="hero-image"></div><div class="hero-copy"><div class="hello">¡Hola Cliente!</div><h2>Hoy entrenamos para recuperar la constancia, con una dosis que puedas sostener.</h2><p>Responde tres preguntas y MoveSmart mostrará la versión de tu Rutina B que mejor se adapta a tu día.</p></div></section><main class="survey-card"><div class="survey-head"><div class="survey-title"><div class="survey-icon">✨</div><div><h3>Encuesta MoveSmart</h3><p>Toma 30 segundos.</p></div></div></div><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-text" id="progressText">Pregunta 0 de 3</div></div>
+<section class="question" data-question="tiempo"><div class="q-title"><div class="q-icon">⏱️</div><div><h4>1. ¿Cuánto tiempo tienes hoy?</h4><p>Elige una opción realista.</p></div></div><div class="choices"><button class="choice" data-value="express" type="button"><span class="emoji">⏱️</span><strong>15–20 min</strong><span>Poco tiempo</span></button><button class="choice" data-value="base" type="button"><span class="emoji">🕒</span><strong>25–30 min</strong><span>Tiempo moderado</span></button><button class="choice" data-value="completa" type="button"><span class="emoji">🕘</span><strong>35–40 min</strong><span>Sesión completa</span></button></div></section>
+<section class="question" data-question="energia"><div class="q-title"><div class="q-icon">⚡</div><div><h4>2. ¿Cómo está tu energía hoy?</h4><p>Piensa en cómo se siente tu cuerpo.</p></div></div><div class="choices"><button class="choice" data-value="baja" type="button"><span class="emoji">🪫</span><strong>Baja</strong><span>Necesito una sesión breve</span></button><button class="choice" data-value="media" type="button"><span class="emoji">⚡</span><strong>Media</strong><span>Me siento normal</span></button><button class="choice" data-value="alta" type="button"><span class="emoji">🔋</span><strong>Alta</strong><span>Tengo buena energía</span></button></div></section><section class="question" data-question="personalizada"><div class="q-title"><div class="q-icon">🩹</div><div><h4>3. ¿Cómo está hoy tu zona cervical?</h4><p>Compárala con lo habitual antes de comenzar.</p></div></div><div class="choices"><button class="choice" data-value="leve" type="button"><span class="emoji">🟢</span><strong>Sin molestia o leve</strong><span>Similar a lo habitual</span></button><button class="choice" data-value="moderado" type="button"><span class="emoji">🟡</span><strong>Moderada</strong><span>Necesito moverme con más cuidado</span></button><button class="choice" data-value="alto" type="button"><span class="emoji">🔴</span><strong>Alta o diferente</strong><span>Es intensa o poco habitual</span></button></div></section><button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button><p class="microcopy">La constancia también se entrena.</p><div class="result-card" id="resultCard"></div><div aria-live="polite" class="smart-loading" id="smartLoading"><div class="smart-orb"></div><h3 id="smartLoadingTitle">Adaptando tu sesión...</h3><p id="smartLoadingText">MoveSmart está ajustando la rutina a tu tiempo, energía y estado de hoy.</p></div><div class="routine-container" id="rutina-express"><div class="routine-intro"><div class="routine-version-label">⚡ Rutina B · 15–20 min</div><h2>Rutina B · Casa</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>15–20 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Casa</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Sentarse y pararse</div><p class="exercise-desc">Levántate desde una silla con control. Usa una silla más alta si lo necesitas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="sentarse-y-pararse"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y pararse">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Puente de glúteos</div><p class="exercise-desc">Eleva la pelvis sin forzar el cuello; usa una almohada baja si mejora la comodidad.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="puente-de-gluteos"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción lateral de cadera</div><p class="exercise-desc">Eleva la pierna superior sin girar la pelvis hacia atrás.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_lateral.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-lateral-de-cadera"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción lateral de cadera">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20B%20Express&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div><div class="routine-container" id="rutina-base"><div class="routine-intro"><div class="routine-version-label">🕒 Rutina B · 25–30 min</div><h2>Rutina B · Casa</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–30 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Casa</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Sentarse y pararse</div><p class="exercise-desc">Levántate desde una silla con control. Usa una silla más alta si lo necesitas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="sentarse-y-pararse"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y pararse">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Puente de glúteos</div><p class="exercise-desc">Eleva la pelvis sin forzar el cuello; usa una almohada baja si mejora la comodidad.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="puente-de-gluteos"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción lateral de cadera</div><p class="exercise-desc">Eleva la pierna superior sin girar la pelvis hacia atrás.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_lateral.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-lateral-de-cadera"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción lateral de cadera">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Remo con banda</div><p class="exercise-desc">Lleva los codos hacia atrás manteniendo hombros relajados y cuello neutro.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_con_banda.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="remo-con-banda"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Remo con banda">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Bird dog</div><p class="exercise-desc">Extiende brazo y pierna contraria sin arquear la espalda.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/bird_dog.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="bird-dog"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Bird dog">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20B%20Base&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div><div class="routine-container" id="rutina-completa"><div class="routine-intro"><div class="routine-version-label">🕘 Rutina B · 35–40 min</div><h2>Rutina B · Casa</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>35–40 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Casa</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Sentarse y pararse</div><p class="exercise-desc">Levántate desde una silla con control. Usa una silla más alta si lo necesitas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/sentarse_pararse.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>8–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="sentarse-y-pararse"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Sentarse y pararse">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Puente de glúteos</div><p class="exercise-desc">Eleva la pelvis sin forzar el cuello; usa una almohada baja si mejora la comodidad.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/puente_gluteo.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="puente-de-gluteos"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Puente de glúteos">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción lateral de cadera</div><p class="exercise-desc">Eleva la pierna superior sin girar la pelvis hacia atrás.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_lateral.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-lateral-de-cadera"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción lateral de cadera">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Remo con banda</div><p class="exercise-desc">Lleva los codos hacia atrás manteniendo hombros relajados y cuello neutro.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_con_banda.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="remo-con-banda"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Remo con banda">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Bird dog</div><p class="exercise-desc">Extiende brazo y pierna contraria sin arquear la espalda.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/bird_dog.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="bird-dog"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Bird dog">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Elevación de talones</div><p class="exercise-desc">Sube y baja los talones lentamente con apoyo cercano si lo necesitas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/elevacion_talones.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12–15</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="elevacion-de-talones"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Elevación de talones">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20B%20Completa&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div></main></div>
+<div aria-hidden="true" class="video-modal" id="videoModal"><div class="video-box"><div class="video-box-head"><strong id="videoTitle">Video de ejercicio</strong><button class="close-video" id="closeVideo" type="button">Cerrar ✕</button></div><div class="video-frame-wrap"><iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe><video autoplay disablepictureinpicture muted playsinline id="videoPlayer" preload="auto"></video></div></div></div>
+<div class="execution-modal" id="executionModal" aria-hidden="true"><div class="execution-dialog"><div class="execution-head"><div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div><button class="execution-close" id="executionClose" type="button">Cerrar ✕</button></div><div class="execution-body"><div class="execution-tip">Apoya el celular donde se vea bien el movimiento. Un video corto es suficiente.</div><label class="execution-file-label"><span>🎥 Grabar o elegir video</span><input id="executionFile" type="file" accept="video/*" capture="environment"></label><video class="execution-preview" id="executionPreview" controls playsinline></video><div class="selected-video-info" id="selectedVideoInfo"></div><div class="optimization-box" id="optimizationBox"></div><div class="upload-progress-wrap" id="uploadProgressWrap"><div class="upload-progress-track"><div class="upload-progress-bar" id="uploadProgressBar"></div></div><div class="upload-progress-row"><span id="uploadProgressText">Preparando subida…</span><span class="upload-progress-percent" id="uploadProgressPercent">0%</span></div></div><label class="execution-comment-label" for="executionComment">Comentario opcional</label><textarea class="execution-comment" id="executionComment"></textarea><div class="execution-actions"><button class="execution-cancel" id="executionCancel" type="button">Cancelar</button><button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
-const CLIENTE = "Dixie Acosta";
-const PREGUNTA_PERSONALIZADA = "Molestia del talón o tendón de Aquiles durante la marcha y el despegue";
+const CLIENTE = "Cliente de referencia";
+const PREGUNTA_PERSONALIZADA = "{{PREGUNTA_PERSONALIZADA}}";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
@@ -1465,11 +903,11 @@ return map[file.type] || "mp4";
 }
 function obtenerRutinaVideo(button) {
 const container = button ? button.closest(".routine-container") : null;
-if (!container) return "Rutina B Mes 2";
-if (container.id === "rutina-express") return "Rutina B Mes 2 Express";
-if (container.id === "rutina-base") return "Rutina B Mes 2 Base";
-if (container.id === "rutina-completa") return "Rutina B Mes 2 Completa";
-return "Rutina B Mes 2";
+if (!container) return "Rutina B";
+if (container.id === "rutina-express") return "Rutina B Express";
+if (container.id === "rutina-base") return "Rutina B Base";
+if (container.id === "rutina-completa") return "Rutina B Completa";
+return "Rutina B";
 }
 function construirRutaVideo(rutina, ejercicio, file) {
 const ahora = new Date();
@@ -1487,7 +925,7 @@ second: "2-digit",
 hour12: false
 }).format(ahora).replace(/:/g, "-");
 return [
-"dixie-acosta",
+"cliente-referencia",
 slugVideo(rutina),
 fecha,
 fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
@@ -1649,7 +1087,7 @@ return 'Completa';
 function guardarRespuestaEnSheets(estructura, modo){
 const payload = {
 cliente: CLIENTE,
-rutina: "Rutina B Mes 2",
+rutina: "Rutina B",
 tiempo: respuestas.tiempo,
 energia: respuestas.energia,
 preguntaPersonalizada: PREGUNTA_PERSONALIZADA,
@@ -1711,8 +1149,8 @@ resultCard.scrollIntoView({ behavior:'auto', block:'center' });
 return;
 }
 const modoTexto = {
-Recovery: 'Hoy usa menor volumen. Prioriza que el talón/Aquiles quede igual o mejor después de la sesión.',
-Normal: 'Realiza la versión planificada. Esta sesión complementa la Rutina A con fuerza general y función.'
+Recovery: 'Hoy utiliza la versión más breve, reduce el volumen y mantén el cuello en una posición cómoda.',
+Normal: 'Realiza la versión planificada. Esta sesión en casa permite sostener la constancia con fuerza general.'
 };
 smartLoading.classList.add('active');
 surveyCard.classList.add('is-processing');
@@ -1720,7 +1158,7 @@ smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
 smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de tus molestias o zonas lesionadas.';
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 setTimeout(() => {
-smartLoadingTitle.textContent = 'Adaptando tu Rutina B del segundo mes...';
+smartLoadingTitle.textContent = 'Adaptando tu Rutina B...';
 smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
 }, 180);
 setTimeout(() => {
@@ -1733,7 +1171,7 @@ surveyCard.classList.remove('is-processing');
 resultCard.style.background = 'rgba(29,191,115,.12)';
 resultCard.style.borderColor = 'rgba(29,191,115,.28)';
 resultCard.style.color = '#ddffea';
-resultCard.innerHTML = `<strong>✨ Rutina B Mes 2 ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
+resultCard.innerHTML = `<strong>✨ Rutina B ${estructura}</strong><br><span style="color:#fff">Adaptación del día: ${modo}</span><br><span style="color:rgba(255,255,255,.76)">${modoTexto[modo]}</span>`;
 resultCard.classList.add('active');
 const idRutina = respuestas.tiempo === 'express' ? 'rutina-express' : respuestas.tiempo === 'base' ? 'rutina-base' : 'rutina-completa';
 const routineContainer = document.getElementById(idRutina);
@@ -2361,10 +1799,8 @@ updateProgress();
       player.style.display = 'block';
       player.src = url;
       player.muted = true;
-      player.controls = false;
-      player.loop = true;
+      player.controls = true;
       player.playsInline = true;
-      player.autoplay = true;
       player.play().catch(function () {});
       return;
     }
@@ -2433,5 +1869,4 @@ updateProgress();
 })();
 </script>
 
-</body>
-</html>
+</body></html>
