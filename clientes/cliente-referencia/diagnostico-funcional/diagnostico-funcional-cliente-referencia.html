@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8">
-  
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagnóstico funcional {{NOMBRE_CLIENTE}} | MoveSmart</title>
+  <title>Diagnóstico funcional Cliente de referencia | MoveSmart</title>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
@@ -25,7 +25,7 @@
       color:var(--text);
       background:
         linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
+        url('https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
 
@@ -402,9 +402,131 @@
 </head>
 
 <body>
-<header class="topbar"><div class="nav"><a href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html" aria-label="Inicio MoveSmart"><strong>MoveSmart</strong></a><a href="https://movesmart-chile.github.io/movesmart-web/clientes/{{RUTA_CLIENTE}}/plan-{{CLIENTE_ID}}.html" class="btn btn-primary">Volver al plan</a></div></header><main class="wrap">
-<section class="hero"><div class="hero-content"><div class="eyebrow"><span class="dot"></span>Diagnóstico funcional</div><h2>Diagnóstico funcional</h2><div class="client-name">{{NOMBRE_CLIENTE}}</div><p>{{INTRODUCCION_DIAGNOSTICO}}</p></div></section>
-<section class="case-card"><div class="ankle-icon" aria-hidden="true">🎯</div><div class="case-text"><h3>Resumen del caso</h3><p>{{RESUMEN_CASO}}</p></div><div class="case-data"><div class="data-item"><div class="data-icon">📅</div><div><small>Estado actual</small><strong>{{ESTADO_ACTUAL}}</strong></div></div><div class="data-item"><div class="data-icon">⏱️</div><div><small>Barrera principal</small><strong>{{BARRERA_PRINCIPAL}}</strong></div></div><div class="data-item"><div class="data-icon">◎</div><div><small>Objetivo funcional</small><strong>{{OBJETIVO_FUNCIONAL}}</strong></div></div><div class="data-item"><div class="data-icon">📈</div><div><small>Enfoque</small><strong>{{ENFOQUE_PRINCIPAL}}</strong></div></div></div></section>
-<section class="info-grid"><article class="info-card blue"><div class="info-head"><div class="info-icon">✓</div><h3>Datos confirmados</h3></div><ul class="check-list">{{LISTA_DATOS_CONFIRMADOS}}</ul></article><article class="info-card green"><div class="info-head"><div class="info-icon">🎯</div><h3>Qué vamos a trabajar</h3></div><ul class="check-list">{{LISTA_CAPACIDADES_TRABAJO}}</ul></article></section>
-<section class="goal-card"><div class="trophy">🏆</div><div><h3>Nuestro objetivo</h3><p>{{OBJETIVO_Y_CRITERIO_EXITO}}</p></div></section><div class="cta-wrap"><a href="https://movesmart-chile.github.io/movesmart-web/clientes/{{RUTA_CLIENTE}}/plan-{{CLIENTE_ID}}.html" class="cta"><span>→</span><span>Ver mi programa</span></a><div class="secure-note">Interpretación funcional; no corresponde a un diagnóstico médico nuevo.</div></div></main>
-</body></html>
+  <header class="topbar">
+    <div class="nav">
+      <a href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html" aria-label="Inicio MoveSmart">
+        <img
+          class="top-logo"
+          src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp"
+          alt="MoveSmart">
+      </a>
+
+      <a href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html" class="btn btn-primary">
+        Volver al plan
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Diagnóstico funcional
+        </div>
+
+        <h2>Diagnóstico funcional</h2>
+        <div class="client-name">Cliente de referencia</div>
+
+        <p>
+          Este resumen integra la evaluación inicial y el objetivo funcional confirmado: mejorar la condición física mediante sesiones simples y sostenibles.
+        </p>
+      </div>
+
+      <div class="hero-ankle" aria-hidden="true">
+        <img
+          src="https://movesmart-chile.github.io/movesmart-web/imagenes/diagnistico.webp"
+          alt="">
+      </div>
+    </section>
+
+    <section class="case-card">
+      <div class="ankle-icon" aria-hidden="true">
+        <img
+          src="https://movesmart-chile.github.io/movesmart-web/imagenes/insignia.webp"
+          alt="">
+      </div>
+
+      <div class="case-text">
+        <h3>Resumen del caso</h3>
+        <p>
+          El Cliente de referencia inicia un programa de prueba con el objetivo de mejorar su condición física y sostener la adherencia. La planificación prioriza una estructura clara, cargas progresivas y alternativas según el tiempo disponible.
+        </p>
+      </div>
+
+      <div class="case-data">
+        <div class="data-item">
+          <div class="data-icon">📅</div>
+          <div>
+            <small>Estado actual</small>
+            <strong>Iniciando un programa de entrenamiento con una estructura simple</strong>
+          </div>
+        </div>
+
+        <div class="data-item">
+          <div class="data-icon">⏱️</div>
+          <div>
+            <small>Barrera principal</small>
+            <strong>Mantener la regularidad</strong>
+          </div>
+        </div>
+
+        <div class="data-item">
+          <div class="data-icon">◎</div>
+          <div>
+            <small>Objetivo funcional</small>
+            <strong>Sostener dos sesiones semanales</strong>
+          </div>
+        </div>
+
+        <div class="data-item">
+          <div class="data-icon">📈</div>
+          <div>
+            <small>Enfoque</small>
+            <strong>Adherencia + fuerza general + movilidad</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="info-card blue">
+        <div class="info-head">
+          <div class="info-icon">✓</div>
+          <h3>Datos confirmados</h3>
+        </div>
+
+        <ul class="check-list"><li><span class="check">✓</span><span>Disponibilidad y carga ajustadas según el tiempo y la energía de cada sesión.</span></li><li><span class="check">✓</span><span>Se utilizarán versiones Express, Base o Completa según la situación del día.</span></li><li><span class="check">✓</span><span>La prioridad inicial es sostener la adherencia.</span></li></ul>
+      </article>
+
+      <article class="info-card green">
+        <div class="info-head">
+          <div class="info-icon">🎯</div>
+          <h3>Qué vamos a trabajar</h3>
+        </div>
+
+        <ul class="check-list"><li><span class="check">✓</span><span>Fuerza general y control del movimiento.</span></li><li><span class="check">✓</span><span>Movilidad y tolerancia progresiva a la carga.</span></li><li><span class="check">✓</span><span>Una estructura semanal simple y sostenible.</span></li></ul>
+      </article>
+    </section>
+
+    <section class="goal-card">
+      <div class="trophy">🏆</div>
+      <div>
+        <h3>Nuestro objetivo</h3>
+        <p>
+          Completar las sesiones programadas de la primera semana y registrar el esfuerzo y la respuesta del cuerpo.
+        </p>
+      </div>
+    </section>
+
+    <div class="cta-wrap">
+      <a href="https://movesmart-chile.github.io/movesmart-web/clientes/adriana-jara/plan-adriana-jara.html" class="cta">
+        <span>→</span>
+        <span>Ver mi programa</span>
+      </a>
+
+      <div class="secure-note">Interpretación funcional; no corresponde a un diagnóstico médico nuevo.</div>
+    </div>
+  </main>
+</body>
+</html>
