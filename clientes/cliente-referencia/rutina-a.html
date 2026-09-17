@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Rutina A | Cliente de referencia · MoveSmart</title>
+<!-- Plantilla maestra reutilizable para Rutina A MoveSmart -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Rutina A | Cliente de referencia</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -26,7 +26,7 @@ font-family:'Segoe UI',system-ui,sans-serif;
 color:var(--text);
 background:
 linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
+url('https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
 overflow-x:hidden;
 }
 body::before{
@@ -141,7 +141,7 @@ max-width:560px;
 .hero-image{
 position:absolute;
 inset:0;
-background:url('../../../imagenes/contendor.webp') center right / cover no-repeat;
+background:url('https://movesmart-chile.github.io/movesmart-web/imagenes/contendor.webp') center right / cover no-repeat;
 z-index:0;
 transform:scale(1.01);
 }
@@ -615,10 +615,12 @@ height:100%;
 border:0;
 }
 .video-frame-wrap video{
+display:none;
 object-fit:contain;
-background:#050508;
+background:#000;
+pointer-events:none;
 opacity:1;
-transition:opacity .4s ease;
+transition:opacity .18s ease;
 }
 .video-frame-wrap video.loop-fade-out{opacity:0}
 .video-frame-wrap video::-webkit-media-controls{display:none!important}
@@ -710,477 +712,72 @@ line-height:1.5;
 }
 .optimization-box.active{display:block}
 .optimization-box strong{color:#fff}
-/* --- MoveSmart: mejora de selección táctil en móvil --- */
+/* ===== Corrección MoveSmart: casillas seleccionables en móvil ===== */
+.question,
+.choices,
 .choice{
-touch-action:manipulation;
--webkit-tap-highlight-color:rgba(255,90,31,.18);
--webkit-user-select:none;
-user-select:none;
-position:relative;
-z-index:2;
-}
-.choice:active{
-transform:scale(.985);
-border-color:var(--accent);
-}
-@media (hover:none) and (pointer:coarse){
-.choice{
-min-height:76px;
-}
-.choice:hover{
-transform:none;
-}
-}
-/* La encuesta debe seguir siendo tocable en móvil incluso si falla un servicio externo */
-.survey-card:not(.is-processing),
-.survey-card:not(.is-processing) .choices,
-.survey-card:not(.is-processing) .choice{
+position:relative !important;
+z-index:30 !important;
 pointer-events:auto !important;
 }
 .choice{
--webkit-appearance:none;
-appearance:none;
+-webkit-appearance:none !important;
+appearance:none !important;
+touch-action:manipulation !important;
+-webkit-tap-highlight-color:rgba(255,90,31,.18);
+user-select:none;
+}
+.choice *{
+pointer-events:none !important;
+}
+.submit-btn{
+position:relative !important;
+z-index:31 !important;
+pointer-events:auto !important;
+touch-action:manipulation !important;
+}
+.survey-card{
+position:relative !important;
+z-index:5 !important;
+}
+.survey-card:not(.is-processing){
+pointer-events:auto !important;
 }
 </style>
+
+<style>
+/* FIX DEFINITIVO CASILLAS */
+.question,.choices,.choice{
+  position:relative !important;
+  z-index:40 !important;
+  pointer-events:auto !important;
+}
+.choice{
+  cursor:pointer !important;
+  touch-action:manipulation !important;
+  -webkit-tap-highlight-color:rgba(255,90,31,.20) !important;
+}
+.choice *{pointer-events:none !important;}
+.submit-btn{
+  position:relative !important;
+  z-index:41 !important;
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+</style>
+
 </head>
-<body>
-<div class="wrap">
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-badge">M</div>
-    <div class="brand-text"><h1>MoveSmart</h1><p>Cliente de referencia · Rutina A adaptativa</p></div>
-  </div>
-  <a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html">← Volver al plan</a>
-</header>
-<section class="hero">
-  <div aria-hidden="true" class="hero-image"></div>
-  <div class="hero-copy">
-    <div class="hello">¡Hola, Cliente de referencia!</div>
-    <h2>Hoy no necesitas hacerlo perfecto: solo necesitas comenzar.</h2>
-    <p>Responde estas 3 preguntas y MoveSmart ajustará tu Rutina A según el tiempo disponible, tu energía y cómo se siente tu cuerpo hoy.</p>
-  </div>
-</section>
-<main class="survey-card">
-  <div class="survey-head"><div class="survey-title"><div class="survey-icon">✨</div><div><h3>Encuesta MoveSmart</h3><p>Toma 30 segundos. Tu sesión se adapta a cómo llegas hoy.</p></div></div></div>
-  <div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-text" id="progressText">Pregunta 0 de 3</div></div>
-  <section class="question" data-question="tiempo">
-    <div class="q-title"><div class="q-icon">⏱️</div><div><h4>1. ¿Cuánto tiempo tienes hoy?</h4><p>Elige la opción que realmente puedas completar.</p></div></div>
-    <div class="choices">
-      <button type="button" class="choice" data-value="express"><span class="emoji">⏱️</span><strong>15–20 min</strong><span>Poco tiempo</span></button>
-      <button type="button" class="choice" data-value="base"><span class="emoji">🕒</span><strong>25–35 min</strong><span>Tiempo moderado</span></button>
-      <button type="button" class="choice" data-value="completa"><span class="emoji">🕘</span><strong>35–45 min</strong><span>Sesión completa</span></button>
-    </div>
-  </section>
-  <section class="question" data-question="energia">
-    <div class="q-title"><div class="q-icon">⚡</div><div><h4>2. ¿Cómo está tu energía hoy?</h4><p>Piensa en cómo se siente tu cuerpo físicamente.</p></div></div>
-    <div class="choices">
-      <button type="button" class="choice" data-value="baja"><span class="emoji">🪫</span><strong>Baja</strong><span>Necesito una sesión sencilla</span></button>
-      <button type="button" class="choice" data-value="media"><span class="emoji">⚡</span><strong>Media</strong><span>Me siento normal</span></button>
-      <button type="button" class="choice" data-value="alta"><span class="emoji">🔋</span><strong>Alta</strong><span>Me siento con buena energía</span></button>
-    </div>
-  </section>
-  <section class="question" data-question="personalizada">
-    <div class="q-title"><div class="q-icon">🧭</div><div><h4>3. ¿Cómo se siente tu cuerpo antes de entrenar?</h4><p>Considera cansancio, rigidez, dolor o cualquier malestar nuevo.</p></div></div>
-    <div class="choices">
-      <button type="button" class="choice" data-value="leve"><span class="emoji">🟢</span><strong>Bien</strong><span>Sin molestias importantes</span></button>
-      <button type="button" class="choice" data-value="moderado"><span class="emoji">🟡</span><strong>Algo cansada o rígida</strong><span>Puedo entrenar más suave</span></button>
-      <button type="button" class="choice" data-value="alto"><span class="emoji">🔴</span><strong>Dolor o malestar importante</strong><span>Algo se siente diferente o preocupante</span></button>
-    </div>
-  </section>
-  <button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button>
-  <p class="microcopy">Tu rutina se adapta a ti. Comenzar también es avanzar.</p>
-  <div class="result-card" id="resultCard"></div>
-  <div aria-live="polite" class="smart-loading" id="smartLoading"><div class="smart-orb"></div><h3 id="smartLoadingTitle">Analizando cómo llegas hoy...</h3><p id="smartLoadingText">MoveSmart está ajustando tu rutina según tu tiempo, energía y estado general.</p></div>
-  <div class="routine-container" id="rutina-express">
-    <div class="routine-intro"><div class="routine-version-label">⚡ Rutina A Express · 15–20 min</div><h2>Rutina A · Fuerza esencial</h2><p>La versión mínima para cumplir incluso cuando tengas poco tiempo o te cueste comenzar.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>15–20 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–5/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Cuerpo completo</strong></div></div></div>
-    <div class="note"><strong>Regla principal:</strong> utiliza un peso liviano y termina cada serie sintiendo que podrías realizar 3–4 repeticiones más.</div>
-    <section class="section"><div class="section-head"><h2>Activación</h2><p>Prepara el cuerpo sin fatigarte.</p></div><div class="section-body">
-<div class="simple-card">
-  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
-  3 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
-<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</div></div></section>
-    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Movimientos básicos, controlados y sin llegar al fallo.</p></div><div class="section-body">
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Prensa de piernas en máquina</div>
-    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Press de pecho en máquina</div>
-    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="press-de-pecho-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Remo sentado en máquina</div>
-    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="remo-sentado-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article></div></section>
-<section class="section">
-  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
-  <div class="section-body">
-    <div class="simple-card">
-      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
-    </div>
-  </div>
-</section>
-    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cómo se sintió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
-  </div>
-  <div class="routine-container" id="rutina-base">
-    <div class="routine-intro"><div class="routine-version-label">🕒 Rutina A Base · 25–35 min</div><h2>Rutina A · Fuerza general</h2><p>Tu versión principal para aprender los movimientos y construir una base de fuerza de manera progresiva.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–35 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–6/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Fuerza + hábito</strong></div></div></div>
-    <div class="note"><strong>Primera etapa:</strong> prioriza aprender a ajustar las máquinas y controlar el movimiento. El peso debe sentirse manejable en todas las repeticiones.</div>
-    <section class="section"><div class="section-head"><h2>Calentamiento</h2><p>Aumenta gradualmente la temperatura corporal.</p></div><div class="section-body">
-<div class="simple-card">
-  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
-  5 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
-<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</div></div></section>
-    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Descansa lo necesario para repetir cada ejercicio con buena técnica.</p></div><div class="section-body">
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Prensa de piernas en máquina</div>
-    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Curl femoral sentado en máquina</div>
-    <p class="exercise-desc">Ajusta el respaldo y el rodillo. Flexiona las rodillas de manera controlada y vuelve lentamente sin soltar el peso de golpe.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>10–12</div>
-    <div class="pill"><span>Descanso</span>60 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="curl-femoral-sentado-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Press de pecho en máquina</div>
-    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="press-de-pecho-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Remo sentado en máquina</div>
-    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="remo-sentado-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div></section>
-<section class="section">
-  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
-  <div class="section-body">
-    <div class="simple-card">
-      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
-    </div>
-  </div>
-</section>
-    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cualquier ejercicio que necesite ajuste.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
-  </div>
-  <div class="routine-container" id="rutina-completa">
-    <div class="routine-intro"><div class="routine-version-label">🕘 Rutina A Completa · 35–45 min</div><h2>Rutina A · Fuerza completa</h2><p>La versión ampliada para los días en que tengas más tiempo y buena disposición para entrenar.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>35–45 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 4–6/10</strong></div><div class="stat"><small>Material</small><strong>Máquinas</strong></div><div class="stat"><small>Objetivo</small><strong>Fuerza global</strong></div></div></div>
-    <div class="note"><strong>Importante:</strong> más tiempo no significa usar más peso. Mantén 3–4 repeticiones en reserva y evita entrenar hasta el fallo durante este primer ciclo.</div>
-    <section class="section"><div class="section-head"><h2>Calentamiento</h2><p>Comienza con un ritmo cómodo.</p></div><div class="section-body">
-<div class="simple-card">
-  <strong>Caminata suave en cinta o bicicleta estática</strong><br/>
-  5 minutos a un ritmo cómodo. Debes poder conversar sin dificultad.<br/>
-<div class="review-request" data-exercise="caminata-suave-o-bicicleta">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Caminata suave en cinta o bicicleta estática">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</div></div></section>
-    <section class="section"><div class="section-head"><h2>Fuerza de cuerpo completo</h2><p>Trabaja piernas, cadera, empuje, tracción y estabilidad.</p></div><div class="section-body">
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Prensa de piernas en máquina</div>
-    <p class="exercise-desc">Apoya completamente la espalda y los pies. Empuja la plataforma sin bloquear las rodillas y vuelve lentamente. Elige una carga que te permita terminar con buena técnica.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="prensa-de-piernas-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Curl femoral sentado en máquina</div>
-    <p class="exercise-desc">Ajusta el respaldo y el rodillo. Flexiona las rodillas de manera controlada y vuelve lentamente sin soltar el peso de golpe.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>10–12</div>
-    <div class="pill"><span>Descanso</span>60 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="curl-femoral-sentado-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Abducción de cadera en máquina</div>
-    <p class="exercise-desc">Mantén la espalda apoyada. Separa las rodillas hasta un rango cómodo y regresa lentamente evitando que las placas choquen.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_sentado_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>10–12</div>
-    <div class="pill"><span>Descanso</span>60 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–5/10</div>
-  </div>
-<div class="review-request" data-exercise="abduccion-de-cadera-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Press de pecho en máquina</div>
-    <p class="exercise-desc">Ajusta el asiento para que las manillas queden a la altura media del pecho. Empuja sin elevar los hombros y regresa con control.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="press-de-pecho-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-<article class="exercise-card">
-  <div>
-    <div class="exercise-name">Remo sentado en máquina</div>
-    <p class="exercise-desc">Mantén el pecho estable y lleva las manillas hacia el tronco. Junta suavemente los omóplatos sin encoger los hombros.</p>
-    <button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button>
-  </div>
-  <div class="exercise-meta">
-    <div class="pill"><span>Series</span>2</div>
-    <div class="pill"><span>Reps</span>8–10</div>
-    <div class="pill"><span>Descanso</span>60–75 s</div>
-    <div class="pill"><span>Esfuerzo</span>4–6/10</div>
-  </div>
-<div class="review-request" data-exercise="remo-sentado-en-maquina">
-  <div class="review-request-copy">
-    <span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span>
-    <small>Es opcional. Envíame un video corto y podré revisar tu técnica.</small>
-  </div>
-  <button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button>
-  <div class="upload-status" aria-live="polite"></div>
-</div>
-</article>
-</div></section>
-    <div class="warning"><strong>Detén el ejercicio</strong> si aparece dolor agudo, mareo, falta de aire desproporcionada o cualquier malestar nuevo que te preocupe.</div>
-<section class="section">
-  <div class="section-head"><h2>Vuelta a la calma</h2><p>Finaliza bajando gradualmente el ritmo.</p></div>
-  <div class="section-body">
-    <div class="simple-card">
-      <strong>Caminata muy suave</strong><br/>2–3 minutos.<br/>
-    </div>
-  </div>
-</section>
-    <div class="finish-session-wrap"><p class="finish-session-text">Cuando termines, registra tu energía, esfuerzo y cómo respondió tu cuerpo durante la sesión.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo=Fuerza%20general">✅ Finalicé mi sesión</a></div>
-  </div>
-</main>
-</div>
-<div aria-hidden="true" class="video-modal" id="videoModal">
-<div class="video-box">
-<div class="video-box-head">
-<strong id="videoTitle">Video de ejercicio</strong>
-<button class="close-video" id="closeVideo" type="button">Cerrar ✕</button>
-</div>
-<div class="video-frame-wrap">
-<iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe>
-<video id="videoPlayer" autoplay disablepictureinpicture muted playsinline preload="auto" style="display:none" title="Video de ejercicio"></video>
-</div>
-</div>
-</div>
-<div class="execution-modal" id="executionModal" aria-hidden="true">
-<div class="execution-dialog">
-<div class="execution-head">
-<div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div>
-<button class="execution-close" id="executionClose" type="button">Cerrar ✕</button>
-</div>
-<div class="execution-body">
-<div class="execution-tip"><strong>Cómo grabarlo:</strong> apoya el celular donde se vea bien el movimiento. Un video corto de 3–5 repeticiones o una serie es suficiente.</div>
-<label class="execution-file-label">
-<span>🎥 Grabar ahora o elegir desde el celular</span>
-<input id="executionFile" type="file" accept="video/*" capture="environment"/>
-</label>
-<video class="execution-preview" id="executionPreview" controls playsinline></video>
-<div class="selected-video-info" id="selectedVideoInfo"></div>
-<div class="optimization-box" id="optimizationBox"></div>
-<div class="upload-progress-wrap" id="uploadProgressWrap">
-<div class="upload-progress-track">
-<div class="upload-progress-bar" id="uploadProgressBar"></div>
-</div>
-<div class="upload-progress-row">
-<span id="uploadProgressText">Preparando subida…</span>
-<span class="upload-progress-percent" id="uploadProgressPercent">0%</span>
-</div>
-</div>
-<label class="execution-comment-label" for="executionComment">Comentario opcional</label>
-<textarea class="execution-comment" id="executionComment" placeholder="Ej.: siento tirantez, no sé si estoy haciendo bien el movimiento..."></textarea>
-<div class="execution-actions">
-<button class="execution-cancel" id="executionCancel" type="button">Cancelar</button>
-<button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button>
-</div>
-</div>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<body><div class="wrap"><header class="topbar"><div class="brand"><div class="brand-badge">M</div><div class="brand-text"><h1>MoveSmart</h1><p>Cliente de referencia · Rutina A</p></div></div><a class="back-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html">← Volver al plan</a></header><section class="hero"><div aria-hidden="true" class="hero-image"></div><div class="hero-copy"><div class="hello">¡Hola Cliente!</div><h2>Hoy entrenamos para recuperar la constancia, con una dosis que puedas sostener.</h2><p>Responde tres preguntas y MoveSmart mostrará la versión de tu Rutina A que mejor se adapta a tu día.</p></div></section><main class="survey-card"><div class="survey-head"><div class="survey-title"><div class="survey-icon">✨</div><div><h3>Encuesta MoveSmart</h3><p>Toma 30 segundos.</p></div></div></div><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-text" id="progressText">Pregunta 0 de 3</div></div>
+<section class="question" data-question="tiempo"><div class="q-title"><div class="q-icon">⏱️</div><div><h4>1. ¿Cuánto tiempo tienes hoy?</h4><p>Elige una opción realista.</p></div></div><div class="choices"><button class="choice" data-value="express" type="button"><span class="emoji">⏱️</span><strong>15–20 min</strong><span>Poco tiempo</span></button><button class="choice" data-value="base" type="button"><span class="emoji">🕒</span><strong>25–30 min</strong><span>Tiempo moderado</span></button><button class="choice" data-value="completa" type="button"><span class="emoji">🕘</span><strong>35–40 min</strong><span>Sesión completa</span></button></div></section>
+<section class="question" data-question="energia"><div class="q-title"><div class="q-icon">⚡</div><div><h4>2. ¿Cómo está tu energía hoy?</h4><p>Piensa en cómo se siente tu cuerpo.</p></div></div><div class="choices"><button class="choice" data-value="baja" type="button"><span class="emoji">🪫</span><strong>Baja</strong><span>Necesito una sesión breve</span></button><button class="choice" data-value="media" type="button"><span class="emoji">⚡</span><strong>Media</strong><span>Me siento normal</span></button><button class="choice" data-value="alta" type="button"><span class="emoji">🔋</span><strong>Alta</strong><span>Tengo buena energía</span></button></div></section><section class="question" data-question="personalizada"><div class="q-title"><div class="q-icon">🩹</div><div><h4>3. ¿Cómo está hoy tu zona cervical?</h4><p>Compárala con lo habitual antes de comenzar.</p></div></div><div class="choices"><button class="choice" data-value="leve" type="button"><span class="emoji">🟢</span><strong>Sin molestia o leve</strong><span>Similar a lo habitual</span></button><button class="choice" data-value="moderado" type="button"><span class="emoji">🟡</span><strong>Moderada</strong><span>Necesito moverme con más cuidado</span></button><button class="choice" data-value="alto" type="button"><span class="emoji">🔴</span><strong>Alta o diferente</strong><span>Es intensa o poco habitual</span></button></div></section><button class="submit-btn" id="createRoutine" type="button">Crear mi rutina personalizada →</button><p class="microcopy">La constancia también se entrena.</p><div class="result-card" id="resultCard"></div><div aria-live="polite" class="smart-loading" id="smartLoading"><div class="smart-orb"></div><h3 id="smartLoadingTitle">Adaptando tu sesión...</h3><p id="smartLoadingText">MoveSmart está ajustando la rutina a tu tiempo, energía y estado de hoy.</p></div><div class="routine-container" id="rutina-express"><div class="routine-intro"><div class="routine-version-label">⚡ Rutina A · 15–20 min</div><h2>Rutina A · Gimnasio</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>15–20 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Gimnasio</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Prensa de piernas</div><p class="exercise-desc">Apoya completamente la espalda y empuja sin bloquear las rodillas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="prensa-de-piernas"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Curl femoral sentado</div><p class="exercise-desc">Flexiona las rodillas con control y evita despegar la cadera del asiento.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="curl-femoral-sentado"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción de cadera en máquina</div><p class="exercise-desc">Separa las rodillas sin impulso y vuelve lentamente.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_sentado_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12–15</div><div class="pill"><span>Descanso</span>45–60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-de-cadera-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Express&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div><div class="routine-container" id="rutina-base"><div class="routine-intro"><div class="routine-version-label">🕒 Rutina A · 25–30 min</div><h2>Rutina A · Gimnasio</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>25–30 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Gimnasio</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Prensa de piernas</div><p class="exercise-desc">Apoya completamente la espalda y empuja sin bloquear las rodillas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="prensa-de-piernas"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Curl femoral sentado</div><p class="exercise-desc">Flexiona las rodillas con control y evita despegar la cadera del asiento.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="curl-femoral-sentado"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción de cadera en máquina</div><p class="exercise-desc">Separa las rodillas sin impulso y vuelve lentamente.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_sentado_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12–15</div><div class="pill"><span>Descanso</span>45–60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-de-cadera-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Press de pecho en máquina</div><p class="exercise-desc">Mantén cabeza y espalda apoyadas en una posición cómoda.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="press-de-pecho-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Remo sentado en máquina</div><p class="exercise-desc">Lleva los codos hacia atrás sin elevar los hombros ni adelantar la cabeza.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="remo-sentado-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Base&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div><div class="routine-container" id="rutina-completa"><div class="routine-intro"><div class="routine-version-label">🕘 Rutina A · 35–40 min</div><h2>Rutina A · Gimnasio</h2><p>Versión ajustada al tiempo y energía disponibles. La prioridad es completar una dosis sostenible con buena técnica.</p><div class="quick-stats"><div class="stat"><small>Duración</small><strong>35–40 min</strong></div><div class="stat"><small>Intensidad</small><strong>RPE 5–6/10</strong></div><div class="stat"><small>Lugar</small><strong>Gimnasio</strong></div><div class="stat"><small>Objetivo</small><strong>Constancia + fuerza</strong></div></div></div><div class="warning"><strong>Cuidado cervical:</strong> mantén el cuello en una posición cómoda. Reduce o detén el ejercicio si aparece una molestia cervical claramente mayor o diferente a la habitual.</div><section class="section"><div class="section-head"><h2>Ejercicios</h2><p>Realiza las series indicadas dejando varias repeticiones posibles.</p></div><div class="section-body"><article class="exercise-card"><div><div class="exercise-name">Prensa de piernas</div><p class="exercise-desc">Apoya completamente la espalda y empuja sin bloquear las rodillas.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/prensa_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="prensa-de-piernas"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Prensa de piernas">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Curl femoral sentado</div><p class="exercise-desc">Flexiona las rodillas con control y evita despegar la cadera del asiento.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/curl_femoral_sentado.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="curl-femoral-sentado"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Curl femoral sentado">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Abducción de cadera en máquina</div><p class="exercise-desc">Separa las rodillas sin impulso y vuelve lentamente.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_inferior/abduccion_sentado_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>12–15</div><div class="pill"><span>Descanso</span>45–60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="abduccion-de-cadera-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Abducción de cadera en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Press de pecho en máquina</div><p class="exercise-desc">Mantén cabeza y espalda apoyadas en una posición cómoda.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/press_pecho_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="press-de-pecho-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Press de pecho en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Remo sentado en máquina</div><p class="exercise-desc">Lleva los codos hacia atrás sin elevar los hombros ni adelantar la cabeza.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/tren_superior/remo_sentado_maquina.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>10–12</div><div class="pill"><span>Descanso</span>60 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="remo-sentado-en-maquina"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Remo sentado en máquina">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article><article class="exercise-card"><div><div class="exercise-name">Dead bug</div><p class="exercise-desc">Mueve brazo y pierna contraria manteniendo el tronco estable y el cuello cómodo.</p><button class="video-btn open-video" data-video="https://pssxcjgsoywfotxiyvmp.supabase.co/storage/v1/object/public/videos-ejercicios/core/dead_bug.mp4" type="button">▶ Ver video</button></div><div class="exercise-meta"><div class="pill"><span>Series</span>2</div><div class="pill"><span>Reps</span>6–8 por lado</div><div class="pill"><span>Descanso</span>45 s</div><div class="pill"><span>Esfuerzo</span>5–6/10</div></div><div class="review-request" data-exercise="dead-bug"><div class="review-request-copy"><span class="review-badge">📹 ¿Quieres que revise este ejercicio?</span><small>Es opcional. Envíame un video corto para revisar tu técnica.</small></div><button class="upload-execution-btn" type="button" data-exercise-name="Dead bug">📹 Enviar mi ejecución</button><div class="upload-status" aria-live="polite"></div></div></article></div></section><div class="note"><strong>Regla de esta semana:</strong> terminar con sensación de que podrías haber hecho un poco más. El objetivo es facilitar que vuelvas a la siguiente sesión.</div><div class="finish-session-wrap"><p class="finish-session-text">Al terminar, registra la sesión y cómo respondió tu cuerpo.</p><a class="finish-session-btn" href="https://movesmart-chile.github.io/movesmart-web/clientes/registro-sesion.html?cliente=Cliente%20de%20referencia&amp;rutina=Rutina%20A%20Completa&amp;sesion_objetivo={{OBJETIVO_SESION_URL}}">✅ Finalicé mi sesión</a></div></div></main></div>
+<div aria-hidden="true" class="video-modal" id="videoModal"><div class="video-box"><div class="video-box-head"><strong id="videoTitle">Video de ejercicio</strong><button class="close-video" id="closeVideo" type="button">Cerrar ✕</button></div><div class="video-frame-wrap"><iframe allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen id="videoFrame" src="" title="Video de ejercicio"></iframe><video autoplay disablepictureinpicture muted playsinline id="videoPlayer" preload="auto"></video></div></div></div>
+<div class="execution-modal" id="executionModal" aria-hidden="true"><div class="execution-dialog"><div class="execution-head"><div><strong>📹 Enviar mi ejecución</strong><p id="executionExerciseName">Ejercicio</p></div><button class="execution-close" id="executionClose" type="button">Cerrar ✕</button></div><div class="execution-body"><div class="execution-tip">Apoya el celular donde se vea bien el movimiento. Un video corto es suficiente.</div><label class="execution-file-label"><span>🎥 Grabar o elegir video</span><input id="executionFile" type="file" accept="video/*" capture="environment"></label><video class="execution-preview" id="executionPreview" controls playsinline></video><div class="selected-video-info" id="selectedVideoInfo"></div><div class="optimization-box" id="optimizationBox"></div><div class="upload-progress-wrap" id="uploadProgressWrap"><div class="upload-progress-track"><div class="upload-progress-bar" id="uploadProgressBar"></div></div><div class="upload-progress-row"><span id="uploadProgressText">Preparando subida…</span><span class="upload-progress-percent" id="uploadProgressPercent">0%</span></div></div><label class="execution-comment-label" for="executionComment">Comentario opcional</label><textarea class="execution-comment" id="executionComment"></textarea><div class="execution-actions"><button class="execution-cancel" id="executionCancel" type="button">Cancelar</button><button class="execution-send" id="executionSend" type="button" disabled>Enviar a MoveSmart</button></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/tus-js-client@4/dist/tus.min.js"></script>
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw1N8iVnpObbNNP78nEQ05krw6GQqYX95_NiMaKqMkS4ctR3QQa_f8t8WN1rQOgxmBng/exec";
 const VIDEO_COMMENTS_URL = "https://script.google.com/macros/s/AKfycbwb3u9ojcUoSzXvnUANAjqQDaJn_IwqhIxaexfbMpeQ2nGfm2tWE7u5-lZK3OY0I_UI/exec";
 const CLIENTE = "Cliente de referencia";
-const PREGUNTA_PERSONALIZADA = "Estado general del cuerpo antes de entrenar";
+const PREGUNTA_PERSONALIZADA = "{{PREGUNTA_PERSONALIZADA}}";
 const SUPABASE_URL = "https://pssxcjgsoywfotxiyvmp.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FugLYst3_ql5eREo9SvPpA_HCum2WBg";
 const SUPABASE_PROJECT_ID = "pssxcjgsoywfotxiyvmp";
@@ -1269,7 +866,7 @@ second: "2-digit",
 hour12: false
 }).format(ahora).replace(/:/g, "-");
 return [
-"cliente-de-referencia",
+"cliente-referencia",
 slugVideo(rutina),
 fecha,
 fecha + "_" + hora + "_" + slugVideo(ejercicio) + "." + extensionVideo(file)
@@ -1335,23 +932,23 @@ throw error;
 return { ok:true, duplicate:false };
 }
 async function registrarVideoEnSheet({ rutina, ejercicio, comentario, rutaVideo }){
-  const payload = {
-    cliente: CLIENTE,
-    rutina,
-    ejercicio,
-    comentario: comentario || "",
-    rutaVideo,
-    estado: "Enviado"
-  };
-  await fetch(VIDEO_COMMENTS_URL, {
-    method: "POST",
-    mode: "no-cors",
-    keepalive: true,
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify(payload)
-  });
+const payload = {
+cliente: CLIENTE,
+rutina,
+ejercicio,
+comentario: comentario || "",
+rutaVideo,
+estado: "Enviado"
+};
+await fetch(VIDEO_COMMENTS_URL, {
+method: "POST",
+mode: "no-cors",
+keepalive: true,
+headers: {
+"Content-Type": "text/plain;charset=utf-8"
+},
+body: JSON.stringify(payload)
+});
 }
 async function sincronizarVideosEnviadosHoy(){
 if(!supabaseClient){
@@ -1413,42 +1010,6 @@ const surveyCard = document.querySelector('.survey-card');
 const smartLoading = document.getElementById('smartLoading');
 const smartLoadingTitle = document.getElementById('smartLoadingTitle');
 const smartLoadingText = document.getElementById('smartLoadingText');
-const surveyRoot = document.querySelector('.survey-card');
-function aplicarSeleccionEncuesta(btn){
-if(!btn || !btn.classList.contains('choice')) return;
-const questionEl = btn.closest('.question');
-const choicesEl = btn.closest('.choices');
-if(!questionEl || !choicesEl) return;
-const question = questionEl.dataset.question;
-if(!question) return;
-respuestas[question] = btn.dataset.value || '';
-choicesEl.querySelectorAll('.choice').forEach(other => {
-other.classList.remove('selected');
-other.setAttribute('aria-pressed', 'false');
-});
-btn.classList.add('selected');
-btn.setAttribute('aria-pressed', 'true');
-if(resultCard) resultCard.classList.remove('active');
-document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
-const answered = Object.values(respuestas).filter(Boolean).length;
-if(progressFill) progressFill.style.width = `${(answered / 3) * 100}%`;
-if(progressText) progressText.textContent = `Pregunta ${answered} de 3`;
-}
-if(surveyRoot){
-// Delegación: funciona aunque el navegador móvil trate distinto los botones.
-surveyRoot.addEventListener('click', function(e){
-const btn = e.target.closest('.choice');
-if(!btn || !surveyRoot.contains(btn)) return;
-e.preventDefault();
-aplicarSeleccionEncuesta(btn);
-});
-surveyRoot.addEventListener('touchend', function(e){
-const btn = e.target.closest('.choice');
-if(!btn || !surveyRoot.contains(btn)) return;
-e.preventDefault();
-aplicarSeleccionEncuesta(btn);
-}, {passive:false});
-}
 function updateProgress(){
 const answered = Object.values(respuestas).filter(Boolean).length;
 progressFill.style.width = `${(answered / 3) * 100}%`;
@@ -1493,10 +1054,21 @@ console.log("Tampoco se pudo usar sendBeacon:", e);
 }
 });
 }
+document.querySelectorAll('.choice').forEach(btn => {
+btn.addEventListener('click', () => {
+const question = btn.closest('.question').dataset.question;
+respuestas[question] = btn.dataset.value;
+btn.closest('.choices').querySelectorAll('.choice').forEach(other => other.classList.remove('selected'));
+btn.classList.add('selected');
+resultCard.classList.remove('active');
+document.querySelectorAll('.routine-container').forEach(r => r.classList.remove('active'));
+updateProgress();
+});
+});
 document.getElementById('createRoutine').addEventListener('click', () => {
 const faltan = Object.entries(respuestas).filter(([,v]) => !v).map(([k]) => k);
 if(faltan.length){
-resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado general del cuerpo para crear la recomendación.';
+resultCard.innerHTML = '<strong>Falta responder:</strong> tiempo, energía y estado de tus molestias o zonas lesionadas para crear la recomendación.';
 resultCard.style.background = 'rgba(255,90,31,.12)';
 resultCard.style.borderColor = 'rgba(255,90,31,.28)';
 resultCard.style.color = '#ffe0d4';
@@ -1512,22 +1084,22 @@ if(modo === 'Detener'){
 resultCard.style.background = 'rgba(255,107,107,.12)';
 resultCard.style.borderColor = 'rgba(255,107,107,.28)';
 resultCard.style.color = '#ffe1e1';
-resultCard.innerHTML = '<strong>Hoy no recomendamos iniciar la rutina.</strong><br>Marcaste dolor o malestar importante. No inicies la sesión y busca orientación médica si el síntoma es nuevo, intenso o preocupante.';
+resultCard.innerHTML = '<strong>Hoy no recomendamos iniciar la rutina.</strong><br>Marcaste molestias altas o diferentes a lo habitual. Prioriza la indicación médica y retoma esta sesión solo cuando corresponda según tu evolución.';
 resultCard.classList.add('active');
 resultCard.scrollIntoView({ behavior:'auto', block:'center' });
 return;
 }
 const modoTexto = {
-Recovery: 'Hoy utiliza pesos más livianos, movimientos controlados y descansos más largos.',
-Normal: 'Realiza la versión planificada con un peso manejable y sin llegar al fallo.'
+Recovery: 'Hoy utiliza la versión más breve, reduce la carga y mantén el cuello en una posición cómoda. Observa la respuesta durante las horas posteriores.',
+Normal: 'Realiza la versión planificada con fuerza controlada, dejando varias repeticiones posibles y sin buscar fatiga máxima.'
 };
 smartLoading.classList.add('active');
 surveyCard.classList.add('is-processing');
 smartLoadingTitle.textContent = 'Analizando cómo llegas hoy...';
-smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado general del cuerpo.';
+smartLoadingText.textContent = 'MoveSmart está revisando tu tiempo, energía y estado de tus molestias o zonas lesionadas.';
 smartLoading.scrollIntoView({ behavior:'auto', block:'center' });
 setTimeout(() => {
-smartLoadingTitle.textContent = 'Adaptando tu Rutina A de recuperación...';
+smartLoadingTitle.textContent = 'Adaptando tu Rutina A...';
 smartLoadingText.textContent = `Preparando versión ${estructura} con modo ${modo}.`;
 }, 180);
 setTimeout(() => {
@@ -1579,72 +1151,61 @@ const videoFrame = document.getElementById('videoFrame');
 const videoPlayer = document.getElementById('videoPlayer');
 const closeVideo = document.getElementById('closeVideo');
 const videoTitle = document.getElementById('videoTitle');
-function isDirectVideoUrl(url) {
-  if (!url) return false;
-  try {
-    const parsed = new URL(String(url).trim());
-    return /\.(mp4|webm|ogg)$/i.test(parsed.pathname);
-  } catch (err) {
-    return false;
-  }
-}
-let videoFadeRestartTimer = null;
+let videoLoopTimeout = null;
 function restartVideoWithFade() {
-  clearTimeout(videoFadeRestartTimer);
-  videoPlayer.classList.add('loop-fade-out');
-  videoFadeRestartTimer = setTimeout(function () {
-    videoPlayer.currentTime = 0;
-    videoPlayer.play().catch(function () {});
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        videoPlayer.classList.remove('loop-fade-out');
-      });
-    });
-  }, 400);
+videoPlayer.classList.add('loop-fade-out');
+clearTimeout(videoLoopTimeout);
+videoLoopTimeout = setTimeout(function () {
+if (!videoModal.classList.contains('active')) return;
+videoPlayer.currentTime = 0;
+videoPlayer.play().catch(function () {});
+requestAnimationFrame(function () {
+requestAnimationFrame(function () {
+videoPlayer.classList.remove('loop-fade-out');
+});
+});
+}, 400);
 }
 videoPlayer.addEventListener('ended', restartVideoWithFade);
-function showVideo(url, title, directVideo) {
-  videoTitle.textContent = title || 'Video de ejercicio';
-  if (directVideo) {
-    clearTimeout(videoFadeRestartTimer);
-    videoPlayer.classList.remove('loop-fade-out');
-    videoFrame.src = '';
-    videoFrame.style.display = 'none';
-    videoPlayer.style.display = 'block';
-    videoPlayer.loop = false;
-    videoPlayer.muted = true;
-    videoPlayer.autoplay = true;
-    videoPlayer.controls = false;
-    videoPlayer.src = url;
-    videoPlayer.load();
-    const playPromise = videoPlayer.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(function () {
-        // El video permanece silenciado para permitir autoplay en móviles.
-      });
-    }
-  } else {
-    videoPlayer.pause();
-    videoPlayer.removeAttribute('src');
-    videoPlayer.load();
-    videoPlayer.style.display = 'none';
-    videoFrame.style.display = 'block';
-    videoFrame.src = url;
-  }
-  videoModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+function showYoutubeVideo(url, title) {
+videoTitle.textContent = title || 'Video de ejercicio';
+videoPlayer.pause();
+videoPlayer.removeAttribute('src');
+videoPlayer.load();
+videoPlayer.style.display = 'none';
+videoFrame.style.display = 'block';
+videoFrame.src = url;
+videoModal.classList.add('active');
+document.body.style.overflow = 'hidden';
+}
+function showDirectVideo(url, title) {
+videoTitle.textContent = title || 'Video de ejercicio';
+clearTimeout(videoLoopTimeout);
+videoPlayer.classList.remove('loop-fade-out');
+videoFrame.src = '';
+videoFrame.style.display = 'none';
+videoPlayer.style.display = 'block';
+videoPlayer.src = url;
+videoPlayer.muted = true;
+videoPlayer.loop = false;
+videoPlayer.controls = false;
+videoModal.classList.add('active');
+document.body.style.overflow = 'hidden';
+const playPromise = videoPlayer.play();
+if (playPromise && typeof playPromise.catch === 'function') {
+playPromise.catch(function () {});
+}
 }
 function hideVideo() {
-  clearTimeout(videoFadeRestartTimer);
-  videoModal.classList.remove('active');
-  videoFrame.src = '';
-  videoFrame.style.display = 'block';
-  videoPlayer.pause();
-  videoPlayer.classList.remove('loop-fade-out');
-  videoPlayer.removeAttribute('src');
-  videoPlayer.load();
-  videoPlayer.style.display = 'none';
-  document.body.style.overflow = '';
+videoModal.classList.remove('active');
+clearTimeout(videoLoopTimeout);
+videoPlayer.classList.remove('loop-fade-out');
+videoFrame.src = '';
+videoPlayer.pause();
+videoPlayer.removeAttribute('src');
+videoPlayer.load();
+videoPlayer.style.display = 'none';
+document.body.style.overflow = '';
 }
 document.querySelectorAll('.video-btn').forEach(function (button) {
 button.addEventListener('click', function (e) {
@@ -1654,13 +1215,15 @@ const card = button.closest('.exercise-card');
 const nameEl = card ? card.querySelector('.exercise-name') : null;
 const title = nameEl ? nameEl.textContent.trim() : 'Video de ejercicio';
 const rawUrl = button.getAttribute('data-video') || button.getAttribute('href');
-if (isDirectVideoUrl(rawUrl)) {
-  showVideo(rawUrl, title, true);
-} else {
-  const embedUrl = toEmbedUrl(rawUrl);
-  if (embedUrl) showVideo(embedUrl, title, false);
-  else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
+const cleanUrl = String(rawUrl || '').trim();
+const isDirectVideo = /^https:\/\/[^\s]+\.(mp4|webm|ogg)(\?[^\s]*)?$/i.test(cleanUrl);
+if (isDirectVideo) {
+showDirectVideo(cleanUrl, title);
+return;
 }
+const embedUrl = toEmbedUrl(cleanUrl);
+if (embedUrl) showYoutubeVideo(embedUrl, title);
+else alert('A este ejercicio todavía no se le ha agregado un link de video válido.');
 });
 });
 if (closeVideo) closeVideo.addEventListener('click', hideVideo);
@@ -1861,33 +1424,16 @@ executionPreview.classList.add('active');
 selectedVideoInfo.textContent = `✅ ${originalFile.name} · ${formatoMB(originalFile.size)}`;
 selectedVideoInfo.classList.add('active');
 executionSend.disabled = true;
-executionSend.textContent = 'Optimizando…';
+executionSend.textContent = 'Preparando…';
 optimizationBox.classList.add('active');
 optimizationBox.innerHTML =
-'<strong>⚡ Preparando una versión más liviana…</strong><br>' +
-'Si tu dispositivo lo permite, reduciremos el peso antes de subirlo.';
+'<strong>⚡ Preparando tu video…</strong><br>' +
+'Esto puede tardar unos segundos.';
 const result = await optimizarVideoParaEnvio(originalFile);
 optimizedUploadFile = result.file;
-if(result.optimized){
-const ahorro = Math.max(
-0,
-Math.round((1 - result.optimizedSize / result.originalSize) * 100)
-);
 optimizationBox.innerHTML =
-`<strong>✅ Video optimizado</strong><br>` +
-`${formatoMB(result.originalSize)} → ${formatoMB(result.optimizedSize)} · ` +
-`${ahorro}% menos datos para subir.`;
-}else{
-const reasonText = {
-'already-small':'El video ya es liviano, así que se enviará tal cual.',
-'unsupported':'Este navegador no permite optimizarlo de forma segura. Se enviará el original.',
-'duration':'Para evitar una espera larga, se enviará el original.',
-'no-benefit':'La optimización no redujo suficiente el tamaño, así que usaremos el original.',
-'error':'No se pudo optimizar en este dispositivo. Se enviará el original.'
-}[result.reason] || 'Se enviará el archivo original.';
-optimizationBox.innerHTML =
-`<strong>ℹ️ Usaremos el video original</strong><br>${reasonText}`;
-}
+`<strong>✅ Video listo para enviar</strong><br>` +
+`Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
 });
@@ -2038,6 +1584,9 @@ executionSend.textContent = '✅ Enviado';
 if(status){
 status.textContent = '✅ Video enviado correctamente a MoveSmart.';
 }
+// Cierra rápidamente después de confirmar el envío. Los registros y la
+// sincronización posteriores continúan en segundo plano.
+setTimeout(closeExecutionModal, 500);
 // Fallback local inmediato: ya sabemos que Storage funcionó.
 try{
 const localKey = 'movesmart_video_hoy_' + claveEjercicio(rutina, activeExerciseName);
@@ -2090,7 +1639,6 @@ status.textContent =
 '✅ El video quedó guardado. La sincronización entre dispositivos quedó pendiente.';
 }
 }
-setTimeout(closeExecutionModal, 1200);
 }catch(error){
 console.error('Error REAL de subida de video:', error);
 executionSend.disabled = false;
@@ -2117,5 +1665,40 @@ sincronizarVideosEnviadosHoy();
 });
 updateProgress();
 </script>
-</body>
-</html>
+<script>
+/* Respaldo táctil para selección de la encuesta */
+(function(){
+document.addEventListener('click', function(e){
+const btn = e.target.closest && e.target.closest('.choice');
+if(!btn) return;
+const questionEl = btn.closest('.question');
+if(!questionEl) return;
+const question = questionEl.dataset.question;
+if(!question || typeof respuestas === 'undefined') return;
+respuestas[question] = btn.dataset.value;
+const choices = btn.closest('.choices');
+if(choices){
+choices.querySelectorAll('.choice').forEach(function(other){
+other.classList.remove('selected');
+other.setAttribute('aria-pressed','false');
+});
+}
+btn.classList.add('selected');
+btn.setAttribute('aria-pressed','true');
+if(typeof updateProgress === 'function') updateProgress();
+if(typeof resultCard !== 'undefined' && resultCard){
+resultCard.classList.remove('active');
+}
+document.querySelectorAll('.routine-container').forEach(function(r){
+r.classList.remove('active');
+});
+}, true);
+document.querySelectorAll('.choice').forEach(function(btn){
+btn.setAttribute('role','button');
+btn.setAttribute('aria-pressed', btn.classList.contains('selected') ? 'true' : 'false');
+});
+})();
+</script>
+
+
+</body></html>
