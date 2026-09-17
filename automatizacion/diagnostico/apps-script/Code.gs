@@ -26,7 +26,11 @@ function doGet(e) {
     const nameIndex = headers.indexOf("fullName");
     if (nameIndex === -1) throw new Error("No existe la columna fullName.");
 
-    const row = rows.find(values => slugify_(values[nameIndex]) === requestedId);
+    const row = rows.find(values => {
+      const rowId = slugify_(values[nameIndex]);
+      return rowId === requestedId ||
+        (requestedId === TEST_CLIENT_ID && rowId === "cliente-de-referencia");
+    });
     if (!row) throw new Error("No se encontró Cliente de Referencia.");
 
     const record = {};
