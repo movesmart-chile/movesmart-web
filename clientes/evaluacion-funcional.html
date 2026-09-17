@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -311,6 +312,7 @@ let VIDEO_STORAGE_FOLDER = `${CLIENTE_ID || "cliente-no-identificado"}/evaluacio
 let VIDEO_EXERCISE = "Prueba funcional";
 let EVALUATION_ID = "";
 let IS_CONSTANCY = false;
+let IS_COMMITMENT = false;
 const DASHBOARD_URL = CLIENTE_ID
   ? `https://movesmart-chile.github.io/movesmart-web/clientes/dashboard-clientes.html?cliente_id=${encodeURIComponent(CLIENTE_ID)}`
   : "https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html";
@@ -329,6 +331,7 @@ function aplicarConfiguracion(config){
   CLIENTE_CONFIG = config;
   EVALUATION_ID = String(config.modulo_prueba || config.id || config.codigo || config.evaluacion_id || "").trim().toLowerCase();
   IS_CONSTANCY = EVALUATION_ID === "constancia_semanal";
+  IS_COMMITMENT = EVALUATION_ID === "compromiso_inicial";
   MODULO = {
     actividad: config.actividad_funcional || "esta actividad",
     nombrePrueba: config.nombre_prueba || "Prueba funcional",
@@ -394,7 +397,8 @@ function aplicarConfiguracion(config){
   document.querySelector(".demo-box").hidden = !config.video_demostrativo;
   demoVideo.load();
   configurarConstanciaSemanal();
-  testEstado.required = !IS_CONSTANCY;
+  configurarCompromisoInicial();
+  testEstado.required = !(IS_CONSTANCY || IS_COMMITMENT);
   testEstado.dispatchEvent(new Event("change"));
 }
 
@@ -447,6 +451,57 @@ function configurarConstanciaSemanal(){
     const complete = document.getElementById("constanciaEstado").value === "Completó las sesiones planificadas";
     document.getElementById("dificultadConstancia").value = complete ? "Nada, completé lo planificado" : "";
   });
+}
+
+function configurarCompromisoInicial(){
+  if(!IS_COMMITMENT) return;
+
+  document.title = `Compromiso inicial | ${CLIENTE} · MoveSmart`;
+  document.getElementById("evaluationEyebrow").textContent = `📍 Compromiso ${MOMENTO} · Ciclo ${CICLO}`;
+  document.getElementById("heroTitle").textContent = "Construyamos tu compromiso inicial";
+  document.querySelector(".hero > p").textContent = "Antes de comenzar, definamos un compromiso semanal realista. No necesitas hacer ejercicios ni grabar videos para responder.";
+  document.getElementById("painSectionTitle").textContent = "1. Importancia de comenzar";
+  document.getElementById("painSectionSub").textContent = "Piensa en la importancia que tiene para ti comenzar este programa.";
+  document.getElementById("painQuestion").textContent = `${CLIENTE_CONFIG.pregunta_dolor || "¿Qué tan importante es para ti comenzar a entrenar?"} *`;
+  document.querySelector("#painQuestion").nextElementSibling.nextElementSibling.textContent = "0 = nada importante · 10 = extremadamente importante.";
+  document.getElementById("capacityQuestion").textContent = `${MODULO.capacidadPregunta} *`;
+  document.querySelector("#capacityQuestion").closest(".card").querySelector(".section-sub").textContent = "Considera tus horarios, energía y posibilidades reales de cumplir las sesiones.";
+  document.getElementById("confidenceQuestion").textContent = `${MODULO.confianzaPregunta} *`;
+  document.querySelector("#confidenceQuestion").closest(".card").querySelector(".section-sub").textContent = "Piensa en cómo mantendrías tu compromiso incluso ante cambios de horario.";
+
+  document.getElementById("testCard").hidden = true;
+  document.getElementById("observationCard").hidden = true;
+
+  const section = document.createElement("section");
+  section.className = "card";
+  section.id = "commitmentCard";
+  section.innerHTML = `
+    <h3 class="section-title">4. Tu compromiso semanal</h3>
+    <p class="section-sub">Elige una cantidad de sesiones y horarios que puedas sostener durante este ciclo.</p>
+    <div class="field">
+      <label for="sesionesComprometidas">¿Cuántas sesiones de entrenamiento te comprometes a realizar por semana? *</label>
+      <input id="sesionesComprometidas" name="repeticiones_prueba" type="number" min="1" max="7" step="1" required inputmode="numeric" placeholder="Ej.: 3">
+      <p class="helper">El objetivo propuesto es completar 3 sesiones semanales de 30–45 minutos. Elige un compromiso realista para ti.</p>
+    </div>
+    <div class="field">
+      <label for="horariosCompromiso">¿Qué días y horarios reservarás para entrenar? *</label>
+      <textarea id="horariosCompromiso" name="horarios_compromiso" rows="3" required placeholder="Ej.: lunes, miércoles y viernes después del trabajo"></textarea>
+    </div>
+    <div class="field">
+      <label for="barreraCompromiso">¿Qué podría dificultar principalmente tu compromiso?</label>
+      <select id="barreraCompromiso" name="motivo_parada">
+        <option value="">Selecciona</option>
+        <option>Falta de tiempo</option>
+        <option>Cansancio o poca energía</option>
+        <option>Dolor o molestias</option>
+        <option>Olvido o falta de organización</option>
+        <option>Cambio de horario o imprevistos</option>
+        <option>Ninguna dificultad prevista</option>
+        <option>Otra dificultad</option>
+      </select>
+    </div>`;
+  document.getElementById("submitBtn").before(section);
+  document.getElementById("submitBtn").textContent = "Guardar mi compromiso →";
 }
 
 async function cargarConfiguracion(){
@@ -676,7 +731,7 @@ data.ciclo = CICLO;
 data.momento = MOMENTO;
 data.objetivo_funcional = OBJETIVO_FUNCIONAL;
 data.modulo_prueba = CLIENTE_CONFIG.modulo_prueba;
-data.duracion_segundos = TEST_DURATION_SECONDS;
+data.duracion_segundos = (IS_CONSTANCY || IS_COMMITMENT) ? "" : TEST_DURATION_SECONDS;
 data.altura_cm = CLIENTE_CONFIG.altura_cm ?? "";
 data.fecha = fechaChile();
 data.tipo = "evaluacion_funcional_movesmart";
@@ -697,7 +752,14 @@ alert("No pudimos enviar la evaluación. Revisa tu conexión e inténtalo nuevam
 return;
 }
 }
-resultGrid.innerHTML = IS_CONSTANCY
+resultGrid.innerHTML = IS_COMMITMENT
+  ? metric("Importancia de comenzar", `${data.dolor_actividad}/10`) +
+    metric("Capacidad percibida", `${data.capacidad_funcional}/10`) +
+    metric("Confianza en el compromiso", `${data.confianza_funcional}/10`) +
+    metric("Sesiones semanales comprometidas", data.repeticiones_prueba || "—") +
+    metric("Días y horarios reservados", data.horarios_compromiso || "—") +
+    metric("Posible dificultad", data.motivo_parada || "—")
+  : IS_CONSTANCY
   ? metric("Sesiones completadas", data.sesiones_completadas || "—") +
     metric("Planificación semanal", data.constancia_estado || "—") +
     metric("Principal dificultad", data.dificultad_constancia || "—") +
@@ -717,7 +779,7 @@ metric("Observación", data.observacion_prueba || "—") +
 (MODULO.requierePiernaInicio ? metric("Pierna inicial", data.pierna_inicio || "—") : "") +
   (MODULO.requiereApoyo ? metric("Apoyo", data.uso_apoyo || "—") : "");
 result.classList.add("active");
-submitBtn.textContent = "✅ Evaluación enviada";
+submitBtn.textContent = IS_COMMITMENT ? "✅ Compromiso enviado" : "✅ Evaluación enviada";
 result.scrollIntoView({behavior:"smooth",block:"start"});
 });
 
