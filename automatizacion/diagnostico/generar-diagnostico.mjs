@@ -16,14 +16,45 @@ function variablesPendientes(html) {
   return [...new Set([...html.matchAll(/\{\{\s*([A-Z0-9_]+)\s*\}\}/g)].map(match => match[1]))];
 }
 
-const input = process.argv[2];
-if (!input) stop("Debes indicar el archivo JSON del cliente.");
+async function cargarDatos(origen) {
+  if (/^https?:\/\//i.test(origen)) {
+    let response;
+    try {
+      response = await fetch(origen, { redirect: "follow" });
+    } catch (error) {
+      stop("No fue posible conectar con Google Sheets: " + error.message);
+    }
 
-const inputPath = path.resolve(process.cwd(), input);
-if (!fs.existsSync(inputPath)) stop("No existe el archivo de datos.");
+    if (!response.ok) {
+      stop("Google Sheets respondió con estado " + response.status + ".");
+    }
+
+    let payload;
+    try {
+      payload = await response.json();
+    } catch {
+      stop("La respuesta de Google Sheets no es un JSON válido.");
+    }
+
+    if (payload.ok === false) stop(payload.error || "Google Sheets devolvió un error.");
+    return payload;
+  }
+
+  const inputPath = path.resolve(process.cwd(), origen);
+  if (!fs.existsSync(inputPath)) stop("No existe el archivo de datos.");
+
+  try {
+    return JSON.parse(fs.readFileSync(inputPath, "utf8"));
+  } catch {
+    stop("El archivo de datos no contiene un JSON válido.");
+  }
+}
+
+const input = process.argv[2];
+if (!input) stop("Debes indicar un archivo JSON o la URL del conector de Google Sheets.");
 if (!fs.existsSync(TEMPLATE)) stop("No existe la plantilla maestra.");
 
-const datos = JSON.parse(fs.readFileSync(inputPath, "utf8"));
+const datos = await cargarDatos(input);
 const clienteId = String(datos.clienteId || "").trim();
 
 if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(clienteId)) {
