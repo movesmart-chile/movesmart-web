@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -158,7 +159,7 @@ No realices o detén la prueba si tienes dolor fuerte o punzante, aumento rápid
 <video class="demo-video" id="demoVideo" controls muted playsinline preload="metadata"></video>
 </div>
 <div class="timer-box">
-<strong id="timerDisplay">30 s</strong>
+<strong id="timerDisplay">00:30</strong>
 <button class="btn timer-btn" id="timerBtn" type="button">Iniciar cronómetro</button>
 <p class="helper">Escucharás una cuenta regresiva antes de comenzar y avisos sonoros en los últimos segundos y al finalizar.</p>
 </div>
@@ -307,6 +308,18 @@ let CICLO = 0;
 let MOMENTO = "inicial";
 let OBJETIVO_FUNCIONAL = "";
 let TEST_DURATION_SECONDS = 30;
+// El valor de Sheets permanece en segundos; solo cambia su presentación.
+function formatoCronometro(totalSegundos){
+  const total = Math.max(0, Math.floor(Number(totalSegundos) || 0));
+  return `${String(Math.floor(total / 60)).padStart(2,"0")}:${String(total % 60).padStart(2,"0")}`;
+}
+function duracionLegible(totalSegundos){
+  const total = Math.max(0, Number(totalSegundos) || 0);
+  return total >= 60 && total % 60 === 0
+    ? `${total / 60} ${total === 60 ? "minuto" : "minutos"}`
+    : `${total} ${total === 1 ? "segundo" : "segundos"}`;
+}
+
 let VIDEO_ROUTINE = "Evaluación funcional";
 let VIDEO_STORAGE_FOLDER = `${CLIENTE_ID || "cliente-no-identificado"}/evaluacion_funcional`;
 let VIDEO_EXERCISE = "Prueba funcional";
@@ -382,16 +395,16 @@ function aplicarConfiguracion(config){
   }
   document.getElementById("testTitle").textContent = `4. ${MODULO.nombrePrueba}`;
   document.getElementById("testInstructions").textContent = MODULO.instrucciones;
-  document.getElementById("timerDisplay").textContent = `${TEST_DURATION_SECONDS} s`;
-  document.getElementById("videoReviewText").textContent = `Es opcional. Puedes enviar el video completo de los ${TEST_DURATION_SECONDS} segundos a MoveSmart.`;
+  document.getElementById("timerDisplay").textContent = formatoCronometro(TEST_DURATION_SECONDS);
+  document.getElementById("videoReviewText").textContent = `Es opcional. Puedes enviar el video completo de la prueba (${duracionLegible(TEST_DURATION_SECONDS)}) a MoveSmart.`;
   document.getElementById("repsLabel").textContent = MODULO.repeticionesLabel;
   document.getElementById("techniqueStopOption").textContent = MODULO.tecnicaParada;
-  document.getElementById("timerStopOption").textContent = `Finalizaron los ${TEST_DURATION_SECONDS} segundos`;
+  document.getElementById("timerStopOption").textContent = `Finalizó el tiempo (${duracionLegible(TEST_DURATION_SECONDS)})`;
   document.getElementById("observationLabel").textContent = MODULO.observacionLabel;
   document.getElementById("marcha").innerHTML = '<option value="">Selecciona</option>' +
     MODULO.observaciones.map(value => `<option>${value}</option>`).join("");
   document.getElementById("comentario").placeholder = MODULO.comentarioPlaceholder;
-  document.getElementById("executionSubtitle").textContent = `${VIDEO_EXERCISE} · ${TEST_DURATION_SECONDS} segundos`;
+  document.getElementById("executionSubtitle").textContent = `${VIDEO_EXERCISE} · ${duracionLegible(TEST_DURATION_SECONDS)}`;
   const demoVideo = document.getElementById("demoVideo");
   demoVideo.src = config.video_demostrativo || "";
   document.querySelector(".demo-box").hidden = !config.video_demostrativo;
@@ -622,12 +635,12 @@ timerDisplay.textContent = "¡Comienza!";
 beep(1050,.3);
 await wait(550);
 let seconds = TEST_DURATION_SECONDS;
-timerDisplay.textContent = `${seconds} s`;
+timerDisplay.textContent = formatoCronometro(seconds);
 timerBtn.textContent = "Prueba en curso…";
 timerPreparing = false;
 timerInterval = setInterval(() => {
 seconds -= 1;
-timerDisplay.textContent = `${seconds} s`;
+timerDisplay.textContent = formatoCronometro(seconds);
 if(seconds > 0 && seconds <= 3) beep(700,.13);
 if(seconds <= 0){
 clearInterval(timerInterval); timerInterval = null; beep(1100,.45);
