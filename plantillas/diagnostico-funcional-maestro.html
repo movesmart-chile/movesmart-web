@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,7 +26,7 @@
       color:var(--text);
       background:
         linear-gradient(180deg, rgba(8,10,18,.40), rgba(8,10,18,.58)),
-        url('https://movesmart-chile.github.io/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
+        url('/movesmart-web/imagenes/fondo-preview-rutina.webp') center center / cover no-repeat;
       overflow-x:hidden;
     }
 
@@ -407,7 +408,7 @@
       <a href="https://movesmart-chile.github.io/movesmart-web/acceso-clientes.html" aria-label="Inicio MoveSmart">
         <img
           class="top-logo"
-          src="https://movesmart-chile.github.io/movesmart-web/imagenes/logo.webp"
+          src="/movesmart-web/imagenes/logo.webp"
           alt="MoveSmart">
       </a>
 
@@ -435,7 +436,7 @@
 
       <div class="hero-ankle" aria-hidden="true">
         <img
-          src="https://movesmart-chile.github.io/movesmart-web/imagenes/diagnistico.webp"
+          src="/movesmart-web/imagenes/diagnistico.webp"
           alt="">
       </div>
     </section>
@@ -443,7 +444,7 @@
     <section class="case-card">
       <div class="ankle-icon" aria-hidden="true">
         <img
-          src="https://movesmart-chile.github.io/movesmart-web/imagenes/insignia.webp"
+          src="/movesmart-web/imagenes/insignia.webp"
           alt="">
       </div>
 
@@ -466,15 +467,15 @@
         <div class="data-item">
           <div class="data-icon">⏱️</div>
           <div>
-            <small>Barrera principal</small>
-            <strong>{{BARRERA_PRINCIPAL}}</strong>
+            <small>{{ETIQUETA_DATO_2}}</small>
+            <strong>{{VALOR_DATO_2}}</strong>
           </div>
         </div>
 
         <div class="data-item">
           <div class="data-icon">◎</div>
           <div>
-            <small>Objetivo funcional</small>
+            <small>{{ETIQUETA_OBJETIVO}}</small>
             <strong>{{OBJETIVO_FUNCIONAL}}</strong>
           </div>
         </div>
@@ -482,7 +483,7 @@
         <div class="data-item">
           <div class="data-icon">📈</div>
           <div>
-            <small>Enfoque</small>
+            <small>{{ETIQUETA_ENFOQUE}}</small>
             <strong>{{ENFOQUE}}</strong>
           </div>
         </div>
@@ -492,11 +493,13 @@
     <section class="info-grid">
       <article class="info-card blue">
         <div class="info-head">
-          <div class="info-icon">✓</div>
-          <h3>Datos confirmados</h3>
+          <div class="info-icon">👁</div>
+          <h3>Lo que observamos</h3>
         </div>
 
-        {{DATOS_CONFIRMADOS_HTML}}
+        <ul class="check-list">
+          {{OBSERVACIONES_ITEMS_HTML}}
+        </ul>
       </article>
 
       <article class="info-card green">
@@ -505,7 +508,9 @@
           <h3>Qué vamos a trabajar</h3>
         </div>
 
-        {{QUE_VAMOS_A_TRABAJAR_HTML}}
+        <ul class="check-list">
+          {{TRABAJO_ITEMS_HTML}}
+        </ul>
       </article>
     </section>
 
@@ -520,7 +525,7 @@
     </section>
 
     <div class="cta-wrap">
-      <a href="https://movesmart-chile.github.io/movesmart-web/clientes/adriana-jara/plan-adriana-jara.html" class="cta">
+      <a href="{{URL_PLAN_CLIENTE}}" class="cta">
         <span>→</span>
         <span>Ver mi programa</span>
       </a>
