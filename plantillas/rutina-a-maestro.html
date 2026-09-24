@@ -1442,6 +1442,14 @@ optimizationBox.innerHTML =
 `Tu video está preparado. Puedes agregar un comentario antes de enviarlo.`;
 executionSend.textContent = 'Enviar a MoveSmart';
 executionSend.disabled = false;
+}
+executionCamera.addEventListener('change', async ()=>{
+const file = executionCamera.files && executionCamera.files[0];
+await handleExecutionFile(file, executionCamera);
+});
+executionFile.addEventListener('change', async ()=>{
+const file = executionFile.files && executionFile.files[0];
+await handleExecutionFile(file, executionFile);
 });
 async function subirVideoStoragePrimero(file, objectName, session, rutina, ejercicio, comentario){
 if(!supabaseClient){
