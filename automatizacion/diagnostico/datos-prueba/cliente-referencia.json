@@ -1,0 +1,17 @@
+{
+  "clienteId": "cliente-referencia",
+  "variables": {
+    "NOMBRE_CLIENTE": "Cliente de Referencia",
+    "URL_PLAN_CLIENTE": "https://movesmart-chile.github.io/movesmart-web/clientes/cliente-referencia/plan-cliente-referencia.html",
+    "INTRODUCCION_DIAGNOSTICO": "Este diagnóstico funcional de demostración muestra cómo MoveSmart transforma la información inicial en una orientación clara y personalizada.",
+    "RESUMEN_DEL_CASO": "Cliente ficticio creado exclusivamente para probar la automatización de MoveSmart, sin utilizar información de personas reales.",
+    "ESTADO_ACTUAL": "Desea retomar el movimiento de forma gradual y construir una rutina que pueda sostener.",
+    "BARRERA_PRINCIPAL": "Dificultad para mantener la constancia cuando la semana cambia.",
+    "OBJETIVO_FUNCIONAL": "Completar sus actividades diarias y sesiones de entrenamiento con mayor confianza y regularidad.",
+    "ENFOQUE": "Empezar con una dosis simple, observar la respuesta y progresar según tolerancia.",
+    "DATOS_CONFIRMADOS_HTML": "<li>Cliente ficticio utilizado para pruebas.</li><li>Programa inicial de baja complejidad.</li><li>Seguimiento basado en respuesta y tolerancia.</li>",
+    "QUE_VAMOS_A_TRABAJAR_HTML": "<li>Constancia semanal.</li><li>Fuerza general.</li><li>Confianza para moverse.</li>",
+    "OBJETIVO_INICIAL": "Completar la primera semana con una dosis sostenible y registrar cómo responde.",
+    "NOTA_PROFESIONAL": "Este contenido es una demostración técnica. No corresponde a la evaluación clínica de una persona real."
+  }
+}
